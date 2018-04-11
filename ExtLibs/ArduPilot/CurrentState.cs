@@ -1305,6 +1305,12 @@ namespace MissionPlanner
 
         public float rpm2 { get; set; }
 
+        public float cht { get; set; }
+
+        public float fuelrate { get; set; }
+
+        public float fuelused { get; set; }
+
         public uint capabilities { get; set; }
 
         public float speedup { get; set; }
@@ -2328,8 +2334,21 @@ namespace MissionPlanner
                         rpm1 = rpm.rpm1;
                         rpm2 = rpm.rpm2;
 
-                        //MAVLink.packets[(byte)MAVLink.MSG_NAMES.NAV_CONTROLLER_OUTPUT);
                     }
+
+                    mavLinkMessage = MAV.getPacket((uint)MAVLink.MAVLINK_MSG_ID.EFI_STATUS);
+
+                    if (mavLinkMessage != null)
+                    {
+                        var efi = mavLinkMessage.ToStructure<MAVLink.mavlink_efi_status_t>();
+
+                        cht = efi.cylinder_head_temperature;
+                        fuelrate = efi.fuel_flow;
+                        fuelused = efi.fuel_consumed;
+
+                    }
+
+                    
 
                     mavLinkMessage = MAV.getPacket((uint) MAVLink.MAVLINK_MSG_ID.RC_CHANNELS_RAW);
                     if (mavLinkMessage != null)
