@@ -282,6 +282,7 @@ namespace MissionPlanner.GCSViews
             CMB_modes.Text = "Auto";
 
             CMB_setwp.SelectedIndex = 0;
+            CMB_setwp_C20.SelectedIndex = 0;
 
             log.Info("Graph Setup");
             CreateChart(zg1);
@@ -4615,6 +4616,113 @@ namespace MissionPlanner.GCSViews
             trackBarYaw.Value = 0;
             MainV2.comPort.setMountConfigure(MAVLink.MAV_MOUNT_MODE.MAVLINK_TARGETING, false, false, false);
             MainV2.comPort.setMountControl((float)trackBarPitch.Value * 100.0f, (float)trackBarRoll.Value * 100.0f, (float)trackBarYaw.Value * 100.0f, false);
+        }
+
+        private void BUT_C20_Manual_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ((Button)sender).Enabled = false;
+                MainV2.comPort.setMode("Manual");
+            }
+            catch
+            {
+                CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+            }
+            ((Button)sender).Enabled = true;
+        }
+
+        private void BUT_setwp_Click_C20(object sender, EventArgs e)
+        {
+            try
+            {
+                ((Button)sender).Enabled = false;
+                MainV2.comPort.setWPCurrent((ushort)CMB_setwp_C20.SelectedIndex); // set nav to
+            }
+            catch
+            {
+                CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+            }
+            ((Button)sender).Enabled = true;
+        }
+
+        private void CMB_setwp_Click_C20(object sender, EventArgs e)
+        {
+            CMB_setwp_C20.Items.Clear();
+
+            CMB_setwp_C20.Items.Add("0 (Home)");
+
+            if (MainV2.comPort.MAV.param["CMD_TOTAL"] != null)
+            {
+                int wps = int.Parse(MainV2.comPort.MAV.param["CMD_TOTAL"].ToString());
+                for (int z = 1; z <= wps; z++)
+                {
+                    CMB_setwp_C20.Items.Add(z.ToString());
+                }
+                return;
+            }
+
+            if (MainV2.comPort.MAV.param["WP_TOTAL"] != null)
+            {
+                int wps = int.Parse(MainV2.comPort.MAV.param["WP_TOTAL"].ToString());
+                for (int z = 1; z <= wps; z++)
+                {
+                    CMB_setwp_C20.Items.Add(z.ToString());
+                }
+                return;
+            }
+
+            if (MainV2.comPort.MAV.param["MIS_TOTAL"] != null)
+            {
+                int wps = int.Parse(MainV2.comPort.MAV.param["MIS_TOTAL"].ToString());
+                for (int z = 1; z <= wps; z++)
+                {
+                    CMB_setwp_C20.Items.Add(z.ToString());
+                }
+                return;
+            }
+
+            if (MainV2.comPort.MAV.wps.Count > 0)
+            {
+                int wps = MainV2.comPort.MAV.wps.Count;
+                for (int z = 1; z <= wps; z++)
+                {
+                    CMB_setwp_C20.Items.Add(z.ToString());
+                }
+                return;
+            }
+        }
+
+        private void BUT_quick_eng_start_Click(object sender, EventArgs e)
+        {
+            if (MainV2.comPort.BaseStream.IsOpen)
+            {
+
+                try
+                {
+                    MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_ENGINE_CONTROL, 1, 0, 0, 0, 0, 0, 0);
+                }
+                catch
+                {
+                    CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+                }
+            }
+        }
+
+        private void BUT_quick_engine_stop_Click(object sender, EventArgs e)
+        {
+            if (MainV2.comPort.BaseStream.IsOpen)
+            {
+
+                try
+                {
+                    MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_ENGINE_CONTROL, 0, 0, 0, 0, 0, 0, 0);
+                }
+                catch
+                {
+                    CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+                }
+            }
         }
     }
 }

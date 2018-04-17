@@ -40,7 +40,6 @@
             this.quickView2 = new MissionPlanner.Controls.QuickView();
             this.quickView1 = new MissionPlanner.Controls.QuickView();
             this.tabActions = new System.Windows.Forms.TabPage();
-            this.modifyandSetLoiterRad = new MissionPlanner.Controls.ModifyandSet();
             this.BUT_abortland = new MissionPlanner.Controls.MyButton();
             this.BUT_resumemis = new MissionPlanner.Controls.MyButton();
             this.CMB_mountmode = new System.Windows.Forms.ComboBox();
@@ -60,14 +59,11 @@
             this.BUT_RAWSensor = new MissionPlanner.Controls.MyButton();
             this.BUTrestartmission = new MissionPlanner.Controls.MyButton();
             this.BUTactiondo = new MissionPlanner.Controls.MyButton();
-            this.modifyandSetSpeed = new MissionPlanner.Controls.ModifyandSet();
-            this.modifyandSetAlt = new MissionPlanner.Controls.ModifyandSet();
             this.tabActionsSimple = new System.Windows.Forms.TabPage();
             this.myButton1 = new MissionPlanner.Controls.MyButton();
             this.myButton2 = new MissionPlanner.Controls.MyButton();
             this.myButton3 = new MissionPlanner.Controls.MyButton();
             this.tabPagePreFlight = new System.Windows.Forms.TabPage();
-            this.checkListControl1 = new MissionPlanner.Controls.PreFlight.CheckListControl();
             this.tabGauges = new System.Windows.Forms.TabPage();
             this.Gvspeed = new AGaugeApp.AGauge();
             this.bindingSourceGaugesTab = new System.Windows.Forms.BindingSource(this.components);
@@ -77,16 +73,6 @@
             this.tabStatus = new System.Windows.Forms.TabPage();
             this.tabServo = new System.Windows.Forms.TabPage();
             this.flowLayoutPanelServos = new System.Windows.Forms.FlowLayoutPanel();
-            this.servoOptions1 = new MissionPlanner.Controls.ServoOptions();
-            this.servoOptions2 = new MissionPlanner.Controls.ServoOptions();
-            this.servoOptions3 = new MissionPlanner.Controls.ServoOptions();
-            this.servoOptions4 = new MissionPlanner.Controls.ServoOptions();
-            this.servoOptions5 = new MissionPlanner.Controls.ServoOptions();
-            this.servoOptions6 = new MissionPlanner.Controls.ServoOptions();
-            this.servoOptions7 = new MissionPlanner.Controls.ServoOptions();
-            this.servoOptions8 = new MissionPlanner.Controls.ServoOptions();
-            this.servoOptions9 = new MissionPlanner.Controls.ServoOptions();
-            this.servoOptions10 = new MissionPlanner.Controls.ServoOptions();
             this.tabTLogs = new System.Windows.Forms.TabPage();
             this.tableLayoutPaneltlogs = new System.Windows.Forms.TableLayoutPanel();
             this.BUT_loadtelem = new MissionPlanner.Controls.MyButton();
@@ -135,6 +121,18 @@
             this.groupBoxPitch = new System.Windows.Forms.GroupBox();
             this.trackBarPitch = new System.Windows.Forms.TrackBar();
             this.TXT_gimbalPitchPos = new System.Windows.Forms.TextBox();
+            this.tabC20 = new System.Windows.Forms.TabPage();
+            this.myButton5 = new MissionPlanner.Controls.MyButton();
+            this.BUT_toggle_lights = new MissionPlanner.Controls.MyButton();
+            this.CMB_setwp_C20 = new System.Windows.Forms.ComboBox();
+            this.BUT_setwp_C20 = new MissionPlanner.Controls.MyButton();
+            this.BUT_C20_reboot = new MissionPlanner.Controls.MyButton();
+            this.BUT_C20_Manual = new MissionPlanner.Controls.MyButton();
+            this.BUT_quick_engine_stop = new MissionPlanner.Controls.MyButton();
+            this.BUT_quick_eng_start = new MissionPlanner.Controls.MyButton();
+            this.BUT_C20_RTL = new MissionPlanner.Controls.MyButton();
+            this.BUT_C20_arm = new MissionPlanner.Controls.MyButton();
+            this.BUT_C20_auto = new MissionPlanner.Controls.MyButton();
             this.tableMap = new System.Windows.Forms.TableLayoutPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.zg1 = new ZedGraph.ZedGraphControl();
@@ -155,7 +153,6 @@
             this.onOffCameraOverlapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.altitudeAngelSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.but_disablejoystick = new MissionPlanner.Controls.MyButton();
-            this.distanceBar1 = new MissionPlanner.Controls.DistanceBar();
             this.windDir1 = new MissionPlanner.Controls.WindDir();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.label6 = new System.Windows.Forms.Label();
@@ -180,6 +177,21 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Messagetabtimer = new System.Windows.Forms.Timer(this.components);
             this.bindingSourceStatusTab = new System.Windows.Forms.BindingSource(this.components);
+            this.modifyandSetLoiterRad = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSetSpeed = new MissionPlanner.Controls.ModifyandSet();
+            this.modifyandSetAlt = new MissionPlanner.Controls.ModifyandSet();
+            this.checkListControl1 = new MissionPlanner.Controls.PreFlight.CheckListControl();
+            this.servoOptions1 = new MissionPlanner.Controls.ServoOptions();
+            this.servoOptions2 = new MissionPlanner.Controls.ServoOptions();
+            this.servoOptions3 = new MissionPlanner.Controls.ServoOptions();
+            this.servoOptions4 = new MissionPlanner.Controls.ServoOptions();
+            this.servoOptions5 = new MissionPlanner.Controls.ServoOptions();
+            this.servoOptions6 = new MissionPlanner.Controls.ServoOptions();
+            this.servoOptions7 = new MissionPlanner.Controls.ServoOptions();
+            this.servoOptions8 = new MissionPlanner.Controls.ServoOptions();
+            this.servoOptions9 = new MissionPlanner.Controls.ServoOptions();
+            this.servoOptions10 = new MissionPlanner.Controls.ServoOptions();
+            this.distanceBar1 = new MissionPlanner.Controls.DistanceBar();
             ((System.ComponentModel.ISupportInitialize)(this.MainH)).BeginInit();
             this.MainH.Panel1.SuspendLayout();
             this.MainH.Panel2.SuspendLayout();
@@ -218,6 +230,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarYaw)).BeginInit();
             this.groupBoxPitch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarPitch)).BeginInit();
+            this.tabC20.SuspendLayout();
             this.tableMap.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -459,6 +472,7 @@
             this.tabControlactions.Controls.Add(this.tabScripts);
             this.tabControlactions.Controls.Add(this.tabPagemessages);
             this.tabControlactions.Controls.Add(this.tabPayload);
+            this.tabControlactions.Controls.Add(this.tabC20);
             resources.ApplyResources(this.tabControlactions, "tabControlactions");
             this.tabControlactions.Multiline = true;
             this.tabControlactions.Name = "tabControlactions";
@@ -616,28 +630,6 @@
             resources.ApplyResources(this.tabActions, "tabActions");
             this.tabActions.Name = "tabActions";
             this.tabActions.UseVisualStyleBackColor = true;
-            // 
-            // modifyandSetLoiterRad
-            // 
-            this.modifyandSetLoiterRad.ButtonText = "Set Loiter Rad";
-            resources.ApplyResources(this.modifyandSetLoiterRad, "modifyandSetLoiterRad");
-            this.modifyandSetLoiterRad.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.modifyandSetLoiterRad.Minimum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            -2147483648});
-            this.modifyandSetLoiterRad.Name = "modifyandSetLoiterRad";
-            this.modifyandSetLoiterRad.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.modifyandSetLoiterRad.Click += new System.EventHandler(this.modifyandSetLoiterRad_Click);
             // 
             // BUT_abortland
             // 
@@ -836,51 +828,6 @@
             this.BUTactiondo.UseVisualStyleBackColor = true;
             this.BUTactiondo.Click += new System.EventHandler(this.BUTactiondo_Click);
             // 
-            // modifyandSetSpeed
-            // 
-            this.modifyandSetSpeed.ButtonText = "Change Speed";
-            resources.ApplyResources(this.modifyandSetSpeed, "modifyandSetSpeed");
-            this.modifyandSetSpeed.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.modifyandSetSpeed.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.modifyandSetSpeed.Name = "modifyandSetSpeed";
-            this.modifyandSetSpeed.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.modifyandSetSpeed.Click += new System.EventHandler(this.modifyandSetSpeed_Click);
-            this.modifyandSetSpeed.ParentChanged += new System.EventHandler(this.modifyandSetSpeed_ParentChanged);
-            // 
-            // modifyandSetAlt
-            // 
-            this.modifyandSetAlt.ButtonText = "Change Alt";
-            resources.ApplyResources(this.modifyandSetAlt, "modifyandSetAlt");
-            this.modifyandSetAlt.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.modifyandSetAlt.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.modifyandSetAlt.Name = "modifyandSetAlt";
-            this.modifyandSetAlt.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.modifyandSetAlt.Click += new System.EventHandler(this.modifyandSetAlt_Click);
-            // 
             // tabActionsSimple
             // 
             this.tabActionsSimple.Controls.Add(this.myButton1);
@@ -929,11 +876,6 @@
             resources.ApplyResources(this.tabPagePreFlight, "tabPagePreFlight");
             this.tabPagePreFlight.Name = "tabPagePreFlight";
             this.tabPagePreFlight.UseVisualStyleBackColor = true;
-            // 
-            // checkListControl1
-            // 
-            resources.ApplyResources(this.checkListControl1, "checkListControl1");
-            this.checkListControl1.Name = "checkListControl1";
             // 
             // tabGauges
             // 
@@ -1422,66 +1364,6 @@
             this.flowLayoutPanelServos.Controls.Add(this.servoOptions10);
             this.flowLayoutPanelServos.Name = "flowLayoutPanelServos";
             // 
-            // servoOptions1
-            // 
-            resources.ApplyResources(this.servoOptions1, "servoOptions1");
-            this.servoOptions1.Name = "servoOptions1";
-            this.servoOptions1.thisservo = 5;
-            // 
-            // servoOptions2
-            // 
-            resources.ApplyResources(this.servoOptions2, "servoOptions2");
-            this.servoOptions2.Name = "servoOptions2";
-            this.servoOptions2.thisservo = 6;
-            // 
-            // servoOptions3
-            // 
-            resources.ApplyResources(this.servoOptions3, "servoOptions3");
-            this.servoOptions3.Name = "servoOptions3";
-            this.servoOptions3.thisservo = 7;
-            // 
-            // servoOptions4
-            // 
-            resources.ApplyResources(this.servoOptions4, "servoOptions4");
-            this.servoOptions4.Name = "servoOptions4";
-            this.servoOptions4.thisservo = 8;
-            // 
-            // servoOptions5
-            // 
-            resources.ApplyResources(this.servoOptions5, "servoOptions5");
-            this.servoOptions5.Name = "servoOptions5";
-            this.servoOptions5.thisservo = 9;
-            // 
-            // servoOptions6
-            // 
-            resources.ApplyResources(this.servoOptions6, "servoOptions6");
-            this.servoOptions6.Name = "servoOptions6";
-            this.servoOptions6.thisservo = 10;
-            // 
-            // servoOptions7
-            // 
-            resources.ApplyResources(this.servoOptions7, "servoOptions7");
-            this.servoOptions7.Name = "servoOptions7";
-            this.servoOptions7.thisservo = 11;
-            // 
-            // servoOptions8
-            // 
-            resources.ApplyResources(this.servoOptions8, "servoOptions8");
-            this.servoOptions8.Name = "servoOptions8";
-            this.servoOptions8.thisservo = 12;
-            // 
-            // servoOptions9
-            // 
-            resources.ApplyResources(this.servoOptions9, "servoOptions9");
-            this.servoOptions9.Name = "servoOptions9";
-            this.servoOptions9.thisservo = 13;
-            // 
-            // servoOptions10
-            // 
-            resources.ApplyResources(this.servoOptions10, "servoOptions10");
-            this.servoOptions10.Name = "servoOptions10";
-            this.servoOptions10.thisservo = 14;
-            // 
             // tabTLogs
             // 
             this.tabTLogs.Controls.Add(this.tableLayoutPaneltlogs);
@@ -1910,6 +1792,141 @@
             resources.ApplyResources(this.TXT_gimbalPitchPos, "TXT_gimbalPitchPos");
             this.TXT_gimbalPitchPos.Name = "TXT_gimbalPitchPos";
             // 
+            // tabC20
+            // 
+            this.tabC20.Controls.Add(this.myButton5);
+            this.tabC20.Controls.Add(this.BUT_toggle_lights);
+            this.tabC20.Controls.Add(this.CMB_setwp_C20);
+            this.tabC20.Controls.Add(this.BUT_setwp_C20);
+            this.tabC20.Controls.Add(this.BUT_C20_reboot);
+            this.tabC20.Controls.Add(this.BUT_C20_Manual);
+            this.tabC20.Controls.Add(this.BUT_quick_engine_stop);
+            this.tabC20.Controls.Add(this.BUT_quick_eng_start);
+            this.tabC20.Controls.Add(this.BUT_C20_RTL);
+            this.tabC20.Controls.Add(this.BUT_C20_arm);
+            this.tabC20.Controls.Add(this.BUT_C20_auto);
+            this.tabC20.Cursor = System.Windows.Forms.Cursors.Default;
+            resources.ApplyResources(this.tabC20, "tabC20");
+            this.tabC20.Name = "tabC20";
+            this.tabC20.UseVisualStyleBackColor = true;
+            // 
+            // myButton5
+            // 
+            this.myButton5.ColorMouseDown = System.Drawing.Color.Empty;
+            this.myButton5.ColorMouseOver = System.Drawing.Color.Empty;
+            this.myButton5.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.myButton5, "myButton5");
+            this.myButton5.Name = "myButton5";
+            this.toolTip1.SetToolTip(this.myButton5, resources.GetString("myButton5.ToolTip"));
+            this.myButton5.UseVisualStyleBackColor = true;
+            // 
+            // BUT_toggle_lights
+            // 
+            this.BUT_toggle_lights.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_toggle_lights.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_toggle_lights.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_toggle_lights, "BUT_toggle_lights");
+            this.BUT_toggle_lights.Name = "BUT_toggle_lights";
+            this.toolTip1.SetToolTip(this.BUT_toggle_lights, resources.GetString("BUT_toggle_lights.ToolTip"));
+            this.BUT_toggle_lights.UseVisualStyleBackColor = true;
+            // 
+            // CMB_setwp_C20
+            // 
+            this.CMB_setwp_C20.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CMB_setwp_C20.FormattingEnabled = true;
+            this.CMB_setwp_C20.Items.AddRange(new object[] {
+            resources.GetString("CMB_setwp_C20.Items")});
+            resources.ApplyResources(this.CMB_setwp_C20, "CMB_setwp_C20");
+            this.CMB_setwp_C20.Name = "CMB_setwp_C20";
+            this.CMB_setwp_C20.Click += new System.EventHandler(this.CMB_setwp_Click_C20);
+            // 
+            // BUT_setwp_C20
+            // 
+            this.BUT_setwp_C20.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_setwp_C20.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_setwp_C20.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_setwp_C20, "BUT_setwp_C20");
+            this.BUT_setwp_C20.Name = "BUT_setwp_C20";
+            this.toolTip1.SetToolTip(this.BUT_setwp_C20, resources.GetString("BUT_setwp_C20.ToolTip"));
+            this.BUT_setwp_C20.UseVisualStyleBackColor = true;
+            this.BUT_setwp_C20.Click += new System.EventHandler(this.BUT_setwp_Click_C20);
+            // 
+            // BUT_C20_reboot
+            // 
+            this.BUT_C20_reboot.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_C20_reboot.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_C20_reboot.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_C20_reboot, "BUT_C20_reboot");
+            this.BUT_C20_reboot.Name = "BUT_C20_reboot";
+            this.toolTip1.SetToolTip(this.BUT_C20_reboot, resources.GetString("BUT_C20_reboot.ToolTip"));
+            this.BUT_C20_reboot.UseVisualStyleBackColor = true;
+            // 
+            // BUT_C20_Manual
+            // 
+            this.BUT_C20_Manual.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_C20_Manual.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_C20_Manual.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_C20_Manual, "BUT_C20_Manual");
+            this.BUT_C20_Manual.Name = "BUT_C20_Manual";
+            this.toolTip1.SetToolTip(this.BUT_C20_Manual, resources.GetString("BUT_C20_Manual.ToolTip"));
+            this.BUT_C20_Manual.UseVisualStyleBackColor = true;
+            this.BUT_C20_Manual.Click += new System.EventHandler(this.BUT_C20_Manual_Click);
+            // 
+            // BUT_quick_engine_stop
+            // 
+            this.BUT_quick_engine_stop.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_quick_engine_stop.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_quick_engine_stop.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_quick_engine_stop, "BUT_quick_engine_stop");
+            this.BUT_quick_engine_stop.Name = "BUT_quick_engine_stop";
+            this.toolTip1.SetToolTip(this.BUT_quick_engine_stop, resources.GetString("BUT_quick_engine_stop.ToolTip"));
+            this.BUT_quick_engine_stop.UseVisualStyleBackColor = true;
+            this.BUT_quick_engine_stop.Click += new System.EventHandler(this.BUT_quick_engine_stop_Click);
+            // 
+            // BUT_quick_eng_start
+            // 
+            this.BUT_quick_eng_start.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_quick_eng_start.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_quick_eng_start.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_quick_eng_start, "BUT_quick_eng_start");
+            this.BUT_quick_eng_start.Name = "BUT_quick_eng_start";
+            this.toolTip1.SetToolTip(this.BUT_quick_eng_start, resources.GetString("BUT_quick_eng_start.ToolTip"));
+            this.BUT_quick_eng_start.UseVisualStyleBackColor = true;
+            this.BUT_quick_eng_start.Click += new System.EventHandler(this.BUT_quick_eng_start_Click);
+            // 
+            // BUT_C20_RTL
+            // 
+            this.BUT_C20_RTL.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_C20_RTL.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_C20_RTL.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_C20_RTL, "BUT_C20_RTL");
+            this.BUT_C20_RTL.Name = "BUT_C20_RTL";
+            this.toolTip1.SetToolTip(this.BUT_C20_RTL, resources.GetString("BUT_C20_RTL.ToolTip"));
+            this.BUT_C20_RTL.UseVisualStyleBackColor = true;
+            this.BUT_C20_RTL.Click += new System.EventHandler(this.BUT_quickrtl_Click);
+            // 
+            // BUT_C20_arm
+            // 
+            this.BUT_C20_arm.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_C20_arm.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_C20_arm.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_C20_arm, "BUT_C20_arm");
+            this.BUT_C20_arm.Name = "BUT_C20_arm";
+            this.toolTip1.SetToolTip(this.BUT_C20_arm, resources.GetString("BUT_C20_arm.ToolTip"));
+            this.BUT_C20_arm.UseVisualStyleBackColor = true;
+            this.BUT_C20_arm.Click += new System.EventHandler(this.BUT_ARM_Click);
+            // 
+            // BUT_C20_auto
+            // 
+            this.BUT_C20_auto.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_C20_auto.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_C20_auto.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_C20_auto, "BUT_C20_auto");
+            this.BUT_C20_auto.Name = "BUT_C20_auto";
+            this.toolTip1.SetToolTip(this.BUT_C20_auto, resources.GetString("BUT_C20_auto.ToolTip"));
+            this.BUT_C20_auto.UseVisualStyleBackColor = true;
+            this.BUT_C20_auto.Click += new System.EventHandler(this.BUT_quickauto_Click);
+            // 
             // tableMap
             // 
             resources.ApplyResources(this.tableMap, "tableMap");
@@ -2079,20 +2096,12 @@
             this.but_disablejoystick.UseVisualStyleBackColor = true;
             this.but_disablejoystick.Click += new System.EventHandler(this.but_disablejoystick_Click);
             // 
-            // distanceBar1
-            // 
-            resources.ApplyResources(this.distanceBar1, "distanceBar1");
-            this.distanceBar1.BackColor = System.Drawing.Color.Black;
-            this.distanceBar1.Name = "distanceBar1";
-            this.distanceBar1.totaldist = 100F;
-            this.distanceBar1.traveleddist = 0F;
-            // 
             // windDir1
             // 
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 180D;
+            this.windDir1.Direction = 360D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2155,6 +2164,7 @@
             this.gMapControl1.EmptyTileColor = System.Drawing.Color.Gray;
             this.gMapControl1.GrayScaleMode = false;
             this.gMapControl1.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            this.gMapControl1.HoldInvalidation = false;
             this.gMapControl1.LevelsKeepInMemmory = 5;
             this.gMapControl1.MarkersEnabled = true;
             this.gMapControl1.MaxZoom = 24;
@@ -2308,6 +2318,146 @@
             // 
             this.bindingSourceStatusTab.DataSource = typeof(MissionPlanner.CurrentState);
             // 
+            // modifyandSetLoiterRad
+            // 
+            this.modifyandSetLoiterRad.ButtonText = "Set Loiter Rad";
+            resources.ApplyResources(this.modifyandSetLoiterRad, "modifyandSetLoiterRad");
+            this.modifyandSetLoiterRad.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.modifyandSetLoiterRad.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
+            this.modifyandSetLoiterRad.Name = "modifyandSetLoiterRad";
+            this.modifyandSetLoiterRad.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.modifyandSetLoiterRad.Click += new System.EventHandler(this.modifyandSetLoiterRad_Click);
+            // 
+            // modifyandSetSpeed
+            // 
+            this.modifyandSetSpeed.ButtonText = "Change Speed";
+            resources.ApplyResources(this.modifyandSetSpeed, "modifyandSetSpeed");
+            this.modifyandSetSpeed.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.modifyandSetSpeed.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSetSpeed.Name = "modifyandSetSpeed";
+            this.modifyandSetSpeed.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.modifyandSetSpeed.Click += new System.EventHandler(this.modifyandSetSpeed_Click);
+            this.modifyandSetSpeed.ParentChanged += new System.EventHandler(this.modifyandSetSpeed_ParentChanged);
+            // 
+            // modifyandSetAlt
+            // 
+            this.modifyandSetAlt.ButtonText = "Change Alt";
+            resources.ApplyResources(this.modifyandSetAlt, "modifyandSetAlt");
+            this.modifyandSetAlt.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.modifyandSetAlt.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSetAlt.Name = "modifyandSetAlt";
+            this.modifyandSetAlt.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.modifyandSetAlt.Click += new System.EventHandler(this.modifyandSetAlt_Click);
+            // 
+            // checkListControl1
+            // 
+            resources.ApplyResources(this.checkListControl1, "checkListControl1");
+            this.checkListControl1.Name = "checkListControl1";
+            // 
+            // servoOptions1
+            // 
+            resources.ApplyResources(this.servoOptions1, "servoOptions1");
+            this.servoOptions1.Name = "servoOptions1";
+            this.servoOptions1.thisservo = 5;
+            // 
+            // servoOptions2
+            // 
+            resources.ApplyResources(this.servoOptions2, "servoOptions2");
+            this.servoOptions2.Name = "servoOptions2";
+            this.servoOptions2.thisservo = 6;
+            // 
+            // servoOptions3
+            // 
+            resources.ApplyResources(this.servoOptions3, "servoOptions3");
+            this.servoOptions3.Name = "servoOptions3";
+            this.servoOptions3.thisservo = 7;
+            // 
+            // servoOptions4
+            // 
+            resources.ApplyResources(this.servoOptions4, "servoOptions4");
+            this.servoOptions4.Name = "servoOptions4";
+            this.servoOptions4.thisservo = 8;
+            // 
+            // servoOptions5
+            // 
+            resources.ApplyResources(this.servoOptions5, "servoOptions5");
+            this.servoOptions5.Name = "servoOptions5";
+            this.servoOptions5.thisservo = 9;
+            // 
+            // servoOptions6
+            // 
+            resources.ApplyResources(this.servoOptions6, "servoOptions6");
+            this.servoOptions6.Name = "servoOptions6";
+            this.servoOptions6.thisservo = 10;
+            // 
+            // servoOptions7
+            // 
+            resources.ApplyResources(this.servoOptions7, "servoOptions7");
+            this.servoOptions7.Name = "servoOptions7";
+            this.servoOptions7.thisservo = 11;
+            // 
+            // servoOptions8
+            // 
+            resources.ApplyResources(this.servoOptions8, "servoOptions8");
+            this.servoOptions8.Name = "servoOptions8";
+            this.servoOptions8.thisservo = 12;
+            // 
+            // servoOptions9
+            // 
+            resources.ApplyResources(this.servoOptions9, "servoOptions9");
+            this.servoOptions9.Name = "servoOptions9";
+            this.servoOptions9.thisservo = 13;
+            // 
+            // servoOptions10
+            // 
+            resources.ApplyResources(this.servoOptions10, "servoOptions10");
+            this.servoOptions10.Name = "servoOptions10";
+            this.servoOptions10.thisservo = 14;
+            // 
+            // distanceBar1
+            // 
+            resources.ApplyResources(this.distanceBar1, "distanceBar1");
+            this.distanceBar1.BackColor = System.Drawing.Color.Black;
+            this.distanceBar1.Name = "distanceBar1";
+            this.distanceBar1.totaldist = 100F;
+            this.distanceBar1.traveleddist = 0F;
+            // 
             // FlightData
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2363,6 +2513,7 @@
             this.groupBoxPitch.ResumeLayout(false);
             this.groupBoxPitch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarPitch)).EndInit();
+            this.tabC20.ResumeLayout(false);
             this.tableMap.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -2553,5 +2704,17 @@
         private System.Windows.Forms.GroupBox groupBoxYaw;
         private System.Windows.Forms.GroupBox groupBoxPitch;
         private Controls.MyButton BUT_PayloadFolder;
+        private System.Windows.Forms.TabPage tabC20;
+        private Controls.MyButton BUT_C20_arm;
+        private Controls.MyButton BUT_C20_auto;
+        private Controls.MyButton BUT_C20_RTL;
+        private Controls.MyButton BUT_C20_Manual;
+        private Controls.MyButton BUT_quick_engine_stop;
+        private Controls.MyButton BUT_quick_eng_start;
+        private Controls.MyButton myButton5;
+        private Controls.MyButton BUT_toggle_lights;
+        private System.Windows.Forms.ComboBox CMB_setwp_C20;
+        private Controls.MyButton BUT_setwp_C20;
+        private Controls.MyButton BUT_C20_reboot;
     }
 }
