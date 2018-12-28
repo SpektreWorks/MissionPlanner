@@ -1377,7 +1377,8 @@ namespace MissionPlanner.GCSViews
                             command != (ushort) MAVLink.MAV_CMD.CONTINUE_AND_CHANGE_ALT &&
                             command != (ushort)MAVLink.MAV_CMD.DELAY &&
                             command != (ushort) MAVLink.MAV_CMD.GUIDED_ENABLE
-                            || command == (ushort) MAVLink.MAV_CMD.DO_SET_ROI)
+                            || command == (ushort) MAVLink.MAV_CMD.DO_SET_ROI
+                            || command == (ushort) MAVLink.MAV_CMD.DO_LAND_START)
                         {
                             string cell2 = Commands.Rows[a].Cells[Alt.Index].Value.ToString(); // alt
                             string cell3 = Commands.Rows[a].Cells[Lat.Index].Value.ToString(); // lat
