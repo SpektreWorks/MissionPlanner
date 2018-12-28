@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 public partial class MAVLink
 {
-    public const string MAVLINK_BUILD_DATE = "Fri Sep 15 2017";
+    public const string MAVLINK_BUILD_DATE = "Fri Dec 28 2018";
     public const string MAVLINK_WIRE_PROTOCOL_VERSION = "2.0";
     public const int MAVLINK_MAX_PAYLOAD_LEN = 255;
 
@@ -203,6 +203,7 @@ public partial class MAVLink
 		new message_info(217, "GOPRO_GET_RESPONSE", 202, 6, 6, typeof( mavlink_gopro_get_response_t )),
 		new message_info(218, "GOPRO_SET_REQUEST", 17, 7, 7, typeof( mavlink_gopro_set_request_t )),
 		new message_info(219, "GOPRO_SET_RESPONSE", 162, 2, 2, typeof( mavlink_gopro_set_response_t )),
+		new message_info(225, "EFI_STATUS", 142, 53, 53, typeof( mavlink_efi_status_t )),
 		new message_info(226, "RPM", 207, 8, 8, typeof( mavlink_rpm_t )),
 		new message_info(230, "ESTIMATOR_STATUS", 163, 42, 42, typeof( mavlink_estimator_status_t )),
 		new message_info(231, "WIND_COV", 105, 40, 40, typeof( mavlink_wind_cov_t )),
@@ -454,6 +455,7 @@ GOPRO_GET_REQUEST = 216,
 GOPRO_GET_RESPONSE = 217,
 GOPRO_SET_REQUEST = 218,
 GOPRO_SET_RESPONSE = 219,
+EFI_STATUS = 225,
 RPM = 226,
 ESTIMATOR_STATUS = 230,
 WIND_COV = 231,
@@ -3708,6 +3710,42 @@ AOA_SSA = 11020,
         public  /*GOPRO_COMMAND*/byte cmd_id;
             /// <summary> Status GOPRO_REQUEST_STATUS</summary>
         public  /*GOPRO_REQUEST_STATUS*/byte status;
+    
+    };
+
+
+    [StructLayout(LayoutKind.Sequential,Pack=1,Size=53)]
+    ///<summary> EFI Status Output </summary>
+    public struct mavlink_efi_status_t
+    {
+        /// <summary> ECU Index </summary>
+        public  float ecu_index;
+            /// <summary> RPM </summary>
+        public  float rpm;
+            /// <summary> Fuel Consumed (grams) </summary>
+        public  float fuel_consumed;
+            /// <summary> Fuel Flow Rate (g/min) </summary>
+        public  float fuel_flow;
+            /// <summary> Engine Load (%) </summary>
+        public  float engine_load;
+            /// <summary> Throttle Position (%) </summary>
+        public  float throttle_position;
+            /// <summary> Spark Dwell Time (ms) </summary>
+        public  float spark_dwell_time;
+            /// <summary> Barometric Pressure (kPa) </summary>
+        public  float barometric_pressure;
+            /// <summary> Intake Manifold Pressure (kPa)( </summary>
+        public  float intake_manifold_pressure;
+            /// <summary> Intake Manifold Temperature (degC) </summary>
+        public  float intake_manifold_temperature;
+            /// <summary> cylinder_head_temperature (degC) </summary>
+        public  float cylinder_head_temperature;
+            /// <summary> Ignition timing for cylinder i (Crank Angle degrees) </summary>
+        public  float ignition_timing;
+            /// <summary> Injection time for injector i (ms) </summary>
+        public  float injection_time;
+            /// <summary> EFI Health status </summary>
+        public  byte health;
     
     };
 
