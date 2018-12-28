@@ -86,7 +86,6 @@
             this.BUT_themecustom = new MissionPlanner.Controls.MyButton();
             this.CHK_speecharmdisarm = new System.Windows.Forms.CheckBox();
             this.BUT_Vario = new MissionPlanner.Controls.MyButton();
-            this.chk_analytics = new System.Windows.Forms.CheckBox();
             this.CHK_beta = new System.Windows.Forms.CheckBox();
             this.CHK_Password = new System.Windows.Forms.CheckBox();
             this.CHK_speechlowspeed = new System.Windows.Forms.CheckBox();
@@ -553,13 +552,6 @@
             this.BUT_Vario.UseVisualStyleBackColor = true;
             this.BUT_Vario.Click += new System.EventHandler(this.BUT_Vario_Click);
             // 
-            // chk_analytics
-            // 
-            resources.ApplyResources(this.chk_analytics, "chk_analytics");
-            this.chk_analytics.Name = "chk_analytics";
-            this.chk_analytics.UseVisualStyleBackColor = true;
-            this.chk_analytics.CheckedChanged += new System.EventHandler(this.chk_analytics_CheckedChanged);
-            // 
             // CHK_beta
             // 
             resources.ApplyResources(this.CHK_beta, "CHK_beta");
@@ -664,7 +656,6 @@
             this.Controls.Add(this.CHK_speechlowspeed);
             this.Controls.Add(this.CHK_Password);
             this.Controls.Add(this.CHK_beta);
-            this.Controls.Add(this.chk_analytics);
             this.Controls.Add(this.BUT_Vario);
             this.Controls.Add(this.CHK_speecharmdisarm);
             this.Controls.Add(this.BUT_themecustom);
@@ -790,7 +781,6 @@
         private Controls.MyButton BUT_themecustom;
         private System.Windows.Forms.CheckBox CHK_speecharmdisarm;
         private Controls.MyButton BUT_Vario;
-        private System.Windows.Forms.CheckBox chk_analytics;
         private System.Windows.Forms.CheckBox CHK_beta;
         private System.Windows.Forms.CheckBox CHK_Password;
         private System.Windows.Forms.CheckBox CHK_speechlowspeed;

@@ -892,7 +892,7 @@ namespace MissionPlanner
                     MainV2.speechEnable = Settings.Instance.GetBoolean("speechenable");
 
                 if (Settings.Instance["analyticsoptout"] != null)
-                    MissionPlanner.Utilities.Tracking.OptOut = Settings.Instance.GetBoolean("analyticsoptout");
+                    MissionPlanner.Utilities.Tracking.OptOut = true; // Settings.Instance.GetBoolean("analyticsoptout");
 
                 try
                 {
