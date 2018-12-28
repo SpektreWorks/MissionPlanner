@@ -2913,6 +2913,7 @@ namespace MissionPlanner
 
             ZeroConf.ProbeForRTSP();
 
+            /* Disable AA for SpektreWorks Builds
             try
             {
                 log.Info("Load AltitudeAngel");
@@ -2941,6 +2942,7 @@ namespace MissionPlanner
             {
                 Tracking.AddException(ex);
             }
+            */
 
             this.ResumeLayout();
 
@@ -2951,6 +2953,7 @@ namespace MissionPlanner
                 (DateTime.Now - Program.starttime).TotalMilliseconds, "");
 
             bool winXp = Environment.OSVersion.Version.Major == 5;
+            /* Disable Update checking in SpektreWorks Builds
             if (winXp)
             {
                 Common.MessageShowAgain("Windows XP",
@@ -2968,6 +2971,8 @@ namespace MissionPlanner
 
             try
             {
+
+
                 // single update check per day - in a seperate thread
                 if (Settings.Instance["update_check"] != DateTime.Now.ToShortDateString())
                 {
@@ -2984,6 +2989,7 @@ namespace MissionPlanner
             {
                 log.Error("Update check failed", ex);
             }
+            */
 
             // play a tlog that was passed to the program/ load a bin log passed
             if (Program.args.Length > 0)
@@ -3060,6 +3066,7 @@ namespace MissionPlanner
                 }
             }
 
+            /* Disable Wizard prompt on SpektreWorks Builds
             // show wizard on first use
             if (Settings.Instance["newuser"] == null)
             {
@@ -3074,6 +3081,7 @@ namespace MissionPlanner
 
                 Settings.Instance["newuser"] = DateTime.Now.ToShortDateString();
             }
+            */
         }
 
         private Dictionary<string, string> ProcessCommandLine(string[] args)
