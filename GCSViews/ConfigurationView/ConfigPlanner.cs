@@ -58,6 +58,13 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // set distance/speed unit states
             CMB_distunits.DataSource = Enum.GetNames(typeof (Common.distances));
             CMB_speedunits.DataSource = Enum.GetNames(typeof (Common.speeds));
+            
+            // Hardcode units for Cobalt version
+            CMB_distunits.Text = "Feet";
+            CMB_speedunits.Text = "knots";
+
+            CMB_distunits.Enabled = false;
+            CMB_speedunits.Enabled = false;
 
             CMB_theme.DataSource = Enum.GetNames(typeof (ThemeManager.Themes));
 

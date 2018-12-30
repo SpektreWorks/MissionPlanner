@@ -3466,8 +3466,8 @@ namespace MissionPlanner
                 }
                 else
                 {
-                    CurrentState.multiplierdist = 1;
-                    CurrentState.DistanceUnit = "m";
+                    CurrentState.multiplierdist = 3.2808399f;
+                    CurrentState.DistanceUnit = "ft";
                 }
 
                 // speed
@@ -3499,8 +3499,8 @@ namespace MissionPlanner
                 }
                 else
                 {
-                    CurrentState.multiplierspeed = 1;
-                    CurrentState.SpeedUnit = "m/s";
+                    CurrentState.multiplierspeed = 1.94384449f;
+                    CurrentState.SpeedUnit = "knots";
                 }
             }
             catch
