@@ -33,7 +33,6 @@
             this.CMB_ratesensors = new System.Windows.Forms.ComboBox();
             this.label26 = new System.Windows.Forms.Label();
             this.CMB_videoresolutions = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.CHK_GDIPlus = new System.Windows.Forms.CheckBox();
             this.label24 = new System.Windows.Forms.Label();
             this.CHK_loadwponconnect = new System.Windows.Forms.CheckBox();
@@ -138,11 +137,6 @@
             this.CMB_videoresolutions.FormattingEnabled = true;
             resources.ApplyResources(this.CMB_videoresolutions, "CMB_videoresolutions");
             this.CMB_videoresolutions.Name = "CMB_videoresolutions";
-            // 
-            // label12
-            // 
-            resources.ApplyResources(this.label12, "label12");
-            this.label12.Name = "label12";
             // 
             // CHK_GDIPlus
             // 
@@ -672,7 +666,6 @@
             this.Controls.Add(this.CMB_ratesensors);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.CMB_videoresolutions);
-            this.Controls.Add(this.label12);
             this.Controls.Add(this.CHK_GDIPlus);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.CHK_loadwponconnect);
@@ -728,7 +721,6 @@
         private System.Windows.Forms.ComboBox CMB_ratesensors;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.ComboBox CMB_videoresolutions;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.CheckBox CHK_GDIPlus;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.CheckBox CHK_loadwponconnect;

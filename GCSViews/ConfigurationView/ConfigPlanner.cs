@@ -153,6 +153,9 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             SetCheckboxFromConfig("CHK_disttohomeflightdata", CHK_disttohomeflightdata);
 
             CHK_AutoParamCommit.Visible = MainV2.DisplayConfiguration.displayParamCommitButton;
+            CHK_beta.Visible = false; // Hide this for Cobalt Version
+            chk_norcreceiver.Visible = false; // Hide this for Cobalt Version
+            CHK_GDIPlus.Visible = false; // Hide this for Cobalt Version
 
             //set hud color state
             var hudcolor = Settings.Instance["hudcolor"];
