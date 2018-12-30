@@ -187,7 +187,7 @@
     <value>562, 224</value>
   </data>
   <data name="CMB_ratesensors.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 21</value>
+    <value>40, 33</value>
   </data>
   <data name="CMB_ratesensors.TabIndex" type="System.Int32, mscorlib">
     <value>88</value>
@@ -214,7 +214,7 @@
     <value>15, 38</value>
   </data>
   <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 13</value>
+    <value>140, 25</value>
   </data>
   <data name="label26.TabIndex" type="System.Int32, mscorlib">
     <value>86</value>
@@ -238,7 +238,7 @@
     <value>124, 35</value>
   </data>
   <data name="CMB_videoresolutions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>408, 21</value>
+    <value>408, 33</value>
   </data>
   <data name="CMB_videoresolutions.TabIndex" type="System.Int32, mscorlib">
     <value>44</value>
@@ -265,7 +265,7 @@
     <value>15, 323</value>
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 13</value>
+    <value>57, 25</value>
   </data>
   <data name="label12.TabIndex" type="System.Int32, mscorlib">
     <value>84</value>
@@ -322,7 +322,7 @@
     <value>15, 300</value>
   </data>
   <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 13</value>
+    <value>113, 25</value>
   </data>
   <data name="label24.TabIndex" type="System.Int32, mscorlib">
     <value>82</value>
@@ -379,7 +379,7 @@
     <value>15, 274</value>
   </data>
   <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 13</value>
+    <value>138, 25</value>
   </data>
   <data name="label23.TabIndex" type="System.Int32, mscorlib">
     <value>81</value>
@@ -403,7 +403,7 @@
     <value>124, 273</value>
   </data>
   <data name="NUM_tracklength.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 20</value>
+    <value>67, 31</value>
   </data>
   <data name="NUM_tracklength.TabIndex" type="System.Int32, mscorlib">
     <value>80</value>
@@ -430,7 +430,7 @@
     <value>532, 89</value>
   </data>
   <data name="CHK_speechaltwarning.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 17</value>
+    <value>155, 29</value>
   </data>
   <data name="CHK_speechaltwarning.TabIndex" type="System.Int32, mscorlib">
     <value>79</value>
@@ -463,7 +463,7 @@
     <value>15, 251</value>
   </data>
   <data name="label108.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 13</value>
+    <value>120, 25</value>
   </data>
   <data name="label108.TabIndex" type="System.Int32, mscorlib">
     <value>45</value>
@@ -517,7 +517,7 @@
     <value>NoControl</value>
   </data>
   <data name="CHK_mavdebug.Location" type="System.Drawing.Point, System.Drawing">
-    <value>124, 497</value>
+    <value>124, 783</value>
   </data>
   <data name="CHK_mavdebug.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 17</value>
@@ -604,7 +604,7 @@
     <value>467, 224</value>
   </data>
   <data name="CMB_raterc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 21</value>
+    <value>40, 33</value>
   </data>
   <data name="CMB_raterc.TabIndex" type="System.Int32, mscorlib">
     <value>49</value>
@@ -712,7 +712,7 @@
     <value>15, 227</value>
   </data>
   <data name="label101.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 13</value>
+    <value>169, 25</value>
   </data>
   <data name="label101.TabIndex" type="System.Int32, mscorlib">
     <value>53</value>
@@ -769,7 +769,7 @@
     <value>393, 224</value>
   </data>
   <data name="CMB_ratestatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 21</value>
+    <value>40, 33</value>
   </data>
   <data name="CMB_ratestatus.TabIndex" type="System.Int32, mscorlib">
     <value>54</value>
@@ -823,7 +823,7 @@
     <value>272, 224</value>
   </data>
   <data name="CMB_rateposition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 21</value>
+    <value>40, 33</value>
   </data>
   <data name="CMB_rateposition.TabIndex" type="System.Int32, mscorlib">
     <value>55</value>
@@ -877,7 +877,7 @@
     <value>170, 224</value>
   </data>
   <data name="CMB_rateattitude.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 21</value>
+    <value>40, 33</value>
   </data>
   <data name="CMB_rateattitude.TabIndex" type="System.Int32, mscorlib">
     <value>56</value>
@@ -932,7 +932,7 @@
     <value>15, 198</value>
   </data>
   <data name="label98.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 13</value>
+    <value>129, 25</value>
   </data>
   <data name="label98.TabIndex" type="System.Int32, mscorlib">
     <value>58</value>
@@ -962,7 +962,7 @@
     <value>15, 171</value>
   </data>
   <data name="label97.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 13</value>
+    <value>104, 25</value>
   </data>
   <data name="label97.TabIndex" type="System.Int32, mscorlib">
     <value>59</value>
@@ -986,7 +986,7 @@
     <value>124, 195</value>
   </data>
   <data name="CMB_speedunits.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 21</value>
+    <value>138, 33</value>
   </data>
   <data name="CMB_speedunits.TabIndex" type="System.Int32, mscorlib">
     <value>60</value>
@@ -1007,7 +1007,7 @@
     <value>124, 168</value>
   </data>
   <data name="CMB_distunits.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 21</value>
+    <value>138, 33</value>
   </data>
   <data name="CMB_distunits.TabIndex" type="System.Int32, mscorlib">
     <value>61</value>
@@ -1034,7 +1034,7 @@
     <value>15, 144</value>
   </data>
   <data name="label96.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 13</value>
+    <value>90, 25</value>
   </data>
   <data name="label96.TabIndex" type="System.Int32, mscorlib">
     <value>62</value>
@@ -1064,7 +1064,7 @@
     <value>15, 90</value>
   </data>
   <data name="label95.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 13</value>
+    <value>85, 25</value>
   </data>
   <data name="label95.TabIndex" type="System.Int32, mscorlib">
     <value>63</value>
@@ -1094,7 +1094,7 @@
     <value>429, 89</value>
   </data>
   <data name="CHK_speechbattery.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 17</value>
+    <value>198, 29</value>
   </data>
   <data name="CHK_speechbattery.TabIndex" type="System.Int32, mscorlib">
     <value>64</value>
@@ -1127,7 +1127,7 @@
     <value>349, 89</value>
   </data>
   <data name="CHK_speechcustom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 17</value>
+    <value>155, 29</value>
   </data>
   <data name="CHK_speechcustom.TabIndex" type="System.Int32, mscorlib">
     <value>65</value>
@@ -1160,7 +1160,7 @@
     <value>297, 89</value>
   </data>
   <data name="CHK_speechmode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 17</value>
+    <value>104, 29</value>
   </data>
   <data name="CHK_speechmode.TabIndex" type="System.Int32, mscorlib">
     <value>66</value>
@@ -1193,7 +1193,7 @@
     <value>224, 89</value>
   </data>
   <data name="CHK_speechwaypoint.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 17</value>
+    <value>134, 29</value>
   </data>
   <data name="CHK_speechwaypoint.TabIndex" type="System.Int32, mscorlib">
     <value>67</value>
@@ -1226,7 +1226,7 @@
     <value>15, 65</value>
   </data>
   <data name="label94.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 13</value>
+    <value>114, 25</value>
   </data>
   <data name="label94.TabIndex" type="System.Int32, mscorlib">
     <value>68</value>
@@ -1250,7 +1250,7 @@
     <value>124, 62</value>
   </data>
   <data name="CMB_osdcolor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 21</value>
+    <value>138, 32</value>
   </data>
   <data name="CMB_osdcolor.TabIndex" type="System.Int32, mscorlib">
     <value>69</value>
@@ -1271,7 +1271,7 @@
     <value>124, 112</value>
   </data>
   <data name="CMB_language.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 21</value>
+    <value>138, 33</value>
   </data>
   <data name="CMB_language.TabIndex" type="System.Int32, mscorlib">
     <value>70</value>
@@ -1298,7 +1298,7 @@
     <value>15, 115</value>
   </data>
   <data name="label93.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 13</value>
+    <value>134, 25</value>
   </data>
   <data name="label93.TabIndex" type="System.Int32, mscorlib">
     <value>71</value>
@@ -1328,7 +1328,7 @@
     <value>124, 89</value>
   </data>
   <data name="CHK_enablespeech.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 17</value>
+    <value>190, 29</value>
   </data>
   <data name="CHK_enablespeech.TabIndex" type="System.Int32, mscorlib">
     <value>72</value>
@@ -1385,7 +1385,7 @@
     <value>15, 11</value>
   </data>
   <data name="label92.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 13</value>
+    <value>139, 25</value>
   </data>
   <data name="label92.TabIndex" type="System.Int32, mscorlib">
     <value>74</value>
@@ -1409,7 +1409,7 @@
     <value>124, 8</value>
   </data>
   <data name="CMB_videosources.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 21</value>
+    <value>245, 33</value>
   </data>
   <data name="CMB_videosources.TabIndex" type="System.Int32, mscorlib">
     <value>75</value>
@@ -1436,7 +1436,7 @@
     <value>15, 346</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 13</value>
+    <value>122, 25</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>89</value>
@@ -1628,7 +1628,7 @@
     <value>15, 371</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 13</value>
+    <value>98, 25</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>93</value>
@@ -1652,7 +1652,7 @@
     <value>124, 368</value>
   </data>
   <data name="txt_log_dir.Size" type="System.Drawing.Size, System.Drawing">
-    <value>386, 20</value>
+    <value>386, 31</value>
   </data>
   <data name="txt_log_dir.TabIndex" type="System.Int32, mscorlib">
     <value>94</value>
@@ -1706,7 +1706,7 @@
     <value>15, 397</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 13</value>
+    <value>78, 25</value>
   </data>
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>96</value>
@@ -1730,7 +1730,7 @@
     <value>124, 394</value>
   </data>
   <data name="CMB_theme.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 21</value>
+    <value>138, 33</value>
   </data>
   <data name="CMB_theme.TabIndex" type="System.Int32, mscorlib">
     <value>97</value>
@@ -1784,7 +1784,7 @@
     <value>611, 89</value>
   </data>
   <data name="CHK_speecharmdisarm.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 17</value>
+    <value>155, 29</value>
   </data>
   <data name="CHK_speecharmdisarm.TabIndex" type="System.Int32, mscorlib">
     <value>99</value>
@@ -1844,7 +1844,7 @@
     <value>245, 474</value>
   </data>
   <data name="CHK_beta.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 17</value>
+    <value>174, 29</value>
   </data>
   <data name="CHK_beta.TabIndex" type="System.Int32, mscorlib">
     <value>103</value>
@@ -1874,7 +1874,7 @@
     <value>357, 451</value>
   </data>
   <data name="CHK_Password.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 17</value>
+    <value>280, 29</value>
   </data>
   <data name="CHK_Password.TabIndex" type="System.Int32, mscorlib">
     <value>104</value>
@@ -1904,7 +1904,7 @@
     <value>688, 89</value>
   </data>
   <data name="CHK_speechlowspeed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 17</value>
+    <value>151, 29</value>
   </data>
   <data name="CHK_speechlowspeed.TabIndex" type="System.Int32, mscorlib">
     <value>105</value>
@@ -1937,7 +1937,7 @@
     <value>513, 451</value>
   </data>
   <data name="CHK_showairports.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 17</value>
+    <value>177, 29</value>
   </data>
   <data name="CHK_showairports.TabIndex" type="System.Int32, mscorlib">
     <value>107</value>
@@ -1967,7 +1967,7 @@
     <value>615, 451</value>
   </data>
   <data name="chk_ADSB.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 17</value>
+    <value>101, 29</value>
   </data>
   <data name="chk_ADSB.TabIndex" type="System.Int32, mscorlib">
     <value>108</value>
@@ -1997,7 +1997,7 @@
     <value>513, 474</value>
   </data>
   <data name="chk_tfr.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 17</value>
+    <value>100, 29</value>
   </data>
   <data name="chk_tfr.TabIndex" type="System.Int32, mscorlib">
     <value>109</value>
@@ -2024,7 +2024,7 @@
     <value>NoControl</value>
   </data>
   <data name="chk_temp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>357, 497</value>
+    <value>357, 783</value>
   </data>
   <data name="chk_temp.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 17</value>
@@ -2057,7 +2057,7 @@
     <value>357, 474</value>
   </data>
   <data name="chk_norcreceiver.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 17</value>
+    <value>198, 29</value>
   </data>
   <data name="chk_norcreceiver.TabIndex" type="System.Int32, mscorlib">
     <value>111</value>
@@ -2108,7 +2108,7 @@
     <value>124, 421</value>
   </data>
   <data name="CMB_Layout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 21</value>
+    <value>138, 33</value>
   </data>
   <data name="CMB_Layout.TabIndex" type="System.Int32, mscorlib">
     <value>113</value>
@@ -2135,7 +2135,7 @@
     <value>15, 424</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 13</value>
+    <value>77, 25</value>
   </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>115</value>
@@ -2162,7 +2162,7 @@
     <value>615, 475</value>
   </data>
   <data name="CHK_AutoParamCommit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 17</value>
+    <value>245, 29</value>
   </data>
   <data name="CHK_AutoParamCommit.TabIndex" type="System.Int32, mscorlib">
     <value>116</value>
@@ -2186,7 +2186,7 @@
     <value>True</value>
   </metadata>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>759, 523</value>
+    <value>1420, 809</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ConfigPlanner</value>

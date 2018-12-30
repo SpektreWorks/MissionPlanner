@@ -24,6 +24,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             InitializeComponent();
             CMB_Layout.Items.Add(DisplayNames.Basic);
             CMB_Layout.Items.Add(DisplayNames.Advanced);
+            CMB_Layout.Items.Add(DisplayNames.Cobalt);
 
             txt_log_dir.TextChanged += OnLogDirTextChanged;
 
@@ -41,6 +42,10 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             else if (MainV2.DisplayConfiguration.displayName == DisplayNames.Basic)
             {
                 CMB_Layout.SelectedIndex = 0;
+            }
+            else if (MainV2.DisplayConfiguration.displayName == DisplayNames.Cobalt)
+            {
+                CMB_Layout.SelectedIndex = 2;
             }
             else
             {
@@ -901,6 +906,10 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             else if ((DisplayNames)CMB_Layout.SelectedItem == DisplayNames.Basic)
             {
                 MainV2.DisplayConfiguration = MainV2.DisplayConfiguration.Basic();
+            }
+            else if ((DisplayNames)CMB_Layout.SelectedItem == DisplayNames.Cobalt)
+            {
+                MainV2.DisplayConfiguration = MainV2.DisplayConfiguration.Cobalt();
             }
             Settings.Instance["displayview"] = MainV2.DisplayConfiguration.ConvertToString();
         }
