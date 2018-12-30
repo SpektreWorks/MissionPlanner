@@ -1533,6 +1533,7 @@ namespace MissionPlanner
                         _connectionControl.TOOL_APMFirmware.Items.IndexOf(Firmwares.ArduPlane);
                 }
 
+                /* Don't try to auto update firmware for Cobalt Version
                 // check for newer firmware
                 var softwares = Firmware.LoadSoftwares();
 
@@ -1569,6 +1570,7 @@ namespace MissionPlanner
                         log.Error(ex);
                     }
                 }
+                */
 
                 FlightData.CheckBatteryShow();
 
