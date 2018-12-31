@@ -206,6 +206,8 @@ namespace MissionPlanner.GCSViews
             this.panelBASE = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.BUT_ElevationProfile = new MissionPlanner.Controls.MyButton();
+            this.panel6 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.Commands)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -219,6 +221,7 @@ namespace MissionPlanner.GCSViews
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.panelBASE.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // Commands
@@ -701,6 +704,7 @@ namespace MissionPlanner.GCSViews
             this.flowLayoutPanel1.Controls.Add(this.panel2);
             this.flowLayoutPanel1.Controls.Add(this.panel5);
             this.flowLayoutPanel1.Controls.Add(this.panel1);
+            this.flowLayoutPanel1.Controls.Add(this.panel6);
             resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             // 
@@ -1360,6 +1364,19 @@ namespace MissionPlanner.GCSViews
             this.timer1.Interval = 200;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // BUT_ElevationProfile
+            // 
+            resources.ApplyResources(this.BUT_ElevationProfile, "BUT_ElevationProfile");
+            this.BUT_ElevationProfile.Name = "BUT_ElevationProfile";
+            this.BUT_ElevationProfile.UseVisualStyleBackColor = true;
+            this.BUT_ElevationProfile.Click += new System.EventHandler(this.elevationGraphToolStripMenuItem_Click);
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.BUT_ElevationProfile);
+            resources.ApplyResources(this.panel6, "panel6");
+            this.panel6.Name = "panel6";
+            // 
             // FlightPlanner
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1388,6 +1405,7 @@ namespace MissionPlanner.GCSViews
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.panelBASE.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1540,5 +1558,7 @@ namespace MissionPlanner.GCSViews
         private System.Windows.Forms.ToolStripMenuItem createCircleSurveyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem currentPositionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem surveyGridToolStripMenuItem;
+        private System.Windows.Forms.Panel panel6;
+        private MyButton BUT_ElevationProfile;
     }
 }
