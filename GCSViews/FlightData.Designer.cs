@@ -144,6 +144,8 @@
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Messagetabtimer = new System.Windows.Forms.Timer(this.components);
+            this.BUT_LightsOn = new MissionPlanner.Controls.MyButton();
+            this.BUT_LightsOff = new MissionPlanner.Controls.MyButton();
             this.bindingSourceHud = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSourceQuickTab = new System.Windows.Forms.BindingSource(this.components);
             this.modifyandSetLoiterRad = new MissionPlanner.Controls.ModifyandSet();
@@ -164,6 +166,7 @@
             this.bindingSourceGaugesTab = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSourceStatusTab = new System.Windows.Forms.BindingSource(this.components);
+            this.BUT_EngineStart = new MissionPlanner.Controls.MyButton();
             ((System.ComponentModel.ISupportInitialize)(this.MainH)).BeginInit();
             this.MainH.Panel1.SuspendLayout();
             this.MainH.Panel2.SuspendLayout();
@@ -553,6 +556,9 @@
             // 
             // tabActions
             // 
+            this.tabActions.Controls.Add(this.BUT_EngineStart);
+            this.tabActions.Controls.Add(this.BUT_LightsOff);
+            this.tabActions.Controls.Add(this.BUT_LightsOn);
             this.tabActions.Controls.Add(this.modifyandSetLoiterRad);
             this.tabActions.Controls.Add(this.BUT_abortland);
             this.tabActions.Controls.Add(this.CMB_mountmode);
@@ -1774,7 +1780,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 360D;
+            this.windDir1.Direction = 180D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -1982,6 +1988,28 @@
             this.Messagetabtimer.Interval = 200;
             this.Messagetabtimer.Tick += new System.EventHandler(this.Messagetabtimer_Tick);
             // 
+            // BUT_LightsOn
+            // 
+            this.BUT_LightsOn.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_LightsOn.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_LightsOn.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_LightsOn, "BUT_LightsOn");
+            this.BUT_LightsOn.Name = "BUT_LightsOn";
+            this.toolTip1.SetToolTip(this.BUT_LightsOn, resources.GetString("BUT_LightsOn.ToolTip"));
+            this.BUT_LightsOn.UseVisualStyleBackColor = true;
+            this.BUT_LightsOn.Click += new System.EventHandler(this.BUT_LightsOn_Click);
+            // 
+            // BUT_LightsOff
+            // 
+            this.BUT_LightsOff.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_LightsOff.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_LightsOff.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_LightsOff, "BUT_LightsOff");
+            this.BUT_LightsOff.Name = "BUT_LightsOff";
+            this.toolTip1.SetToolTip(this.BUT_LightsOff, resources.GetString("BUT_LightsOff.ToolTip"));
+            this.BUT_LightsOff.UseVisualStyleBackColor = true;
+            this.BUT_LightsOff.Click += new System.EventHandler(this.BUT_LightsOff_Click);
+            // 
             // bindingSourceHud
             // 
             this.bindingSourceHud.DataSource = typeof(MissionPlanner.CurrentState);
@@ -2141,6 +2169,17 @@
             // bindingSourceStatusTab
             // 
             this.bindingSourceStatusTab.DataSource = typeof(MissionPlanner.CurrentState);
+            // 
+            // BUT_EngineStart
+            // 
+            this.BUT_EngineStart.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_EngineStart.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_EngineStart.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_EngineStart, "BUT_EngineStart");
+            this.BUT_EngineStart.Name = "BUT_EngineStart";
+            this.toolTip1.SetToolTip(this.BUT_EngineStart, resources.GetString("BUT_EngineStart.ToolTip"));
+            this.BUT_EngineStart.UseVisualStyleBackColor = true;
+            this.BUT_EngineStart.Click += new System.EventHandler(this.BUT_EngineStart_Click);
             // 
             // FlightData
             // 
@@ -2360,5 +2399,8 @@
         private System.Windows.Forms.ToolStripMenuItem setViewCountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setGStreamerSourceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setEKFHomeHereToolStripMenuItem;
+        private Controls.MyButton BUT_LightsOff;
+        private Controls.MyButton BUT_LightsOn;
+        private Controls.MyButton BUT_EngineStart;
     }
 }
