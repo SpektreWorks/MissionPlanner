@@ -1223,6 +1223,45 @@ namespace MissionPlanner.GCSViews
             }
         }
 
+        private void addpolygonmarkerloiter(string tag, double lng, double lat, double alt, Color? color, float radius)
+        {
+            try
+            {
+                PointLatLng point = new PointLatLng(lat, lng);
+                GMapMarkerWP m = new GMapMarkerWP(point, tag);
+                m.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                m.ToolTipText = "Alt: " + alt.ToString("0");
+                m.Tag = tag;
+
+                int wpno = -1;
+                if (int.TryParse(tag, out wpno))
+                {
+                    // preselect groupmarker
+                    if (groupmarkers.Contains(wpno))
+                        m.selected = true;
+                }
+
+                //MissionPlanner.GMapMarkerRectWPRad mBorders = new MissionPlanner.GMapMarkerRectWPRad(point, (int)float.Parse(TXT_WPRad.Text), MainMap);
+                GMapMarkerRect mBorders = new GMapMarkerRect(point);
+                {
+                    mBorders.InnerMarker = m;
+                    mBorders.Tag = tag;
+                    mBorders.wprad = (int)(radius / CurrentState.multiplierdist);
+                    mBorders.Pen.DashStyle = DashStyle.Solid;
+                    if (color.HasValue)
+                    {
+                        mBorders.Color = color.Value;
+                    }
+                }
+
+                objectsoverlay.Markers.Add(m);
+                objectsoverlay.Markers.Add(mBorders);
+            }
+            catch (Exception)
+            {
+            }
+        }
+
         private void addpolygonmarkergrid(string tag, double lng, double lat, int alt)
         {
             try
@@ -1420,16 +1459,34 @@ namespace MissionPlanner.GCSViews
                             }
                             else if (command == (ushort) MAVLink.MAV_CMD.LOITER_TIME ||
                                      command == (ushort) MAVLink.MAV_CMD.LOITER_TURNS ||
-                                     command == (ushort) MAVLink.MAV_CMD.LOITER_UNLIM)
+                                     command == (ushort) MAVLink.MAV_CMD.LOITER_UNLIM ||
+                                     command == (ushort) MAVLink.MAV_CMD.LOITER_TO_ALT)
                             {
                                 pointlist.Add(new PointLatLngAlt(double.Parse(cell3), double.Parse(cell4),
                                     double.Parse(cell2) + gethomealt(double.Parse(cell3), double.Parse(cell4)), (a + 1).ToString())
                                 {
-                                    color = Color.LightBlue
+                                    color = Color.DarkBlue
                                 });
                                 fullpointlist.Add(pointlist[pointlist.Count - 1]);
-                                addpolygonmarker((a + 1).ToString(), double.Parse(cell4), double.Parse(cell3),
-                                    double.Parse(cell2), Color.LightBlue);
+
+                                // Radius markers will either be the WP radius or a custom radius set in a parameters of the WP
+                                // Param 2 for Loiter to alt, Param 3 for all others
+                                float loiter_radius_float_user_units = 0;
+                                if (command == (ushort)MAVLink.MAV_CMD.LOITER_TO_ALT)
+                                {
+                                    loiter_radius_float_user_units = float.Parse(Commands.Rows[a].Cells[Param2.Index].Value.ToString());
+                                }
+                                else
+                                {
+                                    loiter_radius_float_user_units = float.Parse(Commands.Rows[a].Cells[Param3.Index].Value.ToString());
+                                }
+                                
+                                if (loiter_radius_float_user_units == 0)
+                                {
+                                    loiter_radius_float_user_units = float.Parse(TXT_loiterrad.Text);
+                                }
+                                addpolygonmarkerloiter((a + 1).ToString(), double.Parse(cell4), double.Parse(cell3),
+                                    double.Parse(cell2), Color.Yellow, loiter_radius_float_user_units);
                             }
                             else if (command == (ushort) MAVLink.MAV_CMD.SPLINE_WAYPOINT)
                             {
@@ -2207,6 +2264,18 @@ namespace MissionPlanner.GCSViews
                 temp.p3 = (float) (double.Parse(Commands.Rows[a].Cells[Param3.Index].Value.ToString()));
                 temp.p4 = (float) (double.Parse(Commands.Rows[a].Cells[Param4.Index].Value.ToString()));
 
+                // Handle Unit Conversion for Loiter Radius Overrides
+                if (temp.id == (ushort) MAVLink.MAV_CMD.LOITER_TO_ALT)
+                {
+                    temp.p2 /= CurrentState.multiplierdist;
+                }
+                else if  (temp.id == (ushort)MAVLink.MAV_CMD.LOITER_TIME ||
+                          temp.id == (ushort)MAVLink.MAV_CMD.LOITER_TURNS ||
+                          temp.id == (ushort)MAVLink.MAV_CMD.LOITER_UNLIM)
+                {
+                    temp.p3 /= CurrentState.multiplierdist;
+                }
+
                 temp.Tag = Commands.Rows[a].Cells[TagData.Index].Value;
 
                 return temp;
@@ -2571,6 +2640,20 @@ namespace MissionPlanner.GCSViews
                 cell.Value = temp.p3;
                 cell = Commands.Rows[i].Cells[Param4.Index] as DataGridViewTextBoxCell;
                 cell.Value = temp.p4;
+
+                // Handle Unit Conversions for Loiter Radius overrides
+                if (temp.id == (ushort)MAVLink.MAV_CMD.LOITER_TO_ALT)
+                {
+                    cell = Commands.Rows[i].Cells[Param2.Index] as DataGridViewTextBoxCell;
+                    cell.Value = temp.p2 * CurrentState.multiplierdist;
+                }
+                else if (temp.id == (ushort)MAVLink.MAV_CMD.LOITER_TURNS ||
+                         temp.id == (ushort)MAVLink.MAV_CMD.LOITER_TIME ||
+                         temp.id == (ushort)MAVLink.MAV_CMD.LOITER_UNLIM)
+                {
+                    cell = Commands.Rows[i].Cells[Param3.Index] as DataGridViewTextBoxCell;
+                    cell.Value = temp.p3 * CurrentState.multiplierdist;
+                }
 
                 // convert to utm/other
                 convertFromGeographic(temp.lat, temp.lng);
@@ -4579,8 +4662,9 @@ namespace MissionPlanner.GCSViews
 
                 if (MainV2.comPort.MAV.cs.mode.ToLower() == "guided" && MainV2.comPort.MAV.GuidedMode.x != 0)
                 {
-                    addpolygonmarker("Guided Mode", MainV2.comPort.MAV.GuidedMode.y, MainV2.comPort.MAV.GuidedMode.x,
-                        (int) MainV2.comPort.MAV.GuidedMode.z, Color.Blue, routesoverlay);
+                    float guidedradius = float.Parse(TXT_loiterrad.Text);
+                    addpolygonmarkerloiter("Guided Mode", MainV2.comPort.MAV.GuidedMode.y, MainV2.comPort.MAV.GuidedMode.x,
+                        (int) MainV2.comPort.MAV.GuidedMode.z, Color.Blue, guidedradius, routesoverlay);
                 }
 
                 //autopan
@@ -4641,6 +4725,41 @@ namespace MissionPlanner.GCSViews
                     {
                         mBorders.wprad =
                             (int) (Settings.Instance.GetFloat("TXT_WPRad")/CurrentState.multiplierdist);
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Error(ex);
+                    }
+                    if (color.HasValue)
+                    {
+                        mBorders.Color = color.Value;
+                    }
+                }
+
+                overlay.Markers.Add(m);
+                overlay.Markers.Add(mBorders);
+            }
+            catch (Exception)
+            {
+            }
+        }
+        private void addpolygonmarkerloiter(string tag, double lng, double lat, int alt, Color? color, float radius, GMapOverlay overlay)
+        {
+            try
+            {
+                PointLatLng point = new PointLatLng(lat, lng);
+                GMarkerGoogle m = new GMarkerGoogle(point, GMarkerGoogleType.green);
+                m.ToolTipMode = MarkerTooltipMode.Always;
+                m.ToolTipText = tag;
+                m.Tag = tag;
+
+                GMapMarkerRect mBorders = new GMapMarkerRect(point);
+                {
+                    mBorders.InnerMarker = m;
+                    try
+                    {
+                        mBorders.wprad =
+                            (int)(radius / CurrentState.multiplierdist);
                     }
                     catch (Exception ex)
                     {

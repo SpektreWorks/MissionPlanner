@@ -33,7 +33,7 @@
     <LOITER_TIME>
       <P1>Time s</P1>
       <P2></P2>
-      <P3></P3>
+      <P3>Radius</P3>
       <P4></P4>
       <X>Lat</X>
       <Y>Long</Y>
@@ -42,7 +42,7 @@
     <LOITER_UNLIM>
       <P1></P1>
       <P2></P2>
-      <P3></P3>
+      <P3>Radius</P3>
       <P4></P4>
       <X>Lat</X>
       <Y>Long</Y>
