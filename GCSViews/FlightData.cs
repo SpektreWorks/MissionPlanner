@@ -2191,7 +2191,7 @@ namespace MissionPlanner.GCSViews
             {
                 try
                 {
-                    modifyandSetSpeed.Value = (decimal) ((float) MainV2.comPort.MAV.param["WP_SPEED_MAX"]/100.0);
+                    modifyandSetSpeed.Value = (decimal) ((float) MainV2.comPort.MAV.param["WP_SPEED_MAX"] / 100.0 * CurrentState.multiplierspeed);
                 }
                 catch
                 {
@@ -2199,14 +2199,14 @@ namespace MissionPlanner.GCSViews
                 }
             } // plane with airspeed
             else if (MainV2.comPort.MAV.param.ContainsKey("TRIM_ARSPD_CM") &&
-                     MainV2.comPort.MAV.param.ContainsKey("ARSPD_ENABLE")
+                     MainV2.comPort.MAV.param.ContainsKey("ARSPD_TYPE")
                      && MainV2.comPort.MAV.param.ContainsKey("ARSPD_USE") &&
-                     (float) MainV2.comPort.MAV.param["ARSPD_ENABLE"] == 1
+                     (float) MainV2.comPort.MAV.param["ARSPD_TYPE"] != 0
                      && (float) MainV2.comPort.MAV.param["ARSPD_USE"] == 1)
             {
                 try
                 {
-                    modifyandSetSpeed.Value = (decimal) ((float) MainV2.comPort.MAV.param["TRIM_ARSPD_CM"]/100.0);
+                    modifyandSetSpeed.Value = (decimal) ((float) MainV2.comPort.MAV.param["TRIM_ARSPD_CM"] / 100.0 * CurrentState.multiplierspeed);
                 }
                 catch
                 {
@@ -3565,7 +3565,7 @@ namespace MissionPlanner.GCSViews
             {
                 try
                 {
-                    MainV2.comPort.setParam("WP_SPEED_MAX", ((float) modifyandSetSpeed.Value*100.0f));
+                    MainV2.comPort.setParam("WP_SPEED_MAX", ((float) modifyandSetSpeed.Value / CurrentState.multiplierspeed*100.0f));
                 }
                 catch
                 {
@@ -3573,14 +3573,14 @@ namespace MissionPlanner.GCSViews
                 }
             } // plane with airspeed
             else if (MainV2.comPort.MAV.param.ContainsKey("TRIM_ARSPD_CM") &&
-                     MainV2.comPort.MAV.param.ContainsKey("ARSPD_ENABLE")
+                     MainV2.comPort.MAV.param.ContainsKey("ARSPD_TYPE")
                      && MainV2.comPort.MAV.param.ContainsKey("ARSPD_USE") &&
-                     (float) MainV2.comPort.MAV.param["ARSPD_ENABLE"] == 1
+                     (float) MainV2.comPort.MAV.param["ARSPD_TYPE"] != 0
                      && (float) MainV2.comPort.MAV.param["ARSPD_USE"] == 1)
             {
                 try
                 {
-                    MainV2.comPort.setParam("TRIM_ARSPD_CM", ((float) modifyandSetSpeed.Value*100.0f));
+                    MainV2.comPort.setParam("TRIM_ARSPD_CM", ((float) modifyandSetSpeed.Value / CurrentState.multiplierspeed * 100.0f));
                 }
                 catch
                 {
