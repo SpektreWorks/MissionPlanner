@@ -538,7 +538,7 @@ namespace MissionPlanner
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
             // set this before we reset it
-            Settings.Instance["NUM_tracklength"] = "200";
+            Settings.Instance["NUM_tracklength"] = "1000";
 
             // create one here - but override on load
             Settings.Instance["guid"] = Guid.NewGuid().ToString();
