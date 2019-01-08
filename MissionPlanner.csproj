@@ -5,11 +5,11 @@
     <ApplicationIcon>mpdesktop.ico</ApplicationIcon>
     <OutputType>Exe</OutputType>
     <StartupObject></StartupObject>
-    <Authors>Michael Oborne</Authors>
-    <Version>1.3.52</Version>
+    <Authors>Michael Oborne and SpektreWorks, Inc.</Authors>
+    <Version>1.3.52.1</Version>
     <DebugType>full</DebugType>
-    <Company>Michael Oborne</Company>
-    <Product>Mission Planner</Product>
+    <Company>Michael Oborne and SpektreWorks, Inc.</Company>
+    <Product>Mission Planner SW</Product>
     <Description>Mission Planner ground control station for ardupilot</Description>
     <Copyright>Copyright © Michael Oborne 2010-2017</Copyright>
     <AssemblyVersion>$(Version)</AssemblyVersion>
@@ -19,6 +19,7 @@
     <EnableDefaultItems>false</EnableDefaultItems>
     <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>MissionPlanner</PackageId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
     <BumpRevision>false</BumpRevision>

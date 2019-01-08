@@ -121,7 +121,7 @@ namespace MissionPlanner
                 Splash.Icon = Icon.FromHandle(((Bitmap)IconFile).GetHicon());
 
             string strVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            Splash.Text = name + " " + Application.ProductVersion + " build " + strVersion;
+            Splash.Text = name + " " + Application.ProductVersion + " build " + strVersion + " SW";
             Splash.Show();
 
             Application.DoEvents();
