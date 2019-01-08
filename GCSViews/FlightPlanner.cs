@@ -1356,7 +1356,7 @@ namespace MissionPlanner.GCSViews
 
                     if ((altmode)CMB_altmode.SelectedValue == altmode.Terrain)
                     {
-                        return srtm.getAltitude(lat, lng).alt;
+                        return srtm.getAltitude(lat, lng).alt * CurrentState.multiplierdist;
                     }
 
                     try
@@ -1935,7 +1935,7 @@ namespace MissionPlanner.GCSViews
                                          "\t" +
                                          double.Parse(TXT_homelng.Text).ToString("0.000000", new CultureInfo("en-US")) +
                                          "\t" +
-                                         double.Parse(TXT_homealt.Text).ToString("0.000000", new CultureInfo("en-US")) +
+                                         (double.Parse(TXT_homealt.Text) / CurrentState.multiplierdist).ToString("0.000000", new CultureInfo("en-US")) +
                                          "\t1");
                         }
                         catch (Exception ex)
@@ -2685,7 +2685,7 @@ namespace MissionPlanner.GCSViews
                                 TXT_homelng.Text = (double.Parse(cellhome.Value.ToString())).ToString();
                                 cellhome = Commands.Rows[0].Cells[Alt.Index] as DataGridViewTextBoxCell;
                                 TXT_homealt.Text =
-                                    (double.Parse(cellhome.Value.ToString())*CurrentState.multiplierdist).ToString();
+                                    double.Parse(cellhome.Value.ToString()).ToString();
                             }
                         }
                     }
@@ -2957,7 +2957,7 @@ namespace MissionPlanner.GCSViews
             sethome = false;
             try
             {
-                MainV2.comPort.MAV.cs.HomeLocation.Alt = double.Parse(TXT_homealt.Text);
+                MainV2.comPort.MAV.cs.HomeLocation.Alt = double.Parse(TXT_homealt.Text) / CurrentState.multiplierdist;
             }
             catch (Exception ex)
             {
@@ -4285,7 +4285,7 @@ namespace MissionPlanner.GCSViews
         {
             if (MainV2.comPort.MAV.cs.lat != 0)
             {
-                TXT_homealt.Text = (MainV2.comPort.MAV.cs.altasl).ToString("0");
+                TXT_homealt.Text = MainV2.comPort.MAV.cs.altasl.ToString("0");
                 TXT_homelat.Text = MainV2.comPort.MAV.cs.lat.ToString();
                 TXT_homelng.Text = MainV2.comPort.MAV.cs.lng.ToString();
             }
@@ -5336,7 +5336,9 @@ namespace MissionPlanner.GCSViews
 
                 TXT_homelng.Text = MainV2.comPort.MAV.cs.HomeLocation.Lng.ToString();
 
-                TXT_homealt.Text = MainV2.comPort.MAV.cs.HomeLocation.Alt.ToString();
+                double home_alt_user_units = MainV2.comPort.MAV.cs.HomeLocation.Alt * CurrentState.multiplierdist;
+
+                TXT_homealt.Text = home_alt_user_units.ToString();
 
                 writeKML();
             }
@@ -5821,7 +5823,7 @@ namespace MissionPlanner.GCSViews
         private void elevationGraphToolStripMenuItem_Click(object sender, EventArgs e)
         {
             writeKML();
-            double homealt = MainV2.comPort.MAV.cs.HomeAlt;
+            double homealt = MainV2.comPort.MAV.cs.HomeAlt * CurrentState.multiplierdist;
             Form temp = new ElevationProfile(pointlist, homealt, (altmode) CMB_altmode.SelectedValue);
             ThemeManager.ApplyThemeTo(temp);
             temp.ShowDialog();
@@ -7124,7 +7126,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
 
         private void setHomeHereToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TXT_homealt.Text = srtm.getAltitude(MouseDownStart.Lat, MouseDownStart.Lng).alt.ToString("0");
+            TXT_homealt.Text = (srtm.getAltitude(MouseDownStart.Lat, MouseDownStart.Lng).alt * CurrentState.multiplierdist).ToString("0");
             TXT_homelat.Text = MouseDownStart.Lat.ToString();
             TXT_homelng.Text = MouseDownStart.Lng.ToString();
         }
