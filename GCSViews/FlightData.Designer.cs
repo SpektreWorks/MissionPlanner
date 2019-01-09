@@ -169,6 +169,9 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Messagetabtimer = new System.Windows.Forms.Timer(this.components);
             this.bindingSourceStatusTab = new System.Windows.Forms.BindingSource(this.components);
+            this.QUICK_RPM = new MissionPlanner.Controls.QuickView();
+            this.QUICK_CHT = new MissionPlanner.Controls.QuickView();
+            this.QUICK_FuelUsed = new MissionPlanner.Controls.QuickView();
             ((System.ComponentModel.ISupportInitialize)(this.MainH)).BeginInit();
             this.MainH.Panel1.SuspendLayout();
             this.MainH.Panel2.SuspendLayout();
@@ -1829,6 +1832,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.ContextMenuStrip = this.contextMenuStripMap;
+            this.splitContainer1.Panel2.Controls.Add(this.QUICK_FuelUsed);
+            this.splitContainer1.Panel2.Controls.Add(this.QUICK_CHT);
+            this.splitContainer1.Panel2.Controls.Add(this.QUICK_RPM);
             this.splitContainer1.Panel2.Controls.Add(this.but_disablejoystick);
             this.splitContainer1.Panel2.Controls.Add(this.distanceBar1);
             this.splitContainer1.Panel2.Controls.Add(this.windDir1);
@@ -1991,7 +1997,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 180D;
+            this.windDir1.Direction = 360D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2206,6 +2212,36 @@
             // bindingSourceStatusTab
             // 
             this.bindingSourceStatusTab.DataSource = typeof(MissionPlanner.CurrentState);
+            // 
+            // QUICK_RPM
+            // 
+            this.QUICK_RPM.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "efi_rpm", true, System.Windows.Forms.DataSourceUpdateMode.Never, null, "N0"));
+            this.QUICK_RPM.desc = "RPM:";
+            resources.ApplyResources(this.QUICK_RPM, "QUICK_RPM");
+            this.QUICK_RPM.Name = "QUICK_RPM";
+            this.QUICK_RPM.number = -9999D;
+            this.QUICK_RPM.numberColor = System.Drawing.SystemColors.ControlText;
+            this.QUICK_RPM.numberformat = "0";
+            // 
+            // QUICK_CHT
+            // 
+            this.QUICK_CHT.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "cht", true));
+            this.QUICK_CHT.desc = "CHT (C):";
+            resources.ApplyResources(this.QUICK_CHT, "QUICK_CHT");
+            this.QUICK_CHT.Name = "QUICK_CHT";
+            this.QUICK_CHT.number = -9999D;
+            this.QUICK_CHT.numberColor = System.Drawing.SystemColors.ControlText;
+            this.QUICK_CHT.numberformat = "0";
+            // 
+            // QUICK_FuelUsed
+            // 
+            this.QUICK_FuelUsed.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "fuelused", true));
+            this.QUICK_FuelUsed.desc = "USED (G):";
+            resources.ApplyResources(this.QUICK_FuelUsed, "QUICK_FuelUsed");
+            this.QUICK_FuelUsed.Name = "QUICK_FuelUsed";
+            this.QUICK_FuelUsed.number = -9999D;
+            this.QUICK_FuelUsed.numberColor = System.Drawing.SystemColors.ControlText;
+            this.QUICK_FuelUsed.numberformat = "0";
             // 
             // FlightData
             // 
@@ -2430,5 +2466,8 @@
         private Controls.MyButton BUT_EngineStart;
         private Controls.MyButton BUT_PLDOff;
         private Controls.MyButton BUT_PLDOn;
+        private Controls.QuickView QUICK_CHT;
+        private Controls.QuickView QUICK_RPM;
+        private Controls.QuickView QUICK_FuelUsed;
     }
 }
