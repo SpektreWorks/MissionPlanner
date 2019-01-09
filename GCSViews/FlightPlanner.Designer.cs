@@ -124,6 +124,8 @@ namespace MissionPlanner.GCSViews
             this.lbl_wpfile = new System.Windows.Forms.Label();
             this.BUT_loadwpfile = new MissionPlanner.Controls.MyButton();
             this.BUT_saveWPFile = new MissionPlanner.Controls.MyButton();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.BUT_ElevationProfile = new MissionPlanner.Controls.MyButton();
             this.panelMap = new System.Windows.Forms.Panel();
             this.lbl_distance = new System.Windows.Forms.Label();
             this.lbl_homedist = new System.Windows.Forms.Label();
@@ -206,8 +208,6 @@ namespace MissionPlanner.GCSViews
             this.panelBASE = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.BUT_ElevationProfile = new MissionPlanner.Controls.MyButton();
-            this.panel6 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.Commands)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -217,11 +217,11 @@ namespace MissionPlanner.GCSViews
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.panelMap.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.panelBASE.SuspendLayout();
-            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // Commands
@@ -771,6 +771,19 @@ namespace MissionPlanner.GCSViews
             this.BUT_saveWPFile.Name = "BUT_saveWPFile";
             this.BUT_saveWPFile.UseVisualStyleBackColor = true;
             this.BUT_saveWPFile.Click += new System.EventHandler(this.BUT_saveWPFile_Click);
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.BUT_ElevationProfile);
+            resources.ApplyResources(this.panel6, "panel6");
+            this.panel6.Name = "panel6";
+            // 
+            // BUT_ElevationProfile
+            // 
+            resources.ApplyResources(this.BUT_ElevationProfile, "BUT_ElevationProfile");
+            this.BUT_ElevationProfile.Name = "BUT_ElevationProfile";
+            this.BUT_ElevationProfile.UseVisualStyleBackColor = true;
+            this.BUT_ElevationProfile.Click += new System.EventHandler(this.elevationGraphToolStripMenuItem_Click);
             // 
             // panelMap
             // 
@@ -1364,19 +1377,6 @@ namespace MissionPlanner.GCSViews
             this.timer1.Interval = 200;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // BUT_ElevationProfile
-            // 
-            resources.ApplyResources(this.BUT_ElevationProfile, "BUT_ElevationProfile");
-            this.BUT_ElevationProfile.Name = "BUT_ElevationProfile";
-            this.BUT_ElevationProfile.UseVisualStyleBackColor = true;
-            this.BUT_ElevationProfile.Click += new System.EventHandler(this.elevationGraphToolStripMenuItem_Click);
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.BUT_ElevationProfile);
-            resources.ApplyResources(this.panel6, "panel6");
-            this.panel6.Name = "panel6";
-            // 
             // FlightPlanner
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1400,12 +1400,12 @@ namespace MissionPlanner.GCSViews
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel6.ResumeLayout(false);
             this.panelMap.ResumeLayout(false);
             this.panelMap.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.panelBASE.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
