@@ -37,7 +37,7 @@ namespace MissionPlanner.Utilities
         /// </summary>
         public static Dictionary<string, string> config = new Dictionary<string, string>();
 
-        const string FileName = "config.xml";
+        const string FileName = "config_sw.xml";
 
         public string this[string key]
         {
