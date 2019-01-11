@@ -1323,11 +1323,11 @@ namespace MissionPlanner
         static CurrentState()
         {
             // set default telemrates
-            rateattitudebackup = 4;
-            ratepositionbackup = 2;
-            ratestatusbackup = 2;
-            ratesensorsbackup = 2;
-            ratercbackup = 2;
+            rateattitudebackup = 10;
+            ratepositionbackup = 10;
+            ratestatusbackup = 5;
+            ratesensorsbackup = 5;
+            ratercbackup = 5;
         }
 
         public CurrentState()
