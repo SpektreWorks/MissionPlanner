@@ -4597,7 +4597,7 @@ namespace MissionPlanner.GCSViews
         {
             try
             {
-                if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, 14, 1000, 0, 0, 0, 0, 0))
+                if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, 14, 2000, 0, 0, 0, 0, 0))
                 {
                     CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
                 }
@@ -4612,7 +4612,7 @@ namespace MissionPlanner.GCSViews
         {
             try
             {
-                if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, 14, 2000, 0, 0, 0, 0, 0))
+                if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, 14, 1000, 0, 0, 0, 0, 0))
                 {
                     CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
                 }
