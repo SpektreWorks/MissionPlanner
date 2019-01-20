@@ -600,6 +600,9 @@ namespace MissionPlanner
         [DisplayText("Time in Air (sec)")]
         public float timeInAir { get; set; }
 
+        [DisplayText("Engine Time (sec)")]
+        public float engineTime { get; set; }
+
         // calced turn rate
         [DisplayText("Turn Rate (speed)")]
         public float turnrate
@@ -1356,6 +1359,7 @@ namespace MissionPlanner
                 _lastcurrent = DateTime.MinValue;
                 distTraveled = 0;
                 timeInAir = 0;
+                engineTime = 0;
                 version = new Version();
                 voltageflag = (uint)MAVLink.MAV_POWER_STATUS.USB_CONNECTED;
                 capabilities = (uint)MAVLink.MAV_PROTOCOL_CAPABILITY.MISSION_FLOAT;
@@ -1504,6 +1508,10 @@ namespace MissionPlanner
                         // throttle is up, or groundspeed is > 3 m/s
                         if ((ch3percent > 12  || _groundspeed > 3.0) && armed)
                             timeInAir++;
+
+                        // Engine is running
+                        if (efi_rpm > 100 && armed)
+                            engineTime++;
 
                         if (!gotwind)
                             dowindcalc();
