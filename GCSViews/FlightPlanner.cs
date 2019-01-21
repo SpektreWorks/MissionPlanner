@@ -4766,6 +4766,11 @@ namespace MissionPlanner.GCSViews
                     {
                         log.Error(ex);
                     }
+                    mBorders.InnerMarker = m;
+                    mBorders.Tag = tag;
+                    mBorders.wprad = (int)(radius / CurrentState.multiplierdist);
+                    mBorders.Pen.DashStyle = DashStyle.Solid;
+                    mBorders.Pen.Width = 5.0f;
                     if (color.HasValue)
                     {
                         mBorders.Color = color.Value;
