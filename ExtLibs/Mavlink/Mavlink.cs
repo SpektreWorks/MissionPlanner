@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 public partial class MAVLink
 {
-    public const string MAVLINK_BUILD_DATE = "Fri Dec 28 2018";
+    public const string MAVLINK_BUILD_DATE = "Sun Mar 10 2019";
     public const string MAVLINK_WIRE_PROTOCOL_VERSION = "2.0";
     public const int MAVLINK_MAX_PAYLOAD_LEN = 255;
 
@@ -254,6 +254,7 @@ public partial class MAVLink
 		new message_info(11010, "ADAP_TUNING", 46, 49, 49, typeof( mavlink_adap_tuning_t )),
 		new message_info(11011, "VISION_POSITION_DELTA", 106, 44, 44, typeof( mavlink_vision_position_delta_t )),
 		new message_info(11020, "AOA_SSA", 205, 16, 16, typeof( mavlink_aoa_ssa_t )),
+		new message_info(11040, "WEATHER", 73, 10, 10, typeof( mavlink_weather_t )),
 
 	};
 
@@ -506,6 +507,7 @@ DEVICE_OP_WRITE_REPLY = 11003,
 ADAP_TUNING = 11010,
 VISION_POSITION_DELTA = 11011,
 AOA_SSA = 11020,
+WEATHER = 11040,
 
     }  
 	    
@@ -3914,6 +3916,26 @@ AOA_SSA = 11020,
         public  float AOA;
             /// <summary> Side Slip Angle (degrees) </summary>
         public  float SSA;
+    
+    };
+
+
+    [StructLayout(LayoutKind.Sequential,Pack=1,Size=10)]
+    ///<summary> Weather Station Status Report. Can originate from aircraft or GCS (Distinguish using SYSIDs) </summary>
+    public struct mavlink_weather_t
+    {
+        /// <summary> Barometric Pressure. </summary>
+        public  int raw_press;
+            /// <summary> Wind Direction. (Upwind Heading) </summary>
+        public  ushort wind_dir;
+            /// <summary> Wind </summary>
+        public  byte wind;
+            /// <summary> Temperature. </summary>
+        public  byte temperature;
+            /// <summary> Relative Humidity. </summary>
+        public  byte relative_humidity;
+            /// <summary> Rain rate </summary>
+        public  byte rain_rate;
     
     };
 

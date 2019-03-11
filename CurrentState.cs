@@ -1288,6 +1288,13 @@ namespace MissionPlanner
         public float fuelused { get; set; }
         public float efi_rpm { get; set; }
 
+        // Weather Values
+        public float weather_windvel { get; set; }
+        public uint weather_winddir { get; set; }
+        public int weather_temperature { get; set; }
+        public uint weather_humidity { get; set; }
+  
+
 
         // HIL
         public int hilch1;// { get; set; }
@@ -2307,6 +2314,20 @@ namespace MissionPlanner
                         efi_rpm = efi.rpm;
 
                         //MAVLink.packets[(byte)MAVLink.MSG_NAMES.EFI_STATUS);
+                    }
+
+                    mavLinkMessage = MAV.getPacket((uint)MAVLink.MAVLINK_MSG_ID.WEATHER);
+
+                    if (mavLinkMessage != null)
+                    {
+                        var weather = mavLinkMessage.ToStructure<MAVLink.mavlink_weather_t>();
+
+                        weather_windvel = weather.wind * multiplierspeed;
+                        weather_winddir = weather.wind_dir;
+                        weather_temperature = weather.temperature;
+                        weather_humidity = weather.relative_humidity;
+
+                        //MAVLink.packets[(byte)MAVLink.MSG_NAMES.WEATHER);
                     }
 
                     mavLinkMessage = MAV.getPacket((uint) MAVLink.MAVLINK_MSG_ID.RC_CHANNELS_RAW);
