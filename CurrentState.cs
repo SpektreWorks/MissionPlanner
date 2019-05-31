@@ -769,6 +769,21 @@ namespace MissionPlanner
 
         internal double _battery_voltage2;
 
+        public double battery_usedmah3 { get; set; }
+
+        [DisplayText("Bat3 Voltage (V)")]
+        public double battery_voltage3
+        {
+            get { return _battery_voltage3; }
+            set
+            {
+                if (_battery_voltage3 == 0) _battery_voltage3 = value;
+                _battery_voltage3 = value * 0.4f + _battery_voltage3 * 0.6f;
+            }
+        }
+
+        internal double _battery_voltage3;
+
         private DateTime _lastcurrent2 = DateTime.MinValue;
 
         [DisplayText("Bat2 Current (Amps)")]
@@ -781,6 +796,23 @@ namespace MissionPlanner
                 battery_usedmah2 += ((value * 1000.0) * (datetime - _lastcurrent2).TotalHours);
                 _current2 = value;
                 _lastcurrent2 = datetime;
+            }
+        }
+
+        private double _current3;
+
+        private DateTime _lastcurrent3 = DateTime.MinValue;
+
+        [DisplayText("Bat3 Current (Amps)")]
+        public double current3
+        {
+            get { return _current3; }
+            set
+            {
+                if (value < 0) return;
+                battery_usedmah3 += ((value * 1000.0) * (datetime - _lastcurrent3).TotalHours);
+                _current3 = value;
+                _lastcurrent3 = datetime;
             }
         }
 
@@ -2084,6 +2116,12 @@ namespace MissionPlanner
                         else if (bats.id == 1)
                         {
                             _current2 = bats.current_battery / 100.0f;
+                        }
+                        else if (bats.id == 2)
+                        {
+                            _battery_voltage3 = bats.voltages[0] / 1000.0;
+                            _current3 = bats.current_battery / 100.0f;
+
                         }
                     }
 
