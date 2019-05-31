@@ -1322,9 +1322,9 @@ namespace MissionPlanner
 
         // Weather Values
         public float weather_windvel { get; set; }
-        public uint weather_winddir { get; set; }
+        public int weather_winddir { get; set; }
         public int weather_temperature { get; set; }
-        public uint weather_humidity { get; set; }
+        public int weather_humidity { get; set; }
   
 
 
