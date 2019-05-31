@@ -128,7 +128,7 @@ namespace MissionPlanner
             set { MAVlist[sysidcurrent, compidcurrent] = value; }
         }
 
-        public double CONNECT_TIMEOUT_SECONDS = 30;
+        public double CONNECT_TIMEOUT_SECONDS = 300;
 
         /// <summary>
         /// progress form to handle connect and param requests
