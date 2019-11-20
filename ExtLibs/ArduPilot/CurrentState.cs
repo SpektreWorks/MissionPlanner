@@ -846,10 +846,12 @@ namespace MissionPlanner
         [DisplayText("Time in Air (sec)")] public float timeSinceArmInAir { get; set; }
 
         [DisplayText("Time in Air (sec)")] public float timeInAir { get; set; }
-
+        
         //Time in Air converted to min.sec format for easier reading
         [DisplayText("Time in Air (min.sec)")]
         public float timeInAirMinSec => (int) (timeInAir / 60) + timeInAir % 60 / 100;
+
+        [DisplayText("Engine Time (sec)")] public float engineTime { get; set; }
 
         // calced turn rate
         [DisplayText("Turn Rate (speed)")]
@@ -2880,6 +2882,7 @@ namespace MissionPlanner
                 _lastcurrent = DateTime.MinValue;
                 distTraveled = 0;
                 timeInAir = 0;
+                engineTime = 0;
                 version = new Version();
                 voltageflag = (uint) MAVLink.MAV_POWER_STATUS.USB_CONNECTED;
                 capabilities = 0;
@@ -3000,6 +3003,12 @@ namespace MissionPlanner
                         {
                             timeInAir++;
                             timeSinceArmInAir++;
+                        }
+
+                        // Engine is running
+                        if (efi_rpm > 100 && armed)
+                        {
+                            engineTime++;
                         }
 
                         // to maintain total timeinair for this session not just based on arming
