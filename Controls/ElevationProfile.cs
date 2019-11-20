@@ -191,7 +191,7 @@ namespace MissionPlanner
                     list3.Add(disttotal, Convert.ToInt32(newpoint.Alt * CurrentState.multiplieralt));
 
                     // terrain alt
-                    list4terrain.Add(disttotal, Convert.ToInt32((newpoint.Alt - homealt + alt) * CurrentState.multiplieralt));
+                    list4terrain.Add(disttotal, Convert.ToInt32(newpoint.Alt * CurrentState.multiplierdist + alt) - homealt);
 
                     lastpnt = newpoint;
                 }
