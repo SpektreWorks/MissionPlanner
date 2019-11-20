@@ -297,6 +297,7 @@ namespace MissionPlanner.GCSViews
             _flightPlanner.prefetchToolStripMenuItem.Click += new System.EventHandler(prefetchToolStripMenuItem_Click);
             _flightPlanner.prefetchWPPathToolStripMenuItem.Click += new System.EventHandler(prefetchWPPathToolStripMenuItem_Click);
             _flightPlanner.kMLOverlayToolStripMenuItem.Click += new System.EventHandler(kMLOverlayToolStripMenuItem_Click);
+            _flightPlanner.BUT_ElevationProfile.Click += new System.EventHandler(elevationGraphToolStripMenuItem_Click);
             _flightPlanner.elevationGraphToolStripMenuItem.Click += new System.EventHandler(elevationGraphToolStripMenuItem_Click);
             _flightPlanner.reverseWPsToolStripMenuItem.Click += new System.EventHandler(reverseWPsToolStripMenuItem_Click);
             _flightPlanner.loadWPFileToolStripMenuItem.Click += new System.EventHandler(loadWPFileToolStripMenuItem_Click);

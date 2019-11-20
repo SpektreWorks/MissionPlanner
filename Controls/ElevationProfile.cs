@@ -66,7 +66,7 @@ namespace MissionPlanner
 
             Form frm = Common.LoadingBox("Loading", "using alt data");
 
-            gelocs = getGEAltPath(planlocs);
+            //gelocs = getGEAltPath(planlocs);
 
             srtmlocs = getSRTMAltPath(planlocs);
 
@@ -112,7 +112,7 @@ namespace MissionPlanner
                     a += planloc.GetDistance(lastloc);
                 }
 
-                // deal with at mode
+                // deal with alt mode
                 if (altmode == FlightPlannerBase.altmode.Terrain)
                 {
                     list1 = list4terrain;
@@ -121,13 +121,13 @@ namespace MissionPlanner
                 else if (altmode == FlightPlannerBase.altmode.Relative)
                 {
                     // already includes the home alt
-                    list1.Add(a * CurrentState.multiplierdist, (planloc.Alt*CurrentState.multiplieralt), 0, planloc.Tag);
+                    list1.Add(a, (planloc.Alt), 0, planloc.Tag);
                 }
                 else
                 {
                     // abs
                     // already absolute
-                    list1.Add(a * CurrentState.multiplierdist, (planloc.Alt*CurrentState.multiplieralt), 0, planloc.Tag);
+                    list1.Add(a, (planloc.Alt), 0, planloc.Tag);
                 }
 
                 lastloc = planloc;
@@ -188,10 +188,10 @@ namespace MissionPlanner
                     disttotal += subdist;
 
                     // srtm alts
-                    list3.Add(disttotal * CurrentState.multiplierdist, Convert.ToInt32(newpoint.Alt * CurrentState.multiplieralt));
+                    list3.Add(disttotal, Convert.ToInt32(newpoint.Alt * CurrentState.multiplieralt));
 
                     // terrain alt
-                    list4terrain.Add(disttotal * CurrentState.multiplierdist, Convert.ToInt32((newpoint.Alt + alt) * CurrentState.multiplieralt));
+                    list4terrain.Add(disttotal, Convert.ToInt32((newpoint.Alt - homealt + alt) * CurrentState.multiplieralt));
 
                     lastpnt = newpoint;
                 }
@@ -279,14 +279,14 @@ namespace MissionPlanner
             GraphPane myPane = zgc.GraphPane;
 
             // Set the titles and axis labels
-            myPane.Title.Text = "Elevation above ground";
+            myPane.Title.Text = "Elevation Profile";
             myPane.XAxis.Title.Text = "Distance (" + CurrentState.DistanceUnit + ")";
-            myPane.YAxis.Title.Text = "Elevation (" + CurrentState.AltUnit + ")";
+            myPane.YAxis.Title.Text = "Elevation (ft)";
 
             LineItem myCurve;
 
             myCurve = myPane.AddCurve("Planned Path", list1, Color.Red, SymbolType.None);
-            myCurve = myPane.AddCurve("Google", list2, Color.Green, SymbolType.None);
+            //myCurve = myPane.AddCurve("Google", list2, Color.Green, SymbolType.None);
             myCurve = myPane.AddCurve("DEM", list3, Color.Blue, SymbolType.None);
 
             foreach (PointPair pp in list1)
