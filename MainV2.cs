@@ -3212,6 +3212,7 @@ namespace MissionPlanner
                 }
             };
 
+            /* Disable AA for SpektreWorks Builds
             try
             {
                 if (!MONO)
@@ -3230,6 +3231,7 @@ namespace MissionPlanner
             {
                 Tracking.AddException(ex);
             }
+            */
 
             this.ResumeLayout();
 
@@ -3240,6 +3242,7 @@ namespace MissionPlanner
                 (DateTime.Now - Program.starttime).TotalMilliseconds, "");
 
             bool winXp = Environment.OSVersion.Version.Major == 5;
+            /* Disable Update checking in SpektreWorks Builds 
             if (winXp)
             {
                 Common.MessageShowAgain("Windows XP",
@@ -3273,6 +3276,7 @@ namespace MissionPlanner
             {
                 log.Error("Update check failed", ex);
             }
+            */
 
             // play a tlog that was passed to the program/ load a bin log passed
             if (Program.args.Length > 0)
