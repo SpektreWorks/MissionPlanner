@@ -33,6 +33,7 @@
             this.TXT_version = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
 	        this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,6 +87,20 @@
             this.label2.Text = "Modified by SpektreWorks, Inc.";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.OliveDrab;
+            this.label3.Location = new System.Drawing.Point(50, 294);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(496, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Tag = "custom";
+            this.label3.Text = "Released under the GPLv3 License. Contact info@spektreworks.com for source code.";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // Splash
             // 
             this.BackgroundImage = global::MissionPlanner.Properties.Resources.splashdark;
@@ -118,5 +133,6 @@
         private System.Windows.Forms.Label TXT_version;
         public System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
