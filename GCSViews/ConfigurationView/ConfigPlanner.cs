@@ -137,7 +137,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             CMB_ratestatus.Text = MainV2.comPort.MAV.cs.ratestatus.ToString();
             CMB_ratesensors.Text = MainV2.comPort.MAV.cs.ratesensors.ToString();
 
-            SetCheckboxFromConfig("analyticsoptout", chk_analytics);
+            //SetCheckboxFromConfig("analyticsoptout", chk_analytics);
 
             SetCheckboxFromConfig("CHK_GDIPlus", CHK_GDIPlus);
             SetCheckboxFromConfig("CHK_maprotation", CHK_maprotation);
@@ -764,11 +764,13 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
         }
 
+        /* Force disable analytics
         private void chk_analytics_CheckedChanged(object sender, EventArgs e)
         {
             Tracking.OptOut = chk_analytics.Checked;
             Settings.Instance["analyticsoptout"] = chk_analytics.Checked.ToString();
         }
+        */
 
         private void CHK_beta_CheckedChanged(object sender, EventArgs e)
         {
@@ -966,3 +968,4 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         }
     }
 }
+ 
