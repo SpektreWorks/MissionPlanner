@@ -196,7 +196,7 @@
             0});
             this.NUM_tracklength.Name = "NUM_tracklength";
             this.NUM_tracklength.Value = new decimal(new int[] {
-            200,
+            1000,
             0,
             0,
             0});
@@ -568,7 +568,6 @@
             this.BUT_Vario.Name = "BUT_Vario";
             this.BUT_Vario.UseVisualStyleBackColor = true;
             this.BUT_Vario.Click += new System.EventHandler(this.BUT_Vario_Click);
-
             // 
             // CHK_beta
             // 
