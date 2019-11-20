@@ -2090,7 +2090,7 @@ namespace MissionPlanner.GCSViews
             {
                 try
                 {
-                    modifyandSetSpeed.Value = (decimal)((float)MainV2.comPort.MAV.param["WP_SPEED_MAX"] / 100.0);
+                    modifyandSetSpeed.Value = (decimal)((float)MainV2.comPort.MAV.param["WP_SPEED_MAX"] / 100.0 * CurrentState.multiplierspeed);
                 }
                 catch
                 {
@@ -3354,7 +3354,7 @@ namespace MissionPlanner.GCSViews
             {
                 try
                 {
-                    MainV2.comPort.setParam("WP_SPEED_MAX", ((float)modifyandSetSpeed.Value * 100.0f));
+                    MainV2.comPort.setParam("WP_SPEED_MAX", ((float)modifyandSetSpeed.Value / CurrentState.multiplierspeed * 100.0f));
                 }
                 catch
                 {
