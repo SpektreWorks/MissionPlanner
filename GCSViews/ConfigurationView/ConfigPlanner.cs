@@ -26,6 +26,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             CMB_Layout.Items.Add(DisplayNames.Basic);
             CMB_Layout.Items.Add(DisplayNames.Advanced);
             CMB_Layout.Items.Add(DisplayNames.Cobalt);
+            CMB_Layout.Enabled = false;
 
             txt_log_dir.TextChanged += OnLogDirTextChanged;
 

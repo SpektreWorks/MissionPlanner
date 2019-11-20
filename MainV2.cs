@@ -224,7 +224,7 @@ namespace MissionPlanner
 
         Controls.MainSwitcher MyView;
 
-        private static DisplayView _displayConfiguration = new DisplayView().Advanced();
+        private static DisplayView _displayConfiguration = new DisplayView().Cobalt();
 
         public static event EventHandler LayoutChanged;
 
