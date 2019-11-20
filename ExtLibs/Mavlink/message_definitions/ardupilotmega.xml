@@ -1617,5 +1617,14 @@
       <field type="uint16_t[4]" name="rpm" units="rpm">RPM (eRPM).</field>
       <field type="uint16_t[4]" name="count">count of telemetry packets received (wraps at 65535).</field>
     </message>
+    <message id="11040" name="WEATHER">
+      <description>Weather Station Status Report. Can originate from aircraft or GCS (Distinguish using SYSIDs)</description>
+      <field type="uint8_t" name="wind" units="m/s">Wind</field>
+      <field type="uint16_t" name="wind_dir" units="deg">Wind Direction. (Upwind Heading)</field>
+      <field type="int8_t" name="temperature" units="degC">Temperature.</field>
+      <field type="int32_t" name="raw_press">Barometric Pressure.</field>
+      <field type="uint8_t" name="relative_humidity" units="%">Relative Humidity.</field>
+      <field type="uint8_t" name="rain_rate" units="mm/hr">Rain rate</field>
+    </message>
   </messages>
 </mavlink>

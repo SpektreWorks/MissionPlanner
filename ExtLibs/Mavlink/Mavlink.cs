@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 public partial class MAVLink
 {
-    public const string MAVLINK_BUILD_DATE = "Tue Nov 20 2019";
+    public const string MAVLINK_BUILD_DATE = "Wed Nov 20 2019";
     public const string MAVLINK_WIRE_PROTOCOL_VERSION = "2.0";
     public const int MAVLINK_MAX_PAYLOAD_LEN = 255;
 
@@ -281,6 +281,7 @@ public partial class MAVLink
         new message_info(11030, "ESC_TELEMETRY_1_TO_4", 144, 44, 44, typeof( mavlink_esc_telemetry_1_to_4_t )),
         new message_info(11031, "ESC_TELEMETRY_5_TO_8", 133, 44, 44, typeof( mavlink_esc_telemetry_5_to_8_t )),
         new message_info(11032, "ESC_TELEMETRY_9_TO_12", 85, 44, 44, typeof( mavlink_esc_telemetry_9_to_12_t )),
+        new message_info(11040, "WEATHER", 73, 10, 10, typeof( mavlink_weather_t )),
         new message_info(12900, "OPEN_DRONE_ID_BASIC_ID", 197, 22, 22, typeof( mavlink_open_drone_id_basic_id_t )),
         new message_info(12901, "OPEN_DRONE_ID_LOCATION", 16, 37, 37, typeof( mavlink_open_drone_id_location_t )),
         new message_info(12902, "OPEN_DRONE_ID_AUTHENTICATION", 254, 25, 25, typeof( mavlink_open_drone_id_authentication_t )),
@@ -565,6 +566,7 @@ public partial class MAVLink
         ADAP_TUNING = 11010,
         VISION_POSITION_DELTA = 11011,
         AOA_SSA = 11020,
+        WEATHER = 11040,
         ESC_TELEMETRY_1_TO_4 = 11030,
         ESC_TELEMETRY_5_TO_8 = 11031,
         ESC_TELEMETRY_9_TO_12 = 11032,
@@ -7667,7 +7669,6 @@ public partial class MAVLink
     
     };
 
-
     [StructLayout(LayoutKind.Sequential,Pack=1,Size=16)]
     ///<summary> Angle of Attack and Side Slip Angle. </summary>
     public struct mavlink_aoa_ssa_t
@@ -7692,6 +7693,25 @@ public partial class MAVLink
         [Description("Side Slip Angle.")]
         public  float SSA;
     
+    };
+
+    [StructLayout(LayoutKind.Sequential, Pack = 1, Size = 10)]
+    ///<summary> Weather Station Status Report. Can originate from aircraft or GCS (Distinguish using SYSIDs) </summary>
+    public struct mavlink_weather_t
+    {
+        /// <summary> Barometric Pressure. </summary>
+        public int raw_press;
+        /// <summary> Wind Direction. (Upwind Heading) </summary>
+        public ushort wind_dir;
+        /// <summary> Wind </summary>
+        public byte wind;
+        /// <summary> Temperature. </summary>
+        public byte temperature;
+        /// <summary> Relative Humidity. </summary>
+        public byte relative_humidity;
+        /// <summary> Rain rate </summary>
+        public byte rain_rate;
+
     };
 
 

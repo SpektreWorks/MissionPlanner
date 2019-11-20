@@ -1594,6 +1594,12 @@ namespace MissionPlanner
         public float fuelused { get; set; }
         public float efi_rpm { get; set; }
 
+        // Weather Values
+        public float weather_windvel { get; set; }
+        public uint weather_winddir { get; set; }
+        public int weather_temperature { get; set; }
+        public uint weather_humidity { get; set; }
+
         public byte vtol_state { get; private set; }
         public byte landed_state { get; private set; }
 
@@ -2539,7 +2545,7 @@ namespace MissionPlanner
 
                         break;
                     case (uint) MAVLink.MAVLINK_MSG_ID.EFI_STATUS:
-                        {
+                    {
                             var efi = mavLinkMessage.ToStructure<MAVLink.mavlink_efi_status_t>();
 
                             efi_health = efi.health;
@@ -2549,7 +2555,19 @@ namespace MissionPlanner
                             efi_rpm = efi.rpm;
 
                             //MAVLink.packets[(byte)MAVLink.MSG_NAMES.EFI_STATUS);
-                        }
+                    }
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.WEATHER:
+                    {
+                            var weather = mavLinkMessage.ToStructure<MAVLink.mavlink_weather_t>();
+
+                            weather_windvel = weather.wind * multiplierspeed;
+                            weather_winddir = weather.wind_dir;
+                            weather_temperature = weather.temperature;
+                            weather_humidity = weather.relative_humidity;
+
+                            //MAVLink.packets[(byte)MAVLink.MSG_NAMES.WEATHER);
+                    }
                         break;
                     case (uint) MAVLink.MAVLINK_MSG_ID.RC_CHANNELS_RAW:
 
