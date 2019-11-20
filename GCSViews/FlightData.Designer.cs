@@ -45,7 +45,6 @@
             this.tabActions = new System.Windows.Forms.TabPage();
             this.modifyandSetLoiterRad = new MissionPlanner.Controls.ModifyandSet();
             this.BUT_abortland = new MissionPlanner.Controls.MyButton();
-            this.BUT_resumemis = new MissionPlanner.Controls.MyButton();
             this.CMB_mountmode = new System.Windows.Forms.ComboBox();
             this.BUT_mountmode = new MissionPlanner.Controls.MyButton();
             this.BUT_ARM = new MissionPlanner.Controls.MyButton();
@@ -59,9 +58,7 @@
             this.BUT_setmode = new MissionPlanner.Controls.MyButton();
             this.BUT_clear_track = new MissionPlanner.Controls.MyButton();
             this.CMB_action = new System.Windows.Forms.ComboBox();
-            this.BUT_Homealt = new MissionPlanner.Controls.MyButton();
             this.BUT_RAWSensor = new MissionPlanner.Controls.MyButton();
-            this.BUTrestartmission = new MissionPlanner.Controls.MyButton();
             this.BUTactiondo = new MissionPlanner.Controls.MyButton();
             this.modifyandSetSpeed = new MissionPlanner.Controls.ModifyandSet();
             this.modifyandSetAlt = new MissionPlanner.Controls.ModifyandSet();
@@ -625,7 +622,6 @@
             // 
             this.tabActions.Controls.Add(this.modifyandSetLoiterRad);
             this.tabActions.Controls.Add(this.BUT_abortland);
-            this.tabActions.Controls.Add(this.BUT_resumemis);
             this.tabActions.Controls.Add(this.CMB_mountmode);
             this.tabActions.Controls.Add(this.BUT_mountmode);
             this.tabActions.Controls.Add(this.BUT_ARM);
@@ -639,9 +635,7 @@
             this.tabActions.Controls.Add(this.BUT_setmode);
             this.tabActions.Controls.Add(this.BUT_clear_track);
             this.tabActions.Controls.Add(this.CMB_action);
-            this.tabActions.Controls.Add(this.BUT_Homealt);
             this.tabActions.Controls.Add(this.BUT_RAWSensor);
-            this.tabActions.Controls.Add(this.BUTrestartmission);
             this.tabActions.Controls.Add(this.BUTactiondo);
             this.tabActions.Controls.Add(this.modifyandSetSpeed);
             this.tabActions.Controls.Add(this.modifyandSetAlt);
@@ -681,16 +675,6 @@
             this.toolTip1.SetToolTip(this.BUT_abortland, resources.GetString("BUT_abortland.ToolTip"));
             this.BUT_abortland.UseVisualStyleBackColor = true;
             this.BUT_abortland.Click += new System.EventHandler(this.BUT_abortland_Click);
-            // 
-            // BUT_resumemis
-            // 
-            this.BUT_resumemis.ColorMouseDown = System.Drawing.Color.Empty;
-            this.BUT_resumemis.ColorMouseOver = System.Drawing.Color.Empty;
-            this.BUT_resumemis.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.BUT_resumemis, "BUT_resumemis");
-            this.BUT_resumemis.Name = "BUT_resumemis";
-            this.BUT_resumemis.UseVisualStyleBackColor = true;
-            this.BUT_resumemis.Click += new System.EventHandler(this.BUT_resumemis_Click);
             // 
             // CMB_mountmode
             // 
@@ -824,17 +808,6 @@
             resources.ApplyResources(this.CMB_action, "CMB_action");
             this.CMB_action.Name = "CMB_action";
             // 
-            // BUT_Homealt
-            // 
-            this.BUT_Homealt.ColorMouseDown = System.Drawing.Color.Empty;
-            this.BUT_Homealt.ColorMouseOver = System.Drawing.Color.Empty;
-            this.BUT_Homealt.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.BUT_Homealt, "BUT_Homealt");
-            this.BUT_Homealt.Name = "BUT_Homealt";
-            this.toolTip1.SetToolTip(this.BUT_Homealt, resources.GetString("BUT_Homealt.ToolTip"));
-            this.BUT_Homealt.UseVisualStyleBackColor = true;
-            this.BUT_Homealt.Click += new System.EventHandler(this.BUT_Homealt_Click);
-            // 
             // BUT_RAWSensor
             // 
             this.BUT_RAWSensor.ColorMouseDown = System.Drawing.Color.Empty;
@@ -845,17 +818,6 @@
             this.toolTip1.SetToolTip(this.BUT_RAWSensor, resources.GetString("BUT_RAWSensor.ToolTip"));
             this.BUT_RAWSensor.UseVisualStyleBackColor = true;
             this.BUT_RAWSensor.Click += new System.EventHandler(this.BUT_RAWSensor_Click);
-            // 
-            // BUTrestartmission
-            // 
-            this.BUTrestartmission.ColorMouseDown = System.Drawing.Color.Empty;
-            this.BUTrestartmission.ColorMouseOver = System.Drawing.Color.Empty;
-            this.BUTrestartmission.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.BUTrestartmission, "BUTrestartmission");
-            this.BUTrestartmission.Name = "BUTrestartmission";
-            this.toolTip1.SetToolTip(this.BUTrestartmission, resources.GetString("BUTrestartmission.ToolTip"));
-            this.BUTrestartmission.UseVisualStyleBackColor = true;
-            this.BUTrestartmission.Click += new System.EventHandler(this.BUTrestartmission_Click);
             // 
             // BUTactiondo
             // 
@@ -981,7 +943,6 @@
             // Gvspeed
             // 
             this.Gvspeed.BackColor = System.Drawing.Color.Transparent;
-            this.Gvspeed.BackgroundImage = global::MissionPlanner.Properties.Resources.Gaugebg;
             resources.ApplyResources(this.Gvspeed, "Gvspeed");
             this.Gvspeed.BaseArcColor = System.Drawing.Color.Transparent;
             this.Gvspeed.BaseArcRadius = 60;
@@ -1128,7 +1089,6 @@
             // Gheading
             // 
             this.Gheading.BackColor = System.Drawing.Color.Transparent;
-            this.Gheading.BackgroundImage = global::MissionPlanner.Properties.Resources.Gaugebg;
             resources.ApplyResources(this.Gheading, "Gheading");
             this.Gheading.DataBindings.Add(new System.Windows.Forms.Binding("Heading", this.bindingSourceGaugesTab, "yaw", true));
             this.Gheading.DataBindings.Add(new System.Windows.Forms.Binding("NavHeading", this.bindingSourceGaugesTab, "nav_bearing", true));
@@ -1139,7 +1099,6 @@
             // Galt
             // 
             this.Galt.BackColor = System.Drawing.Color.Transparent;
-            this.Galt.BackgroundImage = global::MissionPlanner.Properties.Resources.Gaugebg;
             resources.ApplyResources(this.Galt, "Galt");
             this.Galt.BaseArcColor = System.Drawing.Color.Transparent;
             this.Galt.BaseArcRadius = 60;
@@ -1284,7 +1243,6 @@
             // Gspeed
             // 
             this.Gspeed.BackColor = System.Drawing.Color.Transparent;
-            this.Gspeed.BackgroundImage = global::MissionPlanner.Properties.Resources.Gaugebg;
             resources.ApplyResources(this.Gspeed, "Gspeed");
             this.Gspeed.BaseArcColor = System.Drawing.Color.Transparent;
             this.Gspeed.BaseArcRadius = 70;
@@ -2159,7 +2117,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 360D;
+            this.windDir1.Direction = 180D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2355,7 +2313,6 @@
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewImageColumn1.DefaultCellStyle = dataGridViewCellStyle1;
             resources.ApplyResources(this.dataGridViewImageColumn1, "dataGridViewImageColumn1");
-            this.dataGridViewImageColumn1.Image = global::MissionPlanner.Properties.Resources.up;
             this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             // 
@@ -2364,7 +2321,6 @@
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewImageColumn2.DefaultCellStyle = dataGridViewCellStyle2;
             resources.ApplyResources(this.dataGridViewImageColumn2, "dataGridViewImageColumn2");
-            this.dataGridViewImageColumn2.Image = global::MissionPlanner.Properties.Resources.down;
             this.dataGridViewImageColumn2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             // 
@@ -2462,9 +2418,7 @@
         private System.Windows.Forms.CheckBox CB_tuning;
         private Controls.MyButton BUT_RAWSensor;
         private Controls.MyButton BUTactiondo;
-        private Controls.MyButton BUTrestartmission;
         private System.Windows.Forms.ComboBox CMB_action;
-        private Controls.MyButton BUT_Homealt;
         private System.Windows.Forms.TrackBar tracklog;
         private Controls.MyButton BUT_playlog;
         private Controls.MyButton BUT_loadtelem;
@@ -2587,7 +2541,6 @@
         private System.Windows.Forms.ToolStripMenuItem saveFileToolStripMenuItem;
         private Controls.DistanceBar distanceBar1;
         private System.Windows.Forms.ToolStripMenuItem takeOffToolStripMenuItem;
-        private Controls.MyButton BUT_resumemis;
         public System.Windows.Forms.TabPage tabPagePreFlight;
         private Controls.PreFlight.CheckListControl checkListControl1;
         private System.Windows.Forms.ToolStripMenuItem swapWithMapToolStripMenuItem;
