@@ -4746,6 +4746,11 @@ if (a is CheckBox && ((CheckBox)a).Checked)
 
         private void BUT_LightsOn_Click(object sender, EventArgs e)
         {
+            if (!MainV2.comPort.BaseStream.IsOpen)
+            {
+                CustomMessageBox.Show("Please Connect First");
+                return;
+            }
             try
             {
                 if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, 13, 2000, 0, 0, 0, 0, 0))
@@ -4761,6 +4766,11 @@ if (a is CheckBox && ((CheckBox)a).Checked)
 
         private void BUT_LightsOff_Click(object sender, EventArgs e)
         {
+            if (!MainV2.comPort.BaseStream.IsOpen)
+            {
+                CustomMessageBox.Show("Please Connect First");
+                return;
+            }
             try
             {
                 if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, 13, 1000, 0, 0, 0, 0, 0))
@@ -4776,6 +4786,11 @@ if (a is CheckBox && ((CheckBox)a).Checked)
 
         private void BUT_EngineStart_Click(object sender, EventArgs e)
         {
+            if (!MainV2.comPort.BaseStream.IsOpen)
+            {
+                CustomMessageBox.Show("Please Connect First");
+                return;
+            }
             try
             {
                 if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_ENGINE_CONTROL, 1, 1, 0, 0, 0, 0, 0))
@@ -4791,6 +4806,11 @@ if (a is CheckBox && ((CheckBox)a).Checked)
 
         private void BUT_PLDOff_Click(object sender, EventArgs e)
         {
+            if (!MainV2.comPort.BaseStream.IsOpen)
+            {
+                CustomMessageBox.Show("Please Connect First");
+                return;
+            }
             try
             {
                 if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, 14, 2000, 0, 0, 0, 0, 0))
@@ -4806,6 +4826,11 @@ if (a is CheckBox && ((CheckBox)a).Checked)
 
         private void BUT_PLDOn_Click(object sender, EventArgs e)
         {
+            if (!MainV2.comPort.BaseStream.IsOpen)
+            {
+                CustomMessageBox.Show("Please Connect First");
+                return;
+            }
             try
             {
                 if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, 14, 1000, 0, 0, 0, 0, 0))
