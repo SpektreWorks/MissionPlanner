@@ -160,7 +160,7 @@ namespace MissionPlanner
             set { MAVlist[sysidcurrent, compidcurrent] = value; }
         }
 
-        public double CONNECT_TIMEOUT_SECONDS = Settings.Instance.GetDouble("CONNECT_TIMEOUT_SECONDS", 30.0);
+        public double CONNECT_TIMEOUT_SECONDS = Settings.Instance.GetDouble("CONNECT_TIMEOUT_SECONDS", 300.0);
 
         /// <summary>
         /// progress form to handle connect and param requests
