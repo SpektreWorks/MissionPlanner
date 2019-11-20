@@ -9,11 +9,11 @@
     <ApplicationIcon>mpdesktop.ico</ApplicationIcon>
     <OutputType>Exe</OutputType>
     <StartupObject>MissionPlanner.Program</StartupObject>
-    <Authors>Michael Oborne</Authors>
-    <Version>1.3.62.1</Version>
+    <Authors>Michael Oborne and SpektreWorks, Inc.</Authors>
+    <Version>1.3.68.SW</Version>
     <DebugType>portable</DebugType>
-    <Company>Michael Oborne</Company>
-    <Product>Mission Planner</Product>
+    <Company>Michael Oborne and SpektreWorks, Inc.</Company>
+    <Product>Mission Planner SW</Product>
     <Description>Mission Planner ground control station for ardupilot</Description>
     <Copyright>Copyright © Michael Oborne 2010-2018</Copyright>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
