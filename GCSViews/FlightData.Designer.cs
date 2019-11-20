@@ -43,6 +43,8 @@
             this.quickView2 = new MissionPlanner.Controls.QuickView();
             this.quickView1 = new MissionPlanner.Controls.QuickView();
             this.tabActions = new System.Windows.Forms.TabPage();
+            this.BUT_PLDOff = new MissionPlanner.Controls.MyButton();
+            this.BUT_PLDOn = new MissionPlanner.Controls.MyButton();
             this.BUT_EngineStart = new MissionPlanner.Controls.MyButton();
             this.BUT_LightsOff = new MissionPlanner.Controls.MyButton();
             this.BUT_LightsOn = new MissionPlanner.Controls.MyButton();
@@ -623,6 +625,8 @@
             // 
             // tabActions
             // 
+            this.tabActions.Controls.Add(this.BUT_PLDOff);
+            this.tabActions.Controls.Add(this.BUT_PLDOn);
             this.tabActions.Controls.Add(this.BUT_EngineStart);
             this.tabActions.Controls.Add(this.BUT_LightsOff);
             this.tabActions.Controls.Add(this.BUT_LightsOn);
@@ -648,6 +652,26 @@
             resources.ApplyResources(this.tabActions, "tabActions");
             this.tabActions.Name = "tabActions";
             this.tabActions.UseVisualStyleBackColor = true;
+            // 
+            // BUT_PLDOff
+            // 
+            this.BUT_PLDOff.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_PLDOff.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_PLDOff.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_PLDOff, "BUT_PLDOff");
+            this.BUT_PLDOff.Name = "BUT_PLDOff";
+            this.BUT_PLDOff.UseVisualStyleBackColor = true;
+            this.BUT_PLDOff.Click += new System.EventHandler(this.BUT_PLDOff_Click);
+            // 
+            // BUT_PLDOn
+            // 
+            this.BUT_PLDOn.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_PLDOn.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_PLDOn.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_PLDOn, "BUT_PLDOn");
+            this.BUT_PLDOn.Name = "BUT_PLDOn";
+            this.BUT_PLDOn.UseVisualStyleBackColor = true;
+            this.BUT_PLDOn.Click += new System.EventHandler(this.BUT_PLDOn_Click);
             // 
             // BUT_EngineStart
             // 
@@ -2153,7 +2177,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 360D;
+            this.windDir1.Direction = 180D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2618,6 +2642,8 @@
         private Controls.RelayOptions relayOptions4;
         private System.Windows.Forms.ToolStripMenuItem hereLinkVideoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gStreamerStopToolStripMenuItem;
+        private Controls.MyButton BUT_PLDOff;
+        private Controls.MyButton BUT_PLDOn;
         private Controls.MyButton BUT_LightsOff;
         private Controls.MyButton BUT_LightsOn;
         private Controls.MyButton BUT_EngineStart;

@@ -4788,5 +4788,35 @@ if (a is CheckBox && ((CheckBox)a).Checked)
                 CustomMessageBox.Show(Strings.CommandFailed + ex.ToString(), Strings.ERROR);
             }
         }
+
+        private void BUT_PLDOff_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, 14, 1000, 0, 0, 0, 0, 0))
+                {
+                    CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show(Strings.CommandFailed + ex.ToString(), Strings.ERROR);
+            }
+        }
+
+        private void BUT_PLDOn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, 14, 2000, 0, 0, 0, 0, 0))
+                {
+                    CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show(Strings.CommandFailed + ex.ToString(), Strings.ERROR);
+            }
+        }
     }
 }
