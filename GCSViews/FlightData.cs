@@ -2880,7 +2880,7 @@ namespace MissionPlanner.GCSViews
                     }
 
                     // update map
-                    if (tracklast.AddSeconds(Settings.Instance.GetDouble("FD_MapUpdateDelay", 1.2)) < DateTime.Now)
+                    if (tracklast.AddSeconds(Settings.Instance.GetDouble("FD_MapUpdateDelay", 0.2)) < DateTime.Now)
                     {
                         // show disable joystick button
                         if (MainV2.joystick != null && MainV2.joystick.enabled)
