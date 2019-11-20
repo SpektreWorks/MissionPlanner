@@ -43,6 +43,9 @@
             this.quickView2 = new MissionPlanner.Controls.QuickView();
             this.quickView1 = new MissionPlanner.Controls.QuickView();
             this.tabActions = new System.Windows.Forms.TabPage();
+            this.BUT_EngineStart = new MissionPlanner.Controls.MyButton();
+            this.BUT_LightsOff = new MissionPlanner.Controls.MyButton();
+            this.BUT_LightsOn = new MissionPlanner.Controls.MyButton();
             this.modifyandSetLoiterRad = new MissionPlanner.Controls.ModifyandSet();
             this.BUT_abortland = new MissionPlanner.Controls.MyButton();
             this.CMB_mountmode = new System.Windows.Forms.ComboBox();
@@ -620,6 +623,9 @@
             // 
             // tabActions
             // 
+            this.tabActions.Controls.Add(this.BUT_EngineStart);
+            this.tabActions.Controls.Add(this.BUT_LightsOff);
+            this.tabActions.Controls.Add(this.BUT_LightsOn);
             this.tabActions.Controls.Add(this.modifyandSetLoiterRad);
             this.tabActions.Controls.Add(this.BUT_abortland);
             this.tabActions.Controls.Add(this.CMB_mountmode);
@@ -642,6 +648,36 @@
             resources.ApplyResources(this.tabActions, "tabActions");
             this.tabActions.Name = "tabActions";
             this.tabActions.UseVisualStyleBackColor = true;
+            // 
+            // BUT_EngineStart
+            // 
+            this.BUT_EngineStart.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_EngineStart.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_EngineStart.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_EngineStart, "BUT_EngineStart");
+            this.BUT_EngineStart.Name = "BUT_EngineStart";
+            this.BUT_EngineStart.UseVisualStyleBackColor = true;
+            this.BUT_EngineStart.Click += new System.EventHandler(this.BUT_EngineStart_Click);
+            // 
+            // BUT_LightsOff
+            // 
+            this.BUT_LightsOff.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_LightsOff.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_LightsOff.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_LightsOff, "BUT_LightsOff");
+            this.BUT_LightsOff.Name = "BUT_LightsOff";
+            this.BUT_LightsOff.UseVisualStyleBackColor = true;
+            this.BUT_LightsOff.Click += new System.EventHandler(this.BUT_LightsOff_Click);
+            // 
+            // BUT_LightsOn
+            // 
+            this.BUT_LightsOn.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_LightsOn.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_LightsOn.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_LightsOn, "BUT_LightsOn");
+            this.BUT_LightsOn.Name = "BUT_LightsOn";
+            this.BUT_LightsOn.UseVisualStyleBackColor = true;
+            this.BUT_LightsOn.Click += new System.EventHandler(this.BUT_LightsOn_Click);
             // 
             // modifyandSetLoiterRad
             // 
@@ -2117,7 +2153,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 180D;
+            this.windDir1.Direction = 360D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2582,5 +2618,8 @@
         private Controls.RelayOptions relayOptions4;
         private System.Windows.Forms.ToolStripMenuItem hereLinkVideoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gStreamerStopToolStripMenuItem;
+        private Controls.MyButton BUT_LightsOff;
+        private Controls.MyButton BUT_LightsOn;
+        private Controls.MyButton BUT_EngineStart;
     }
 }

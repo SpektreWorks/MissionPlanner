@@ -4743,5 +4743,50 @@ if (a is CheckBox && ((CheckBox)a).Checked)
 
 
         }
+
+        private void BUT_LightsOn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, 13, 2000, 0, 0, 0, 0, 0))
+                {
+                    CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show(Strings.CommandFailed + ex.ToString(), Strings.ERROR);
+            }
+        }
+
+        private void BUT_LightsOff_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, 13, 1000, 0, 0, 0, 0, 0))
+                {
+                    CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show(Strings.CommandFailed + ex.ToString(), Strings.ERROR);
+            }
+        }
+
+        private void BUT_EngineStart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_ENGINE_CONTROL, 1, 1, 0, 0, 0, 0, 0))
+                {
+                    CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show(Strings.CommandFailed + ex.ToString(), Strings.ERROR);
+            }
+        }
     }
 }
