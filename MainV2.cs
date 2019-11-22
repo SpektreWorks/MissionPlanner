@@ -3383,6 +3383,9 @@ namespace MissionPlanner
                             try
                             {
                                 nt.Open(cmds["rtk"]);
+                                nt.lat = MainV2.comPort.MAV.cs.HomeLocation.Lat;
+                                nt.lng = MainV2.comPort.MAV.cs.HomeLocation.Lng;
+                                nt.alt = MainV2.comPort.MAV.cs.HomeLocation.Alt;
                                 this.BeginInvokeIfRequired(() => { inject.DoConnect(); });
                             }
                             catch (Exception ex)
