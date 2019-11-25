@@ -3181,7 +3181,11 @@ namespace MissionPlanner
             GStreamer.onNewImage += (sender, image) =>
             {
                 if (image == null)
+                {
+                    GCSViews.FlightData.myhud.bgimage = null;
                     return;
+                }
+
                 var bmp = (image as Drawing.Bitmap);
                 if (bmp == null)
                     return;
