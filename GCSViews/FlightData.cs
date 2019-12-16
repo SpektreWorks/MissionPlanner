@@ -19,6 +19,7 @@ using GMap.NET.WindowsForms.Markers;
 using log4net;
 using MissionPlanner.ArduPilot;
 using MissionPlanner.Controls;
+using MissionPlanner.GeoRef;
 using MissionPlanner.Joystick;
 using MissionPlanner.Log;
 using MissionPlanner.Utilities;
@@ -4829,12 +4830,11 @@ if (a is CheckBox && ((CheckBox)a).Checked)
             }
         }
 
-        private void but_test_Click(object sender, EventArgs e)
+ 
+
+        private void BUT_georefimage_Click(object sender, EventArgs e)
         {
-            MainV2.comPort.doARM(true, true);
-            MainV2.comPort.doCommand(MAVLink.MAV_CMD.GUIDED_ENABLE, 0, 0, 0, 0, 0, 0, 0);
-
-
+            new Georefimage().Show();
         }
 
         private void BUT_NavLights_Click(object sender, EventArgs e)
