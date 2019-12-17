@@ -1502,7 +1502,7 @@ namespace MissionPlanner.GCSViews
                             timeout = 0;
                             while (MainV2.comPort.MAV.cs.alt < (lastwpdata.alt - 2))
                             {
-                                MainV2.comPort.doCommand(MAVLink.MAV_CMD.TAKEOFF, 0, 0, 0, 0, 0, 0, lastwpdata.alt);
+                                MainV2.comPort.doCommand((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, MAVLink.MAV_CMD.TAKEOFF, 0, 0, 0, 0, 0, 0, lastwpdata.alt);
                                 Thread.Sleep(1000);
                                 Application.DoEvents();
                                 timeout++;
@@ -3450,7 +3450,7 @@ namespace MissionPlanner.GCSViews
             {
                 try
                 {
-                    MainV2.comPort.setParam("WP_SPEED_MAX", ((float)modifyandSetSpeed.Value / CurrentState.multiplierspeed * 100.0f));
+                    MainV2.comPort.setParam((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, "WP_SPEED_MAX", ((float)modifyandSetSpeed.Value * 100.0f));
                 }
                 catch
                 {
@@ -3471,7 +3471,7 @@ namespace MissionPlanner.GCSViews
             {
                 try
                 {
-                    MainV2.comPort.setParam("TRIM_ARSPD_CM", ((float)modifyandSetSpeed.Value * 100.0f / 1.94384f)); // 1.94384 = m/s to kts
+                    MainV2.comPort.setParam((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, "TRIM_ARSPD_CM", ((float)modifyandSetSpeed.Value * 100.0f));
                 }
                 catch
                 {
@@ -3484,7 +3484,7 @@ namespace MissionPlanner.GCSViews
             {
                 try
                 {
-                    MainV2.comPort.setParam("TRIM_THROTTLE", (float)modifyandSetSpeed.Value);
+                    MainV2.comPort.setParam((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, "TRIM_THROTTLE", (float)modifyandSetSpeed.Value);
                 }
                 catch
                 {
@@ -3537,7 +3537,7 @@ namespace MissionPlanner.GCSViews
                 var lng = float.Parse(split[1], CultureInfo.InvariantCulture);
                 var alt = float.Parse(split[2], CultureInfo.InvariantCulture);
 
-                MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_ROI, 0, 0, 0, 0, lat, lng,
+                MainV2.comPort.doCommand((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, MAVLink.MAV_CMD.DO_SET_ROI, 0, 0, 0, 0, lat, lng,
                     alt / CurrentState.multiplieralt);
             }
             else if (split.Length == 2)
@@ -3546,7 +3546,7 @@ namespace MissionPlanner.GCSViews
                 var lng = float.Parse(split[1], CultureInfo.InvariantCulture);
                 var alt = srtm.getAltitude(MouseDownStart.Lat, MouseDownStart.Lng).alt / CurrentState.multiplieralt;
 
-                MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_ROI, 0, 0, 0, 0, lat, lng, (float)alt);
+                MainV2.comPort.doCommand((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, MAVLink.MAV_CMD.DO_SET_ROI, 0, 0, 0, 0, lat, lng, (float)alt);
             }
             else
             {
@@ -3583,7 +3583,7 @@ namespace MissionPlanner.GCSViews
 
             try
             {
-                MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_ROI, 0, 0, 0, 0, (float)MouseDownStart.Lat,
+                MainV2.comPort.doCommand((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, MAVLink.MAV_CMD.DO_SET_ROI, 0, 0, 0, 0, (float)MouseDownStart.Lat,
                     (float)MouseDownStart.Lng, intalt / CurrentState.multiplieralt);
             }
             catch
@@ -3867,7 +3867,7 @@ if (a is CheckBox && ((CheckBox)a).Checked)
                         return;
                     }
 
-                    MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_HOME, 0, 0, 0, 0, (float)MouseDownStart.Lat,
+                    MainV2.comPort.doCommand((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, MAVLink.MAV_CMD.DO_SET_HOME, 0, 0, 0, 0, (float)MouseDownStart.Lat,
                         (float)MouseDownStart.Lng, (float)alt.alt);
                 }
                 catch
@@ -4287,7 +4287,7 @@ if (a is CheckBox && ((CheckBox)a).Checked)
 
                 try
                 {
-                    MainV2.comPort.doCommand(MAVLink.MAV_CMD.TAKEOFF, 0, 0, 0, 0, 0, 0, altf);
+                    MainV2.comPort.doCommand((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, MAVLink.MAV_CMD.TAKEOFF, 0, 0, 0, 0, 0, 0, altf);
                 }
                 catch
                 {

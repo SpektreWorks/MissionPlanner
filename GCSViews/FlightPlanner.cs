@@ -1944,7 +1944,7 @@ namespace MissionPlanner.GCSViews
         {
             try
             {
-                MainV2.comPort.setParam("RALLY_TOTAL", 0);
+                MainV2.comPort.setParam((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, "RALLY_TOTAL", 0);
             }
             catch (Exception ex)
             {
@@ -1961,7 +1961,7 @@ namespace MissionPlanner.GCSViews
 
             try
             {
-                MainV2.comPort.setParam("FENCE_ENABLE", 0);
+                MainV2.comPort.setParam((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, "FENCE_ENABLE", 0);
             }
             catch
             {
@@ -1971,7 +1971,7 @@ namespace MissionPlanner.GCSViews
 
             try
             {
-                MainV2.comPort.setParam("FENCE_ACTION", 0);
+                MainV2.comPort.setParam((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, "FENCE_ACTION", 0);
             }
             catch
             {
@@ -1981,7 +1981,7 @@ namespace MissionPlanner.GCSViews
 
             try
             {
-                MainV2.comPort.setParam("FENCE_TOTAL", 0);
+                MainV2.comPort.setParam((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, "FENCE_TOTAL", 0);
             }
             catch
             {
@@ -3460,9 +3460,9 @@ namespace MissionPlanner.GCSViews
             try
             {
                 if (MainV2.comPort.MAV.param.ContainsKey("FENCE_MINALT"))
-                    MainV2.comPort.setParam("FENCE_MINALT", minalt);
+                    MainV2.comPort.setParam((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, "FENCE_MINALT", minalt);
                 if (MainV2.comPort.MAV.param.ContainsKey("FENCE_MAXALT"))
-                    MainV2.comPort.setParam("FENCE_MAXALT", maxalt);
+                    MainV2.comPort.setParam((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, "FENCE_MAXALT", maxalt);
             }
             catch (Exception ex)
             {
@@ -3475,7 +3475,7 @@ namespace MissionPlanner.GCSViews
 
             try
             {
-                MainV2.comPort.setParam("FENCE_ACTION", 0);
+                MainV2.comPort.setParam((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, "FENCE_ACTION", 0);
             }
             catch
             {
@@ -3489,7 +3489,7 @@ namespace MissionPlanner.GCSViews
 
             try
             {
-                MainV2.comPort.setParam("FENCE_TOTAL", pointcount);
+                MainV2.comPort.setParam((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, "FENCE_TOTAL", pointcount);
             }
             catch
             {
@@ -3515,7 +3515,7 @@ namespace MissionPlanner.GCSViews
 
                 try
                 {
-                    MainV2.comPort.setParam("FENCE_ACTION", oldaction);
+                    MainV2.comPort.setParam((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, "FENCE_ACTION", oldaction);
                 }
                 catch
                 {
@@ -5094,7 +5094,7 @@ namespace MissionPlanner.GCSViews
         {
             byte count = 0;
 
-            MainV2.comPort.setParam("RALLY_TOTAL", rallypointoverlay.Markers.Count);
+            MainV2.comPort.setParam((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, "RALLY_TOTAL", rallypointoverlay.Markers.Count);
 
             foreach (GMapMarkerRallyPt pnt in rallypointoverlay.Markers)
             {
