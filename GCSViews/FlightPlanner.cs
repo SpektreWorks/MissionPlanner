@@ -5470,7 +5470,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
             try
             {
                 home.id = (ushort)MAVLink.MAV_CMD.WAYPOINT;
-                home.frame = (byte)altmode.Absolute;
+                home.frame = (byte)altmode.MSL;
                 home.lat = (double.Parse(TXT_homelat.Text));
                 home.lng = (double.Parse(TXT_homelng.Text));
                 home.alt = (float.Parse(TXT_homealt.Text) / CurrentState.multiplieralt); // use saved home

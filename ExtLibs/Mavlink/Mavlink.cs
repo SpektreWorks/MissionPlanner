@@ -6679,42 +6679,6 @@ public partial class MAVLink
     
     };
 
-    [StructLayout(LayoutKind.Sequential, Pack = 1, Size = 53)]
-    ///<summary> EFI Status Output </summary>
-    public struct mavlink_efi_status_t
-    {
-        /// <summary> ECU Index </summary>
-        public float ecu_index;
-        /// <summary> RPM </summary>
-        public float rpm;
-        /// <summary> Fuel Consumed (grams) </summary>
-        public float fuel_consumed;
-        /// <summary> Fuel Flow Rate (g/min) </summary>
-        public float fuel_flow;
-        /// <summary> Engine Load (%) </summary>
-        public float engine_load;
-        /// <summary> Throttle Position (%) </summary>
-        public float throttle_position;
-        /// <summary> Spark Dwell Time (ms) </summary>
-        public float spark_dwell_time;
-        /// <summary> Barometric Pressure (kPa) </summary>
-        public float barometric_pressure;
-        /// <summary> Intake Manifold Pressure (kPa)( </summary>
-        public float intake_manifold_pressure;
-        /// <summary> Intake Manifold Temperature (degC) </summary>
-        public float intake_manifold_temperature;
-        /// <summary> cylinder_head_temperature (degC) </summary>
-        public float cylinder_head_temperature;
-        /// <summary> Ignition timing for cylinder i (Crank Angle degrees) </summary>
-        public float ignition_timing;
-        /// <summary> Injection time for injector i (ms) </summary>
-        public float injection_time;
-        /// <summary> EFI Health status </summary>
-        public byte health;
-
-    };
-
-
     [StructLayout(LayoutKind.Sequential,Pack=1,Size=53)]
     ///<summary> EFI Status Output </summary>
     public struct mavlink_efi_status_t
