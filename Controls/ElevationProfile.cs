@@ -24,7 +24,7 @@ namespace MissionPlanner
         double homealt = 0;
         FlightPlanner.altmode altmode = FlightPlanner.altmode.AGL;
 
-        public ElevationProfile(List<PointLatLngAlt> locs, double homealt, FlightPlanner.altmode altmode)
+        public ElevationProfile(List<PointLatLngAlt> locs, double homealt)
         {
             InitializeComponent();
 
