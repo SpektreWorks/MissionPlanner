@@ -1,4 +1,17 @@
-﻿using System;
+﻿using DirectShowLib;
+using GMap.NET;
+using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
+using log4net;
+using MissionPlanner.ArduPilot;
+using MissionPlanner.Controls;
+using MissionPlanner.GeoRef;
+using MissionPlanner.Joystick;
+using MissionPlanner.Log;
+using MissionPlanner.Maps;
+using MissionPlanner.Utilities;
+using MissionPlanner.Warnings;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -11,23 +24,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using DirectShowLib;
-using Flurl.Util;
-using GMap.NET;
-using GMap.NET.WindowsForms;
-using GMap.NET.WindowsForms.Markers;
-using log4net;
-using MissionPlanner.ArduPilot;
-using MissionPlanner.Controls;
-using MissionPlanner.GeoRef;
-using MissionPlanner.Joystick;
-using MissionPlanner.Log;
-using MissionPlanner.Utilities;
-using MissionPlanner.Warnings;
 using WebCamService;
 using ZedGraph;
 using LogAnalyzer = MissionPlanner.Utilities.LogAnalyzer;
-using MissionPlanner.Maps;
 
 // written by michael oborne
 
@@ -907,11 +906,11 @@ namespace MissionPlanner.GCSViews
                     }
                 }
 
-                BeginInvoke((Action) delegate
-                {
-                    overlay.Markers.Add(m);
-                    overlay.Markers.Add(mBorders);
-                });
+                Invoke((Action)delegate
+               {
+                   overlay.Markers.Add(m);
+                   overlay.Markers.Add(mBorders);
+               });
             }
             catch (Exception)
             {
@@ -933,11 +932,11 @@ namespace MissionPlanner.GCSViews
                     mBorders.InnerMarker = m;
                 }
 
-                Invoke((Action) delegate
-                {
-                    overlay.Markers.Add(m);
-                    overlay.Markers.Add(mBorders);
-                });
+                Invoke((Action)delegate
+               {
+                   overlay.Markers.Add(m);
+                   overlay.Markers.Add(mBorders);
+               });
             }
             catch (Exception)
             {
@@ -1450,7 +1449,7 @@ namespace MissionPlanner.GCSViews
                         foreach (var loc in cmds)
                         {
                             MAVLink.MAV_MISSION_RESULT ans = MainV2.comPort.setWP(loc, wpno,
-                                (MAVLink.MAV_FRAME) (loc.frame));
+                                (MAVLink.MAV_FRAME)(loc.frame));
                             if (ans != MAVLink.MAV_MISSION_RESULT.MAV_MISSION_ACCEPTED)
                             {
                                 CustomMessageBox.Show("Upload wps failed " +
@@ -3265,9 +3264,9 @@ namespace MissionPlanner.GCSViews
                         {
                             foreach (adsb.PointLatLngAltHdg plla in MainV2.instance.adsbPlanes.Values)
                             {
-                                if(plla.Raw != null)
+                                if (plla.Raw != null)
                                 {
-                                    var msg = ((MAVLink.mavlink_adsb_vehicle_t) plla.Raw);
+                                    var msg = ((MAVLink.mavlink_adsb_vehicle_t)plla.Raw);
                                     if (msg.emitter_type == 255 && new String(msg.callsign).Trim('\0') == "OA_DB")
                                     {
                                         // cm
@@ -3275,7 +3274,7 @@ namespace MissionPlanner.GCSViews
 
                                         if (((DateTime)plla.Time) > DateTime.Now.AddSeconds(-10))
                                             addMissionRouteMarker(new GMapMarkerDistance(plla, radius / 100.0, 0)
-                                            {Pen = new Pen(Color.Red, 3)});
+                                            { Pen = new Pen(Color.Red, 3) });
                                         continue;
                                     }
                                 }
@@ -3662,8 +3661,8 @@ namespace MissionPlanner.GCSViews
             {
                 selectform.Controls.ForEach(a =>
 {
-if (a is CheckBox && ((CheckBox)a).Checked)
-((CheckBox)a).BackColor = Color.Green;
+    if (a is CheckBox && ((CheckBox)a).Checked)
+        ((CheckBox)a).BackColor = Color.Green;
 });
             };
 
@@ -4204,12 +4203,12 @@ if (a is CheckBox && ((CheckBox)a).Checked)
                     var temp = tabStatus.Controls.Find(field, false);
 
                     if (temp.Length > 0)
-                        lbl1 = (MyLabel) temp[0];
+                        lbl1 = (MyLabel)temp[0];
 
                     var temp2 = tabStatus.Controls.Find(field + "value", false);
 
                     if (temp2.Length > 0)
-                        lbl2 = (MyLabel) temp2[0];
+                        lbl2 = (MyLabel)temp2[0];
                 }
                 catch
                 {
@@ -4298,23 +4297,23 @@ if (a is CheckBox && ((CheckBox)a).Checked)
 
         void tfr_GotTFRs(object sender, EventArgs e)
         {
-            Invoke((Action) delegate
-            {
-                foreach (var item in tfr.tfrs)
-                {
-                    List<List<PointLatLng>> points = item.GetPaths();
+            Invoke((Action)delegate
+           {
+               foreach (var item in tfr.tfrs)
+               {
+                   List<List<PointLatLng>> points = item.GetPaths();
 
-                    foreach (var list in points)
-                    {
-                        GMapPolygon poly = new GMapPolygon(list, item.NAME);
+                   foreach (var list in points)
+                   {
+                       GMapPolygon poly = new GMapPolygon(list, item.NAME);
 
-                        poly.Fill = new SolidBrush(Color.FromArgb(30, Color.Blue));
+                       poly.Fill = new SolidBrush(Color.FromArgb(30, Color.Blue));
 
-                        tfrpolygons.Polygons.Add(poly);
-                    }
-                }
-                tfrpolygons.IsVisibile = MainV2.ShowTFR;
-            });
+                       tfrpolygons.Polygons.Add(poly);
+                   }
+               }
+               tfrpolygons.IsVisibile = MainV2.ShowTFR;
+           });
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -4523,10 +4522,10 @@ if (a is CheckBox && ((CheckBox)a).Checked)
 
         private void updateClearRoutesMarkers()
         {
-            Invoke((Action) delegate
-            {
-                routes.Markers.Clear();
-            });
+            Invoke((Action)delegate
+           {
+               routes.Markers.Clear();
+           });
         }
         private void updateLogPlayPosition(bool updatetracklog = true)
         {
@@ -4538,8 +4537,8 @@ if (a is CheckBox && ((CheckBox)a).Checked)
                    {
                        // prevent event fire
                        tracklog.ValueChanged -= tracklog_Scroll;
-                       tracklog.Value = (int) (MainV2.comPort.logplaybackfile.BaseStream.Position /
-                                                (double) MainV2.comPort.logplaybackfile.BaseStream.Length * 100);
+                       tracklog.Value = (int)(MainV2.comPort.logplaybackfile.BaseStream.Position /
+                                                (double)MainV2.comPort.logplaybackfile.BaseStream.Length * 100);
                        tracklog.ValueChanged += tracklog_Scroll;
                    }
 
@@ -4571,8 +4570,8 @@ if (a is CheckBox && ((CheckBox)a).Checked)
                        }
                        lastmapposchange = DateTime.Now;
                    }
-                    //hud1.Refresh();
-                }
+                   //hud1.Refresh();
+               }
                catch
                {
                }
@@ -4650,10 +4649,10 @@ if (a is CheckBox && ((CheckBox)a).Checked)
         private void updateRoutePosition()
         {
             // not async
-            Invoke((Action) delegate
-            {
-                gMapControl1.UpdateRouteLocalPosition(route);
-            });
+            Invoke((Action)delegate
+           {
+               gMapControl1.UpdateRouteLocalPosition(route);
+           });
         }
         private void zg1_DoubleClick(object sender, EventArgs e)
         {
@@ -4816,13 +4815,13 @@ if (a is CheckBox && ((CheckBox)a).Checked)
         {
             try
             {
-                if (gMapControl1.MaxZoom + 1 == (double) Zoomlevel.Value)
+                if (gMapControl1.MaxZoom + 1 == (double)Zoomlevel.Value)
                 {
-                    gMapControl1.Zoom = (double) Zoomlevel.Value - .1;
+                    gMapControl1.Zoom = (double)Zoomlevel.Value - .1;
                 }
                 else
                 {
-                    gMapControl1.Zoom = (double) Zoomlevel.Value;
+                    gMapControl1.Zoom = (double)Zoomlevel.Value;
                 }
             }
             catch
@@ -4830,7 +4829,7 @@ if (a is CheckBox && ((CheckBox)a).Checked)
             }
         }
 
- 
+
 
         private void BUT_georefimage_Click(object sender, EventArgs e)
         {
