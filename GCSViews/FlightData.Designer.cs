@@ -618,48 +618,25 @@
             // 
             // guidedTracking1
             // 
-            resources.ApplyResources(this.guidedTracking1, "guidedTracking1");
-            this.guidedTracking1.Name = "guidedTracking1";
-            // 
-            // BUT_PLD
-            // 
-            this.BUT_PLD.ColorMouseDown = System.Drawing.Color.Empty;
-            this.BUT_PLD.ColorMouseOver = System.Drawing.Color.Empty;
-            this.BUT_PLD.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.BUT_PLD, "BUT_PLD");
-            this.BUT_PLD.Name = "BUT_PLD";
-            this.BUT_PLD.UseVisualStyleBackColor = false;
-            this.BUT_PLD.Click += new System.EventHandler(this.BUT_PLD_Click);
-            // 
-            // BUT_EngineStart
-            // 
-            this.BUT_EngineStart.ColorMouseDown = System.Drawing.Color.Empty;
-            this.BUT_EngineStart.ColorMouseOver = System.Drawing.Color.Empty;
-            this.BUT_EngineStart.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.BUT_EngineStart, "BUT_EngineStart");
-            this.BUT_EngineStart.Name = "BUT_EngineStart";
-            this.BUT_EngineStart.UseVisualStyleBackColor = true;
-            this.BUT_EngineStart.Click += new System.EventHandler(this.BUT_EngineStart_Click);
-            // 
-            // BUT_NavLights
-            // 
-            this.BUT_NavLights.ColorMouseDown = System.Drawing.Color.Empty;
-            this.BUT_NavLights.ColorMouseOver = System.Drawing.Color.Empty;
-            this.BUT_NavLights.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.BUT_NavLights, "BUT_NavLights");
-            this.BUT_NavLights.Name = "BUT_NavLights";
-            this.BUT_NavLights.UseVisualStyleBackColor = true;
-            this.BUT_NavLights.Click += new System.EventHandler(this.BUT_NavLights_Click);
-            // 
-            // BUT_IRLights
-            // 
-            this.BUT_IRLights.ColorMouseDown = System.Drawing.Color.Empty;
-            this.BUT_IRLights.ColorMouseOver = System.Drawing.Color.Empty;
-            this.BUT_IRLights.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.BUT_IRLights, "BUT_IRLights");
-            this.BUT_IRLights.Name = "BUT_IRLights";
-            this.BUT_IRLights.UseVisualStyleBackColor = true;
-            this.BUT_IRLights.Click += new System.EventHandler(this.BUT_IRLights_Click);
+            resources.ApplyResources(this.modifyandSetLoiterRad, "modifyandSetLoiterRad");
+            this.modifyandSetLoiterRad.ButtonText = "Set Loiter Rad";
+            this.modifyandSetLoiterRad.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.modifyandSetLoiterRad.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
+            this.modifyandSetLoiterRad.Name = "modifyandSetLoiterRad";
+            this.modifyandSetLoiterRad.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.modifyandSetLoiterRad.Click += new System.EventHandler(this.modifyandSetLoiterRad_Click);
             // 
             // BUT_abortland
             // 
@@ -835,6 +812,7 @@
             // 
             this.modifyandSetSpeed.ButtonText = "Change Spd (kts)";
             resources.ApplyResources(this.modifyandSetSpeed, "modifyandSetSpeed");
+            this.modifyandSetSpeed.ButtonText = "Change Speed";
             this.modifyandSetSpeed.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -857,8 +835,8 @@
             // 
             // modifyandSetAlt
             // 
-            this.modifyandSetAlt.ButtonText = "Change Alt";
             resources.ApplyResources(this.modifyandSetAlt, "modifyandSetAlt");
+            this.modifyandSetAlt.ButtonText = "Change Alt";
             this.modifyandSetAlt.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -1969,7 +1947,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 180D;
+            this.windDir1.Direction = 360D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2196,6 +2174,8 @@
             this.contextMenuStripQuickView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceQuickTab)).EndInit();
             this.tabActions.ResumeLayout(false);
+            this.tabActions.PerformLayout();
+            this.tabActionsSimple.ResumeLayout(false);
             this.tabPagePreFlight.ResumeLayout(false);
             this.tabGauges.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceGaugesTab)).EndInit();
