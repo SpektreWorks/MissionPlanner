@@ -335,8 +335,8 @@ namespace MissionPlanner.GCSViews
             timer1.Stop();
         }
 
-        public bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        { 
             // undo
             if (keyData == (Keys.Control | Keys.Z))
             {
@@ -382,7 +382,7 @@ namespace MissionPlanner.GCSViews
                 return true;
             }
 
-            return false;//ProcessCmdKey(ref msg, keyData);
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         public enum altmode
@@ -995,6 +995,8 @@ namespace MissionPlanner.GCSViews
                 {
                     // get current command list
                     var currentlist = GetCommandList();
+                    // remove the current blank row that has not been populated yet
+                    currentlist.RemoveAt(selectedrow);
                     // add history
                     history.Add(currentlist);
                 }
@@ -1004,10 +1006,10 @@ namespace MissionPlanner.GCSViews
                 CustomMessageBox.Show("A invalid entry has been detected\n" + ex.Message, Strings.ERROR);
             }
 
-            // remove more than 20 revisions
-            if (history.Count > 20)
+            // remove more than 40 revisions
+            if (history.Count > 40)
             {
-                history.RemoveRange(0, history.Count - 20);
+                history.RemoveRange(0, history.Count - 40);
             }
 
             DataGridViewTextBoxCell cell;
