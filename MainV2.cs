@@ -2917,6 +2917,12 @@ namespace MissionPlanner
             MyView.AddScreen(new MainSwitcher.Screen("Terminal", typeof(GCSViews.Terminal), false));
             MyView.AddScreen(new MainSwitcher.Screen("Help", typeof(GCSViews.Help), false));
 
+            // hide simulation under mono
+            if (Program.MONO)
+            {
+                MenuSimulation.Visible = false;
+            }
+
             try
             {
                 if (Control.ModifierKeys == Keys.Shift)
