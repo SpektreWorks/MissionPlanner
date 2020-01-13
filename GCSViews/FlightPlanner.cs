@@ -4710,7 +4710,7 @@ namespace MissionPlanner.GCSViews
                 {
                     if ((ushort)value == temp.id)
                     {
-                        if (cellcmd.Items.Contains(value.ToString()))
+                        if (Program.MONO || cellcmd.Items.Contains(value.ToString()))
                             cellcmd.Value = value.ToString();
                         break;
                     }
@@ -6020,6 +6020,8 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
             cmds.Add("UNKNOWN");
 
             Command.DataSource = cmds;
+
+            log.InfoFormat("Command item count {0} orig list {1}", Command.Items.Count, cmds.Count);
         }
 
         private void updateHomeText()
