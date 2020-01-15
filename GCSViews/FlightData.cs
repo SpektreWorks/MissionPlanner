@@ -2978,12 +2978,12 @@ namespace MissionPlanner.GCSViews
                     }
 
                     // update map
-                    if (tracklast.AddSeconds(Settings.Instance.GetDouble("FD_MapUpdateDelay", 0.2)) < DateTime.Now)
+                    if (tracklast.AddSeconds(Settings.Instance.GetDouble("FD_MapUpdateDelay", 0.3)) < DateTime.Now)
                     {
                         // show disable joystick button
                         if (MainV2.joystick != null && MainV2.joystick.enabled)
                         {
-                            this.Invoke((MethodInvoker)delegate
+                            this.BeginInvoke((MethodInvoker)delegate
                             {
                                 but_disablejoystick.Visible = true;
                             });
@@ -3266,7 +3266,8 @@ namespace MissionPlanner.GCSViews
                             }
                             else if (kmlpolygons.Markers.Contains(GMapMarkerOverlapCount))
                             {
-                                kmlpolygons.Markers.Clear();
+                                kmlpolygons.Markers.OfType<GMapMarkerOverlapCount>().ToArray()
+                                    .ForEach(c => kmlpolygons.Markers.Remove(c));
                             }
                         }
                         catch (Exception ex)
@@ -3313,7 +3314,7 @@ namespace MissionPlanner.GCSViews
                                     switch (plla.ThreatLevel)
                                     {
                                         case MAVLink.MAV_COLLISION_THREAT_LEVEL.NONE:
-                                            adsbplane.AlertLevel = GMapMarkerADSBPlane.AlertLevelOptions.Green;
+                                            adsbplane.AlertLevel = GMapMarkerADSBPlane.AlertLevelOptions.Orange;
                                             break;
                                         case MAVLink.MAV_COLLISION_THREAT_LEVEL.LOW:
                                             adsbplane.AlertLevel = GMapMarkerADSBPlane.AlertLevelOptions.Orange;
