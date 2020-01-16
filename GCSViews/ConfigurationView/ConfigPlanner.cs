@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -70,9 +71,9 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             CMB_altunits.DataSource = Enum.GetNames(typeof(altitudes));
 
-            CMB_theme.DataSource = Enum.GetNames(typeof(ThemeManager.Themes));
+            CMB_theme.DataSource = ThemeManager.ThemeNames;
 
-            CMB_theme.Text = ThemeManager.CurrentTheme.ToString();
+            CMB_theme.Text = ThemeManager.thmColor.strThemeName;
 
             num_gcsid.Value = MAVLinkInterface.gcssysid;
 
@@ -375,12 +376,14 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         {
             if (startup)
                 return;
+/*
             if (CMB_osdcolor.Text != "")
             {
                 Settings.Instance["hudcolor"] = CMB_osdcolor.Text;
                 FlightData.myhud.hudcolor =
                     Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), CMB_osdcolor.Text));
             }
+            */
         }
 
         private void CHK_speechwaypoint_CheckedChanged(object sender, EventArgs e)
@@ -732,17 +735,14 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             if (startup)
                 return;
 
-            Settings.Instance["theme"] = CMB_theme.Text;
-            ThemeManager.SetTheme((ThemeManager.Themes)Enum.Parse(typeof(ThemeManager.Themes), CMB_theme.Text));
+            ThemeManager.LoadTheme(CMB_theme.Text);
             ThemeManager.ApplyThemeTo(MainV2.instance);
-
             CustomMessageBox.Show("You may need to select another tab or restart to see the full effect.");
         }
 
         private void BUT_themecustom_Click(object sender, EventArgs e)
         {
-            ThemeManager.CustomColor();
-            CMB_theme.Text = "Custom";
+            ThemeManager.StartThemeEditor();
         }
 
         private void CHK_speecharmdisarm_CheckedChanged(object sender, EventArgs e)
