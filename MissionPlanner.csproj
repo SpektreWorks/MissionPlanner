@@ -374,6 +374,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\Icon\File.cs" />
+    <Compile Include="Controls\Status.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Status.Designer.cs">
+      <DependentUpon>Status.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ThemeEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -607,6 +613,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\GuidedTracking.resx">
       <DependentUpon>GuidedTracking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Status.resx">
+      <DependentUpon>Status.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ThemeEditor.resx">
       <DependentUpon>ThemeEditor.cs</DependentUpon>
