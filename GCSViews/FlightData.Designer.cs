@@ -31,11 +31,9 @@
             this.customizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabQuick = new System.Windows.Forms.TabPage();
             this.tableLayoutPanelQuick = new System.Windows.Forms.TableLayoutPanel();
-            this.quickView6 = new MissionPlanner.Controls.QuickView();
             this.contextMenuStripQuickView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.setViewCountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bindingSourceQuickTab = new System.Windows.Forms.BindingSource(this.components);
-            this.quickView5 = new MissionPlanner.Controls.QuickView();
             this.quickView4 = new MissionPlanner.Controls.QuickView();
             this.quickView3 = new MissionPlanner.Controls.QuickView();
             this.quickView2 = new MissionPlanner.Controls.QuickView();
@@ -166,6 +164,8 @@
             this.scriptChecker = new System.Windows.Forms.Timer(this.components);
             this.Messagetabtimer = new System.Windows.Forms.Timer(this.components);
             this.bindingSourceStatusTab = new System.Windows.Forms.BindingSource(this.components);
+            this.quickView5 = new MissionPlanner.Controls.QuickView();
+            this.quickView6 = new MissionPlanner.Controls.QuickView();
             ((System.ComponentModel.ISupportInitialize)(this.MainH)).BeginInit();
             this.MainH.Panel1.SuspendLayout();
             this.MainH.Panel2.SuspendLayout();
@@ -498,18 +498,6 @@
             this.tableLayoutPanelQuick.Controls.Add(this.quickView1, 0, 0);
             this.tableLayoutPanelQuick.Name = "tableLayoutPanelQuick";
             // 
-            // quickView6
-            // 
-            this.quickView6.ContextMenuStrip = this.contextMenuStripQuickView;
-            this.quickView6.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSourceQuickTab, "DistToHome", true));
-            this.quickView6.desc = "DistToMAV";
-            resources.ApplyResources(this.quickView6, "quickView6");
-            this.quickView6.Name = "quickView6";
-            this.quickView6.number = 0D;
-            this.quickView6.numberColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(252)))));
-            this.quickView6.numberformat = "0.00";
-            this.quickView6.DoubleClick += new System.EventHandler(this.quickView_DoubleClick);
-            // 
             // contextMenuStripQuickView
             // 
             this.contextMenuStripQuickView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -526,18 +514,6 @@
             // bindingSourceQuickTab
             // 
             this.bindingSourceQuickTab.DataSource = typeof(MissionPlanner.CurrentState);
-            // 
-            // quickView5
-            // 
-            this.quickView5.ContextMenuStrip = this.contextMenuStripQuickView;
-            this.quickView5.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSourceQuickTab, "verticalspeed", true));
-            this.quickView5.desc = "verticalspeed";
-            resources.ApplyResources(this.quickView5, "quickView5");
-            this.quickView5.Name = "quickView5";
-            this.quickView5.number = 0D;
-            this.quickView5.numberColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(254)))), ((int)(((byte)(86)))));
-            this.quickView5.numberformat = "0.00";
-            this.quickView5.DoubleClick += new System.EventHandler(this.quickView_DoubleClick);
             // 
             // quickView4
             // 
@@ -2145,6 +2121,30 @@
             // 
             this.bindingSourceStatusTab.DataSource = typeof(MissionPlanner.CurrentState);
             // 
+            // quickView5
+            // 
+            this.quickView5.ContextMenuStrip = this.contextMenuStripQuickView;
+            this.quickView5.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSourceQuickTab, "verticalspeed", true));
+            this.quickView5.desc = "verticalspeed";
+            resources.ApplyResources(this.quickView5, "quickView5");
+            this.quickView5.Name = "quickView5";
+            this.quickView5.number = 0D;
+            this.quickView5.numberColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(254)))), ((int)(((byte)(86)))));
+            this.quickView5.numberformat = "0.00";
+            this.quickView5.DoubleClick += new System.EventHandler(this.quickView_DoubleClick);
+            // 
+            // quickView6
+            // 
+            this.quickView6.ContextMenuStrip = this.contextMenuStripQuickView;
+            this.quickView6.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSourceQuickTab, "DistToHome", true));
+            this.quickView6.desc = "DistToMAV";
+            resources.ApplyResources(this.quickView6, "quickView6");
+            this.quickView6.Name = "quickView6";
+            this.quickView6.number = 0D;
+            this.quickView6.numberColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(252)))));
+            this.quickView6.numberformat = "0.00";
+            this.quickView6.DoubleClick += new System.EventHandler(this.quickView_DoubleClick);
+            // 
             // FlightData
             // 
             this.Controls.Add(this.MainH);
@@ -2257,8 +2257,6 @@
         private Controls.QuickView quickView2;
         private Controls.QuickView quickView1;
         private Controls.QuickView quickView4;
-        private Controls.QuickView quickView6;
-        private Controls.QuickView quickView5;
         private System.Windows.Forms.ToolStripMenuItem flyToHereAltToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flightPlannerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem userItemsToolStripMenuItem;
@@ -2365,5 +2363,7 @@
         private System.Windows.Forms.ToolStripMenuItem poiatcoordsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flyToCoordsToolStripMenuItem;
         private Controls.MyButton BUT_georefimage;
+        private Controls.QuickView quickView6;
+        private Controls.QuickView quickView5;
     }
 }
