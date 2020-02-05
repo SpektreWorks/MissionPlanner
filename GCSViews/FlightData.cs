@@ -29,6 +29,7 @@ using WebCamService;
 using ZedGraph;
 using LogAnalyzer = MissionPlanner.Utilities.LogAnalyzer;
 using TableLayoutPanelCellPosition = System.Windows.Forms.TableLayoutPanelCellPosition;
+using UnauthorizedAccessException = System.UnauthorizedAccessException;
 
 // written by michael oborne
 
@@ -615,6 +616,8 @@ namespace MissionPlanner.GCSViews
             {
                 try
                 {
+                    tlogdir = Path.GetDirectoryName(file);
+
                     BUT_clear_track_Click(null, null);
 
                     MainV2.comPort.logreadmode = true;
@@ -1105,7 +1108,7 @@ namespace MissionPlanner.GCSViews
                 openFileDialog1.Multiselect = true;
                 try
                 {
-                    openFileDialog1.InitialDirectory = Settings.Instance.LogDir + Path.DirectorySeparatorChar;
+                    openFileDialog1.InitialDirectory = tlogdir;
                 }
                 catch
                 {
@@ -1227,6 +1230,8 @@ namespace MissionPlanner.GCSViews
             }
         }
 
+        private string tlogdir = Settings.Instance.LogDir;
+
         private void BUT_loadtelem_Click(object sender, EventArgs e)
         {
             LBL_logfn.Text = "";
@@ -1247,7 +1252,7 @@ namespace MissionPlanner.GCSViews
             {
                 fd.AddExtension = true;
                 fd.Filter = "Telemetry log (*.tlog)|*.tlog;*.tlog.*|Mavlink Log (*.mavlog)|*.mavlog";
-                fd.InitialDirectory = Settings.Instance.LogDir;
+                fd.InitialDirectory = tlogdir;
                 fd.DefaultExt = ".tlog";
                 DialogResult result = fd.ShowDialog();
                 string file = fd.FileName;
@@ -1267,6 +1272,7 @@ namespace MissionPlanner.GCSViews
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
                 ofd.Filter = "*.log;*.bin|*.log;*.bin;*.BIN;*.LOG";
+                ofd.InitialDirectory = tlogdir;
                 ofd.ShowDialog();
 
                 if (ofd.FileName != "")
@@ -3655,11 +3661,18 @@ namespace MissionPlanner.GCSViews
             CustomMessageBox.Show("Output avi will be saved to the log folder");
 
             aviwriter = new AviWriter();
-            Directory.CreateDirectory(Settings.Instance.LogDir);
-            aviwriter.avi_start(Settings.Instance.LogDir + Path.DirectorySeparatorChar +
-                                DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".avi");
+            try
+            {
+                Directory.CreateDirectory(Settings.Instance.LogDir);
+                aviwriter.avi_start(Settings.Instance.LogDir + Path.DirectorySeparatorChar +
+                                    DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".avi");
 
-            recordHudToAVIToolStripMenuItem.Text = "Recording";
+                recordHudToAVIToolStripMenuItem.Text = "Recording";
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                CustomMessageBox.Show(ex.Message, Strings.ERROR);
+            }
         }
 
         /// <summary>
