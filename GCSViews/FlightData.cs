@@ -4278,7 +4278,7 @@ namespace MissionPlanner.GCSViews
             int x = 10;
             int y = 10;
 
-            var list = MainV2.comPort.MAV.cs.GetItemList();
+            var list = MainV2.comPort.MAV.cs.GetItemList(true);
 
             tabStatus.SuspendLayout();
 
