@@ -8,12 +8,15 @@ using System.Drawing;
 using System.Net;
 using System.Net.Sockets;
 using System.Text.RegularExpressions;
+using log4net;
 using MissionPlanner.Utilities;
 
 namespace MissionPlanner.Controls
 {
     public class GuidedTracking: UserControl
     {
+        private static readonly ILog log =
+            LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private CheckBox chk_followcamera;
         private Timer timer1;
         private System.ComponentModel.IContainer components;
@@ -25,12 +28,14 @@ namespace MissionPlanner.Controls
 
             try
             {
+                log.Info("About to listern on udp 15000");
                 // listern on port 15000
                 _udpclient = new UdpClient(15000);
 
                 // setup async receive
                 _udpclient.BeginReceive(ProcessUDPPacket, _udpclient);
 
+                log.Info("About to start timer");
                 timer1.Start();
             }
             catch (Exception ex)
@@ -42,6 +47,8 @@ namespace MissionPlanner.Controls
 
         private void ProcessUDPPacket(IAsyncResult ar)
         {
+            log.Info("got a udp packet");
+
             var client = ((UdpClient)ar.AsyncState);
 
             if (client == null || client.Client == null)
@@ -59,6 +66,8 @@ namespace MissionPlanner.Controls
                 Regex swRegex = new Regex(@"(\$SW,([\-0-9\.]+),([\-0-9\.]+),)([0-9a-fA-F]{2})");
          
                 string receiveString = Encoding.ASCII.GetString(receiveBytes);
+
+                log.Info("got " + receiveString);
 
                 if (swRegex.IsMatch(receiveString))
                 {
@@ -93,12 +102,12 @@ namespace MissionPlanner.Controls
                     }
                     else
                     {
-                        Console.WriteLine("Bad GuidedTracking checksum " + receiveString);
+                        log.Error("Bad GuidedTracking checksum " + receiveString + " vs calced " + checksum.ToString("X2"));
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Bad GuidedTracking data " + receiveString);
+                    log.Error("Bad GuidedTracking data " + receiveString);
                 }
             }
         }

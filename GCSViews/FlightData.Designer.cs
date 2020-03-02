@@ -193,6 +193,7 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Messagetabtimer = new System.Windows.Forms.Timer(this.components);
             this.bindingSourceStatusTab = new System.Windows.Forms.BindingSource(this.components);
+            this.guidedTracking1 = new MissionPlanner.Controls.GuidedTracking();
             ((System.ComponentModel.ISupportInitialize)(this.MainH)).BeginInit();
             this.MainH.Panel1.SuspendLayout();
             this.MainH.Panel2.SuspendLayout();
@@ -628,6 +629,7 @@
             // 
             // tabActions
             // 
+            this.tabActions.Controls.Add(this.guidedTracking1);
             this.tabActions.Controls.Add(this.BUT_PLDOff);
             this.tabActions.Controls.Add(this.BUT_PLDOn);
             this.tabActions.Controls.Add(this.BUT_EngineStart);
@@ -2223,7 +2225,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 360D;
+            this.windDir1.Direction = 180D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2434,6 +2436,11 @@
             // bindingSourceStatusTab
             // 
             this.bindingSourceStatusTab.DataSource = typeof(MissionPlanner.CurrentState);
+            // 
+            // guidedTracking1
+            // 
+            resources.ApplyResources(this.guidedTracking1, "guidedTracking1");
+            this.guidedTracking1.Name = "guidedTracking1";
             // 
             // FlightData
             // 
@@ -2692,5 +2699,6 @@
         private Controls.QuickView QUICK_CHT;
         private Controls.QuickView QUICK_RPM;
         private Controls.QuickView QUICK_FuelUsed;
+        private Controls.GuidedTracking guidedTracking1;
     }
 }
