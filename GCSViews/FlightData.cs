@@ -813,7 +813,7 @@ namespace MissionPlanner.GCSViews
                     mBorders.InnerMarker = m;
                     try
                     {
-                        mBorders.wprad = radius;
+                        mBorders.wprad = radiusinm;
                     }
                     catch
                     {
@@ -3242,12 +3242,14 @@ namespace MissionPlanner.GCSViews
                                     routes, (int)(Settings.Instance.GetFloat("TXT_WPRad") / CurrentState.multiplierdist));
                             }
 
-                            if (MainV2.comPort.MAV.cs.mode.ToLower() == "guided" && guidedTracking1.chk_followcamera.Checked)
+                            if (MainV2.comPort.MAV.cs.mode.ToLower() == "guided" &&
+                                guidedTracking1.chk_followcamera.Checked)
                             {
-                                addpolygonmarker("Gimbal Center", MainV2.comPort.MAV.GuidedMode.y / 1e7,
-                                    MainV2.comPort.MAV.GuidedMode.x / 1e7, (int) MainV2.comPort.MAV.GuidedMode.z,
-                                    Color.Blue,
-                                    routes, (int) MainV2.comPort.MAV.param["WP_LOITER_RAD"].Value);
+                                if (MainV2.comPort.MAV.param["WP_LOITER_RAD"] != null)
+                                    addpolygonmarker("Gimbal Center", MainV2.comPort.MAV.GuidedMode.y / 1e7,
+                                        MainV2.comPort.MAV.GuidedMode.x / 1e7, (int) MainV2.comPort.MAV.GuidedMode.z,
+                                        Color.Blue,
+                                        routes, (int) MainV2.comPort.MAV.param["WP_LOITER_RAD"].Value);
                             }
 
                             // draw all icons for all connected mavs
