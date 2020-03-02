@@ -2699,6 +2699,6 @@
         private Controls.QuickView QUICK_CHT;
         private Controls.QuickView QUICK_RPM;
         private Controls.QuickView QUICK_FuelUsed;
-        private Controls.GuidedTracking guidedTracking1;
+        public Controls.GuidedTracking guidedTracking1;
     }
 }

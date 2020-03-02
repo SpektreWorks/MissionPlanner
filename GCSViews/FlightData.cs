@@ -798,7 +798,7 @@ namespace MissionPlanner.GCSViews
             POI.POIAdd(MouseDownStart);
         }
 
-        private void addpolygonmarker(string tag, double lng, double lat, int alt, Color? color, GMapOverlay overlay)
+        private void addpolygonmarker(string tag, double lng, double lat, int alt, Color? color, GMapOverlay overlay, int radiusinm)
         {
             try
             {
@@ -813,8 +813,7 @@ namespace MissionPlanner.GCSViews
                     mBorders.InnerMarker = m;
                     try
                     {
-                        mBorders.wprad =
-                            (int)(Settings.Instance.GetFloat("TXT_WPRad") / CurrentState.multiplierdist);
+                        mBorders.wprad = radius;
                     }
                     catch
                     {
@@ -825,7 +824,7 @@ namespace MissionPlanner.GCSViews
                     }
                 }
 
-                Invoke((Action) delegate
+                BeginInvoke((Action) delegate
                 {
                     overlay.Markers.Add(m);
                     overlay.Markers.Add(mBorders);
@@ -3235,12 +3234,20 @@ namespace MissionPlanner.GCSViews
                             // add primary route icon
 
                             // draw guide mode point for only main mav
-                            if (MainV2.comPort.MAV.cs.mode.ToLower() == "guided" && MainV2.comPort.MAV.GuidedMode.x != 0)
+                            if (MainV2.comPort.MAV.cs.mode.ToLower() == "guided" && MainV2.comPort.MAV.GuidedMode.x != 0 && !guidedTracking1.chk_followcamera.Checked)
                             {
                                 addpolygonmarker("Guided Mode", MainV2.comPort.MAV.GuidedMode.y / 1e7,
                                     MainV2.comPort.MAV.GuidedMode.x / 1e7, (int)MainV2.comPort.MAV.GuidedMode.z,
                                     Color.Blue,
-                                    routes);
+                                    routes, (int)(Settings.Instance.GetFloat("TXT_WPRad") / CurrentState.multiplierdist));
+                            }
+
+                            if (MainV2.comPort.MAV.cs.mode.ToLower() == "guided" && guidedTracking1.chk_followcamera.Checked)
+                            {
+                                addpolygonmarker("Gimbal Center", MainV2.comPort.MAV.GuidedMode.y / 1e7,
+                                    MainV2.comPort.MAV.GuidedMode.x / 1e7, (int) MainV2.comPort.MAV.GuidedMode.z,
+                                    Color.Blue,
+                                    routes, (int) MainV2.comPort.MAV.param["WP_LOITER_RAD"].Value);
                             }
 
                             // draw all icons for all connected mavs

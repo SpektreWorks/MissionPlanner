@@ -17,7 +17,7 @@ namespace MissionPlanner.Controls
     {
         private static readonly ILog log =
             LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        private CheckBox chk_followcamera;
+        public CheckBox chk_followcamera;
         private Timer timer1;
         private System.ComponentModel.IContainer components;
         private UdpClient _udpclient;
