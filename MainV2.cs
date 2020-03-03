@@ -469,14 +469,14 @@ namespace MissionPlanner
                 {
                     t.TabPages.Remove(FlightData.tabActions);
                 }
-                if (DisplayConfiguration.displaySimpleActionsTab && !t.TabPages.Contains(FlightData.tabActionsSimple))
-                {
-                    t.TabPages.Add(FlightData.tabActionsSimple);
-                }
-                else if (!DisplayConfiguration.displaySimpleActionsTab && t.TabPages.Contains(FlightData.tabActionsSimple))
-                {
-                    t.TabPages.Remove(FlightData.tabActionsSimple);
-                }
+                //if (DisplayConfiguration.displaySimpleActionsTab && !t.TabPages.Contains(FlightData.tabActionsSimple))
+                //{
+                //    t.TabPages.Add(FlightData.tabActionsSimple);
+                //}
+                //else if (!DisplayConfiguration.displaySimpleActionsTab && t.TabPages.Contains(FlightData.tabActionsSimple))
+                //{
+                //    t.TabPages.Remove(FlightData.tabActionsSimple);
+                //}
                 if (DisplayConfiguration.displayGaugesTab && !t.TabPages.Contains(FlightData.tabGauges))
                 {
                     t.TabPages.Add(FlightData.tabGauges);
@@ -501,14 +501,14 @@ namespace MissionPlanner
                 {
                     t.TabPages.Remove(FlightData.tabServo);
                 }
-                if (DisplayConfiguration.displayScriptsTab && !t.TabPages.Contains(FlightData.tabScripts))
-                {
-                    t.TabPages.Add(FlightData.tabScripts);
-                }
-                else if (!DisplayConfiguration.displayScriptsTab && t.TabPages.Contains(FlightData.tabScripts))
-                {
-                    t.TabPages.Remove(FlightData.tabScripts);
-                }
+                //if (DisplayConfiguration.displayScriptsTab && !t.TabPages.Contains(FlightData.tabScripts))
+                //{
+                //    t.TabPages.Add(FlightData.tabScripts);
+                //}
+                //else if (!DisplayConfiguration.displayScriptsTab && t.TabPages.Contains(FlightData.tabScripts))
+                //{
+                //    t.TabPages.Remove(FlightData.tabScripts);
+                //}
                 if (DisplayConfiguration.displayTelemetryTab && !t.TabPages.Contains(FlightData.tabTLogs))
                 {
                     t.TabPages.Add(FlightData.tabTLogs);
@@ -3300,23 +3300,23 @@ namespace MissionPlanner
                     logbrowse.BringToFront();
                 }
 
-                if (cmds.ContainsKey("script") && File.Exists(cmds["script"]))
-                {
-                    // invoke for after onload finished
-                    this.BeginInvoke((Action)delegate ()
-                   {
-                       try
-                       {
-                           FlightData.selectedscript = cmds["script"];
+                //if (cmds.ContainsKey("script") && File.Exists(cmds["script"]))
+                //{
+                //    // invoke for after onload finished
+                //    this.BeginInvoke((Action)delegate ()
+                //   {
+                //       try
+                //       {
+                //           FlightData.selectedscript = cmds["script"];
 
-                           FlightData.BUT_run_script_Click(null, null);
-                       }
-                       catch (Exception ex)
-                       {
-                           CustomMessageBox.Show("Start script failed: " + ex.ToString(), Strings.ERROR);
-                       }
-                   });
-                }
+                //           FlightData.BUT_run_script_Click(null, null);
+                //       }
+                //       catch (Exception ex)
+                //       {
+                //           CustomMessageBox.Show("Start script failed: " + ex.ToString(), Strings.ERROR);
+                //       }
+                //   });
+                //}
 
                 if (cmds.ContainsKey("joy") && cmds.ContainsKey("type"))
                 {
@@ -3825,8 +3825,8 @@ namespace MissionPlanner
                 }
                 else
                 {
-                    CurrentState.multiplieralt = 1;
-                    CurrentState.AltUnit = "m";
+                    CurrentState.multiplieralt = 3.2808399f;
+                    CurrentState.AltUnit = "ft";
                 }
 
                 // speed
