@@ -43,11 +43,14 @@
             this.quickView2 = new MissionPlanner.Controls.QuickView();
             this.quickView1 = new MissionPlanner.Controls.QuickView();
             this.tabActions = new System.Windows.Forms.TabPage();
+            this.modifyandSetSpeed = new MissionPlanner.Controls.ModifyandSet();
             this.BUT_PLDOff = new MissionPlanner.Controls.MyButton();
             this.BUT_PLDOn = new MissionPlanner.Controls.MyButton();
             this.BUT_EngineStart = new MissionPlanner.Controls.MyButton();
             this.BUT_LightsOff = new MissionPlanner.Controls.MyButton();
             this.BUT_LightsOn = new MissionPlanner.Controls.MyButton();
+            this.BUT_IRLightsOff = new MissionPlanner.Controls.MyButton();
+            this.BUT_IRLightsOn = new MissionPlanner.Controls.MyButton();
             this.BUT_abortland = new MissionPlanner.Controls.MyButton();
             this.CMB_mountmode = new System.Windows.Forms.ComboBox();
             this.BUT_mountmode = new MissionPlanner.Controls.MyButton();
@@ -65,12 +68,7 @@
             this.BUT_RAWSensor = new MissionPlanner.Controls.MyButton();
             this.BUTactiondo = new MissionPlanner.Controls.MyButton();
             this.modifyandSetLoiterRad = new MissionPlanner.Controls.ModifyandSet();
-            this.modifyandSetSpeed = new MissionPlanner.Controls.ModifyandSet();
             this.modifyandSetAlt = new MissionPlanner.Controls.ModifyandSet();
-            this.tabActionsSimple = new System.Windows.Forms.TabPage();
-            this.myButton1 = new MissionPlanner.Controls.MyButton();
-            this.myButton2 = new MissionPlanner.Controls.MyButton();
-            this.myButton3 = new MissionPlanner.Controls.MyButton();
             this.tabPagePreFlight = new System.Windows.Forms.TabPage();
             this.checkListControl1 = new MissionPlanner.Controls.PreFlight.CheckListControl();
             this.tabGauges = new System.Windows.Forms.TabPage();
@@ -121,29 +119,8 @@
             this.but_bintolog = new MissionPlanner.Controls.MyButton();
             this.BUT_matlab = new MissionPlanner.Controls.MyButton();
             this.BUT_logbrowse = new MissionPlanner.Controls.MyButton();
-            this.tabScripts = new System.Windows.Forms.TabPage();
-            this.checkBoxRedirectOutput = new System.Windows.Forms.CheckBox();
-            this.BUT_edit_selected = new MissionPlanner.Controls.MyButton();
-            this.labelSelectedScript = new System.Windows.Forms.Label();
-            this.BUT_run_script = new MissionPlanner.Controls.MyButton();
-            this.BUT_abort_script = new MissionPlanner.Controls.MyButton();
-            this.labelScriptStatus = new System.Windows.Forms.Label();
-            this.BUT_select_script = new MissionPlanner.Controls.MyButton();
             this.tabPagemessages = new System.Windows.Forms.TabPage();
             this.txt_messagebox = new System.Windows.Forms.TextBox();
-            this.tabPayload = new System.Windows.Forms.TabPage();
-            this.BUT_PayloadFolder = new MissionPlanner.Controls.MyButton();
-            this.groupBoxRoll = new System.Windows.Forms.GroupBox();
-            this.TXT_gimbalRollPos = new System.Windows.Forms.TextBox();
-            this.bindingSourcePayloadTab = new System.Windows.Forms.BindingSource(this.components);
-            this.trackBarRoll = new System.Windows.Forms.TrackBar();
-            this.groupBoxYaw = new System.Windows.Forms.GroupBox();
-            this.TXT_gimbalYawPos = new System.Windows.Forms.TextBox();
-            this.trackBarYaw = new System.Windows.Forms.TrackBar();
-            this.BUT_resetGimbalPos = new MissionPlanner.Controls.MyButton();
-            this.groupBoxPitch = new System.Windows.Forms.GroupBox();
-            this.trackBarPitch = new System.Windows.Forms.TrackBar();
-            this.TXT_gimbalPitchPos = new System.Windows.Forms.TextBox();
             this.tableMap = new System.Windows.Forms.TableLayoutPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.zg1 = new ZedGraph.ZedGraphControl();
@@ -185,6 +162,7 @@
             this.label1 = new MissionPlanner.Controls.MyLabel();
             this.CHK_autopan = new System.Windows.Forms.CheckBox();
             this.CB_tuning = new System.Windows.Forms.CheckBox();
+            this.bindingSourcePayloadTab = new System.Windows.Forms.BindingSource(this.components);
             this.ZedGraphTimer = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.openScriptDialog = new System.Windows.Forms.OpenFileDialog();
@@ -210,7 +188,6 @@
             this.contextMenuStripQuickView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceQuickTab)).BeginInit();
             this.tabActions.SuspendLayout();
-            this.tabActionsSimple.SuspendLayout();
             this.tabPagePreFlight.SuspendLayout();
             this.tabGauges.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceGaugesTab)).BeginInit();
@@ -221,16 +198,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tracklog)).BeginInit();
             this.panel2.SuspendLayout();
             this.tablogbrowse.SuspendLayout();
-            this.tabScripts.SuspendLayout();
             this.tabPagemessages.SuspendLayout();
-            this.tabPayload.SuspendLayout();
-            this.groupBoxRoll.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourcePayloadTab)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarRoll)).BeginInit();
-            this.groupBoxYaw.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarYaw)).BeginInit();
-            this.groupBoxPitch.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarPitch)).BeginInit();
             this.tableMap.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -241,6 +209,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.TRK_zoom)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Zoomlevel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourcePayloadTab)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceStatusTab)).BeginInit();
             this.SuspendLayout();
             // 
@@ -486,16 +455,13 @@
             this.tabControlactions.ContextMenuStrip = this.contextMenuStripactionstab;
             this.tabControlactions.Controls.Add(this.tabQuick);
             this.tabControlactions.Controls.Add(this.tabActions);
-            this.tabControlactions.Controls.Add(this.tabActionsSimple);
             this.tabControlactions.Controls.Add(this.tabPagePreFlight);
             this.tabControlactions.Controls.Add(this.tabGauges);
             this.tabControlactions.Controls.Add(this.tabStatus);
             this.tabControlactions.Controls.Add(this.tabServo);
             this.tabControlactions.Controls.Add(this.tabTLogs);
             this.tabControlactions.Controls.Add(this.tablogbrowse);
-            this.tabControlactions.Controls.Add(this.tabScripts);
             this.tabControlactions.Controls.Add(this.tabPagemessages);
-            this.tabControlactions.Controls.Add(this.tabPayload);
             resources.ApplyResources(this.tabControlactions, "tabControlactions");
             this.tabControlactions.Multiline = true;
             this.tabControlactions.Name = "tabControlactions";
@@ -611,6 +577,7 @@
             this.quickView2.number = 0D;
             this.quickView2.numberColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(132)))), ((int)(((byte)(46)))));
             this.quickView2.numberformat = "0.00";
+            this.quickView2.PaintSurface += new System.EventHandler<SkiaSharp.Views.Desktop.SKPaintSurfaceEventArgs>(this.quickView2_PaintSurface);
             this.quickView2.DoubleClick += new System.EventHandler(this.quickView_DoubleClick);
             // 
             // quickView1
@@ -628,11 +595,14 @@
             // 
             // tabActions
             // 
+            this.tabActions.Controls.Add(this.modifyandSetSpeed);
             this.tabActions.Controls.Add(this.BUT_PLDOff);
             this.tabActions.Controls.Add(this.BUT_PLDOn);
             this.tabActions.Controls.Add(this.BUT_EngineStart);
             this.tabActions.Controls.Add(this.BUT_LightsOff);
             this.tabActions.Controls.Add(this.BUT_LightsOn);
+            this.tabActions.Controls.Add(this.BUT_IRLightsOff);
+            this.tabActions.Controls.Add(this.BUT_IRLightsOn);
             this.tabActions.Controls.Add(this.BUT_abortland);
             this.tabActions.Controls.Add(this.CMB_mountmode);
             this.tabActions.Controls.Add(this.BUT_mountmode);
@@ -650,11 +620,34 @@
             this.tabActions.Controls.Add(this.BUT_RAWSensor);
             this.tabActions.Controls.Add(this.BUTactiondo);
             this.tabActions.Controls.Add(this.modifyandSetLoiterRad);
-            this.tabActions.Controls.Add(this.modifyandSetSpeed);
             this.tabActions.Controls.Add(this.modifyandSetAlt);
             resources.ApplyResources(this.tabActions, "tabActions");
             this.tabActions.Name = "tabActions";
             this.tabActions.UseVisualStyleBackColor = true;
+            // 
+            // modifyandSetSpeed
+            // 
+            this.modifyandSetSpeed.ButtonText = "Change Spd (kts)";
+            resources.ApplyResources(this.modifyandSetSpeed, "modifyandSetSpeed");
+            this.modifyandSetSpeed.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.modifyandSetSpeed.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.modifyandSetSpeed.Name = "modifyandSetSpeed";
+            this.modifyandSetSpeed.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.modifyandSetSpeed.Click += new System.EventHandler(this.modifyandSetSpeed_Click);
+            this.modifyandSetSpeed.Load += new System.EventHandler(this.modifyandSetSpeed_Load);
+            this.modifyandSetSpeed.ParentChanged += new System.EventHandler(this.modifyandSetSpeed_ParentChanged);
             // 
             // BUT_PLDOff
             // 
@@ -705,6 +698,26 @@
             this.BUT_LightsOn.Name = "BUT_LightsOn";
             this.BUT_LightsOn.UseVisualStyleBackColor = true;
             this.BUT_LightsOn.Click += new System.EventHandler(this.BUT_LightsOn_Click);
+            // 
+            // BUT_IRLightsOff
+            // 
+            this.BUT_IRLightsOff.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_IRLightsOff.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_IRLightsOff.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_IRLightsOff, "BUT_IRLightsOff");
+            this.BUT_IRLightsOff.Name = "BUT_IRLightsOff";
+            this.BUT_IRLightsOff.UseVisualStyleBackColor = true;
+            this.BUT_IRLightsOff.Click += new System.EventHandler(this.BUT_IRLightsOff_Click);
+            // 
+            // BUT_IRLightsOn
+            // 
+            this.BUT_IRLightsOn.ColorMouseDown = System.Drawing.Color.Empty;
+            this.BUT_IRLightsOn.ColorMouseOver = System.Drawing.Color.Empty;
+            this.BUT_IRLightsOn.ColorNotEnabled = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.BUT_IRLightsOn, "BUT_IRLightsOn");
+            this.BUT_IRLightsOn.Name = "BUT_IRLightsOn";
+            this.BUT_IRLightsOn.UseVisualStyleBackColor = true;
+            this.BUT_IRLightsOn.Click += new System.EventHandler(this.BUT_IRLightsOn_Click);
             // 
             // BUT_abortland
             // 
@@ -893,29 +906,6 @@
             0});
             this.modifyandSetLoiterRad.Click += new System.EventHandler(this.modifyandSetLoiterRad_Click);
             // 
-            // modifyandSetSpeed
-            // 
-            this.modifyandSetSpeed.ButtonText = "Change Speed";
-            resources.ApplyResources(this.modifyandSetSpeed, "modifyandSetSpeed");
-            this.modifyandSetSpeed.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.modifyandSetSpeed.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.modifyandSetSpeed.Name = "modifyandSetSpeed";
-            this.modifyandSetSpeed.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.modifyandSetSpeed.Click += new System.EventHandler(this.modifyandSetSpeed_Click);
-            this.modifyandSetSpeed.ParentChanged += new System.EventHandler(this.modifyandSetSpeed_ParentChanged);
-            // 
             // modifyandSetAlt
             // 
             this.modifyandSetAlt.ButtonText = "Change Alt";
@@ -937,48 +927,6 @@
             0,
             0});
             this.modifyandSetAlt.Click += new System.EventHandler(this.modifyandSetAlt_Click);
-            // 
-            // tabActionsSimple
-            // 
-            this.tabActionsSimple.Controls.Add(this.myButton1);
-            this.tabActionsSimple.Controls.Add(this.myButton2);
-            this.tabActionsSimple.Controls.Add(this.myButton3);
-            resources.ApplyResources(this.tabActionsSimple, "tabActionsSimple");
-            this.tabActionsSimple.Name = "tabActionsSimple";
-            this.tabActionsSimple.UseVisualStyleBackColor = true;
-            // 
-            // myButton1
-            // 
-            this.myButton1.ColorMouseDown = System.Drawing.Color.Empty;
-            this.myButton1.ColorMouseOver = System.Drawing.Color.Empty;
-            this.myButton1.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.myButton1, "myButton1");
-            this.myButton1.Name = "myButton1";
-            this.toolTip1.SetToolTip(this.myButton1, resources.GetString("myButton1.ToolTip"));
-            this.myButton1.UseVisualStyleBackColor = true;
-            this.myButton1.Click += new System.EventHandler(this.BUT_quickmanual_Click);
-            // 
-            // myButton2
-            // 
-            this.myButton2.ColorMouseDown = System.Drawing.Color.Empty;
-            this.myButton2.ColorMouseOver = System.Drawing.Color.Empty;
-            this.myButton2.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.myButton2, "myButton2");
-            this.myButton2.Name = "myButton2";
-            this.toolTip1.SetToolTip(this.myButton2, resources.GetString("myButton2.ToolTip"));
-            this.myButton2.UseVisualStyleBackColor = true;
-            this.myButton2.Click += new System.EventHandler(this.BUT_quickrtl_Click);
-            // 
-            // myButton3
-            // 
-            this.myButton3.ColorMouseDown = System.Drawing.Color.Empty;
-            this.myButton3.ColorMouseOver = System.Drawing.Color.Empty;
-            this.myButton3.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.myButton3, "myButton3");
-            this.myButton3.Name = "myButton3";
-            this.toolTip1.SetToolTip(this.myButton3, resources.GetString("myButton3.ToolTip"));
-            this.myButton3.UseVisualStyleBackColor = true;
-            this.myButton3.Click += new System.EventHandler(this.BUT_quickauto_Click);
             // 
             // tabPagePreFlight
             // 
@@ -1807,77 +1755,6 @@
             this.BUT_logbrowse.UseVisualStyleBackColor = true;
             this.BUT_logbrowse.Click += new System.EventHandler(this.BUT_logbrowse_Click);
             // 
-            // tabScripts
-            // 
-            this.tabScripts.Controls.Add(this.checkBoxRedirectOutput);
-            this.tabScripts.Controls.Add(this.BUT_edit_selected);
-            this.tabScripts.Controls.Add(this.labelSelectedScript);
-            this.tabScripts.Controls.Add(this.BUT_run_script);
-            this.tabScripts.Controls.Add(this.BUT_abort_script);
-            this.tabScripts.Controls.Add(this.labelScriptStatus);
-            this.tabScripts.Controls.Add(this.BUT_select_script);
-            resources.ApplyResources(this.tabScripts, "tabScripts");
-            this.tabScripts.Name = "tabScripts";
-            this.tabScripts.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxRedirectOutput
-            // 
-            resources.ApplyResources(this.checkBoxRedirectOutput, "checkBoxRedirectOutput");
-            this.checkBoxRedirectOutput.Checked = true;
-            this.checkBoxRedirectOutput.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxRedirectOutput.Name = "checkBoxRedirectOutput";
-            this.checkBoxRedirectOutput.UseVisualStyleBackColor = true;
-            // 
-            // BUT_edit_selected
-            // 
-            this.BUT_edit_selected.ColorMouseDown = System.Drawing.Color.Empty;
-            this.BUT_edit_selected.ColorMouseOver = System.Drawing.Color.Empty;
-            this.BUT_edit_selected.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.BUT_edit_selected, "BUT_edit_selected");
-            this.BUT_edit_selected.Name = "BUT_edit_selected";
-            this.BUT_edit_selected.UseVisualStyleBackColor = true;
-            this.BUT_edit_selected.Click += new System.EventHandler(this.BUT_edit_selected_Click);
-            // 
-            // labelSelectedScript
-            // 
-            resources.ApplyResources(this.labelSelectedScript, "labelSelectedScript");
-            this.labelSelectedScript.Name = "labelSelectedScript";
-            // 
-            // BUT_run_script
-            // 
-            this.BUT_run_script.ColorMouseDown = System.Drawing.Color.Empty;
-            this.BUT_run_script.ColorMouseOver = System.Drawing.Color.Empty;
-            this.BUT_run_script.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.BUT_run_script, "BUT_run_script");
-            this.BUT_run_script.Name = "BUT_run_script";
-            this.BUT_run_script.UseVisualStyleBackColor = true;
-            this.BUT_run_script.Click += new System.EventHandler(this.BUT_run_script_Click);
-            // 
-            // BUT_abort_script
-            // 
-            this.BUT_abort_script.ColorMouseDown = System.Drawing.Color.Empty;
-            this.BUT_abort_script.ColorMouseOver = System.Drawing.Color.Empty;
-            this.BUT_abort_script.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.BUT_abort_script, "BUT_abort_script");
-            this.BUT_abort_script.Name = "BUT_abort_script";
-            this.BUT_abort_script.UseVisualStyleBackColor = true;
-            this.BUT_abort_script.Click += new System.EventHandler(this.BUT_abort_script_Click);
-            // 
-            // labelScriptStatus
-            // 
-            resources.ApplyResources(this.labelScriptStatus, "labelScriptStatus");
-            this.labelScriptStatus.Name = "labelScriptStatus";
-            // 
-            // BUT_select_script
-            // 
-            this.BUT_select_script.ColorMouseDown = System.Drawing.Color.Empty;
-            this.BUT_select_script.ColorMouseOver = System.Drawing.Color.Empty;
-            this.BUT_select_script.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.BUT_select_script, "BUT_select_script");
-            this.BUT_select_script.Name = "BUT_select_script";
-            this.BUT_select_script.UseVisualStyleBackColor = true;
-            this.BUT_select_script.Click += new System.EventHandler(this.BUT_select_script_Click);
-            // 
             // tabPagemessages
             // 
             this.tabPagemessages.Controls.Add(this.txt_messagebox);
@@ -1889,107 +1766,6 @@
             // 
             resources.ApplyResources(this.txt_messagebox, "txt_messagebox");
             this.txt_messagebox.Name = "txt_messagebox";
-            // 
-            // tabPayload
-            // 
-            this.tabPayload.Controls.Add(this.BUT_PayloadFolder);
-            this.tabPayload.Controls.Add(this.groupBoxRoll);
-            this.tabPayload.Controls.Add(this.groupBoxYaw);
-            this.tabPayload.Controls.Add(this.BUT_resetGimbalPos);
-            this.tabPayload.Controls.Add(this.groupBoxPitch);
-            resources.ApplyResources(this.tabPayload, "tabPayload");
-            this.tabPayload.Name = "tabPayload";
-            this.tabPayload.UseVisualStyleBackColor = true;
-            // 
-            // BUT_PayloadFolder
-            // 
-            resources.ApplyResources(this.BUT_PayloadFolder, "BUT_PayloadFolder");
-            this.BUT_PayloadFolder.Name = "BUT_PayloadFolder";
-            this.BUT_PayloadFolder.UseVisualStyleBackColor = true;
-            // 
-            // groupBoxRoll
-            // 
-            this.groupBoxRoll.Controls.Add(this.TXT_gimbalRollPos);
-            this.groupBoxRoll.Controls.Add(this.trackBarRoll);
-            resources.ApplyResources(this.groupBoxRoll, "groupBoxRoll");
-            this.groupBoxRoll.Name = "groupBoxRoll";
-            this.groupBoxRoll.TabStop = false;
-            // 
-            // TXT_gimbalRollPos
-            // 
-            this.TXT_gimbalRollPos.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourcePayloadTab, "campointb", true));
-            resources.ApplyResources(this.TXT_gimbalRollPos, "TXT_gimbalRollPos");
-            this.TXT_gimbalRollPos.Name = "TXT_gimbalRollPos";
-            // 
-            // bindingSourcePayloadTab
-            // 
-            this.bindingSourcePayloadTab.DataSource = typeof(MissionPlanner.CurrentState);
-            // 
-            // trackBarRoll
-            // 
-            resources.ApplyResources(this.trackBarRoll, "trackBarRoll");
-            this.trackBarRoll.LargeChange = 10;
-            this.trackBarRoll.Maximum = 45;
-            this.trackBarRoll.Minimum = -45;
-            this.trackBarRoll.Name = "trackBarRoll";
-            this.trackBarRoll.TickFrequency = 10;
-            this.trackBarRoll.Scroll += new System.EventHandler(this.gimbalTrackbar_Scroll);
-            // 
-            // groupBoxYaw
-            // 
-            this.groupBoxYaw.Controls.Add(this.TXT_gimbalYawPos);
-            this.groupBoxYaw.Controls.Add(this.trackBarYaw);
-            resources.ApplyResources(this.groupBoxYaw, "groupBoxYaw");
-            this.groupBoxYaw.Name = "groupBoxYaw";
-            this.groupBoxYaw.TabStop = false;
-            // 
-            // TXT_gimbalYawPos
-            // 
-            this.TXT_gimbalYawPos.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourcePayloadTab, "campointc", true));
-            resources.ApplyResources(this.TXT_gimbalYawPos, "TXT_gimbalYawPos");
-            this.TXT_gimbalYawPos.Name = "TXT_gimbalYawPos";
-            // 
-            // trackBarYaw
-            // 
-            resources.ApplyResources(this.trackBarYaw, "trackBarYaw");
-            this.trackBarYaw.LargeChange = 10;
-            this.trackBarYaw.Maximum = 45;
-            this.trackBarYaw.Minimum = -45;
-            this.trackBarYaw.Name = "trackBarYaw";
-            this.trackBarYaw.TickFrequency = 10;
-            this.trackBarYaw.Scroll += new System.EventHandler(this.gimbalTrackbar_Scroll);
-            // 
-            // BUT_resetGimbalPos
-            // 
-            resources.ApplyResources(this.BUT_resetGimbalPos, "BUT_resetGimbalPos");
-            this.BUT_resetGimbalPos.Name = "BUT_resetGimbalPos";
-            this.BUT_resetGimbalPos.UseVisualStyleBackColor = true;
-            this.BUT_resetGimbalPos.Click += new System.EventHandler(this.BUT_resetGimbalPos_Click);
-            // 
-            // groupBoxPitch
-            // 
-            this.groupBoxPitch.Controls.Add(this.trackBarPitch);
-            this.groupBoxPitch.Controls.Add(this.TXT_gimbalPitchPos);
-            resources.ApplyResources(this.groupBoxPitch, "groupBoxPitch");
-            this.groupBoxPitch.Name = "groupBoxPitch";
-            this.groupBoxPitch.TabStop = false;
-            // 
-            // trackBarPitch
-            // 
-            resources.ApplyResources(this.trackBarPitch, "trackBarPitch");
-            this.trackBarPitch.LargeChange = 10;
-            this.trackBarPitch.Maximum = 45;
-            this.trackBarPitch.Minimum = -45;
-            this.trackBarPitch.Name = "trackBarPitch";
-            this.trackBarPitch.SmallChange = 5;
-            this.trackBarPitch.TickFrequency = 10;
-            this.trackBarPitch.Scroll += new System.EventHandler(this.gimbalTrackbar_Scroll);
-            // 
-            // TXT_gimbalPitchPos
-            // 
-            this.TXT_gimbalPitchPos.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourcePayloadTab, "campointa", true));
-            resources.ApplyResources(this.TXT_gimbalPitchPos, "TXT_gimbalPitchPos");
-            this.TXT_gimbalPitchPos.Name = "TXT_gimbalPitchPos";
             // 
             // tableMap
             // 
@@ -2223,7 +1999,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 360D;
+            this.windDir1.Direction = 180D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2393,6 +2169,10 @@
             this.CB_tuning.UseVisualStyleBackColor = true;
             this.CB_tuning.CheckedChanged += new System.EventHandler(this.CB_tuning_CheckedChanged);
             // 
+            // bindingSourcePayloadTab
+            // 
+            this.bindingSourcePayloadTab.DataSource = typeof(MissionPlanner.CurrentState);
+            // 
             // ZedGraphTimer
             // 
             this.ZedGraphTimer.Tick += new System.EventHandler(this.timer1_Tick);
@@ -2408,7 +2188,7 @@
             // 
             // scriptChecker
             // 
-            this.scriptChecker.Tick += new System.EventHandler(this.scriptChecker_Tick);
+            //this.scriptChecker.Tick += new System.EventHandler(this.scriptChecker_Tick);
             // 
             // dataGridViewImageColumn1
             // 
@@ -2461,7 +2241,6 @@
             this.contextMenuStripQuickView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceQuickTab)).EndInit();
             this.tabActions.ResumeLayout(false);
-            this.tabActionsSimple.ResumeLayout(false);
             this.tabPagePreFlight.ResumeLayout(false);
             this.tabGauges.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceGaugesTab)).EndInit();
@@ -2474,21 +2253,8 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.tablogbrowse.ResumeLayout(false);
-            this.tabScripts.ResumeLayout(false);
-            this.tabScripts.PerformLayout();
             this.tabPagemessages.ResumeLayout(false);
             this.tabPagemessages.PerformLayout();
-            this.tabPayload.ResumeLayout(false);
-            this.groupBoxRoll.ResumeLayout(false);
-            this.groupBoxRoll.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourcePayloadTab)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarRoll)).EndInit();
-            this.groupBoxYaw.ResumeLayout(false);
-            this.groupBoxYaw.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarYaw)).EndInit();
-            this.groupBoxPitch.ResumeLayout(false);
-            this.groupBoxPitch.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarPitch)).EndInit();
             this.tableMap.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -2501,6 +2267,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Zoomlevel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourcePayloadTab)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceStatusTab)).EndInit();
             this.ResumeLayout(false);
 
@@ -2604,16 +2371,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        public System.Windows.Forms.TabPage tabScripts;
-        private Controls.MyButton BUT_edit_selected;
-        private System.Windows.Forms.Label labelSelectedScript;
-        private Controls.MyButton BUT_run_script;
-        private Controls.MyButton BUT_abort_script;
-        private System.Windows.Forms.Label labelScriptStatus;
-        private Controls.MyButton BUT_select_script;
         private System.Windows.Forms.OpenFileDialog openScriptDialog;
         private System.Windows.Forms.Timer scriptChecker;
-        private System.Windows.Forms.CheckBox checkBoxRedirectOutput;
         private System.Windows.Forms.ToolStripMenuItem russianHudToolStripMenuItem;
         public System.Windows.Forms.ContextMenuStrip contextMenuStripMap;
         public System.Windows.Forms.ContextMenuStrip contextMenuStripHud;
@@ -2632,10 +2391,6 @@
         public System.Windows.Forms.TabPage tabPagemessages;
         private System.Windows.Forms.TextBox txt_messagebox;
         private System.Windows.Forms.Timer Messagetabtimer;
-        public System.Windows.Forms.TabPage tabActionsSimple;
-        private Controls.MyButton myButton1;
-        private Controls.MyButton myButton2;
-        private Controls.MyButton myButton3;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripactionstab;
         private Controls.MyButton BUT_loganalysis;
         private System.Windows.Forms.ToolStripMenuItem addPoiToolStripMenuItem;
@@ -2663,19 +2418,7 @@
         private System.Windows.Forms.ToolStripMenuItem setViewCountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setGStreamerSourceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setEKFHomeHereToolStripMenuItem;
-        private System.Windows.Forms.TabPage tabPayload;
         private System.Windows.Forms.BindingSource bindingSourcePayloadTab;
-        private System.Windows.Forms.TrackBar trackBarYaw;
-        private System.Windows.Forms.TrackBar trackBarRoll;
-        private System.Windows.Forms.TrackBar trackBarPitch;
-        private Controls.MyButton BUT_resetGimbalPos;
-        private System.Windows.Forms.TextBox TXT_gimbalPitchPos;
-        private System.Windows.Forms.TextBox TXT_gimbalYawPos;
-        private System.Windows.Forms.TextBox TXT_gimbalRollPos;
-        private System.Windows.Forms.GroupBox groupBoxRoll;
-        private System.Windows.Forms.GroupBox groupBoxYaw;
-        private System.Windows.Forms.GroupBox groupBoxPitch;
-        private Controls.MyButton BUT_PayloadFolder;
         private System.Windows.Forms.ToolStripMenuItem setHomeHereToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem groundColorToolStripMenuItem;
         private Controls.RelayOptions relayOptions1;
@@ -2688,6 +2431,8 @@
         private Controls.MyButton BUT_PLDOn;
         private Controls.MyButton BUT_LightsOff;
         private Controls.MyButton BUT_LightsOn;
+        private Controls.MyButton BUT_IRLightsOff;
+        private Controls.MyButton BUT_IRLightsOn;
         private Controls.MyButton BUT_EngineStart;
         private Controls.QuickView QUICK_CHT;
         private Controls.QuickView QUICK_RPM;
