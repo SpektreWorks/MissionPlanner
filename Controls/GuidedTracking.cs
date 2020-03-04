@@ -75,7 +75,7 @@ namespace MissionPlanner.Controls
 
                     var checksum = match.Groups[1].Value.Sum(a => (byte) a) & 0xff;
 
-                    if (checksum.ToString("X2") == match.Groups[4].Value)
+                    if (checksum.ToString("X2") == match.Groups[4].Value.ToUpper())
                     {
                         PointLatLngAlt gotolocation = new PointLatLngAlt(double.Parse(match.Groups[2].Value),
                             double.Parse(match.Groups[3].Value),

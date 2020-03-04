@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.902
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29827.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissionPlanner", "MissionPlanner.csproj", "{A2E22272-95FE-47B6-B050-9AE7E2055BF5}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -177,6 +177,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinForms", "WinForms", "{82
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		ExtLibs\uno\UnoUI\UnoUI.Shared\UnoUI.Shared.projitems*{06b132f9-524b-44c0-9ed6-e0348641ab3d}*SharedItemsImports = 5
 		ExtLibs\uno\UnoUI\UnoUI.Shared\UnoUI.Shared.projitems*{0850aafc-2b90-4d47-821b-f009eb099940}*SharedItemsImports = 4
 		ExtLibs\uno\UnoUI\UnoUI.Shared\UnoUI.Shared.projitems*{61874fb1-9803-4ccb-bc90-70b4222b44c0}*SharedItemsImports = 4
 		ExtLibs\uno\UnoUI\UnoUI.Shared\UnoUI.Shared.projitems*{6279c845-92f8-4333-ab99-3d213163593c}*SharedItemsImports = 13
