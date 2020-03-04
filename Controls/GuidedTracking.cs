@@ -59,7 +59,7 @@ namespace MissionPlanner.Controls
             byte[] receiveBytes = client.EndReceive(ar, ref e);
 
             // setup for next packet
-            _udpclient.BeginReceive(ProcessUDPPacket, this);
+            _udpclient.BeginReceive(ProcessUDPPacket, _udpclient);
 
             if (chk_followcamera.Checked)
             {
