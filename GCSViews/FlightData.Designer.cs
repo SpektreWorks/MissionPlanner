@@ -172,6 +172,8 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Messagetabtimer = new System.Windows.Forms.Timer(this.components);
             this.bindingSourceStatusTab = new System.Windows.Forms.BindingSource(this.components);
+            this.flyToCoordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.poiatcoordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.MainH)).BeginInit();
             this.MainH.Panel1.SuspendLayout();
             this.MainH.Panel2.SuspendLayout();
@@ -1827,6 +1829,7 @@
             this.contextMenuStripMap.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.goHereToolStripMenuItem,
             this.flyToHereAltToolStripMenuItem,
+            this.flyToCoordsToolStripMenuItem,
             this.addPoiToolStripMenuItem,
             this.pointCameraHereToolStripMenuItem,
             this.PointCameraCoordsToolStripMenuItem1,
@@ -1856,7 +1859,8 @@
             this.addPoiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteToolStripMenuItem,
             this.saveFileToolStripMenuItem,
-            this.loadFileToolStripMenuItem});
+            this.loadFileToolStripMenuItem,
+            this.poiatcoordsToolStripMenuItem});
             this.addPoiToolStripMenuItem.Name = "addPoiToolStripMenuItem";
             resources.ApplyResources(this.addPoiToolStripMenuItem, "addPoiToolStripMenuItem");
             this.addPoiToolStripMenuItem.Click += new System.EventHandler(this.addPoiToolStripMenuItem_Click);
@@ -2218,6 +2222,18 @@
             // 
             this.bindingSourceStatusTab.DataSource = typeof(MissionPlanner.CurrentState);
             // 
+            // flyToCoordsToolStripMenuItem
+            // 
+            this.flyToCoordsToolStripMenuItem.Name = "flyToCoordsToolStripMenuItem";
+            resources.ApplyResources(this.flyToCoordsToolStripMenuItem, "flyToCoordsToolStripMenuItem");
+            this.flyToCoordsToolStripMenuItem.Click += new System.EventHandler(this.flyToCoordsToolStripMenuItem_Click);
+            // 
+            // poiatcoordsToolStripMenuItem
+            // 
+            this.poiatcoordsToolStripMenuItem.Name = "poiatcoordsToolStripMenuItem";
+            resources.ApplyResources(this.poiatcoordsToolStripMenuItem, "poiatcoordsToolStripMenuItem");
+            this.poiatcoordsToolStripMenuItem.Click += new System.EventHandler(this.poiatcoordsToolStripMenuItem_Click);
+            // 
             // FlightData
             // 
             this.Controls.Add(this.MainH);
@@ -2441,5 +2457,7 @@
         private Controls.QuickView QUICK_RPM;
         private Controls.QuickView QUICK_FuelUsed;
         public Controls.GuidedTracking guidedTracking1;
+        private System.Windows.Forms.ToolStripMenuItem poiatcoordsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem flyToCoordsToolStripMenuItem;
     }
 }
