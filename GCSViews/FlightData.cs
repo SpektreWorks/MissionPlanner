@@ -5190,24 +5190,24 @@ namespace MissionPlanner.GCSViews
             }
         }
 
-        private void modifyandSetLoiterRad_Load(object sender, EventArgs e)
-        {
+        //private void modifyandSetLoiterRad_Load(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
-        private void CMB_modes_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        //private void CMB_modes_SelectedIndexChanged(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
-        private void hud1_Load(object sender, EventArgs e)
-        {
+        //private void hud1_Load(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
-        private void CMB_action_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        //private void CMB_action_SelectedIndexChanged(object sender, EventArgs e)
+        //{
 
-        }
+        //}
     }
 }
