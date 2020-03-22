@@ -2961,7 +2961,7 @@ namespace MissionPlanner
             }
         }
 
-        public List<string> GetItemList(bool alpha = false)
+        public List<string> GetItemList(bool alpha = false, bool numbersonly = false)
         {
             var ans = new List<string>();
 
@@ -2972,8 +2972,14 @@ namespace MissionPlanner
             var props = test.GetProperties();
 
             //props
-
-            foreach (var field in props) ans.Add(field.Name);
+            foreach (var field in props)
+            {
+                if(numbersonly)
+                    if (!field.PropertyType.IsNumber())
+                        continue;
+                
+                ans.Add(field.Name);
+            }
 
             if (alpha)
                 ans.Sort();
