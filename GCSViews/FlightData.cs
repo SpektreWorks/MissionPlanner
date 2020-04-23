@@ -1245,6 +1245,11 @@ namespace MissionPlanner.GCSViews
             }
         }
 
+        //private void BUT_joystick_Click(object sender, EventArgs e)
+        //{
+        //    new JoystickSetup().ShowUserControl();            
+        //}
+
         private string tlogdir = Settings.Instance.LogDir;
 
         private void BUT_loadtelem_Click(object sender, EventArgs e)
