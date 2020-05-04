@@ -2793,7 +2793,7 @@ namespace MissionPlanner.GCSViews
             POI.POILoad();
         }
 
-        private void mainloop()
+        private async void mainloop()
         {
             threadrun = true;
             EndPoint Remote = new IPEndPoint(IPAddress.Any, 0);
@@ -2897,7 +2897,7 @@ namespace MissionPlanner.GCSViews
                     try
                     {
                         if (!MainV2.comPort.giveComport)
-                            MainV2.comPort.readPacket();
+                            await MainV2.comPort.readPacketAsync().ConfigureAwait(false);
 
                         // update currentstate of sysids on the port
                         foreach (var MAV in MainV2.comPort.MAVlist)

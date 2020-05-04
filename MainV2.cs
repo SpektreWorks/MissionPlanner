@@ -2464,7 +2464,7 @@ namespace MissionPlanner
         /// 
         /// and can't fall out
         /// </summary>
-        private void SerialReader()
+        private async void SerialReader()
         {
             if (serialThread == true)
                 return;
@@ -2891,7 +2891,7 @@ namespace MissionPlanner
                         {
                             try
                             {
-                                port.readPacket();
+                                await port.readPacketAsync().ConfigureAwait(false);
                             }
                             catch (Exception ex)
                             {
