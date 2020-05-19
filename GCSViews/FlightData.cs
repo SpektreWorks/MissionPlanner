@@ -3980,7 +3980,7 @@ namespace MissionPlanner.GCSViews
             }
         }
 
-        private void setHomeHereToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void setHomeHereToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MainV2.comPort.BaseStream.IsOpen)
             {
@@ -3994,9 +3994,18 @@ namespace MissionPlanner.GCSViews
                         return;
                     }
 
-                    MainV2.comPort.doCommand((byte) MainV2.comPort.sysidcurrent, (byte) MainV2.comPort.compidcurrent,
-                        MAVLink.MAV_CMD.DO_SET_HOME, 0, 0, 0, 0, (float) MouseDownStart.Lat,
-                        (float) MouseDownStart.Lng, (float) alt.alt);
+                    if (CustomMessageBox.Show(
+                        "This will reset the onboard home position (effects RTL etc). Are you Sure?",
+                        "Are you sure?", CustomMessageBox.MessageBoxButtons.OKCancel) == CustomMessageBox.DialogResult.OK)
+                    {
+                        MainV2.comPort.doCommand((byte) MainV2.comPort.sysidcurrent,
+                            (byte) MainV2.comPort.compidcurrent,
+                            MAVLink.MAV_CMD.DO_SET_HOME, 0, 0, 0, 0, (float) MouseDownStart.Lat,
+                            (float) MouseDownStart.Lng, (float) alt.alt);
+                    }
+
+                    await MainV2.comPort.getHomePositionAsync((byte) MainV2.comPort.sysidcurrent,
+                        (byte) MainV2.comPort.compidcurrent);
                 }
                 catch
                 {
@@ -4034,6 +4043,7 @@ namespace MissionPlanner.GCSViews
 
         private void setQuickViewRowsCols(string cols, string rows)
         {
+            tableLayoutPanelQuick.PerformLayout();
             tableLayoutPanelQuick.SuspendLayout();
             tableLayoutPanelQuick.ColumnCount = Math.Max(1, int.Parse(cols));
             tableLayoutPanelQuick.RowCount = Math.Max(1, int.Parse(rows));
@@ -5266,24 +5276,9 @@ namespace MissionPlanner.GCSViews
             }
         }
 
-        //private void modifyandSetLoiterRad_Load(object sender, EventArgs e)
-        //{
+        private void hud1_Load(object sender, EventArgs e)
+        {
 
-        //}
-
-        //private void CMB_modes_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //private void hud1_Load(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //private void CMB_action_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-
-        //}
+        }
     }
 }
