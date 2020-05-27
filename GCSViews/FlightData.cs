@@ -2028,9 +2028,8 @@ namespace MissionPlanner.GCSViews
 
         private void CMB_modes_Click(object sender, EventArgs e)
         {
-            //CMB_modes.DataSource = Common.getModesList(MainV2.comPort.MAV.cs.firmware);
-            //CMB_modes.ValueMember = "Key";
-            //CMB_modes.DisplayMember = "Value";
+            string current_value = CMB_modes.Text;
+            CMB_modes.Text = current_value;
         }
 
         private void CMB_setwp_Click(object sender, EventArgs e)
