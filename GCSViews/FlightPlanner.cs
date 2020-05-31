@@ -1689,7 +1689,15 @@ namespace MissionPlanner.GCSViews
                     Settings.Instance["WPFileDirectory"] = Path.GetDirectoryName(file);
                     if (file.ToLower().EndsWith(".shp"))
                     {
-                        LoadSHPFile(file);
+                        try
+                        {
+                            LoadSHPFile(file);
+                        }
+                        catch
+                        {
+                            CustomMessageBox.Show("Error opening File", Strings.ERROR);
+                            return;
+                        }
                     }
                     else
                     {
@@ -4310,7 +4318,15 @@ namespace MissionPlanner.GCSViews
                 DialogResult result = fd.ShowDialog();
                 string file = fd.FileName;
 
-                LoadSHPFile(file);
+                try
+                {
+                    LoadSHPFile(file);
+                }
+                catch
+                {
+                    CustomMessageBox.Show("Error opening File", Strings.ERROR);
+                    return;
+                }
             }
         }
 
