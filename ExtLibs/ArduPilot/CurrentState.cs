@@ -2551,7 +2551,7 @@ namespace MissionPlanner
                             efi_health = efi.health;
                             cht = efi.cylinder_head_temperature;
                             fuelrate = efi.fuel_flow;
-                            fuelused = efi.fuel_consumed;
+                            fuelused = efi.fuel_consumed*0.00220462f;  //Convert grams to lbs
                             efi_rpm = efi.rpm;
 
                             //MAVLink.packets[(byte)MAVLink.MSG_NAMES.EFI_STATUS);
