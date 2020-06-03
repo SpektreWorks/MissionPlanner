@@ -49,10 +49,7 @@
             this.BUT_NavLights = new MissionPlanner.Controls.MyButton();
             this.BUT_IRLights = new MissionPlanner.Controls.MyButton();
             this.BUT_abortland = new MissionPlanner.Controls.MyButton();
-            this.CMB_mountmode = new System.Windows.Forms.ComboBox();
-            this.BUT_mountmode = new MissionPlanner.Controls.MyButton();
             this.BUT_ARM = new MissionPlanner.Controls.MyButton();
-            this.BUT_joystick = new MissionPlanner.Controls.MyButton();
             this.BUT_quickmanual = new MissionPlanner.Controls.MyButton();
             this.BUT_quickrtl = new MissionPlanner.Controls.MyButton();
             this.BUT_quickauto = new MissionPlanner.Controls.MyButton();
@@ -603,10 +600,7 @@
             this.tabActions.Controls.Add(this.BUT_NavLights);
             this.tabActions.Controls.Add(this.BUT_IRLights);
             this.tabActions.Controls.Add(this.BUT_abortland);
-            this.tabActions.Controls.Add(this.CMB_mountmode);
-            this.tabActions.Controls.Add(this.BUT_mountmode);
             this.tabActions.Controls.Add(this.BUT_ARM);
-            this.tabActions.Controls.Add(this.BUT_joystick);
             this.tabActions.Controls.Add(this.BUT_quickmanual);
             this.tabActions.Controls.Add(this.BUT_quickrtl);
             this.tabActions.Controls.Add(this.BUT_quickauto);
@@ -681,24 +675,6 @@
             this.BUT_abortland.UseVisualStyleBackColor = true;
             this.BUT_abortland.Click += new System.EventHandler(this.BUT_abortland_Click);
             // 
-            // CMB_mountmode
-            // 
-            this.CMB_mountmode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CMB_mountmode.FormattingEnabled = true;
-            resources.ApplyResources(this.CMB_mountmode, "CMB_mountmode");
-            this.CMB_mountmode.Name = "CMB_mountmode";
-            // 
-            // BUT_mountmode
-            // 
-            this.BUT_mountmode.ColorMouseDown = System.Drawing.Color.Empty;
-            this.BUT_mountmode.ColorMouseOver = System.Drawing.Color.Empty;
-            this.BUT_mountmode.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.BUT_mountmode, "BUT_mountmode");
-            this.BUT_mountmode.Name = "BUT_mountmode";
-            this.toolTip1.SetToolTip(this.BUT_mountmode, resources.GetString("BUT_mountmode.ToolTip"));
-            this.BUT_mountmode.UseVisualStyleBackColor = true;
-            this.BUT_mountmode.Click += new System.EventHandler(this.BUT_mountmode_Click);
-            // 
             // BUT_ARM
             // 
             this.BUT_ARM.ColorMouseDown = System.Drawing.Color.Empty;
@@ -709,17 +685,6 @@
             this.toolTip1.SetToolTip(this.BUT_ARM, resources.GetString("BUT_ARM.ToolTip"));
             this.BUT_ARM.UseVisualStyleBackColor = true;
             this.BUT_ARM.Click += new System.EventHandler(this.BUT_ARM_Click);
-            // 
-            // BUT_joystick
-            // 
-            this.BUT_joystick.ColorMouseDown = System.Drawing.Color.Empty;
-            this.BUT_joystick.ColorMouseOver = System.Drawing.Color.Empty;
-            this.BUT_joystick.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.BUT_joystick, "BUT_joystick");
-            this.BUT_joystick.Name = "BUT_joystick";
-            this.toolTip1.SetToolTip(this.BUT_joystick, resources.GetString("BUT_joystick.ToolTip"));
-            this.BUT_joystick.UseVisualStyleBackColor = true;
-            this.BUT_joystick.Click += new System.EventHandler(this.BUT_joystick_Click);
             // 
             // BUT_quickmanual
             // 
@@ -2000,7 +1965,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 360D;
+            this.windDir1.Direction = 180D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2312,7 +2277,6 @@
         private Controls.MyButton BUT_quickrtl;
         private Controls.MyButton BUT_quickauto;
         private Controls.MyButton BUT_log2kml;
-        private Controls.MyButton BUT_joystick;
         private System.Windows.Forms.ToolTip toolTip1;
         private Controls.MyLabel lbl_logpercent;
         private System.Windows.Forms.ToolStripMenuItem pointCameraHereToolStripMenuItem;
@@ -2380,8 +2344,6 @@
         private System.Windows.Forms.ToolStripMenuItem setHomeHereToolStripMenuItem;
         private MissionPlanner.Controls.Coords coords1;
         private Controls.MyButton BUT_matlab;
-        private System.Windows.Forms.ComboBox CMB_mountmode;
-        private Controls.MyButton BUT_mountmode;
         public Controls.WindDir windDir1;
         private Controls.MyButton but_bintolog;
         private Controls.MyButton but_dflogtokml;

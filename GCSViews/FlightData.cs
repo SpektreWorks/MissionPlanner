@@ -1216,13 +1216,6 @@ namespace MissionPlanner.GCSViews
             }
         }
 
-        private void BUT_joystick_Click(object sender, EventArgs e)
-        {
-            Form joy = new JoystickSetup();
-            ThemeManager.ApplyThemeTo(joy);
-            joy.Show();
-        }
-
         private void BUT_loadtelem_Click(object sender, EventArgs e)
         {
             LBL_logfn.Text = "";
@@ -1336,27 +1329,6 @@ namespace MissionPlanner.GCSViews
         private void BUT_matlab_Click(object sender, EventArgs e)
         {
             MatLabForms.ProcessLog();
-        }
-
-        private void BUT_mountmode_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (MainV2.comPort.MAV.param.ContainsKey("MNT_MODE"))
-                {
-                    MainV2.comPort.setParam("MNT_MODE", (int)CMB_mountmode.SelectedValue);
-                }
-                else
-                {
-                    // copter 3.3 acks with an error, but is ok
-                    MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_MOUNT_CONTROL, 0, 0, 0, 0, 0, 0,
-                        (int)CMB_mountmode.SelectedValue);
-                }
-            }
-            catch
-            {
-                CustomMessageBox.Show(Strings.ErrorNoResponce, Strings.ERROR);
-            }
         }
 
         private void BUT_quickauto_Click(object sender, EventArgs e)
@@ -2155,19 +2127,6 @@ namespace MissionPlanner.GCSViews
             Zoomlevel.Minimum = gMapControl1.MapProvider.MinZoom;
             Zoomlevel.Maximum = 24;
             Zoomlevel.Value = Convert.ToDecimal(gMapControl1.Zoom);
-
-            var item1 = ParameterMetaDataRepository.GetParameterOptionsInt("MNT_MODE",
-                MainV2.comPort.MAV.cs.firmware.ToString());
-            var item2 = ParameterMetaDataRepository.GetParameterOptionsInt("MNT_DEFLT_MODE",
-                MainV2.comPort.MAV.cs.firmware.ToString());
-            if (item1.Count > 0)
-                CMB_mountmode.DataSource = item1;
-
-            if (item2.Count > 0)
-                CMB_mountmode.DataSource = item2;
-
-            CMB_mountmode.DisplayMember = "Value";
-            CMB_mountmode.ValueMember = "Key";
 
             if (Settings.Instance["CHK_autopan"] != null)
                 CHK_autopan.Checked = Settings.Instance.GetBoolean("CHK_autopan");
