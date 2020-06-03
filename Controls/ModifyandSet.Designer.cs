@@ -68,7 +68,6 @@
             // 
             // ModifyandSet
             // 
-            
             this.Controls.Add(this.flowLayoutPanel1);
             resources.ApplyResources(this, "$this");
             this.Name = "ModifyandSet";
