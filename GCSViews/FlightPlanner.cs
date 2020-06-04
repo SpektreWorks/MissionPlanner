@@ -64,5 +64,15 @@ namespace MissionPlanner.GCSViews
         {
 
         }
+
+        private void TXT_loiterrad_TextChanged(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void TXT_DefaultAlt_TextChanged(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

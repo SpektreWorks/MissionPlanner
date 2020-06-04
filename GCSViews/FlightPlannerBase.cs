@@ -2481,10 +2481,10 @@ namespace MissionPlanner.GCSViews
                     switch (key)
                     {
                         case "TXT_WPRad":
-                            _flightPlanner.TXT_WPRad.Text = "" + Settings.Instance[key];
+                            _flightPlanner.TXT_WPRad.Text = "" + Math.Round(Settings.Instance[key].ConvertToDouble()).ToString();
                             break;
                         case "TXT_loiterrad":
-                            _flightPlanner.TXT_loiterrad.Text = "" + Settings.Instance[key];
+                            _flightPlanner.TXT_loiterrad.Text = "" + Math.Round(Settings.Instance[key].ConvertToDouble()).ToString();
                             break;
                         case "TXT_DefaultAlt":
                             _flightPlanner.TXT_DefaultAlt.Text = "" + Settings.Instance[key];
@@ -5809,11 +5809,11 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
 
                 if (param.ContainsKey("WP_RADIUS"))
                 {
-                    _flightPlanner.TXT_WPRad.Text = (((double)param["WP_RADIUS"] * CurrentState.multiplierdist)).ToString();
+                    _flightPlanner.TXT_WPRad.Text = (Math.Round(((double)param["WP_RADIUS"] * CurrentState.multiplierdist))).ToString();
                 }
                 if (param.ContainsKey("WPNAV_RADIUS"))
                 {
-                    _flightPlanner.TXT_WPRad.Text = (((double)param["WPNAV_RADIUS"] * CurrentState.multiplierdist / 100.0)).ToString();
+                    _flightPlanner.TXT_WPRad.Text = (Math.Round(((double)param["WPNAV_RADIUS"] * CurrentState.multiplierdist / 100.0))).ToString();
                 }
 
                 log.Info("param WP_RADIUS " + _flightPlanner.TXT_WPRad.Text);

@@ -10,7 +10,6 @@
     <OutputType>Exe</OutputType>
     <StartupObject>MissionPlanner.Program</StartupObject>
     <Authors>Michael Oborne and SpektreWorks, Inc.</Authors>
-    
     <DebugType>portable</DebugType>
     <Company>Michael Oborne and SpektreWorks, Inc.</Company>
     <Product>Mission Planner SW</Product>

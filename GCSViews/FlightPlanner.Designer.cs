@@ -240,6 +240,7 @@ namespace MissionPlanner.GCSViews
             // 
             resources.ApplyResources(this.TXT_DefaultAlt, "TXT_DefaultAlt");
             this.TXT_DefaultAlt.Name = "TXT_DefaultAlt";
+            this.TXT_DefaultAlt.TextChanged += new System.EventHandler(this.TXT_DefaultAlt_TextChanged);
             // 
             // LBL_WPRad
             // 
@@ -255,6 +256,7 @@ namespace MissionPlanner.GCSViews
             // 
             resources.ApplyResources(this.TXT_loiterrad, "TXT_loiterrad");
             this.TXT_loiterrad.Name = "TXT_loiterrad";
+            this.TXT_loiterrad.TextChanged += new System.EventHandler(this.TXT_loiterrad_TextChanged);
             // 
             // label5
             // 
