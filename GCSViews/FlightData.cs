@@ -220,23 +220,28 @@ namespace MissionPlanner.GCSViews
             List<string> list = new List<string>();
 
             {
-                list.Add("LOITER_UNLIM");
-                list.Add("RETURN_TO_LAUNCH");
                 list.Add("PREFLIGHT_CALIBRATION");
-                list.Add("MISSION_START");
                 list.Add("PREFLIGHT_REBOOT_SHUTDOWN");
-                list.Add("Trigger Camera NOW");
-                list.Add("SYSTEM_TIME");
-                //DO_SET_SERVO
-                //DO_REPEAT_SERVO
             }
 
 
             CMB_action.DataSource = list;
 
-            CMB_modes.DataSource = Common.getModesList(MainV2.comPort.MAV.cs.firmware);
-            CMB_modes.ValueMember = "Key";
-            CMB_modes.DisplayMember = "Value";
+            List<string> modelist = new List<string>();
+
+            {
+                modelist.Add("Auto");
+                modelist.Add("Manual");
+                modelist.Add("FBWA");
+                modelist.Add("QSTABILIZE");
+                modelist.Add("QHOVER");
+                modelist.Add("QLAND");
+                modelist.Add("RTL");
+            }
+
+            CMB_modes.DataSource = modelist;
+            //CMB_modes.ValueMember = "Key";
+            //CMB_modes.DisplayMember = "Value";
 
             //default to auto
             CMB_modes.Text = "Auto";
@@ -1952,9 +1957,9 @@ namespace MissionPlanner.GCSViews
 
         private void CMB_modes_Click(object sender, EventArgs e)
         {
-            CMB_modes.DataSource = Common.getModesList(MainV2.comPort.MAV.cs.firmware);
-            CMB_modes.ValueMember = "Key";
-            CMB_modes.DisplayMember = "Value";
+            //CMB_modes.DataSource = Common.getModesList(MainV2.comPort.MAV.cs.firmware);
+            //CMB_modes.ValueMember = "Key";
+            //CMB_modes.DisplayMember = "Value";
         }
 
         private void CMB_setwp_Click(object sender, EventArgs e)
@@ -5115,6 +5120,11 @@ if (a is CheckBox && ((CheckBox)a).Checked)
         }
 
         private void hud1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CMB_action_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
