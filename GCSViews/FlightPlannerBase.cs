@@ -69,7 +69,7 @@ namespace MissionPlanner.GCSViews
         public GMapMarker center = new GMarkerGoogle(new PointLatLng(0.0, 0.0), GMarkerGoogleType.none);
         private Dictionary<string, string[]> cmdParamNames = new Dictionary<string, string[]>();
         private GMapMarkerRect CurentRectMarker;
-        private altmode currentaltmode = altmode.Relative;
+        private altmode currentaltmode = altmode.MSL;
         private GMapMarker CurrentGMapMarker;
         public GMapMarker currentMarker;
         private GMapMarkerPOI CurrentPOIMarker;
@@ -416,7 +416,7 @@ namespace MissionPlanner.GCSViews
             _flightPlanner.CMB_altmode.DataSource = EnumTranslator.EnumToList<altmode>();
 
             //set default
-            _flightPlanner.CMB_altmode.SelectedItem = altmode.Relative;
+            _flightPlanner.CMB_altmode.SelectedItem = altmode.MSL;
 
             _flightPlanner.cmb_missiontype.DataSource = new List<MAVLink.MAV_MISSION_TYPE>()
                 {MAVLink.MAV_MISSION_TYPE.MISSION, MAVLink.MAV_MISSION_TYPE.FENCE, MAVLink.MAV_MISSION_TYPE.RALLY};
@@ -485,15 +485,18 @@ namespace MissionPlanner.GCSViews
             }
 
             // hide altmode if old copter version
-            if (MainV2.comPort.BaseStream.IsOpen && MainV2.comPort.MAV.cs.firmware == Firmwares.ArduCopter2 &&
-                MainV2.comPort.MAV.cs.version < new Version(3, 3))
-            {
-                _flightPlanner.CMB_altmode.Visible = false;
-            }
-            else
-            {
-                _flightPlanner.CMB_altmode.Visible = true;
-            }
+            //if (MainV2.comPort.BaseStream.IsOpen && MainV2.comPort.MAV.cs.firmware == Firmwares.ArduCopter2 &&
+            //    MainV2.comPort.MAV.cs.version < new Version(3, 3))
+            //{
+            //    _flightPlanner.CMB_altmode.Visible = false;
+            //}
+            //else
+            //{
+            //    _flightPlanner.CMB_altmode.Visible = true;
+            //}
+
+            _flightPlanner.CMB_altmode.Visible = false;
+
 
             // hide spline wp options if not arducopter
             if (MainV2.comPort.MAV.cs.firmware == Firmwares.ArduCopter2)
@@ -576,8 +579,8 @@ namespace MissionPlanner.GCSViews
 
         public enum altmode
         {
-            Relative = MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT,
-            Absolute = MAVLink.MAV_FRAME.GLOBAL,
+            MSL = MAVLink.MAV_FRAME.GLOBAL,
+            AGL = MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT,
             Terrain = MAVLink.MAV_FRAME.GLOBAL_TERRAIN_ALT
         }
 
@@ -801,12 +804,12 @@ namespace MissionPlanner.GCSViews
         /// <param name="e"></param>
         public void BUT_write_Click(object sender, EventArgs e)
         {
-            if ((altmode) _flightPlanner.CMB_altmode.SelectedValue == altmode.Absolute)
+            if ((altmode) _flightPlanner.CMB_altmode.SelectedValue == altmode.MSL)
             {
                 if ((int)DialogResult.No ==
-                    CustomMessageBox.Show("Absolute Alt is selected are you sure?", "Alt Mode", MessageBoxButtons.YesNo))
+                    CustomMessageBox.Show("MSL Alt is selected are you sure?", "Alt Mode", MessageBoxButtons.YesNo))
                 {
-                    _flightPlanner.CMB_altmode.SelectedValue = (int)altmode.Relative;
+                    _flightPlanner.CMB_altmode.SelectedValue = (int)altmode.AGL;
                 }
             }
 
@@ -1276,7 +1279,7 @@ namespace MissionPlanner.GCSViews
                     if (_flightPlanner.CHK_verifyheight.Checked) // use srtm data
                     {
                         // is absolute but no verify
-                        if ((altmode) _flightPlanner.CMB_altmode.SelectedValue == altmode.Absolute)
+                        if ((altmode) _flightPlanner.CMB_altmode.SelectedValue == altmode.MSL)
                         {
                             //abs
                             cell.Value =
@@ -1818,12 +1821,12 @@ namespace MissionPlanner.GCSViews
 
         public void but_writewpfast_Click(object sender, EventArgs e)
         {
-            if ((altmode) _flightPlanner.CMB_altmode.SelectedValue == altmode.Absolute)
+            if ((altmode) _flightPlanner.CMB_altmode.SelectedValue == altmode.MSL)
             {
                 if ((int)DialogResult.No ==
-                    CustomMessageBox.Show("Absolute Alt is selected are you sure?", "Alt Mode", MessageBoxButtons.YesNo))
+                    CustomMessageBox.Show("MSL Alt is selected are you sure?", "Alt Mode", MessageBoxButtons.YesNo))
                 {
-                    _flightPlanner.CMB_altmode.SelectedValue = (int)altmode.Relative;
+                    _flightPlanner.CMB_altmode.SelectedValue = (int)altmode.AGL;
                 }
             }
 
@@ -5548,7 +5551,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
             }
 
             // define the default frame.
-            MAVLink.MAV_FRAME frame = MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT;
+            MAVLink.MAV_FRAME frame = MAVLink.MAV_FRAME.GLOBAL;
 
             // get the command list from the datagrid
             var commandlist = GetCommandList();
@@ -5635,7 +5638,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                     {
                         frame = MAVLink.MAV_FRAME.GLOBAL_TERRAIN_ALT;
                     }
-                    else if (mode == altmode.Absolute)
+                    else if (mode == altmode.MSL)
                     {
                         frame = MAVLink.MAV_FRAME.GLOBAL;
                     }

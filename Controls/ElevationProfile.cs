@@ -22,7 +22,7 @@ namespace MissionPlanner
         PointPairList list4terrain = new PointPairList();
         int distance = 0;
         double homealt = 0;
-        FlightPlannerBase.altmode altmode = FlightPlannerBase.altmode.Relative;
+        FlightPlannerBase.altmode altmode = FlightPlannerBase.altmode.AGL;
 
         public ElevationProfile(List<PointLatLngAlt> locs, double homealt, FlightPlannerBase.altmode altmode)
         {
@@ -118,7 +118,7 @@ namespace MissionPlanner
                     list1 = list4terrain;
                     break;
                 }
-                else if (altmode == FlightPlannerBase.altmode.Relative)
+                else if (altmode == FlightPlannerBase.altmode.AGL)
                 {
                     // already includes the home alt
                     list1.Add(a, (planloc.Alt), 0, planloc.Tag);

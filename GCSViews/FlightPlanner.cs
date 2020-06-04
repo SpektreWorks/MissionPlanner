@@ -40,6 +40,29 @@ namespace MissionPlanner.GCSViews
             return ans;
         }
 
-     
+        private void BUT_Add_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void CMB_altmode_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void TXT_WPRad_TextChanged(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void CHK_verifyheight_CheckedChanged(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void BUT_loadwpfile_Click(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }
