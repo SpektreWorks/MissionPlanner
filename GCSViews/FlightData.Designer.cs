@@ -2151,7 +2151,7 @@
             // 
             // scriptChecker
             // 
-            this.scriptChecker.Tick += new System.EventHandler(this.scriptChecker_Tick);
+            //this.scriptChecker.Tick += new System.EventHandler(this.scriptChecker_Tick);
 
             // 
             // Messagetabtimer
