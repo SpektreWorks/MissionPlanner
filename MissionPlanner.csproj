@@ -607,6 +607,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\GuidedTracking.resx">
       <DependentUpon>GuidedTracking.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ThemeEditor.resx">
       <DependentUpon>ThemeEditor.cs</DependentUpon>
     </EmbeddedResource>
