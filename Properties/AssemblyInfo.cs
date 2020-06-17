@@ -30,4 +30,3 @@ using System.Runtime.InteropServices;
 //
 [assembly: AssemblyVersion("1.3.*")]
 [assembly: AssemblyFileVersion("1.3.70.1SW")]
->>>>>>> 6c6b83dc... Assembly: point release
