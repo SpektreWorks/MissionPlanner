@@ -1,4 +1,4 @@
-﻿using GMap.NET.MapProviders;
+using GMap.NET.MapProviders;
 using MissionPlanner.GCSViews;
 using MissionPlanner.Utilities; // GE xml alt reader
 using System;
@@ -66,7 +66,7 @@ namespace MissionPlanner
 
             Form frm = Common.LoadingBox("Loading", "using alt data");
 
-            //gelocs = getGEAltPath(planlocs);
+            gelocs = getGEAltPath(planlocs);
 
             srtmlocs = getSRTMAltPath(planlocs);
 
@@ -188,10 +188,10 @@ namespace MissionPlanner
                     disttotal += subdist;
 
                     // srtm alts
-                    list3.Add(disttotal, Convert.ToInt32(newpoint.Alt * CurrentState.multiplieralt));
+                    list3.Add(disttotal * CurrentState.multiplierdist, Convert.ToInt32(newpoint.Alt * CurrentState.multiplieralt));
 
                     // terrain alt
-                    list4terrain.Add(disttotal, Convert.ToInt32(newpoint.Alt * CurrentState.multiplierdist + alt) - homealt);
+                    list4terrain.Add(disttotal * CurrentState.multiplierdist, Convert.ToInt32((newpoint.Alt + alt) * CurrentState.multiplieralt));
 
                     lastpnt = newpoint;
                 }
@@ -279,9 +279,9 @@ namespace MissionPlanner
             GraphPane myPane = zgc.GraphPane;
 
             // Set the titles and axis labels
-            myPane.Title.Text = "Elevation Profile";
+            myPane.Title.Text = "Elevation above ground";
             myPane.XAxis.Title.Text = "Distance (" + CurrentState.DistanceUnit + ")";
-            myPane.YAxis.Title.Text = "Elevation (ft)";
+            myPane.YAxis.Title.Text = "Elevation (" + CurrentState.AltUnit + ")";
 
             LineItem myCurve;
 
