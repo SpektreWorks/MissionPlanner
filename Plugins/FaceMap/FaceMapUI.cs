@@ -1285,7 +1285,7 @@ namespace MissionPlanner
                     int wpend = wpsplit * (splitno + 1);
 
                     // If planning in absolute mode.
-                    if ((FlightPlanner.altmode)plugin.Host.MainForm.FlightPlanner.CMB_altmode.SelectedValue == FlightPlanner.altmode.Absolute)
+                    if ((FlightPlanner.altmode)plugin.Host.MainForm.FlightPlanner.CMB_altmode.SelectedValue == FlightPlanner.altmode.MSL)
                     {
                         // TODO - Restore me!
 
@@ -1306,7 +1306,7 @@ namespace MissionPlanner
                        otherwise stay at the entry altitude. */
 
                     // If planning in absolute mode.
-                    if ((FlightPlanner.altmode)plugin.Host.MainForm.FlightPlanner.CMB_altmode.SelectedValue == FlightPlanner.altmode.Absolute)
+                    if ((FlightPlanner.altmode)plugin.Host.MainForm.FlightPlanner.CMB_altmode.SelectedValue == FlightPlanner.altmode.MSL)
                     {
                         if (plugin.Host.cs.HomeAlt < grid[wpstart].Alt) entryAltitude += grid[wpstart].Alt;
                         else entryAltitude += plugin.Host.cs.HomeAlt;
