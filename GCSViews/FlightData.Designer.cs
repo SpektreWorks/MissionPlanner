@@ -54,7 +54,7 @@
             this.CMB_setwp = new System.Windows.Forms.ComboBox();
             this.BUT_setwp = new MissionPlanner.Controls.MyButton();
             this.CMB_modes = new System.Windows.Forms.ComboBox();
-            this.BUT_AGL_MSL = new MissionPlanner.Controls.MyButton();
+            //this.BUT_AGL_MSL = new MissionPlanner.Controls.MyButton();
             this.BUT_setmode = new MissionPlanner.Controls.MyButton();
             this.BUT_clear_track = new MissionPlanner.Controls.MyButton();
             this.CMB_action = new System.Windows.Forms.ComboBox();
@@ -604,7 +604,7 @@
             this.tabActions.Controls.Add(this.CMB_setwp);
             this.tabActions.Controls.Add(this.BUT_setwp);
             this.tabActions.Controls.Add(this.CMB_modes);
-            this.tabActions.Controls.Add(this.BUT_AGL_MSL);
+            //this.tabActions.Controls.Add(this.BUT_AGL_MSL);
             this.tabActions.Controls.Add(this.BUT_setmode);
             this.tabActions.Controls.Add(this.BUT_clear_track);
             this.tabActions.Controls.Add(this.CMB_action);
@@ -727,13 +727,13 @@
             // 
             // BUT_AGL_MSL
             // 
-            this.BUT_AGL_MSL.ColorMouseDown = System.Drawing.Color.Empty;
-            this.BUT_AGL_MSL.ColorMouseOver = System.Drawing.Color.Empty;
-            this.BUT_AGL_MSL.ColorNotEnabled = System.Drawing.Color.Empty;
-            resources.ApplyResources(this.BUT_AGL_MSL, "BUT_AGL_MSL");
-            this.BUT_AGL_MSL.Name = "BUT_AGL_MSL";
-            this.BUT_AGL_MSL.UseVisualStyleBackColor = true;
-            this.BUT_AGL_MSL.Click += new System.EventHandler(this.BUT_AGL_MSL_Click);
+            //this.BUT_AGL_MSL.ColorMouseDown = System.Drawing.Color.Empty;
+            //this.BUT_AGL_MSL.ColorMouseOver = System.Drawing.Color.Empty;
+            //this.BUT_AGL_MSL.ColorNotEnabled = System.Drawing.Color.Empty;
+            //resources.ApplyResources(this.BUT_AGL_MSL, "BUT_AGL_MSL");
+            //this.BUT_AGL_MSL.Name = "BUT_AGL_MSL";
+            //this.BUT_AGL_MSL.UseVisualStyleBackColor = true;
+            //this.BUT_AGL_MSL.Click += new System.EventHandler(this.BUT_AGL_MSL_Click);
             // 
             // BUT_setmode
             // 
@@ -2231,7 +2231,7 @@
         private Controls.MyButton BUT_RAWSensor;
         private Controls.MyButton BUTactiondo;
         private System.Windows.Forms.ComboBox CMB_action;
-        private Controls.MyButton BUT_AGL_MSL;
+        //private Controls.MyButton BUT_AGL_MSL;
         private System.Windows.Forms.TrackBar tracklog;
         private Controls.MyButton BUT_playlog;
         private Controls.MyButton BUT_loadtelem;

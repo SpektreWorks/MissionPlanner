@@ -1216,24 +1216,24 @@ namespace MissionPlanner.GCSViews
             }
         }
 
-        private void BUT_AGL_MSL_Click(object sender, EventArgs e)
-        {
-            if (MainV2.comPort.MAV.cs.altoffsethome != 0)
-            {
-                BUT_AGL_MSL.BGGradTop = Color.FromArgb(148, 193, 31);
-                BUT_AGL_MSL.BGGradBot = Color.FromArgb(205, 226, 150);
-                BUT_AGL_MSL.Text = "Change to MSL";
-                MainV2.comPort.MAV.cs.altoffsethome = 0;
-            }
-            else
-            {
-                BUT_AGL_MSL.BGGradTop = Color.DodgerBlue;
-                BUT_AGL_MSL.BGGradBot = Color.DodgerBlue;
-                BUT_AGL_MSL.Text = "Change to AGL";
-                MainV2.comPort.MAV.cs.altoffsethome =
-                    (float)(-MainV2.comPort.MAV.cs.HomeAlt / CurrentState.multiplieralt);
-            }
-        }
+        //private void BUT_AGL_MSL_Click(object sender, EventArgs e)
+        //{
+        //    if (MainV2.comPort.MAV.cs.altoffsethome != 0)
+        //    {
+        //        BUT_AGL_MSL.BGGradTop = Color.FromArgb(148, 193, 31);
+        //        BUT_AGL_MSL.BGGradBot = Color.FromArgb(205, 226, 150);
+        //        BUT_AGL_MSL.Text = "Change to MSL";
+        //        MainV2.comPort.MAV.cs.altoffsethome = 0;
+        //    }
+        //    else
+        //    {
+        //        BUT_AGL_MSL.BGGradTop = Color.DodgerBlue;
+        //        BUT_AGL_MSL.BGGradBot = Color.DodgerBlue;
+        //        BUT_AGL_MSL.Text = "Change to AGL";
+        //        MainV2.comPort.MAV.cs.altoffsethome =
+        //            (float)(-MainV2.comPort.MAV.cs.HomeAlt / CurrentState.multiplieralt);
+        //    }
+        //}
 
         private void BUT_Homealt_Click(object sender, EventArgs e)
         {
