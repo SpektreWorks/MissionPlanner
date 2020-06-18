@@ -3030,6 +3030,15 @@ namespace MissionPlanner.GCSViews
             temp.ShowDialog();
         }
 
+        public void BUT_ElevationProfile_Click(object sender, EventArgs e)
+        {
+            writeKML();
+            double homealt = MainV2.comPort.MAV.cs.HomeAlt;
+            Form temp = new ElevationProfile(pointlist, homealt);
+            ThemeManager.ApplyThemeTo(temp);
+            temp.ShowDialog();
+        }
+
         public void enterUTMCoordToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string easting = "578994";
