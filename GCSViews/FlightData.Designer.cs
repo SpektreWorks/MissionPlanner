@@ -241,6 +241,7 @@
             // 
             this.hud1.airspeed = 0F;
             this.hud1.alt = 0F;
+            this.hud1.altasl = 0F;
             this.hud1.altunit = null;
             this.hud1.AOA = 0F;
             this.hud1.BackColor = System.Drawing.Color.Black;
@@ -254,6 +255,7 @@
             this.hud1.current = 0F;
             this.hud1.DataBindings.Add(new System.Windows.Forms.Binding("airspeed", this.bindingSourceHud, "airspeed", true));
             this.hud1.DataBindings.Add(new System.Windows.Forms.Binding("alt", this.bindingSourceHud, "alt", true));
+            this.hud1.DataBindings.Add(new System.Windows.Forms.Binding("altasl", this.bindingSourceHud, "altasl", true));
             this.hud1.DataBindings.Add(new System.Windows.Forms.Binding("batterylevel", this.bindingSourceHud, "battery_voltage", true));
             this.hud1.DataBindings.Add(new System.Windows.Forms.Binding("batteryremaining", this.bindingSourceHud, "battery_remaining", true));
             this.hud1.DataBindings.Add(new System.Windows.Forms.Binding("connected", this.bindingSourceHud, "connected", true));

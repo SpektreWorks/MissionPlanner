@@ -161,6 +161,7 @@ namespace MissionPlanner.Controls
         private float _heading = 0;
         private float _targetheading = 0;
         private float _alt = 0;
+        private float _altasl = 0;
         private float _targetalt = 0;
         private float _groundspeed = 0;
         private float _airspeed = 0;
@@ -291,6 +292,20 @@ namespace MissionPlanner.Controls
                 if (_alt != value)
                 {
                     _alt = value;
+                    this.Invalidate();
+                }
+            }
+        }
+
+        [System.ComponentModel.Browsable(true), System.ComponentModel.Category("Values")]
+        public float altasl
+        {
+            get { return _altasl; }
+            set
+            {
+                if (_altasl != value)
+                {
+                    _altasl = value;
                     this.Invalidate();
                 }
             }
@@ -2296,7 +2311,7 @@ namespace MissionPlanner.Controls
                     int viewrange = 26;
 
                     float space = (scrollbg.Height) / (float) viewrange;
-                    long start = ((int) _alt - viewrange / 2);
+                    long start = ((int) _altasl - viewrange / 2);
 
                     if (start > _targetalt)
                     {
@@ -2307,7 +2322,7 @@ namespace MissionPlanner.Controls
                         this._greenPen.Color = Color.FromArgb(255, this._greenPen.Color);
                     }
 
-                    if ((_alt + viewrange / 2) < _targetalt)
+                    if ((_altasl + viewrange / 2) < _targetalt)
                     {
                         this._greenPen.Color = Color.FromArgb(128, this._greenPen.Color);
                         this._greenPen.Width = 6;
@@ -2318,7 +2333,7 @@ namespace MissionPlanner.Controls
 
                     bool ground = false;
 
-                    for (long a = start; a <= (_alt + viewrange / 2); a += 1)
+                    for (long a = start; a <= (_altasl + viewrange / 2); a += 1)
                     {
                         if (a == Math.Round(_targetalt) && _targetalt != 0)
                         {
@@ -2423,7 +2438,7 @@ namespace MissionPlanner.Controls
                     graphicsObject.ResetTransform();
                     graphicsObject.TranslateTransform(0, this.Height / 2);
 
-                    drawstring(((int) _alt).ToString("0 ") + altunit, font, 10, (SolidBrush) Brushes.AliceBlue,
+                    drawstring(((int) _altasl).ToString("0 ") + altunit, font, 10, (SolidBrush) Brushes.AliceBlue,
                         scrollbg.Left + 10, -9);
                     graphicsObject.ResetTransform();
 
