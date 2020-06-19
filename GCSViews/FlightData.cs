@@ -2277,14 +2277,19 @@ namespace MissionPlanner.GCSViews
                     modifyandSetSpeed.Enabled = true;
                 }
 
-                try
-                {
-                    modifyandSetSpeed.Value = (decimal)((float)MainV2.comPort.MAV.param["TRIM_ARSPD_CM"] / 100.0 * 1.94384); // 1.94384 = m/s to kts
-                }
-                catch
-                {
-                    modifyandSetSpeed.Enabled = false;
-                }
+                //Reason why below is commented out:
+                //This code will reload the contents of TRIM_ARSPD_CM into the modifyandSetSpeed button every time the FlightData screen
+                //is reloaded. Since the button doesn't change TRIM_ARSPD_CM (it just sends a DO_CHANGE_SPEED command), we prefer to
+                //have the button just retain whatever the last value typed into it was.
+                //
+                //try
+                //{
+                //    modifyandSetSpeed.Value = (decimal)((float)MainV2.comPort.MAV.param["TRIM_ARSPD_CM"] / 100.0 * CurrentState.multiplierspeed);
+                //}
+                //catch
+                //{
+                //    modifyandSetSpeed.Enabled = false;
+                //}
             } // plane without airspeed
             else if (MainV2.comPort.MAV.param.ContainsKey("TRIM_THROTTLE") &&
                      MainV2.comPort.MAV.param.ContainsKey("ARSPD_USE")
@@ -3657,7 +3662,7 @@ namespace MissionPlanner.GCSViews
             try
             {
                 await MainV2.comPort.doCommandAsync(MainV2.comPort.MAV.sysid, MainV2.comPort.MAV.compid,
-                    MAVLink.MAV_CMD.DO_CHANGE_SPEED, 0, (float) modifyandSetSpeed.Value, 0, 0, 0, 0, 0).ConfigureAwait(true);
+                    MAVLink.MAV_CMD.DO_CHANGE_SPEED, 0, Convert.ToSingle(modifyandSetSpeed.Value) / CurrentState.multiplierspeed, 0, 0, 0, 0, 0).ConfigureAwait(true);
             }
             catch
             {
