@@ -129,7 +129,6 @@ namespace MissionPlanner.GCSViews
         public GMapPolygon wppolygon;
         private GMapMarker CurrentMidLine;
 
-
         public void Init()
         {
             instance = this;
@@ -2875,7 +2874,14 @@ namespace MissionPlanner.GCSViews
                 temp.lat = (double.Parse(Commands.Rows[a].Cells[Lat.Index].Value.ToString()));
                 temp.lng = (double.Parse(Commands.Rows[a].Cells[Lon.Index].Value.ToString()));
 
-                temp.p2 = (float)(double.Parse(Commands.Rows[a].Cells[Param2.Index].Value.ToString()));
+                if (Commands.Rows[a].Cells[Command.Index].Value.ToString().Contains("DO_CHANGE_SPEED"))
+                {
+                    temp.p2 = (float)(double.Parse(Commands.Rows[a].Cells[Param2.Index].Value.ToString())) / CurrentState.multiplierspeed;
+                }
+                else
+                {
+                    temp.p2 = (float)(double.Parse(Commands.Rows[a].Cells[Param2.Index].Value.ToString()));
+                }
                 temp.p3 = (float)(double.Parse(Commands.Rows[a].Cells[Param3.Index].Value.ToString()));
                 temp.p4 = (float)(double.Parse(Commands.Rows[a].Cells[Param4.Index].Value.ToString()));
 
@@ -4867,7 +4873,14 @@ namespace MissionPlanner.GCSViews
                 cell = Commands.Rows[i].Cells[Param1.Index] as DataGridViewTextBoxCell;
                 cell.Value = temp.p1;
                 cell = Commands.Rows[i].Cells[Param2.Index] as DataGridViewTextBoxCell;
-                cell.Value = temp.p2;
+                if (temp.id == (ushort)MAVLink.MAV_CMD.DO_CHANGE_SPEED)
+                {
+                    cell.Value = temp.p2 * CurrentState.multiplierspeed;
+                }
+                else
+                {
+                    cell.Value = temp.p2;
+                }
                 cell = Commands.Rows[i].Cells[Param3.Index] as DataGridViewTextBoxCell;
                 cell.Value = temp.p3;
                 cell = Commands.Rows[i].Cells[Param4.Index] as DataGridViewTextBoxCell;
@@ -6156,8 +6169,6 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
             {
                 cmds.Add(item);
             }
-
-            cmds.Add("UNKNOWN");
 
             Command.DataSource = cmds;
 

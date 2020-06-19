@@ -54,7 +54,6 @@
             this.CMB_setwp = new System.Windows.Forms.ComboBox();
             this.BUT_setwp = new MissionPlanner.Controls.MyButton();
             this.CMB_modes = new System.Windows.Forms.ComboBox();
-            //this.BUT_AGL_MSL = new MissionPlanner.Controls.MyButton();
             this.BUT_setmode = new MissionPlanner.Controls.MyButton();
             this.BUT_clear_track = new MissionPlanner.Controls.MyButton();
             this.CMB_action = new System.Windows.Forms.ComboBox();
@@ -604,7 +603,6 @@
             this.tabActions.Controls.Add(this.CMB_setwp);
             this.tabActions.Controls.Add(this.BUT_setwp);
             this.tabActions.Controls.Add(this.CMB_modes);
-            //this.tabActions.Controls.Add(this.BUT_AGL_MSL);
             this.tabActions.Controls.Add(this.BUT_setmode);
             this.tabActions.Controls.Add(this.BUT_clear_track);
             this.tabActions.Controls.Add(this.CMB_action);
@@ -724,16 +722,6 @@
             resources.ApplyResources(this.CMB_modes, "CMB_modes");
             this.CMB_modes.Name = "CMB_modes";
             this.CMB_modes.Click += new System.EventHandler(this.CMB_modes_Click);
-            // 
-            // BUT_AGL_MSL
-            // 
-            //this.BUT_AGL_MSL.ColorMouseDown = System.Drawing.Color.Empty;
-            //this.BUT_AGL_MSL.ColorMouseOver = System.Drawing.Color.Empty;
-            //this.BUT_AGL_MSL.ColorNotEnabled = System.Drawing.Color.Empty;
-            //resources.ApplyResources(this.BUT_AGL_MSL, "BUT_AGL_MSL");
-            //this.BUT_AGL_MSL.Name = "BUT_AGL_MSL";
-            //this.BUT_AGL_MSL.UseVisualStyleBackColor = true;
-            //this.BUT_AGL_MSL.Click += new System.EventHandler(this.BUT_AGL_MSL_Click);
             // 
             // BUT_setmode
             // 
@@ -1964,7 +1952,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 360D;
+            this.windDir1.Direction = 180D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
