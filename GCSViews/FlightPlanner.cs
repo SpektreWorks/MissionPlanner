@@ -608,15 +608,6 @@ namespace MissionPlanner.GCSViews
         /// <param name="e"></param>
         public void BUT_write_Click(object sender, EventArgs e)
         {
-            if ((altmode)CMB_altmode.SelectedValue == altmode.MSL)
-            {
-                if ((int)DialogResult.No ==
-                    CustomMessageBox.Show("Absolute Alt is selected are you sure?", "Alt Mode", MessageBoxButtons.YesNo))
-                {
-                    CMB_altmode.SelectedValue = (int)altmode.AGL;
-                }
-            }
-
             // check home
             Locationwp home = new Locationwp();
             try
