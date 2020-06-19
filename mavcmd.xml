@@ -269,7 +269,7 @@
   <!-- -->
   <APM>
     <WAYPOINT>
-      <P1>Delay</P1>
+      <P1></P1>
       <P2></P2>
       <P3></P3>
       <P4></P4>
@@ -277,105 +277,105 @@
       <Y>Long</Y>
       <Z>Alt</Z>
     </WAYPOINT>
-	<LOITER_UNLIM>
-		<P1></P1>
-		<P2></P2>
-		<P3></P3>
-		<P4></P4>
-		<X>Lat</X>
-		<Y>Long</Y>
-		<Z>Alt</Z>
-	</LOITER_UNLIM>
-	<LOITER_TIME>
-		<P1>Time s</P1>
-		<P2></P2>
-		<P3></P3>
-		<P4></P4>
-		<X>Lat</X>
-		<Y>Long</Y>
-		<Z>Alt</Z>
-	</LOITER_TIME>
-	<LOITER_TO_ALT>
-		<P1></P1>
-		<P2>Radius</P2>
-		<P3></P3>
-		<P4>1=Exit Tangent</P4>
-		<X>Lat</X>
-		<Y>Long</Y>
-		<Z>Alt</Z>
-	</LOITER_TO_ALT>
-	<VTOL_TAKEOFF>
-		<P1></P1>
-		<P2></P2>
-		<P3></P3>
-		<P4></P4>
-		<X></X>
-		<Y></Y>
-		<Z>Alt</Z>
-	</VTOL_TAKEOFF>
-	<VTOL_LAND>
-		<P1></P1>
-		<P2></P2>
-		<P3></P3>
-		<P4></P4>
-		<X>Lat</X>
-		<Y>Long</Y>
-		<Z>Alt</Z>
-	</VTOL_LAND>
-	<DO_VTOL_TRANSITION>
-		<P1>mode (3=mc/4=plane)</P1>
-		<P2></P2>
-		<P3></P3>
-		<P4></P4>
-		<X></X>
-		<Y></Y>
-		<Z></Z>
-	</DO_VTOL_TRANSITION>
-	<DO_LAND_START>
-		<P1></P1>
-		<P2></P2>
-		<P3></P3>
-		<P4></P4>
-		<X>Lat</X>
-		<Y>Long</Y>
-		<Z></Z>
-	</DO_LAND_START>
-	<DO_JUMP>
-		<P1>WP #</P1>
-		<P2>Repeat#</P2>
-		<P3></P3>
-		<P4></P4>
-		<X></X>
-		<Y></Y>
-		<Z></Z>
-	</DO_JUMP>
-	<DO_CHANGE_SPEED>
-		<P1>Type (0=as 1=gs)</P1>
-		<P2>Speed (kts)</P2>
-		<P3>Throttle(%)</P3>
-		<P4></P4>
-		<X></X>
-		<Y></Y>
-		<Z></Z>
-	</DO_CHANGE_SPEED>
-	<DO_SET_SERVO>
-		<P1>Ser No</P1>
-		<P2>PWM</P2>
-		<P3></P3>
-		<P4></P4>
-		<X></X>
-		<Y></Y>
-		<Z></Z>
-	</DO_SET_SERVO>
-	<DO_SET_CAM_TRIGG_DIST>
-		<P1>Dist (m)</P1>
-		<P2></P2>
-		<P3></P3>
-		<P4></P4>
-		<X></X>
-		<Y></Y>
-		<Z></Z>
-	</DO_SET_CAM_TRIGG_DIST>
+    <LOITER_UNLIM>
+    	<P1></P1>
+    	<P2></P2>
+    	<P3></P3>
+    	<P4></P4>
+    	<X>Lat</X>
+    	<Y>Long</Y>
+    	<Z>Alt</Z>
+    </LOITER_UNLIM>
+    <LOITER_TIME>
+    	<P1>Time s</P1>
+    	<P2></P2>
+    	<P3></P3>
+    	<P4></P4>
+    	<X>Lat</X>
+    	<Y>Long</Y>
+    	<Z>Alt</Z>
+    </LOITER_TIME>
+    <LOITER_TO_ALT>
+    	<P1></P1>
+    	<P2></P2>
+    	<P3></P3>
+    	<P4>1=Exit Tangent</P4>
+    	<X>Lat</X>
+    	<Y>Long</Y>
+    	<Z>Alt</Z>
+    </LOITER_TO_ALT>
+    <VTOL_TAKEOFF>
+    	<P1></P1>
+    	<P2></P2>
+    	<P3></P3>
+    	<P4></P4>
+    	<X></X>
+    	<Y></Y>
+    	<Z>Alt</Z>
+    </VTOL_TAKEOFF>
+    <VTOL_LAND>
+    	<P1></P1>
+    	<P2></P2>
+    	<P3></P3>
+    	<P4></P4>
+    	<X>Lat</X>
+    	<Y>Long</Y>
+    	<Z>Alt</Z>
+    </VTOL_LAND>
+    <DO_VTOL_TRANSITION>
+    	<P1>mode (3=VTOL/4=FW)</P1>
+    	<P2></P2>
+    	<P3></P3>
+    	<P4></P4>
+    	<X></X>
+    	<Y></Y>
+    	<Z></Z>
+    </DO_VTOL_TRANSITION>
+    <DO_LAND_START>
+    	<P1></P1>
+    	<P2></P2>
+    	<P3></P3>
+    	<P4></P4>
+    	<X>Lat</X>
+    	<Y>Long</Y>
+    	<Z></Z>
+    </DO_LAND_START>
+    <DO_JUMP>
+    	<P1>WP #</P1>
+    	<P2>Repeat#</P2>
+    	<P3></P3>
+    	<P4></P4>
+    	<X></X>
+    	<Y></Y>
+    	<Z></Z>
+    </DO_JUMP>
+    <DO_CHANGE_SPEED>
+    	<P1>Type (0=as 1=gs)</P1>
+    	<P2>Speed (kts)</P2>
+    	<P3>Throttle(%)</P3>
+    	<P4></P4>
+    	<X></X>
+    	<Y></Y>
+    	<Z></Z>
+    </DO_CHANGE_SPEED>
+    <DO_SET_SERVO>
+    	<P1>Ser No</P1>
+    	<P2>PWM</P2>
+    	<P3></P3>
+    	<P4></P4>
+    	<X></X>
+    	<Y></Y>
+    	<Z></Z>
+    </DO_SET_SERVO>
+    <DO_SET_CAM_TRIGG_DIST>
+    	<P1>Dist (m)</P1>
+    	<P2></P2>
+    	<P3></P3>
+    	<P4></P4>
+    	<X></X>
+    	<Y></Y>
+    	<Z></Z>
+    </DO_SET_CAM_TRIGG_DIST>
   </APM>
   <!-- -->
   <APRover>
