@@ -3268,7 +3268,7 @@ namespace MissionPlanner.GCSViews
         private string FormatDistance(double distInKM, bool toMeterOrFeet)
         {
             string sunits = Settings.Instance["distunits"];
-            distances units = distances.Meters;
+            distances units = distances.Feet;
 
             if (sunits != null)
                 try

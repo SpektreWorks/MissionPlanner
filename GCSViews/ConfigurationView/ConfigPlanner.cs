@@ -65,9 +65,11 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // Hardcode units for Cobalt version
             CMB_distunits.Text = "Feet";
             CMB_speedunits.Text = "knots";
+            CMB_altunits.Text = "Feet";
 
             CMB_distunits.Enabled = false;
             CMB_speedunits.Enabled = false;
+            CMB_altunits.Enabled = false;
 
             CMB_altunits.DataSource = Enum.GetNames(typeof(altitudes));
 
