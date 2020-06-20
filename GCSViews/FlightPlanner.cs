@@ -2399,10 +2399,10 @@ namespace MissionPlanner.GCSViews
                     switch (key)
                     {
                         case "TXT_WPRad":
-                            TXT_WPRad.Text = "" + Settings.Instance[key];
+                            TXT_WPRad.Text = "" + Math.Round(Settings.Instance[key].ConvertToDouble()).ToString();
                             break;
                         case "TXT_loiterrad":
-                            TXT_loiterrad.Text = "" + Settings.Instance[key];
+                            TXT_loiterrad.Text = "" + Math.Round(Settings.Instance[key].ConvertToDouble()).ToString();
                             break;
                         case "TXT_DefaultAlt":
                             TXT_DefaultAlt.Text = "" + Settings.Instance[key];
@@ -5765,7 +5765,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
 
                 if (param.ContainsKey("WP_RADIUS"))
                 {
-                    TXT_WPRad.Text = (((double)param["WP_RADIUS"] * CurrentState.multiplierdist)).ToString();
+                    TXT_WPRad.Text = (Math.Round(((double)param["WP_RADIUS"] * CurrentState.multiplierdist))).ToString();
                 }
                 if (param.ContainsKey("WPNAV_RADIUS"))
                 {
@@ -5784,7 +5784,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                     }
                     else if (param.ContainsKey("WP_LOITER_RAD"))
                     {
-                        TXT_loiterrad.Text = (((double)param["WP_LOITER_RAD"] * CurrentState.multiplierdist)).ToString();
+                        TXT_loiterrad.Text = (Math.Round(((double)param["WP_LOITER_RAD"] * CurrentState.multiplierdist))).ToString();
                         TXT_loiterrad.Enabled = true;
                     }
 
