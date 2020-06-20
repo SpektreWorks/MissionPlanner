@@ -752,7 +752,7 @@
     <value>0</value>
   </data>
   <data name="CMB_altmode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>300, -10</value>
+    <value>697, 9</value>
   </data>
   <data name="CMB_altmode.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 21</value>
@@ -1155,7 +1155,7 @@
     <value>50</value>
   </data>
   <data name="Commands.Size" type="System.Drawing.Size, System.Drawing">
-    <value>611, 126</value>
+    <value>968, 126</value>
   </data>
   <data name="Commands.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -1164,7 +1164,7 @@
     <value>Commands</value>
   </data>
   <data name="&gt;&gt;Commands.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.MyDataGridView, MissionPlanner, Version=1.3.7474.29339, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.MyDataGridView, MissionPlanner, Version=1.3.7475.33331, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;Commands.Parent" xml:space="preserve">
     <value>panelWaypoints</value>
@@ -1236,13 +1236,13 @@
     <value>Bottom</value>
   </data>
   <data name="panelWaypoints.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 234</value>
+    <value>0, 322</value>
   </data>
   <data name="panelWaypoints.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>21, 21</value>
   </data>
   <data name="panelWaypoints.Size" type="System.Drawing.Size, System.Drawing">
-    <value>618, 166</value>
+    <value>975, 166</value>
   </data>
   <data name="panelWaypoints.TabIndex" type="System.Int32, mscorlib">
     <value>49</value>
@@ -1269,10 +1269,10 @@
     <value>NoControl</value>
   </data>
   <data name="splitter1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 231</value>
+    <value>0, 319</value>
   </data>
   <data name="splitter1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>618, 3</value>
+    <value>975, 3</value>
   </data>
   <data name="splitter1.TabIndex" type="System.Int32, mscorlib">
     <value>50</value>
@@ -1527,7 +1527,7 @@
     <value>0, 0</value>
   </data>
   <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 400</value>
+    <value>131, 488</value>
   </data>
   <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>51</value>
@@ -1548,13 +1548,13 @@
     <value>Right</value>
   </data>
   <data name="panelAction.Location" type="System.Drawing.Point, System.Drawing">
-    <value>618, 0</value>
+    <value>975, 0</value>
   </data>
   <data name="panelAction.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>21, 21</value>
   </data>
   <data name="panelAction.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 400</value>
+    <value>131, 488</value>
   </data>
   <data name="panelAction.TabIndex" type="System.Int32, mscorlib">
     <value>50</value>
@@ -1581,10 +1581,10 @@
     <value>NoControl</value>
   </data>
   <data name="splitter2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>615, 0</value>
+    <value>972, 0</value>
   </data>
   <data name="splitter2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>3, 231</value>
+    <value>3, 319</value>
   </data>
   <data name="splitter2.TabIndex" type="System.Int32, mscorlib">
     <value>52</value>
@@ -1600,192 +1600,6 @@
   </data>
   <data name="&gt;&gt;splitter2.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="lbl_homedist.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbl_homedist.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbl_homedist.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 31</value>
-  </data>
-  <data name="lbl_homedist.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 13</value>
-  </data>
-  <data name="lbl_homedist.TabIndex" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="lbl_homedist.Text" xml:space="preserve">
-    <value>Home</value>
-  </data>
-  <data name="&gt;&gt;lbl_homedist.Name" xml:space="preserve">
-    <value>lbl_homedist</value>
-  </data>
-  <data name="&gt;&gt;lbl_homedist.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbl_homedist.Parent" xml:space="preserve">
-    <value>panelMap</value>
-  </data>
-  <data name="&gt;&gt;lbl_homedist.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="lbl_prevdist.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbl_prevdist.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbl_prevdist.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 18</value>
-  </data>
-  <data name="lbl_prevdist.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 13</value>
-  </data>
-  <data name="lbl_prevdist.TabIndex" type="System.Int32, mscorlib">
-    <value>49</value>
-  </data>
-  <data name="lbl_prevdist.Text" xml:space="preserve">
-    <value>Prev</value>
-  </data>
-  <data name="&gt;&gt;lbl_prevdist.Name" xml:space="preserve">
-    <value>lbl_prevdist</value>
-  </data>
-  <data name="&gt;&gt;lbl_prevdist.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbl_prevdist.Parent" xml:space="preserve">
-    <value>panelMap</value>
-  </data>
-  <data name="&gt;&gt;lbl_prevdist.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="trackBar1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="trackBar1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="trackBar1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>581, 21</value>
-  </data>
-  <data name="trackBar1.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
-    <value>Vertical</value>
-  </data>
-  <data name="trackBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 207</value>
-  </data>
-  <data name="trackBar1.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
-  </data>
-  <data name="&gt;&gt;trackBar1.Name" xml:space="preserve">
-    <value>trackBar1</value>
-  </data>
-  <data name="&gt;&gt;trackBar1.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.MyTrackBar, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;trackBar1.Parent" xml:space="preserve">
-    <value>panelMap</value>
-  </data>
-  <data name="&gt;&gt;trackBar1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="label11.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="label11.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>584, 5</value>
-  </data>
-  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>34, 13</value>
-  </data>
-  <data name="label11.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
-  </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>Zoom</value>
-  </data>
-  <data name="&gt;&gt;label11.Name" xml:space="preserve">
-    <value>label11</value>
-  </data>
-  <data name="&gt;&gt;label11.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
-    <value>panelMap</value>
-  </data>
-  <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="lbl_distance.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbl_distance.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbl_distance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 5</value>
-  </data>
-  <data name="lbl_distance.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 13</value>
-  </data>
-  <data name="lbl_distance.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
-  </data>
-  <data name="lbl_distance.Text" xml:space="preserve">
-    <value>Distance</value>
-  </data>
-  <data name="&gt;&gt;lbl_distance.Name" xml:space="preserve">
-    <value>lbl_distance</value>
-  </data>
-  <data name="&gt;&gt;lbl_distance.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbl_distance.Parent" xml:space="preserve">
-    <value>panelMap</value>
-  </data>
-  <data name="&gt;&gt;lbl_distance.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="cmb_missiontype.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="cmb_missiontype.Items" xml:space="preserve">
-    <value>Mission</value>
-  </data>
-  <data name="cmb_missiontype.Items1" xml:space="preserve">
-    <value>Fence</value>
-  </data>
-  <data name="cmb_missiontype.Items2" xml:space="preserve">
-    <value>Rally</value>
-  </data>
-  <data name="cmb_missiontype.Location" type="System.Drawing.Point, System.Drawing">
-    <value>441, 3</value>
-  </data>
-  <data name="cmb_missiontype.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 21</value>
-  </data>
-  <data name="cmb_missiontype.TabIndex" type="System.Int32, mscorlib">
-    <value>51</value>
-  </data>
-  <data name="&gt;&gt;cmb_missiontype.Name" xml:space="preserve">
-    <value>cmb_missiontype</value>
-  </data>
-  <data name="&gt;&gt;cmb_missiontype.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmb_missiontype.Parent" xml:space="preserve">
-    <value>panelMap</value>
-  </data>
-  <data name="&gt;&gt;cmb_missiontype.ZOrder" xml:space="preserve">
-    <value>5</value>
   </data>
   <data name="MainMap.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -2217,7 +2031,7 @@
     <value>0, 0</value>
   </data>
   <data name="MainMap.Size" type="System.Drawing.Size, System.Drawing">
-    <value>578, 227</value>
+    <value>935, 315</value>
   </data>
   <data name="MainMap.TabIndex" type="System.Int32, mscorlib">
     <value>45</value>
@@ -2232,6 +2046,192 @@
     <value>panelMap</value>
   </data>
   <data name="&gt;&gt;MainMap.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lbl_homedist.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbl_homedist.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbl_homedist.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 31</value>
+  </data>
+  <data name="lbl_homedist.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 13</value>
+  </data>
+  <data name="lbl_homedist.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="lbl_homedist.Text" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="&gt;&gt;lbl_homedist.Name" xml:space="preserve">
+    <value>lbl_homedist</value>
+  </data>
+  <data name="&gt;&gt;lbl_homedist.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbl_homedist.Parent" xml:space="preserve">
+    <value>panelMap</value>
+  </data>
+  <data name="&gt;&gt;lbl_homedist.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lbl_prevdist.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbl_prevdist.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbl_prevdist.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 18</value>
+  </data>
+  <data name="lbl_prevdist.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 13</value>
+  </data>
+  <data name="lbl_prevdist.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="lbl_prevdist.Text" xml:space="preserve">
+    <value>Prev</value>
+  </data>
+  <data name="&gt;&gt;lbl_prevdist.Name" xml:space="preserve">
+    <value>lbl_prevdist</value>
+  </data>
+  <data name="&gt;&gt;lbl_prevdist.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbl_prevdist.Parent" xml:space="preserve">
+    <value>panelMap</value>
+  </data>
+  <data name="&gt;&gt;lbl_prevdist.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="trackBar1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Right</value>
+  </data>
+  <data name="trackBar1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="trackBar1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>938, 21</value>
+  </data>
+  <data name="trackBar1.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
+  <data name="trackBar1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 295</value>
+  </data>
+  <data name="trackBar1.TabIndex" type="System.Int32, mscorlib">
+    <value>46</value>
+  </data>
+  <data name="&gt;&gt;trackBar1.Name" xml:space="preserve">
+    <value>trackBar1</value>
+  </data>
+  <data name="&gt;&gt;trackBar1.Type" xml:space="preserve">
+    <value>MissionPlanner.Controls.MyTrackBar, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;trackBar1.Parent" xml:space="preserve">
+    <value>panelMap</value>
+  </data>
+  <data name="&gt;&gt;trackBar1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label11.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="label11.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>941, 5</value>
+  </data>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 13</value>
+  </data>
+  <data name="label11.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Zoom</value>
+  </data>
+  <data name="&gt;&gt;label11.Name" xml:space="preserve">
+    <value>label11</value>
+  </data>
+  <data name="&gt;&gt;label11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
+    <value>panelMap</value>
+  </data>
+  <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="lbl_distance.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbl_distance.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbl_distance.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 5</value>
+  </data>
+  <data name="lbl_distance.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 13</value>
+  </data>
+  <data name="lbl_distance.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
+  </data>
+  <data name="lbl_distance.Text" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="&gt;&gt;lbl_distance.Name" xml:space="preserve">
+    <value>lbl_distance</value>
+  </data>
+  <data name="&gt;&gt;lbl_distance.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbl_distance.Parent" xml:space="preserve">
+    <value>panelMap</value>
+  </data>
+  <data name="&gt;&gt;lbl_distance.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="cmb_missiontype.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="cmb_missiontype.Items" xml:space="preserve">
+    <value>Mission</value>
+  </data>
+  <data name="cmb_missiontype.Items1" xml:space="preserve">
+    <value>Fence</value>
+  </data>
+  <data name="cmb_missiontype.Items2" xml:space="preserve">
+    <value>Rally</value>
+  </data>
+  <data name="cmb_missiontype.Location" type="System.Drawing.Point, System.Drawing">
+    <value>798, 3</value>
+  </data>
+  <data name="cmb_missiontype.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 21</value>
+  </data>
+  <data name="cmb_missiontype.TabIndex" type="System.Int32, mscorlib">
+    <value>51</value>
+  </data>
+  <data name="&gt;&gt;cmb_missiontype.Name" xml:space="preserve">
+    <value>cmb_missiontype</value>
+  </data>
+  <data name="&gt;&gt;cmb_missiontype.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmb_missiontype.Parent" xml:space="preserve">
+    <value>panelMap</value>
+  </data>
+  <data name="&gt;&gt;cmb_missiontype.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
   <data name="panelMap.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -2244,7 +2244,7 @@
     <value>27, 27</value>
   </data>
   <data name="panelMap.Size" type="System.Drawing.Size, System.Drawing">
-    <value>618, 234</value>
+    <value>975, 322</value>
   </data>
   <data name="panelMap.TabIndex" type="System.Int32, mscorlib">
     <value>51</value>
@@ -2319,7 +2319,7 @@
     <value>0, 0</value>
   </data>
   <data name="panelBASE.Size" type="System.Drawing.Size, System.Drawing">
-    <value>749, 400</value>
+    <value>1106, 488</value>
   </data>
   <data name="panelBASE.TabIndex" type="System.Int32, mscorlib">
     <value>52</value>
@@ -2409,7 +2409,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>749, 400</value>
+    <value>1106, 488</value>
   </data>
   <data name="&gt;&gt;dataGridViewImageColumn1.Name" xml:space="preserve">
     <value>dataGridViewImageColumn1</value>
