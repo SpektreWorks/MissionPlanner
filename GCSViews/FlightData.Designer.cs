@@ -623,21 +623,25 @@
             // 
             resources.ApplyResources(this.BUT_PLD, "BUT_PLD");
             this.BUT_PLD.Name = "BUT_PLD";
+            this.BUT_PLD.Click += new System.EventHandler(this.BUT_PLD_Click);
             // 
             // BUT_EngineStart
             // 
             resources.ApplyResources(this.BUT_EngineStart, "BUT_EngineStart");
             this.BUT_EngineStart.Name = "BUT_EngineStart";
+            this.BUT_EngineStart.Click += new System.EventHandler(this.BUT_EngineStart_Click);
             // 
             // BUT_NavLights
             // 
             resources.ApplyResources(this.BUT_NavLights, "BUT_NavLights");
             this.BUT_NavLights.Name = "BUT_NavLights";
+            this.BUT_NavLights.Click += new System.EventHandler(this.BUT_NavLights_Click);
             // 
             // BUT_IRLights
             // 
             resources.ApplyResources(this.BUT_IRLights, "BUT_IRLights");
             this.BUT_IRLights.Name = "BUT_IRLights";
+            this.BUT_IRLights.Click += new System.EventHandler(this.BUT_IRLights_Click);
             // 
             // BUT_abortland
             // 
@@ -1952,7 +1956,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 360D;
+            this.windDir1.Direction = 180D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
