@@ -345,15 +345,15 @@ namespace MissionPlanner.GCSViews
                 {
                     //Vehicle has been armed
                     BUT_ARM.Text = "Disarm";
-                    BUT_ARM.BGGradTop = Color.Orange;
-                    BUT_ARM.BGGradBot = Color.Orange;
+                    BUT_ARM.BGGradTop = Color.FromArgb(148, 193, 31);
+                    BUT_ARM.BGGradBot = Color.FromArgb(205, 226, 150);
                 }
                 else
                 {
                     //Vehicel has been disarmed
                     BUT_ARM.Text = "Arm";
-                    BUT_ARM.BGGradTop = Color.FromArgb(148, 193, 31);
-                    BUT_ARM.BGGradBot = Color.FromArgb(205, 226, 150);
+                    BUT_ARM.BGGradTop = Color.Orange;
+                    BUT_ARM.BGGradBot = Color.Orange;
                 }
 
                 //NavLights are on if CH13OUT is 1333 or 1999
@@ -1044,15 +1044,15 @@ namespace MissionPlanner.GCSViews
                     {
                         //Vehicle has been armed
                         BUT_ARM.Text = "Disarm";
-                        BUT_ARM.BGGradTop = Color.Orange;
-                        BUT_ARM.BGGradBot = Color.Orange;
+                        BUT_ARM.BGGradTop = Color.FromArgb(148, 193, 31);
+                        BUT_ARM.BGGradBot = Color.FromArgb(205, 226, 150);
                     }
                     else
                     {
                         //Vehicel has been disarmed
                         BUT_ARM.Text = "Arm";
-                        BUT_ARM.BGGradTop = Color.FromArgb(148, 193, 31);
-                        BUT_ARM.BGGradBot = Color.FromArgb(205, 226, 150);
+                        BUT_ARM.BGGradTop = Color.Orange;
+                        BUT_ARM.BGGradBot = Color.Orange;
                     }
                 }
             }
