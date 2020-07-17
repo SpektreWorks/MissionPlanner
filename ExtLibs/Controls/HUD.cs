@@ -1842,8 +1842,11 @@ namespace MissionPlanner.Controls
                                         pitchoffset + a * every5deg);
                                 }
 
+                                //drawstring(a.ToString(), font, fontsize + 2, _whiteBrush,
+                                //    this.Width / 2 - lengthlong - 30 - halfwidth - (int) (fontoffset * 1.7),
+                                //    pitchoffset + a * every5deg - 8 - fontoffset);
                                 drawstring(a.ToString(), font, fontsize + 2, _whiteBrush,
-                                    this.Width / 2 - lengthlong - 30 - halfwidth - (int) (fontoffset * 1.7),
+                                    this.Width / 2 - lengthlong - 170,
                                     pitchoffset + a * every5deg - 8 - fontoffset);
                             }
                             else
@@ -2265,23 +2268,23 @@ namespace MissionPlanner.Controls
 
                     if (_lowairspeed)
                     {
-                        drawstring(HUDT.AS + _airspeed.ToString("0.0") + speedunit, font, fontsize,
+                        drawstring(HUDT.AS + _airspeed.ToString("0.0"), font, fontsize,
                             (SolidBrush) Brushes.Red, 1, scrollbg.Bottom + 5);
                     }
                     else
                     {
-                        drawstring(HUDT.AS + _airspeed.ToString("0.0") + speedunit, font, fontsize, _whiteBrush, 1,
+                        drawstring(HUDT.AS + _airspeed.ToString("0.0"), font, fontsize, _whiteBrush, 1,
                             scrollbg.Bottom + 5);
                     }
 
                     if (_lowgroundspeed)
                     {
-                        drawstring(HUDT.GS + _groundspeed.ToString("0.0") + speedunit, font, fontsize,
+                        drawstring(HUDT.GS + _groundspeed.ToString("0.0"), font, fontsize,
                             (SolidBrush) Brushes.Red, 1, scrollbg.Bottom + fontsize + 2 + 10);
                     }
                     else
                     {
-                        drawstring(HUDT.GS + _groundspeed.ToString("0.0") + speedunit, font, fontsize, _whiteBrush,
+                        drawstring(HUDT.GS + _groundspeed.ToString("0.0"), font, fontsize, _whiteBrush,
                             1, scrollbg.Bottom + fontsize + 2 + 10);
                     }
                 }
