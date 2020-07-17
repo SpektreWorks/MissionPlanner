@@ -3506,7 +3506,7 @@ namespace MissionPlanner.GCSViews
                             if (MainV2.comPort.MAV.cs.mode.ToLower() == "guided" && MainV2.comPort.MAV.GuidedMode.x != 0 && !guidedTracking1.chk_followcamera.Checked)
                             {
                                 addpolygonmarker("Guided Mode", MainV2.comPort.MAV.GuidedMode.y / 1e7,
-                                    MainV2.comPort.MAV.GuidedMode.x / 1e7, (int) MainV2.comPort.MAV.GuidedMode.z,
+                                    MainV2.comPort.MAV.GuidedMode.x / 1e7, (int) (MainV2.comPort.MAV.GuidedMode.z * CurrentState.multiplieralt),
                                     Color.Blue,
                                     routes, (int)(Settings.Instance.GetFloat("TXT_WPRad") / CurrentState.multiplierdist));
                             }

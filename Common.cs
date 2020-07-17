@@ -30,8 +30,7 @@ namespace MissionPlanner
                     MAV.cs.groundcourse, MAV.cs.nav_bearing, MAV.cs.target_bearing,
                     MAV.cs.radius * CurrentState.multiplierdist)
                 {
-                    ToolTipText = MAV.cs.alt.ToString("0") + CurrentState.AltUnit + " | " + (int)MAV.cs.airspeed +
-                                  CurrentState.SpeedUnit + " | id:" + (int)MAV.sysid + " | Sats:" + (int)MAV.cs.satcount + " | HDOP:" + (float)MAV.cs.gpshdop + " | Volts: " + (float)MAV.cs.battery_voltage, 
+                    ToolTipText = MAV.cs.alt.ToString("0") + CurrentState.AltUnit + " | " + (int)MAV.cs.airspeed + CurrentState.SpeedUnit + " | id:" + (int)MAV.sysid, 
                     ToolTipMode = MarkerTooltipMode.Always 
                 });
             }
