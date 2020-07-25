@@ -253,6 +253,7 @@ namespace MissionPlanner.GCSViews
                 modelist.Add("QSTABILIZE");
                 modelist.Add("QHOVER");
                 modelist.Add("QLAND");
+                modelist.Add("QLOITER");
                 modelist.Add("RTL");
             }
 
