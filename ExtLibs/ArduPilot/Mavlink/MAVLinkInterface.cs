@@ -3755,7 +3755,7 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
 
                 log.InfoFormat("setNewWPAlt {0}:{1} lat {2} lng {3} alt {4}", sysid, compid, gotohere.lat, gotohere.lng, gotohere.alt);
 
-                MAV_MISSION_RESULT ans = setWP(sysid, compid, gotohere, 0, MAV_FRAME.GLOBAL_RELATIVE_ALT, (byte)3);
+                MAV_MISSION_RESULT ans = setWP(sysid, compid, gotohere, 0, MAV_FRAME.GLOBAL, (byte)3);
 
                 if (ans != MAV_MISSION_RESULT.MAV_MISSION_ACCEPTED)
                 {
