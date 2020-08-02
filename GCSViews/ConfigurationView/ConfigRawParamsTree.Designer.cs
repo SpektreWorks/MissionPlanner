@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigRawParamsTree));
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.label1 = new System.Windows.Forms.Label();
-            this.CMB_paramfiles = new System.Windows.Forms.ComboBox();
             this.Params = new BrightIdeasSoftware.DataTreeListView();
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -44,8 +43,6 @@
             this.BUT_writePIDS = new MissionPlanner.Controls.MyButton();
             this.BUT_save = new MissionPlanner.Controls.MyButton();
             this.BUT_load = new MissionPlanner.Controls.MyButton();
-            this.BUT_paramfileload = new MissionPlanner.Controls.MyButton();
-            this.BUT_reset_params = new MissionPlanner.Controls.MyButton();
             this.txt_search = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.BUT_commitToFlash = new MissionPlanner.Controls.MyButton();
@@ -63,12 +60,6 @@
             // 
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            // 
-            // CMB_paramfiles
-            // 
-            resources.ApplyResources(this.CMB_paramfiles, "CMB_paramfiles");
-            this.CMB_paramfiles.FormattingEnabled = true;
-            this.CMB_paramfiles.Name = "CMB_paramfiles";
             // 
             // Params
             // 
@@ -176,20 +167,6 @@
             this.BUT_load.UseVisualStyleBackColor = true;
             this.BUT_load.Click += new System.EventHandler(this.BUT_load_Click);
             // 
-            // BUT_paramfileload
-            // 
-            resources.ApplyResources(this.BUT_paramfileload, "BUT_paramfileload");
-            this.BUT_paramfileload.Name = "BUT_paramfileload";
-            this.BUT_paramfileload.UseVisualStyleBackColor = true;
-            this.BUT_paramfileload.Click += new System.EventHandler(this.BUT_paramfileload_Click);
-            // 
-            // BUT_reset_params
-            // 
-            resources.ApplyResources(this.BUT_reset_params, "BUT_reset_params");
-            this.BUT_reset_params.Name = "BUT_reset_params";
-            this.BUT_reset_params.UseVisualStyleBackColor = true;
-            this.BUT_reset_params.Click += new System.EventHandler(this.BUT_reset_params_Click);
-            // 
             // txt_search
             // 
             resources.ApplyResources(this.txt_search, "txt_search");
@@ -222,9 +199,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txt_search);
             this.Controls.Add(this.Params);
-            this.Controls.Add(this.BUT_reset_params);
-            this.Controls.Add(this.BUT_paramfileload);
-            this.Controls.Add(this.CMB_paramfiles);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BUT_compare);
             this.Controls.Add(this.BUT_rerequestparams);
@@ -248,9 +222,6 @@
         private Controls.MyButton BUT_load;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label label1;
-        private Controls.MyButton BUT_paramfileload;
-        private System.Windows.Forms.ComboBox CMB_paramfiles;
-        private Controls.MyButton BUT_reset_params;
         private BrightIdeasSoftware.DataTreeListView Params;
         private BrightIdeasSoftware.OLVColumn olvColumn1;
         private BrightIdeasSoftware.OLVColumn olvColumn2;

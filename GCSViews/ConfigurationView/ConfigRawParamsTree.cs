@@ -46,7 +46,6 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             BUT_writePIDS.Enabled = MainV2.comPort.BaseStream.IsOpen;
             BUT_rerequestparams.Enabled = MainV2.comPort.BaseStream.IsOpen;
-            BUT_reset_params.Enabled = MainV2.comPort.BaseStream.IsOpen;
             BUT_commitToFlash.Visible = MainV2.DisplayConfiguration.displayParamCommitButton;
 
             SuspendLayout();
@@ -65,9 +64,6 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             ResumeLayout();
 
             Common.MessageShowAgain(Strings.RawParamWarning, Strings.RawParamWarningi);
-
-            CMB_paramfiles.Enabled = false;
-            BUT_paramfileload.Enabled = false;
 
             ThreadPool.QueueUserWorkItem(updatedefaultlist);
 
@@ -472,14 +468,6 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
                 if (this.IsDisposed)
                     return;
-
-                BeginInvoke((Action)delegate
-               {
-                   CMB_paramfiles.DataSource = paramfiles.ToArray();
-                   CMB_paramfiles.DisplayMember = "name";
-                   CMB_paramfiles.Enabled = true;
-                   BUT_paramfileload.Enabled = true;
-               });
             }
             catch (Exception ex)
             {
@@ -534,38 +522,6 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
         }
 
-        private void BUT_paramfileload_Click(object sender, EventArgs e)
-        {
-            var filepath = Settings.GetUserDataDirectory() + CMB_paramfiles.Text;
-
-            try
-            {
-                var data = GitHubContent.GetFileContent("ardupilot", "ardupilot",
-                    ((GitHubContent.FileInfo)CMB_paramfiles.SelectedValue).path);
-
-                File.WriteAllBytes(filepath, data);
-
-                var param2 = ParamFile.loadParamFile(filepath);
-
-                var paramCompareForm = new ParamCompare(null, MainV2.comPort.MAV.param, param2);
-
-                paramCompareForm.dtlvcallback += paramCompareForm_dtlvcallback;
-
-                ThemeManager.ApplyThemeTo(paramCompareForm);
-                if (paramCompareForm.ShowDialog() == DialogResult.OK)
-                {
-                    CustomMessageBox.Show("Loaded parameters, please make sure you write them!", "Loaded");
-                }
-
-                // no activate the user needs to click write.
-                //this.Activate();
-            }
-            catch (Exception ex)
-            {
-                CustomMessageBox.Show("Failed to load file.\n" + ex);
-            }
-        }
-
         private void paramCompareForm_dtlvcallback(string param, float value)
         {
             foreach (data item in Params.Objects)
@@ -589,29 +545,6 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                         Params.Expand(item2);
                         break;
                     }
-                }
-            }
-        }
-
-        private void BUT_reset_params_Click(object sender, EventArgs e)
-        {
-            if (
-                CustomMessageBox.Show("Reset all parameters to default\nAre you sure!!", "Reset",
-                    MessageBoxButtons.YesNo) == (int)DialogResult.Yes)
-            {
-                try
-                {
-                    MainV2.comPort.setParam(new[] { "FORMAT_VERSION", "SYSID_SW_MREV" }, 0);
-                    Thread.Sleep(1000);
-                    MainV2.comPort.doReboot(false, true);
-                    MainV2.comPort.BaseStream.Close();
-
-                    CustomMessageBox.Show(
-                        "Your board is now rebooting, You will be required to reconnect to the autopilot.");
-                }
-                catch
-                {
-                    CustomMessageBox.Show(Strings.ErrorCommunicating, Strings.ERROR);
                 }
             }
         }

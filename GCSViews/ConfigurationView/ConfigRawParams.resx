@@ -148,7 +148,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BUT_compare.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>5</value>
   </data>
   <data name="BUT_rerequestparams.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -178,7 +178,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BUT_rerequestparams.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>6</value>
   </data>
   <data name="BUT_writePIDS.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -208,7 +208,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BUT_writePIDS.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>7</value>
   </data>
   <data name="BUT_save.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -241,7 +241,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BUT_save.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>8</value>
   </data>
   <data name="BUT_load.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -274,7 +274,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BUT_load.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>9</value>
   </data>
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -314,90 +314,6 @@ format with no scaling</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="BUT_paramfileload.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="BUT_paramfileload.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="BUT_paramfileload.Location" type="System.Drawing.Point, System.Drawing">
-    <value>631, 234</value>
-  </data>
-  <data name="BUT_paramfileload.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 21</value>
-  </data>
-  <data name="BUT_paramfileload.TabIndex" type="System.Int32, mscorlib">
-    <value>77</value>
-  </data>
-  <data name="BUT_paramfileload.Text" xml:space="preserve">
-    <value>Load Presaved</value>
-  </data>
-  <data name="&gt;&gt;BUT_paramfileload.Name" xml:space="preserve">
-    <value>BUT_paramfileload</value>
-  </data>
-  <data name="&gt;&gt;BUT_paramfileload.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.MyButton, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;BUT_paramfileload.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;BUT_paramfileload.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="CMB_paramfiles.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="CMB_paramfiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>630, 207</value>
-  </data>
-  <data name="CMB_paramfiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 21</value>
-  </data>
-  <data name="CMB_paramfiles.TabIndex" type="System.Int32, mscorlib">
-    <value>76</value>
-  </data>
-  <data name="&gt;&gt;CMB_paramfiles.Name" xml:space="preserve">
-    <value>CMB_paramfiles</value>
-  </data>
-  <data name="&gt;&gt;CMB_paramfiles.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CMB_paramfiles.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;CMB_paramfiles.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="BUT_reset_params.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="BUT_reset_params.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="BUT_reset_params.Location" type="System.Drawing.Point, System.Drawing">
-    <value>631, 261</value>
-  </data>
-  <data name="BUT_reset_params.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 21</value>
-  </data>
-  <data name="BUT_reset_params.TabIndex" type="System.Int32, mscorlib">
-    <value>78</value>
-  </data>
-  <data name="BUT_reset_params.Text" xml:space="preserve">
-    <value>Reset to Default</value>
-  </data>
-  <data name="&gt;&gt;BUT_reset_params.Name" xml:space="preserve">
-    <value>BUT_reset_params</value>
-  </data>
-  <data name="&gt;&gt;BUT_reset_params.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.MyButton, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;BUT_reset_params.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;BUT_reset_params.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="txt_search.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -605,13 +521,13 @@ format with no scaling</value>
     <value>Params</value>
   </data>
   <data name="&gt;&gt;Params.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.MyDataGridView, MissionPlanner, Version=1.3.7334.26597, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.MyDataGridView, MissionPlanner, Version=1.3.7519.25051, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;Params.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Params.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>10</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

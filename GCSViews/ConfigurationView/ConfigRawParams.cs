@@ -48,12 +48,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             BUT_writePIDS.Enabled = MainV2.comPort.BaseStream.IsOpen;
             BUT_rerequestparams.Enabled = MainV2.comPort.BaseStream.IsOpen;
-            BUT_reset_params.Enabled = MainV2.comPort.BaseStream.IsOpen;
             BUT_commitToFlash.Visible = MainV2.DisplayConfiguration.displayParamCommitButton;
-
-            CMB_paramfiles.Enabled = false;
-            BUT_paramfileload.Enabled = false;
-            ThreadPool.QueueUserWorkItem(updatedefaultlist);
 
             Params.Enabled = false;
 
@@ -562,29 +557,6 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 args.SortResult = fav1.CompareTo(fav2) * (Params.SortOrder == SortOrder.Ascending ? -1 : 1);
         }
 
-        private void updatedefaultlist(object crap)
-        {
-            try
-            {
-                if (paramfiles == null)
-                {
-                    paramfiles = GitHubContent.GetDirContent("ardupilot", "ardupilot", "/Tools/Frame_params/", ".param");
-                }
-
-                BeginInvoke((Action)delegate
-               {
-                   CMB_paramfiles.DataSource = paramfiles.ToArray();
-                   CMB_paramfiles.DisplayMember = "name";
-                   CMB_paramfiles.Enabled = true;
-                   BUT_paramfileload.Enabled = true;
-               });
-            }
-            catch (Exception ex)
-            {
-                log.Error(ex);
-            }
-        }
-
         void filterList(string searchfor)
         {
             DateTime start = DateTime.Now;
@@ -627,40 +599,6 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             Params.ResumeLayout();
 
             log.InfoFormat("Filter: {0}ms", (DateTime.Now - start).TotalMilliseconds);
-        }
-
-        private void BUT_paramfileload_Click(object sender, EventArgs e)
-        {
-            var filepath = Settings.GetUserDataDirectory() + CMB_paramfiles.Text;
-
-            try
-            {
-                var data = GitHubContent.GetFileContent("ardupilot", "ardupilot",
-                    ((GitHubContent.FileInfo)CMB_paramfiles.SelectedValue).path);
-
-                File.WriteAllBytes(filepath, data);
-
-                var param2 = ParamFile.loadParamFile(filepath);
-
-                Form paramCompareForm = new ParamCompare(Params, MainV2.comPort.MAV.param, param2);
-
-                ThemeManager.ApplyThemeTo(paramCompareForm);
-                if (paramCompareForm.ShowDialog() == DialogResult.OK)
-                {
-                    CustomMessageBox.Show("Loaded parameters, please make sure you write them!", "Loaded");
-                }
-
-                // no activate the user needs to click write.
-                //this.Activate();
-            }
-            catch (Exception ex)
-            {
-                CustomMessageBox.Show("Failed to load file.\n" + ex);
-            }
-        }
-
-        private void CMB_paramfiles_SelectedIndexChanged(object sender, EventArgs e)
-        {
         }
 
         private void BUT_reset_params_Click(object sender, EventArgs e)
