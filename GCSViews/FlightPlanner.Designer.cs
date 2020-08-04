@@ -78,6 +78,7 @@ namespace MissionPlanner.GCSViews
             this.coords1 = new MissionPlanner.Controls.Coords();
             this.lbl_status = new System.Windows.Forms.Label();
             this.panelWaypoints = new System.Windows.Forms.Panel();
+            this.but_mincommands = new MissionPlanner.Controls.MyButton();
             this.CMB_altmode = new System.Windows.Forms.ComboBox();
             this.CHK_splinedefault = new System.Windows.Forms.CheckBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -106,7 +107,6 @@ namespace MissionPlanner.GCSViews
             this.TagData = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BUT_Add = new MissionPlanner.Controls.MyButton();
             this.BUT_ElevationProfile = new MissionPlanner.Controls.MyButton();
-            this.but_mincommands = new MissionPlanner.Controls.MyButton();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panelAction = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -121,12 +121,6 @@ namespace MissionPlanner.GCSViews
             this.BUT_saveWPFile = new MissionPlanner.Controls.MyButton();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panelMap = new System.Windows.Forms.Panel();
-            this.lbl_homedist = new System.Windows.Forms.Label();
-            this.lbl_prevdist = new System.Windows.Forms.Label();
-            this.trackBar1 = new MissionPlanner.Controls.MyTrackBar();
-            this.label11 = new System.Windows.Forms.Label();
-            this.lbl_distance = new System.Windows.Forms.Label();
-            this.cmb_missiontype = new System.Windows.Forms.ComboBox();
             this.MainMap = new MissionPlanner.Controls.myGMAP();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteWPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -198,6 +192,12 @@ namespace MissionPlanner.GCSViews
             this.enterUTMCoordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.switchDockingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setHomeHereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lbl_homedist = new System.Windows.Forms.Label();
+            this.lbl_prevdist = new System.Windows.Forms.Label();
+            this.trackBar1 = new MissionPlanner.Controls.MyTrackBar();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lbl_distance = new System.Windows.Forms.Label();
+            this.cmb_missiontype = new System.Windows.Forms.ComboBox();
             this.addPolygonPointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearPolygonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.savePolygonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -227,8 +227,8 @@ namespace MissionPlanner.GCSViews
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelMap.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.panelBASE.SuspendLayout();
             this.contextMenuStripPoly.SuspendLayout();
             this.contextMenuStripZoom.SuspendLayout();
@@ -418,6 +418,13 @@ namespace MissionPlanner.GCSViews
             resources.ApplyResources(this.panelWaypoints, "panelWaypoints");
             this.panelWaypoints.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panelWaypoints.Name = "panelWaypoints";
+            // 
+            // but_mincommands
+            // 
+            resources.ApplyResources(this.but_mincommands, "but_mincommands");
+            this.but_mincommands.Name = "but_mincommands";
+            this.but_mincommands.UseVisualStyleBackColor = true;
+            this.but_mincommands.Click += new System.EventHandler(this.but_mincommands_Click);
             // 
             // CMB_altmode
             // 
@@ -646,13 +653,6 @@ namespace MissionPlanner.GCSViews
             this.BUT_ElevationProfile.UseVisualStyleBackColor = true;
             this.BUT_ElevationProfile.Click += new System.EventHandler(this.BUT_ElevationProfile_Click);
             // 
-            // but_mincommands
-            // 
-            resources.ApplyResources(this.but_mincommands, "but_mincommands");
-            this.but_mincommands.Name = "but_mincommands";
-            this.but_mincommands.UseVisualStyleBackColor = true;
-            this.but_mincommands.Click += new System.EventHandler(this.but_mincommands_Click);
-            // 
             // splitter1
             // 
             resources.ApplyResources(this.splitter1, "splitter1");
@@ -748,61 +748,17 @@ namespace MissionPlanner.GCSViews
             // 
             // panelMap
             // 
-            this.panelMap.Controls.Add(this.MainMap);
             this.panelMap.Controls.Add(this.lbl_homedist);
             this.panelMap.Controls.Add(this.lbl_prevdist);
             this.panelMap.Controls.Add(this.trackBar1);
             this.panelMap.Controls.Add(this.label11);
             this.panelMap.Controls.Add(this.lbl_distance);
             this.panelMap.Controls.Add(this.cmb_missiontype);
+            this.panelMap.Controls.Add(this.MainMap);
             resources.ApplyResources(this.panelMap, "panelMap");
             this.panelMap.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panelMap.Name = "panelMap";
             this.panelMap.Resize += new System.EventHandler(this.panelMap_Resize);
-            // 
-            // lbl_homedist
-            // 
-            resources.ApplyResources(this.lbl_homedist, "lbl_homedist");
-            this.lbl_homedist.Name = "lbl_homedist";
-            // 
-            // lbl_prevdist
-            // 
-            resources.ApplyResources(this.lbl_prevdist, "lbl_prevdist");
-            this.lbl_prevdist.Name = "lbl_prevdist";
-            // 
-            // trackBar1
-            // 
-            resources.ApplyResources(this.trackBar1, "trackBar1");
-            this.trackBar1.LargeChange = 0.005F;
-            this.trackBar1.Maximum = 24F;
-            this.trackBar1.Minimum = 1F;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.SmallChange = 0.001F;
-            this.trackBar1.TickFrequency = 1F;
-            this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
-            this.trackBar1.Value = 2F;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
-            // 
-            // label11
-            // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
-            // 
-            // lbl_distance
-            // 
-            resources.ApplyResources(this.lbl_distance, "lbl_distance");
-            this.lbl_distance.Name = "lbl_distance";
-            // 
-            // cmb_missiontype
-            // 
-            resources.ApplyResources(this.cmb_missiontype, "cmb_missiontype");
-            this.cmb_missiontype.FormattingEnabled = true;
-            this.cmb_missiontype.Items.AddRange(new object[] {
-            resources.GetString("cmb_missiontype.Items"),
-            resources.GetString("cmb_missiontype.Items1"),
-            resources.GetString("cmb_missiontype.Items2")});
-            this.cmb_missiontype.Name = "cmb_missiontype";
-            this.cmb_missiontype.SelectedIndexChanged += new System.EventHandler(this.Cmb_missiontype_SelectedIndexChanged);
             // 
             // MainMap
             // 
@@ -1324,6 +1280,50 @@ namespace MissionPlanner.GCSViews
             resources.ApplyResources(this.setHomeHereToolStripMenuItem, "setHomeHereToolStripMenuItem");
             this.setHomeHereToolStripMenuItem.Click += new System.EventHandler(this.setHomeHereToolStripMenuItem_Click);
             // 
+            // lbl_homedist
+            // 
+            resources.ApplyResources(this.lbl_homedist, "lbl_homedist");
+            this.lbl_homedist.Name = "lbl_homedist";
+            // 
+            // lbl_prevdist
+            // 
+            resources.ApplyResources(this.lbl_prevdist, "lbl_prevdist");
+            this.lbl_prevdist.Name = "lbl_prevdist";
+            // 
+            // trackBar1
+            // 
+            resources.ApplyResources(this.trackBar1, "trackBar1");
+            this.trackBar1.LargeChange = 0.005F;
+            this.trackBar1.Maximum = 24F;
+            this.trackBar1.Minimum = 1F;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.SmallChange = 0.001F;
+            this.trackBar1.TickFrequency = 1F;
+            this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
+            this.trackBar1.Value = 2F;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            // 
+            // lbl_distance
+            // 
+            resources.ApplyResources(this.lbl_distance, "lbl_distance");
+            this.lbl_distance.Name = "lbl_distance";
+            // 
+            // cmb_missiontype
+            // 
+            resources.ApplyResources(this.cmb_missiontype, "cmb_missiontype");
+            this.cmb_missiontype.FormattingEnabled = true;
+            this.cmb_missiontype.Items.AddRange(new object[] {
+            resources.GetString("cmb_missiontype.Items"),
+            resources.GetString("cmb_missiontype.Items1"),
+            resources.GetString("cmb_missiontype.Items2")});
+            this.cmb_missiontype.Name = "cmb_missiontype";
+            this.cmb_missiontype.SelectedIndexChanged += new System.EventHandler(this.Cmb_missiontype_SelectedIndexChanged);
+            // 
             // addPolygonPointToolStripMenuItem
             // 
             this.addPolygonPointToolStripMenuItem.Name = "addPolygonPointToolStripMenuItem";
@@ -1470,8 +1470,8 @@ namespace MissionPlanner.GCSViews
             this.panel2.PerformLayout();
             this.panelMap.ResumeLayout(false);
             this.panelMap.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.panelBASE.ResumeLayout(false);
             this.contextMenuStripPoly.ResumeLayout(false);
             this.contextMenuStripZoom.ResumeLayout(false);
