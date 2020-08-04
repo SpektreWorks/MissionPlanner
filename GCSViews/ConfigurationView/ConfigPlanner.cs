@@ -26,35 +26,18 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             InitializeComponent();
             CMB_Layout.Items.Add(DisplayNames.Basic);
             CMB_Layout.Items.Add(DisplayNames.Advanced);
-            CMB_Layout.Items.Add(DisplayNames.Cobalt);
             CMB_Layout.Enabled = false;
 
             txt_log_dir.TextChanged += OnLogDirTextChanged;
-
         }
-
 
         // Called every time that this control is made current in the backstage view
         public void Activate()
         {
             startup = true; // flag to ignore changes while we programatically populate controls
-            if (MainV2.DisplayConfiguration.displayName == DisplayNames.Advanced)
-            {
-                CMB_Layout.SelectedIndex = 1;
-            }
-            else if (MainV2.DisplayConfiguration.displayName == DisplayNames.Basic)
-            {
-                CMB_Layout.SelectedIndex = 0;
-            }
-            else if (MainV2.DisplayConfiguration.displayName == DisplayNames.Cobalt)
-            {
-                CMB_Layout.SelectedIndex = 2;
-            }
-            else
-            {
-                CMB_Layout.SelectedIndex = 0;
-            }
 
+            //Hard code Layout to "Advanced". No option for Basic layout.
+            CMB_Layout.SelectedIndex = 1;
 
             CMB_osdcolor.DataSource = Enum.GetNames(typeof(KnownColor));
 
@@ -62,7 +45,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             CMB_distunits.DataSource = Enum.GetNames(typeof(distances));
             CMB_speedunits.DataSource = Enum.GetNames(typeof(speeds));
 
-            // Hardcode units for Cobalt version
+            // Hardcode units for Spektreworks version
             CMB_distunits.Text = "Feet";
             CMB_speedunits.Text = "knots";
             CMB_altunits.Text = "Feet";
@@ -163,9 +146,11 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             SetCheckboxFromConfig("CHK_disttohomeflightdata", CHK_disttohomeflightdata);
 
             CHK_AutoParamCommit.Visible = MainV2.DisplayConfiguration.displayParamCommitButton;
-            CHK_beta.Visible = false; // Hide this for Cobalt Version
-            chk_norcreceiver.Visible = false; // Hide this for Cobalt Version
-            CHK_GDIPlus.Visible = false; // Hide this for Cobalt Version
+
+            // Hide these for Spektreworks Version
+            CHK_beta.Visible = false; 
+            chk_norcreceiver.Visible = false;
+            CHK_GDIPlus.Visible = false;
 
             //set hud color state
             var hudcolor = Settings.Instance["hudcolor"];
@@ -957,10 +942,6 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             else if ((DisplayNames)CMB_Layout.SelectedItem == DisplayNames.Basic)
             {
                 MainV2.DisplayConfiguration = MainV2.DisplayConfiguration.Basic();
-            }
-            else if ((DisplayNames)CMB_Layout.SelectedItem == DisplayNames.Cobalt)
-            {
-                MainV2.DisplayConfiguration = MainV2.DisplayConfiguration.Cobalt();
             }
             Settings.Instance["displayview"] = MainV2.DisplayConfiguration.ConvertToString();
         }
