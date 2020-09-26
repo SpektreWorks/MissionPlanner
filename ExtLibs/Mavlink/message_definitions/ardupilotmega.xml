@@ -1548,7 +1548,6 @@
      <field type="float"   name="cylinder_head_temperature" units="degC">cylinder_head_temperature</field>
      <field type="float"   name="ignition_timing" units="deg">Ignition timing (Crank Angle degrees)</field>
      <field type="float"   name="injection_time" units="ms">Injection time</field>
-     <extensions/>
      <field type="float"   name="exhaust_gas_temperature" units="degC">exhaust gas temperature</field>
      <field type="float"   name="throttle_out" units="%">output throttle</field>
      <field type="float"   name="pt_compensation">pressure/temperature compensation</field>
