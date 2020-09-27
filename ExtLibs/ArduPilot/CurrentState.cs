@@ -2631,18 +2631,18 @@ namespace MissionPlanner
                             //MAVLink.packets[(byte)MAVLink.MSG_NAMES.EFI_STATUS);
                     }
                         break;
-                    case (uint)MAVLink.MAVLINK_MSG_ID.WEATHER:
-                    {
-                            var weather = mavLinkMessage.ToStructure<MAVLink.mavlink_weather_t>();
-
-                            weather_windvel = weather.wind * multiplierspeed;
-                            weather_winddir = weather.wind_dir;
-                            weather_temperature = weather.temperature;
-                            weather_humidity = weather.relative_humidity;
-
-                            //MAVLink.packets[(byte)MAVLink.MSG_NAMES.WEATHER);
-                    }
-                        break;
+                    //case (uint)MAVLink.MAVLINK_MSG_ID.WEATHER:
+                    //{
+                    //        var weather = mavLinkMessage.ToStructure<MAVLink.mavlink_weather_t>();
+                    //
+                    //        weather_windvel = weather.wind * multiplierspeed;
+                    //        weather_winddir = weather.wind_dir;
+                    //        weather_temperature = weather.temperature;
+                    //        weather_humidity = weather.relative_humidity;
+                    //
+                    //        //MAVLink.packets[(byte)MAVLink.MSG_NAMES.WEATHER);
+                    //}
+                    //    break;
                     case (uint) MAVLink.MAVLINK_MSG_ID.RC_CHANNELS_RAW:
 
                     {
