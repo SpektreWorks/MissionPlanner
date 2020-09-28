@@ -5254,6 +5254,26 @@ namespace MissionPlanner.GCSViews
             }
         }
 
+        private void BUT_UnlockServos_Click(object sender, EventArgs e)
+        {
+            if (!MainV2.comPort.BaseStream.IsOpen)
+            {
+                CustomMessageBox.Show("Please Connect First");
+                return;
+            }
+            try
+            {
+                if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_MODE, 128, 0, 0, 0, 0, 0, 0))
+                {
+                    CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show(Strings.CommandFailed + ex.ToString(), Strings.ERROR);
+            }
+        }
+
         private void quickView2_PaintSurface(object sender, SkiaSharp.Views.Desktop.SKPaintSurfaceEventArgs e)
         {
 

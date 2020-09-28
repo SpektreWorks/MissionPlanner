@@ -44,6 +44,7 @@
             this.guidedTracking1 = new MissionPlanner.Controls.GuidedTracking();
             this.BUT_PLD = new MissionPlanner.Controls.MyButton();
             this.BUT_EngineStart = new MissionPlanner.Controls.MyButton();
+            this.BUT_UnlockServos = new MissionPlanner.Controls.MyButton();
             this.BUT_NavLights = new MissionPlanner.Controls.MyButton();
             this.BUT_IRLights = new MissionPlanner.Controls.MyButton();
             this.BUT_abortland = new MissionPlanner.Controls.MyButton();
@@ -593,6 +594,7 @@
             this.tabActions.Controls.Add(this.guidedTracking1);
             this.tabActions.Controls.Add(this.BUT_PLD);
             this.tabActions.Controls.Add(this.BUT_EngineStart);
+            this.tabActions.Controls.Add(this.BUT_UnlockServos);
             this.tabActions.Controls.Add(this.BUT_NavLights);
             this.tabActions.Controls.Add(this.BUT_IRLights);
             this.tabActions.Controls.Add(this.BUT_abortland);
@@ -630,6 +632,12 @@
             resources.ApplyResources(this.BUT_EngineStart, "BUT_EngineStart");
             this.BUT_EngineStart.Name = "BUT_EngineStart";
             this.BUT_EngineStart.Click += new System.EventHandler(this.BUT_EngineStart_Click);
+            // 
+            // BUT_UnlockServos
+            // 
+            resources.ApplyResources(this.BUT_UnlockServos, "BUT_UnlockServos");
+            this.BUT_UnlockServos.Name = "BUT_UnlockServos";
+            this.BUT_UnlockServos.Click += new System.EventHandler(this.BUT_UnlockServos_Click);
             // 
             // BUT_NavLights
             // 
@@ -1956,7 +1964,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 180D;
+            this.windDir1.Direction = 360D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2363,6 +2371,7 @@
         private Controls.MyButton BUT_NavLights;
         private Controls.MyButton BUT_IRLights;
         private Controls.MyButton BUT_EngineStart;
+        private Controls.MyButton BUT_UnlockServos;
         private Controls.QuickView QUICK_CHT;
         private Controls.QuickView QUICK_RPM;
         private Controls.QuickView QUICK_FuelUsed;
