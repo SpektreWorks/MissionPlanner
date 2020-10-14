@@ -1050,10 +1050,23 @@ namespace MissionPlanner.GCSViews
                     }
                     else
                     {
-                        //Vehicel has been disarmed
+                        //Vehicle has been disarmed
                         BUT_ARM.Text = "Arm";
                         BUT_ARM.BGGradTop = Color.Orange;
                         BUT_ARM.BGGradBot = Color.Orange;
+
+                        //Engage safety on disarm (this was added to prevent ESCs from rotating motors on power down)
+                        try
+                        {
+                            if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_MODE, 128, 1, 0, 0, 0, 0, 0))
+                            {
+                                CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            CustomMessageBox.Show(Strings.CommandFailed + ex.ToString(), Strings.ERROR);
+                        }
                     }
                 }
             }
