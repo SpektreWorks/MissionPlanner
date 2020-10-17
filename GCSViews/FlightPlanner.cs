@@ -383,7 +383,7 @@ namespace MissionPlanner.GCSViews
         public enum altmode
         {
             MSL = MAVLink.MAV_FRAME.GLOBAL,
-            AGL = MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT,
+            AHL = MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT,
             Terrain = MAVLink.MAV_FRAME.GLOBAL_TERRAIN_ALT
         }
 
@@ -1738,7 +1738,7 @@ namespace MissionPlanner.GCSViews
                 if ((int)DialogResult.No ==
                     CustomMessageBox.Show("Absolute Alt is selected are you sure?", "Alt Mode", MessageBoxButtons.YesNo))
                 {
-                    CMB_altmode.SelectedValue = (int)altmode.AGL;
+                    CMB_altmode.SelectedValue = (int)altmode.AHL;
                 }
             }
 

@@ -2231,7 +2231,6 @@
         private Controls.MyButton BUT_RAWSensor;
         private Controls.MyButton BUTactiondo;
         private System.Windows.Forms.ComboBox CMB_action;
-        //private Controls.MyButton BUT_AGL_MSL;
         private System.Windows.Forms.TrackBar tracklog;
         private Controls.MyButton BUT_playlog;
         private Controls.MyButton BUT_loadtelem;

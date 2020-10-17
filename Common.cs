@@ -26,11 +26,16 @@ namespace MissionPlanner
                 if ((MAV.sysid >= 11) && (MAV.sysid <= 16)) { which = MAV.sysid - 11; }  //1=black, 2=blue, 3=green,4=yellow,5=orange,6=red
                 if ((MAV.sysid >= 101) && (MAV.sysid <= 106)) { which = MAV.sysid - 101; }  //1=black, 2=blue, 3=green,4=yellow,5=orange,6=red
 
+                //Calculate true AGL (altitude above local terrain) by subtracting local terrain elevation from MSL altitude
+                var mslalt = MAV.cs.altasl;  //<-already in ft
+                var terrain = srtm.getAltitude(MAV.cs.lat, MAV.cs.lng).alt * CurrentState.multiplieralt;
+                var agl = mslalt - terrain;
+           
                 return (new GMapMarkerPlane(which, portlocation, MAV.cs.yaw,
                     MAV.cs.groundcourse, MAV.cs.nav_bearing, MAV.cs.target_bearing,
                     MAV.cs.radius * CurrentState.multiplierdist)
                 {
-                    ToolTipText = MAV.cs.alt.ToString("0") + CurrentState.AltUnit + " | " + (int)MAV.cs.airspeed + CurrentState.SpeedUnit + " | id:" + (int)MAV.sysid, 
+                    ToolTipText = agl.ToString("0") + CurrentState.AltUnit + " AGL" + " | " + (int)MAV.cs.airspeed + CurrentState.SpeedUnit + " | id:" + (int)MAV.sysid, 
                     ToolTipMode = MarkerTooltipMode.Always 
                 });
             }
