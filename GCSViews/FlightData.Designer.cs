@@ -1911,7 +1911,7 @@
             this.QUICK_FuelUsed.Name = "QUICK_FuelUsed";
             this.QUICK_FuelUsed.number = -9999D;
             this.QUICK_FuelUsed.numberColor = System.Drawing.SystemColors.Window;
-            this.QUICK_FuelUsed.numberformat = "0";
+            this.QUICK_FuelUsed.numberformat = "F2";  //Always prints two digits after the decimal
             // 
             // bindingSource1
             // 
@@ -1928,6 +1928,8 @@
             this.QUICK_CHT.number = -9999D;
             this.QUICK_CHT.numberColor = System.Drawing.SystemColors.Window;
             this.QUICK_CHT.numberformat = "0";
+            this.QUICK_CHT.alert_low = 75;
+            this.QUICK_CHT.alert_high = 160;
             // 
             // QUICK_RPM
             // 
@@ -1940,6 +1942,7 @@
             this.QUICK_RPM.number = -9999D;
             this.QUICK_RPM.numberColor = System.Drawing.SystemColors.Window;
             this.QUICK_RPM.numberformat = "0";
+            this.QUICK_RPM.alert_low = 1500;
             // 
             // but_disablejoystick
             // 

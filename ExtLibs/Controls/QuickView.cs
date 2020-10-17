@@ -20,6 +20,8 @@ namespace MissionPlanner.Controls
         }
 
         double _number = -9999;
+        public double alert_high = 0;
+        public double alert_low = 0;
 
         [System.ComponentModel.Browsable(true)]
         public double number { get { return _number; } set { if (_number == value) return; _number = value; Invalidate(); } }
@@ -85,7 +87,16 @@ namespace MissionPlanner.Controls
 
                 extent = e.MeasureString(numb, new Font(this.Font.FontFamily, (float)newSize, this.Font.Style)).ToSize();
 
-                e.DrawString(numb, new Font(this.Font.FontFamily, (float)newSize, this.Font.Style), new SolidBrush(this.numberColor), this.Width / 2 - extent.Width / 2, y + ((this.Height - y) / 2 - extent.Height / 2));
+                Color color = this.numberColor;
+                if ( (alert_low != 0) && (number < alert_low) )
+                {
+                    color = Color.Red;
+                }
+                else if ( (alert_high != 0) && (number > alert_high) )
+                {
+                    color = Color.Red;
+                }
+                e.DrawString(numb, new Font(this.Font.FontFamily, (float)newSize, this.Font.Style), new SolidBrush(color), this.Width / 2 - extent.Width / 2, y + ((this.Height - y) / 2 - extent.Height / 2));
             }
         }
 
