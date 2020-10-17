@@ -2389,7 +2389,7 @@ namespace MissionPlanner.GCSViews
             if (Settings.Instance.ContainsKey("guided_alt"))
                 alt = Settings.Instance["guided_alt"];
 
-            if (DialogResult.Cancel == InputBox.Show("Enter Alt", "Enter Guided Mode Alt", ref alt))
+            if (DialogResult.Cancel == InputBox.Show("Enter Alt", "Enter Guided Mode MSL Alt", ref alt))
                 return;
 
             Settings.Instance["guided_alt"] = alt;
