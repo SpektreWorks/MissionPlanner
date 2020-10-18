@@ -1928,8 +1928,11 @@
             this.QUICK_CHT.number = -9999D;
             this.QUICK_CHT.numberColor = System.Drawing.SystemColors.Window;
             this.QUICK_CHT.numberformat = "0";
-            this.QUICK_CHT.alert_low = 75;
-            this.QUICK_CHT.alert_high = 160;
+            this.QUICK_CHT.attention_low = 75;
+            this.QUICK_CHT.attention_high = 160;
+            this.QUICK_CHT.alert_low = 65;
+            this.QUICK_CHT.alert_high = 170;
+
             // 
             // QUICK_RPM
             // 
@@ -1941,8 +1944,9 @@
             this.QUICK_RPM.Name = "QUICK_RPM";
             this.QUICK_RPM.number = -9999D;
             this.QUICK_RPM.numberColor = System.Drawing.SystemColors.Window;
-            this.QUICK_RPM.numberformat = "0";
-            this.QUICK_RPM.alert_low = 1500;
+            this.QUICK_RPM.numberformat = "0"; 
+            this.QUICK_RPM.attention_low = 2000;
+            this.QUICK_RPM.alert_low = 1000;
             // 
             // but_disablejoystick
             // 
@@ -1967,7 +1971,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 360D;
+            this.windDir1.Direction = 180D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;

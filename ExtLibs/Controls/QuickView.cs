@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using SkiaSharp.Views.Desktop;
+using SkiaSharp;
 
 namespace MissionPlanner.Controls
 {
@@ -20,6 +21,8 @@ namespace MissionPlanner.Controls
         }
 
         double _number = -9999;
+        public double attention_high = 0;
+        public double attention_low = 0;
         public double alert_high = 0;
         public double alert_low = 0;
 
@@ -57,7 +60,37 @@ namespace MissionPlanner.Controls
         private void OnPaintSurface(object sender, SKPaintSurfaceEventArgs e2)
         {
             var e = new SkiaGraphics(e2.Surface);
-            e2.Surface.Canvas.Clear();
+
+            SKColor canvascolor = SKColors.Empty;
+            if (attention_low != 0)
+            {
+                if ((number <= attention_low) && (number > alert_low))
+                {
+                    canvascolor = SKColors.Orange;
+                }
+            }
+
+            if (alert_low != 0)
+            {
+                if (number <= alert_low)
+                    canvascolor = SKColors.Red;
+            }
+
+            if (attention_high != 0)
+            {
+                if ((number >= attention_high) && (number < alert_high))
+                {
+                    canvascolor = SKColors.Orange;
+                }
+            }
+
+            if (alert_high != 0)
+            {
+                if (number >= alert_high)
+                    canvascolor = SKColors.Red;
+            }
+
+            e2.Surface.Canvas.Clear(canvascolor);
             int y = 0;
             {
                 Size extent = e.MeasureString(desc, this.Font).ToSize();
@@ -87,16 +120,7 @@ namespace MissionPlanner.Controls
 
                 extent = e.MeasureString(numb, new Font(this.Font.FontFamily, (float)newSize, this.Font.Style)).ToSize();
 
-                Color color = this.numberColor;
-                if ( (alert_low != 0) && (number < alert_low) )
-                {
-                    color = Color.Red;
-                }
-                else if ( (alert_high != 0) && (number > alert_high) )
-                {
-                    color = Color.Red;
-                }
-                e.DrawString(numb, new Font(this.Font.FontFamily, (float)newSize, this.Font.Style), new SolidBrush(color), this.Width / 2 - extent.Width / 2, y + ((this.Height - y) / 2 - extent.Height / 2));
+                e.DrawString(numb, new Font(this.Font.FontFamily, (float)newSize, this.Font.Style), new SolidBrush(this.numberColor), this.Width / 2 - extent.Width / 2, y + ((this.Height - y) / 2 - extent.Height / 2));
             }
         }
 
