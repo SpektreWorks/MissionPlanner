@@ -141,6 +141,7 @@
             this.QUICK_Arming_Status = new MissionPlanner.Controls.QuickViewArmingStatus();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.QUICK_Safe_Status = new MissionPlanner.Controls.QuickViewSafeStatus();
+            this.QUICK_GPS_Status = new MissionPlanner.Controls.QuickViewGPSStatus();
             this.QUICK_FuelUsed = new MissionPlanner.Controls.QuickView();
             this.QUICK_CHT = new MissionPlanner.Controls.QuickView();
             this.QUICK_RPM = new MissionPlanner.Controls.QuickView();
@@ -1761,6 +1762,7 @@
             this.splitContainer1.Panel2.ContextMenuStrip = this.contextMenuStripMap;
             this.splitContainer1.Panel2.Controls.Add(this.QUICK_Arming_Status);
             this.splitContainer1.Panel2.Controls.Add(this.QUICK_Safe_Status);
+            this.splitContainer1.Panel2.Controls.Add(this.QUICK_GPS_Status);
             this.splitContainer1.Panel2.Controls.Add(this.QUICK_FuelUsed);
             this.splitContainer1.Panel2.Controls.Add(this.QUICK_CHT);
             this.splitContainer1.Panel2.Controls.Add(this.QUICK_RPM);
@@ -1943,6 +1945,14 @@
             this.QUICK_Safe_Status.Name = "QUICK_Safe_Status";
             this.QUICK_Safe_Status.safe_status = false;
             // 
+            // QUICK_GPS_Status
+            // 
+            this.QUICK_GPS_Status.BackColor = System.Drawing.SystemColors.Desktop;
+            this.QUICK_GPS_Status.DataBindings.Add(new System.Windows.Forms.Binding("gps_status", this.bindingSource1, "gpsstatusgood", true));
+            this.QUICK_GPS_Status.gps_status = false;
+            resources.ApplyResources(this.QUICK_GPS_Status, "QUICK_GPS_Status");
+            this.QUICK_GPS_Status.Name = "QUICK_GPS_Status";
+            // 
             // QUICK_FuelUsed
             // 
             this.QUICK_FuelUsed.alert_high = 0D;
@@ -2011,7 +2021,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 360D;
+            this.windDir1.Direction = 180D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2423,6 +2433,7 @@
         private Controls.QuickView QUICK_FuelUsed;
         private Controls.QuickViewArmingStatus QUICK_Arming_Status;
         private Controls.QuickViewSafeStatus QUICK_Safe_Status;
+        private Controls.QuickViewGPSStatus QUICK_GPS_Status;
         public Controls.GuidedTracking guidedTracking1;
         private Controls.MyButton BUT_georefimage;
         private Controls.QuickView quickView6;

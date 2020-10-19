@@ -1408,6 +1408,7 @@ namespace MissionPlanner
         public float brklevel { get; set; }
         public bool armed { get; set; }
         public bool safed { get; set; }
+        public bool gpsstatusgood { get; set; }
 
         // Sik radio
         [GroupText("Telem")]
@@ -2488,6 +2489,16 @@ namespace MissionPlanner
 
                         if (gps.satellites_visible != byte.MaxValue)
                             satcount = gps.satellites_visible;
+
+                        //For QuickViewGPSStatus control
+                        if ( (gpshdop < 2.0) && (satcount > 10) && (gpsstatus >= 3) )
+                        {
+                            gpsstatusgood = true;
+                        }
+                        else
+                        {
+                            gpsstatusgood = false;
+                        }
 
                         if (gps.vel != ushort.MaxValue)
                             groundspeed = gps.vel * 1.0e-2f;
