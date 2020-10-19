@@ -1407,6 +1407,7 @@ namespace MissionPlanner
         public float load { get; set; }
         public float brklevel { get; set; }
         public bool armed { get; set; }
+        public bool safed { get; set; }
 
         // Sik radio
         [GroupText("Telem")]
@@ -2174,6 +2175,15 @@ namespace MissionPlanner
                         sensors_enabled.Value = sysstatus.onboard_control_sensors_enabled;
                         sensors_health.Value = sysstatus.onboard_control_sensors_health;
                         sensors_present.Value = sysstatus.onboard_control_sensors_present;
+
+                        if ( (sensors_enabled.Value & 32768) == 32768)
+                        {
+                            safed = true;
+                        }
+                        else
+                        {
+                            safed = false;
+                        }
 
                         terrainactive = sensors_health.terrain && sensors_enabled.terrain && sensors_present.terrain;
 

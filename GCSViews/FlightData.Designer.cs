@@ -138,8 +138,10 @@
             this.takeOffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.onOffCameraOverlapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.altitudeAngelSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.QUICK_FuelUsed = new MissionPlanner.Controls.QuickView();
+            this.QUICK_Arming_Status = new MissionPlanner.Controls.QuickViewArmingStatus();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.QUICK_Safe_Status = new MissionPlanner.Controls.QuickViewSafeStatus();
+            this.QUICK_FuelUsed = new MissionPlanner.Controls.QuickView();
             this.QUICK_CHT = new MissionPlanner.Controls.QuickView();
             this.QUICK_RPM = new MissionPlanner.Controls.QuickView();
             this.but_disablejoystick = new MissionPlanner.Controls.MyButton();
@@ -500,6 +502,9 @@
             // 
             // quickView6
             // 
+            this.quickView6.alert_high = 0D;
+            this.quickView6.alert_low = 0D;
+            this.quickView6.attention_offset = 0D;
             this.quickView6.ContextMenuStrip = this.contextMenuStripQuickView;
             this.quickView6.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSourceQuickTab, "DistToHome", true));
             this.quickView6.desc = "DistToMAV";
@@ -529,6 +534,9 @@
             // 
             // quickView5
             // 
+            this.quickView5.alert_high = 0D;
+            this.quickView5.alert_low = 0D;
+            this.quickView5.attention_offset = 0D;
             this.quickView5.ContextMenuStrip = this.contextMenuStripQuickView;
             this.quickView5.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSourceQuickTab, "verticalspeed", true));
             this.quickView5.desc = "verticalspeed";
@@ -541,6 +549,9 @@
             // 
             // quickView4
             // 
+            this.quickView4.alert_high = 0D;
+            this.quickView4.alert_low = 0D;
+            this.quickView4.attention_offset = 0D;
             this.quickView4.ContextMenuStrip = this.contextMenuStripQuickView;
             this.quickView4.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSourceQuickTab, "yaw", true));
             this.quickView4.desc = "yaw";
@@ -553,6 +564,9 @@
             // 
             // quickView3
             // 
+            this.quickView3.alert_high = 0D;
+            this.quickView3.alert_low = 0D;
+            this.quickView3.attention_offset = 0D;
             this.quickView3.ContextMenuStrip = this.contextMenuStripQuickView;
             this.quickView3.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSourceQuickTab, "wp_dist", true));
             this.quickView3.desc = "wp_dist";
@@ -565,6 +579,9 @@
             // 
             // quickView2
             // 
+            this.quickView2.alert_high = 0D;
+            this.quickView2.alert_low = 0D;
+            this.quickView2.attention_offset = 0D;
             this.quickView2.ContextMenuStrip = this.contextMenuStripQuickView;
             this.quickView2.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSourceQuickTab, "groundspeed", true));
             this.quickView2.desc = "groundspeed";
@@ -578,6 +595,9 @@
             // 
             // quickView1
             // 
+            this.quickView1.alert_high = 0D;
+            this.quickView1.alert_low = 0D;
+            this.quickView1.attention_offset = 0D;
             this.quickView1.ContextMenuStrip = this.contextMenuStripQuickView;
             this.quickView1.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSourceQuickTab, "alt", true));
             this.quickView1.desc = "alt";
@@ -1739,6 +1759,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.ContextMenuStrip = this.contextMenuStripMap;
+            this.splitContainer1.Panel2.Controls.Add(this.QUICK_Arming_Status);
+            this.splitContainer1.Panel2.Controls.Add(this.QUICK_Safe_Status);
             this.splitContainer1.Panel2.Controls.Add(this.QUICK_FuelUsed);
             this.splitContainer1.Panel2.Controls.Add(this.QUICK_CHT);
             this.splitContainer1.Panel2.Controls.Add(this.QUICK_RPM);
@@ -1901,8 +1923,31 @@
             resources.ApplyResources(this.altitudeAngelSettingsToolStripMenuItem, "altitudeAngelSettingsToolStripMenuItem");
             this.altitudeAngelSettingsToolStripMenuItem.Click += new System.EventHandler(this.altitudeAngelSettingsToolStripMenuItem_Click);
             // 
+            // QUICK_Arming_Status
+            // 
+            this.QUICK_Arming_Status.arming_status = false;
+            this.QUICK_Arming_Status.BackColor = System.Drawing.SystemColors.Desktop;
+            this.QUICK_Arming_Status.DataBindings.Add(new System.Windows.Forms.Binding("arming_status", this.bindingSource1, "armed", true));
+            resources.ApplyResources(this.QUICK_Arming_Status, "QUICK_Arming_Status");
+            this.QUICK_Arming_Status.Name = "QUICK_Arming_Status";
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(MissionPlanner.CurrentState);
+            // 
+            // QUICK_Safe_Status
+            // 
+            this.QUICK_Safe_Status.BackColor = System.Drawing.SystemColors.Desktop;
+            this.QUICK_Safe_Status.DataBindings.Add(new System.Windows.Forms.Binding("safe_status", this.bindingSource1, "safed", true));
+            resources.ApplyResources(this.QUICK_Safe_Status, "QUICK_Safe_Status");
+            this.QUICK_Safe_Status.Name = "QUICK_Safe_Status";
+            this.QUICK_Safe_Status.safe_status = false;
+            // 
             // QUICK_FuelUsed
             // 
+            this.QUICK_FuelUsed.alert_high = 0D;
+            this.QUICK_FuelUsed.alert_low = 0D;
+            this.QUICK_FuelUsed.attention_offset = 0D;
             this.QUICK_FuelUsed.BackColor = System.Drawing.SystemColors.Desktop;
             this.QUICK_FuelUsed.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "fuelused", true));
             this.QUICK_FuelUsed.desc = "USED (LBS):";
@@ -1911,14 +1956,13 @@
             this.QUICK_FuelUsed.Name = "QUICK_FuelUsed";
             this.QUICK_FuelUsed.number = -9999D;
             this.QUICK_FuelUsed.numberColor = System.Drawing.SystemColors.Window;
-            this.QUICK_FuelUsed.numberformat = "F2";  //Always prints two digits after the decimal
-            // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(MissionPlanner.CurrentState);
+            this.QUICK_FuelUsed.numberformat = "F2";
             // 
             // QUICK_CHT
             // 
+            this.QUICK_CHT.alert_high = 170D;
+            this.QUICK_CHT.alert_low = 65D;
+            this.QUICK_CHT.attention_offset = 10D;
             this.QUICK_CHT.BackColor = System.Drawing.SystemColors.Desktop;
             this.QUICK_CHT.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "cht", true));
             this.QUICK_CHT.desc = "CHT (C):";
@@ -1928,14 +1972,12 @@
             this.QUICK_CHT.number = -9999D;
             this.QUICK_CHT.numberColor = System.Drawing.SystemColors.Window;
             this.QUICK_CHT.numberformat = "0";
-            this.QUICK_CHT.attention_low = 75;
-            this.QUICK_CHT.attention_high = 160;
-            this.QUICK_CHT.alert_low = 65;
-            this.QUICK_CHT.alert_high = 170;
-
             // 
             // QUICK_RPM
             // 
+            this.QUICK_RPM.alert_high = 0D;
+            this.QUICK_RPM.alert_low = 1000D;
+            this.QUICK_RPM.attention_offset = 1000D;
             this.QUICK_RPM.BackColor = System.Drawing.SystemColors.Desktop;
             this.QUICK_RPM.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "efi_rpm", true, System.Windows.Forms.DataSourceUpdateMode.Never, null, "N0"));
             this.QUICK_RPM.desc = "RPM:";
@@ -1944,9 +1986,7 @@
             this.QUICK_RPM.Name = "QUICK_RPM";
             this.QUICK_RPM.number = -9999D;
             this.QUICK_RPM.numberColor = System.Drawing.SystemColors.Window;
-            this.QUICK_RPM.numberformat = "0"; 
-            this.QUICK_RPM.attention_low = 2000;
-            this.QUICK_RPM.alert_low = 1000;
+            this.QUICK_RPM.numberformat = "0";
             // 
             // but_disablejoystick
             // 
@@ -1971,7 +2011,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 180D;
+            this.windDir1.Direction = 360D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2381,6 +2421,8 @@
         private Controls.QuickView QUICK_CHT;
         private Controls.QuickView QUICK_RPM;
         private Controls.QuickView QUICK_FuelUsed;
+        private Controls.QuickViewArmingStatus QUICK_Arming_Status;
+        private Controls.QuickViewSafeStatus QUICK_Safe_Status;
         public Controls.GuidedTracking guidedTracking1;
         private Controls.MyButton BUT_georefimage;
         private Controls.QuickView quickView6;

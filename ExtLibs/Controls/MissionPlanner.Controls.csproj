@@ -30,4 +30,17 @@
     </Reference>
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="QuickViewArmingStatus - Copy.Designer.cs">
+      <DependentUpon>QuickViewArmingStatus.Designer.cs</DependentUpon>
+    </Compile>
+    <Compile Update="QuickViewArmingStatus.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="QuickViewArmingStatus - Copy.resx">
+      <DependentUpon>QuickViewArmingStatus.resx</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>
