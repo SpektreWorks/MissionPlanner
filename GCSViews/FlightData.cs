@@ -340,23 +340,6 @@ namespace MissionPlanner.GCSViews
             //flight and know what state the button colors should be.
             if (this.Visible)
             {
-                //Arm/Disarm button
-                bool isitarmed = MainV2.comPort.MAV.cs.armed;
-                if (isitarmed)
-                {
-                    //Vehicle has been armed
-                    BUT_ARM.Text = "Disarm";
-                    BUT_ARM.BGGradTop = Color.FromArgb(148, 193, 31);
-                    BUT_ARM.BGGradBot = Color.FromArgb(205, 226, 150);
-                }
-                else
-                {
-                    //Vehicel has been disarmed
-                    BUT_ARM.Text = "Arm";
-                    BUT_ARM.BGGradTop = Color.Orange;
-                    BUT_ARM.BGGradBot = Color.Orange;
-                }
-
                 //NavLights are on if CH13OUT is 1333 or 1999
                 if (((MainV2.comPort.MAV.cs.ch13out > (1333-50)) && (MainV2.comPort.MAV.cs.ch13out < (1333+50))) ||
                     ((MainV2.comPort.MAV.cs.ch13out > (1999-50)) && (MainV2.comPort.MAV.cs.ch13out < (1999+50))))
@@ -1041,20 +1024,8 @@ namespace MissionPlanner.GCSViews
                 //MainV2.comPort.MAV.cs.armed does not update fast enough to be useful here.
                 if (ans == true)
                 {
-                    if (!isitarmed)
+                    if (isitarmed)
                     {
-                        //Vehicle has been armed
-                        BUT_ARM.Text = "Disarm";
-                        BUT_ARM.BGGradTop = Color.FromArgb(148, 193, 31);
-                        BUT_ARM.BGGradBot = Color.FromArgb(205, 226, 150);
-                    }
-                    else
-                    {
-                        //Vehicle has been disarmed
-                        BUT_ARM.Text = "Arm";
-                        BUT_ARM.BGGradTop = Color.Orange;
-                        BUT_ARM.BGGradBot = Color.Orange;
-
                         //Engage safety on disarm (this was added to prevent ESCs from rotating motors on power down)
                         try
                         {
