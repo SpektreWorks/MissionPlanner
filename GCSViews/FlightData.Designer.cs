@@ -1928,7 +1928,7 @@
             // QUICK_Arming_Status
             // 
             this.QUICK_Arming_Status.arming_status = false;
-            this.QUICK_Arming_Status.BackColor = System.Drawing.SystemColors.Desktop;
+            this.QUICK_Arming_Status.BackColor = System.Drawing.Color.Green;
             this.QUICK_Arming_Status.DataBindings.Add(new System.Windows.Forms.Binding("arming_status", this.bindingSource1, "armed", true));
             resources.ApplyResources(this.QUICK_Arming_Status, "QUICK_Arming_Status");
             this.QUICK_Arming_Status.Name = "QUICK_Arming_Status";
@@ -1939,7 +1939,7 @@
             // 
             // QUICK_Safe_Status
             // 
-            this.QUICK_Safe_Status.BackColor = System.Drawing.SystemColors.Desktop;
+            this.QUICK_Safe_Status.BackColor = System.Drawing.Color.Green;
             this.QUICK_Safe_Status.DataBindings.Add(new System.Windows.Forms.Binding("safe_status", this.bindingSource1, "safed", true));
             resources.ApplyResources(this.QUICK_Safe_Status, "QUICK_Safe_Status");
             this.QUICK_Safe_Status.Name = "QUICK_Safe_Status";
@@ -1947,7 +1947,7 @@
             // 
             // QUICK_GPS_Status
             // 
-            this.QUICK_GPS_Status.BackColor = System.Drawing.SystemColors.Desktop;
+            this.QUICK_GPS_Status.BackColor = System.Drawing.Color.Green;
             this.QUICK_GPS_Status.DataBindings.Add(new System.Windows.Forms.Binding("gps_status", this.bindingSource1, "gpsstatusgood", true));
             this.QUICK_GPS_Status.gps_status = false;
             resources.ApplyResources(this.QUICK_GPS_Status, "QUICK_GPS_Status");
@@ -1958,7 +1958,7 @@
             this.QUICK_FuelUsed.alert_high = 0D;
             this.QUICK_FuelUsed.alert_low = 0D;
             this.QUICK_FuelUsed.attention_offset = 0D;
-            this.QUICK_FuelUsed.BackColor = System.Drawing.SystemColors.Desktop;
+            this.QUICK_FuelUsed.BackColor = System.Drawing.Color.Green;
             this.QUICK_FuelUsed.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "fuelused", true));
             this.QUICK_FuelUsed.desc = "USED (LBS):";
             resources.ApplyResources(this.QUICK_FuelUsed, "QUICK_FuelUsed");
@@ -1973,7 +1973,7 @@
             this.QUICK_CHT.alert_high = 170D;
             this.QUICK_CHT.alert_low = 65D;
             this.QUICK_CHT.attention_offset = 10D;
-            this.QUICK_CHT.BackColor = System.Drawing.SystemColors.Desktop;
+            this.QUICK_CHT.BackColor = System.Drawing.Color.Green;
             this.QUICK_CHT.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "cht", true));
             this.QUICK_CHT.desc = "CHT (C):";
             resources.ApplyResources(this.QUICK_CHT, "QUICK_CHT");
@@ -1988,7 +1988,7 @@
             this.QUICK_RPM.alert_high = 0D;
             this.QUICK_RPM.alert_low = 1000D;
             this.QUICK_RPM.attention_offset = 1000D;
-            this.QUICK_RPM.BackColor = System.Drawing.SystemColors.Desktop;
+            this.QUICK_RPM.BackColor = System.Drawing.Color.Green;
             this.QUICK_RPM.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "efi_rpm", true, System.Windows.Forms.DataSourceUpdateMode.Never, null, "N0"));
             this.QUICK_RPM.desc = "RPM:";
             resources.ApplyResources(this.QUICK_RPM, "QUICK_RPM");
