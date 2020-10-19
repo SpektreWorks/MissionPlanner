@@ -17,14 +17,15 @@ namespace MissionPlanner.Controls
         [System.ComponentModel.Browsable(true)]
         public string desc
         {
-            get { return _desc; } set { if (_desc == value) return; _desc = value; Invalidate(); }
+            get { return _desc; }
+            set { if (_desc == value) return; _desc = value; Invalidate(); }
         }
 
         double _number = -9999;
-        public double attention_high = 0;
-        public double attention_low = 0;
-        public double alert_high = 0;
-        public double alert_low = 0;
+
+        public double alert_high { get; set; } = 0;
+        public double alert_low { get; set; } = 0;
+        public double attention_offset { get; set; } = 0;
 
         [System.ComponentModel.Browsable(true)]
         public double number { get { return _number; } set { if (_number == value) return; _number = value; Invalidate(); } }
@@ -54,7 +55,7 @@ namespace MissionPlanner.Controls
         {
             InitializeComponent();
 
-            PaintSurface+= OnPaintSurface;
+            PaintSurface += OnPaintSurface;
         }
 
         private void OnPaintSurface(object sender, SKPaintSurfaceEventArgs e2)
@@ -62,32 +63,21 @@ namespace MissionPlanner.Controls
             var e = new SkiaGraphics(e2.Surface);
 
             SKColor canvascolor = SKColors.Empty;
-            if (attention_low != 0)
-            {
-                if ((number <= attention_low) && (number > alert_low))
-                {
-                    canvascolor = SKColors.Orange;
-                }
-            }
 
             if (alert_low != 0)
             {
                 if (number <= alert_low)
                     canvascolor = SKColors.Red;
-            }
-
-            if (attention_high != 0)
-            {
-                if ((number >= attention_high) && (number < alert_high))
-                {
+                else if (number < (alert_low + attention_offset))
                     canvascolor = SKColors.Orange;
-                }
             }
 
             if (alert_high != 0)
             {
                 if (number >= alert_high)
                     canvascolor = SKColors.Red;
+                else if ( number > (alert_high - attention_offset))
+                        canvascolor = SKColors.Orange;
             }
 
             e2.Surface.Canvas.Clear(canvascolor);
@@ -105,7 +95,7 @@ namespace MissionPlanner.Controls
             {
                 var numb = number.ToString(numberformat);
 
-                Size extent = e.MeasureString("0".PadLeft(numb.Length+1,'0'), new Font(this.Font.FontFamily, (float)newSize, this.Font.Style)).ToSize();
+                Size extent = e.MeasureString("0".PadLeft(numb.Length + 1, '0'), new Font(this.Font.FontFamily, (float)newSize, this.Font.Style)).ToSize();
 
                 float hRatio = (this.Height - y) / (float)(extent.Height);
                 float wRatio = this.Width / (float)extent.Width;
