@@ -12,15 +12,19 @@ using SkiaSharp;
 
 namespace MissionPlanner.Controls
 {
-    public partial class QuickViewSafeStatus : SkiaSharp.Views.Desktop.SKControl
+    public partial class QuickViewAirspeed : SkiaSharp.Views.Desktop.SKControl
     {
         [System.ComponentModel.Browsable(true)]
-        bool _safe_status = false;
+        float _arspd = 0;
+
+        public double alert_high { get; set; } = 0;
+        public double alert_low { get; set; } = 0;
+        public double attention_offset { get; set; } = 0;
 
         [System.ComponentModel.Browsable(true)]
-        public bool safe_status { get { return _safe_status; } set { if (_safe_status == value) return; _safe_status = value; Invalidate(); } }
+        public float arspd { get { return _arspd; } set { if (_arspd == (value*1.94384F)) return; _arspd = (value*1.94383F); Invalidate(); } }
 
-        public QuickViewSafeStatus()
+        public QuickViewAirspeed()
         {
             //InitializeComponent();
 
@@ -30,24 +34,29 @@ namespace MissionPlanner.Controls
         private void OnPaintSurface(object sender, SKPaintSurfaceEventArgs e2)
         {
             var e = new SkiaGraphics(e2.Surface);
-            string safetxt = "";
+            string arspdtxt = "Airspeed";
 
-            SKColor canvascolor;
-            if ( safe_status == true )
+            SKColor canvascolor = SKColors.Empty;
+            if (alert_low != 0)
             {
-                safetxt = "UNLOCKED";
-                canvascolor = SKColors.Empty;
+                if (arspd <= alert_low)
+                    canvascolor = SKColors.Red;
+                else if (arspd < (alert_low + attention_offset))
+                    canvascolor = SKColors.Orange;
             }
-            else
+
+            if (alert_high != 0)
             {
-                safetxt = "LOCKED";
-                canvascolor = SKColors.Red;
+                if (arspd >= alert_high)
+                    canvascolor = SKColors.Red;
+                else if (arspd > (alert_high - attention_offset))
+                    canvascolor = SKColors.Orange;
             }
-            
+
             e2.Surface.Canvas.Clear(canvascolor);
 
             {
-                Size extent = e.MeasureString("0".PadLeft(safetxt.Length + 1, '0'), new Font(this.Font.FontFamily, (float)newSize, this.Font.Style)).ToSize();
+                Size extent = e.MeasureString("0".PadLeft(arspdtxt.Length + 1, '0'), new Font(this.Font.FontFamily, (float)newSize, this.Font.Style)).ToSize();
 
                 float hRatio = this.Height / (float)(extent.Height);
                 float wRatio = this.Width / (float)extent.Width;
@@ -60,9 +69,9 @@ namespace MissionPlanner.Controls
                 if (newSize < 8 || newSize > 999999)
                     newSize = 8;
 
-                extent = e.MeasureString(safetxt, new Font(this.Font.FontFamily, (float)newSize, this.Font.Style)).ToSize();
+                extent = e.MeasureString(arspdtxt, new Font(this.Font.FontFamily, (float)newSize, this.Font.Style)).ToSize();
 
-                e.DrawString(safetxt, new Font(this.Font.FontFamily, (float)newSize, this.Font.Style), new SolidBrush(System.Drawing.SystemColors.Window), this.Width / 2 - extent.Width / 2, (this.Height / 2 - extent.Height / 2));
+                e.DrawString(arspdtxt, new Font(this.Font.FontFamily, (float)newSize, this.Font.Style), new SolidBrush(System.Drawing.SystemColors.Window), this.Width / 2 - extent.Width / 2, (this.Height / 2 - extent.Height / 2));
             }
         }
 
