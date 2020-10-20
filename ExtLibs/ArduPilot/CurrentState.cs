@@ -2411,7 +2411,7 @@ namespace MissionPlanner
                         mag_declination = sensofs.mag_declination;
 
                         raw_press = sensofs.raw_press;
-                        raw_temp = sensofs.raw_temp;
+                        raw_temp = sensofs.raw_temp/100;
 
                         gyro_cal_x = sensofs.gyro_cal_x;
                         gyro_cal_y = sensofs.gyro_cal_y;

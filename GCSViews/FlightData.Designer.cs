@@ -125,6 +125,7 @@
             this.QUICK_GPS_Status = new MissionPlanner.Controls.QuickViewGPSStatus();
             this.QUICK_Airspeed = new MissionPlanner.Controls.QuickViewText();
             this.QUICK_Terrain = new MissionPlanner.Controls.QuickViewText();
+            this.QUICK_CubeT = new MissionPlanner.Controls.QuickViewText();
             this.QUICK_FuelUsed = new MissionPlanner.Controls.QuickView();
             this.QUICK_CHT = new MissionPlanner.Controls.QuickView();
             this.QUICK_RPM = new MissionPlanner.Controls.QuickView();
@@ -1587,6 +1588,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.QUICK_GPS_Status);
             this.splitContainer1.Panel2.Controls.Add(this.QUICK_Airspeed);
             this.splitContainer1.Panel2.Controls.Add(this.QUICK_Terrain);
+            this.splitContainer1.Panel2.Controls.Add(this.QUICK_CubeT);
             this.splitContainer1.Panel2.Controls.Add(this.QUICK_FuelUsed);
             this.splitContainer1.Panel2.Controls.Add(this.QUICK_CHT);
             this.splitContainer1.Panel2.Controls.Add(this.QUICK_RPM);
@@ -1754,6 +1756,7 @@
             this.QUICK_Arming_Status.arming_status = false;
             this.QUICK_Arming_Status.BackColor = System.Drawing.Color.Green;
             this.QUICK_Arming_Status.DataBindings.Add(new System.Windows.Forms.Binding("arming_status", this.bindingSource1, "armed", true));
+            this.QUICK_Arming_Status.fontsize = 13F;
             resources.ApplyResources(this.QUICK_Arming_Status, "QUICK_Arming_Status");
             this.QUICK_Arming_Status.Name = "QUICK_Arming_Status";
             // 
@@ -1765,6 +1768,7 @@
             // 
             this.QUICK_Safe_Status.BackColor = System.Drawing.Color.Green;
             this.QUICK_Safe_Status.DataBindings.Add(new System.Windows.Forms.Binding("safe_status", this.bindingSource1, "safed", true));
+            this.QUICK_Safe_Status.fontsize = 13F;
             resources.ApplyResources(this.QUICK_Safe_Status, "QUICK_Safe_Status");
             this.QUICK_Safe_Status.Name = "QUICK_Safe_Status";
             this.QUICK_Safe_Status.safe_status = false;
@@ -1773,6 +1777,7 @@
             // 
             this.QUICK_GPS_Status.BackColor = System.Drawing.Color.Green;
             this.QUICK_GPS_Status.DataBindings.Add(new System.Windows.Forms.Binding("gps_status", this.bindingSource1, "gpsstatusgood", true));
+            this.QUICK_GPS_Status.fontsize = 13F;
             this.QUICK_GPS_Status.gps_status = false;
             resources.ApplyResources(this.QUICK_GPS_Status, "QUICK_GPS_Status");
             this.QUICK_GPS_Status.Name = "QUICK_GPS_Status";
@@ -1784,6 +1789,7 @@
             this.QUICK_Airspeed.attention_offset = 5D;
             this.QUICK_Airspeed.BackColor = System.Drawing.Color.Green;
             this.QUICK_Airspeed.DataBindings.Add(new System.Windows.Forms.Binding("val", this.bindingSource1, "airspeed", true));
+            this.QUICK_Airspeed.fontsize = 13F;
             resources.ApplyResources(this.QUICK_Airspeed, "QUICK_Airspeed");
             this.QUICK_Airspeed.Name = "QUICK_Airspeed";
             this.QUICK_Airspeed.val = 0F;
@@ -1796,10 +1802,24 @@
             this.QUICK_Terrain.attention_offset = 300D;
             this.QUICK_Terrain.BackColor = System.Drawing.Color.Green;
             this.QUICK_Terrain.DataBindings.Add(new System.Windows.Forms.Binding("val", this.bindingSource1, "ter_curalt", true));
+            this.QUICK_Terrain.fontsize = 13F;
             resources.ApplyResources(this.QUICK_Terrain, "QUICK_Terrain");
             this.QUICK_Terrain.Name = "QUICK_Terrain";
             this.QUICK_Terrain.val = 0F;
             this.QUICK_Terrain.valtxt = "Terrain";
+            // 
+            // QUICK_CubeT
+            // 
+            this.QUICK_CubeT.alert_high = 75D;
+            this.QUICK_CubeT.alert_low = 40D;
+            this.QUICK_CubeT.attention_offset = 10D;
+            this.QUICK_CubeT.BackColor = System.Drawing.Color.Green;
+            this.QUICK_CubeT.DataBindings.Add(new System.Windows.Forms.Binding("val", this.bindingSource1, "raw_temp", true));
+            this.QUICK_CubeT.fontsize = 13F;
+            resources.ApplyResources(this.QUICK_CubeT, "QUICK_CubeT");
+            this.QUICK_CubeT.Name = "QUICK_CubeT";
+            this.QUICK_CubeT.val = 0F;
+            this.QUICK_CubeT.valtxt = "CubeT";
             // 
             // QUICK_FuelUsed
             // 
@@ -1861,7 +1881,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 540D;
+            this.windDir1.Direction = 180D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2463,6 +2483,7 @@
         private Controls.QuickViewGPSStatus QUICK_GPS_Status;
         private Controls.QuickViewText QUICK_Airspeed;
         private Controls.QuickViewText QUICK_Terrain;
+        private Controls.QuickViewText QUICK_CubeT;
         public Controls.GuidedTracking guidedTracking1;
         private Controls.MyButton BUT_georefimage;
         private Controls.QuickView quickView6;
