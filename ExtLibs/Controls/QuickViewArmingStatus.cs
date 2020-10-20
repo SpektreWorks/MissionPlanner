@@ -48,14 +48,10 @@ namespace MissionPlanner.Controls
             e2.Surface.Canvas.Clear(canvascolor);
 
             {
-                Size extent = e.MeasureString("0".PadLeft(armtxt.Length + 1, '0'), new Font(this.Font.FontFamily, (float)newSize, this.Font.Style)).ToSize();
-
-                float hRatio = this.Height / (float)(extent.Height);
-                float wRatio = this.Width / (float)extent.Width;
-
-                extent = e.MeasureString(armtxt, new Font(this.Font.FontFamily, fontsize, this.Font.Style)).ToSize();
-
-                e.DrawString(armtxt, new Font(this.Font.FontFamily, fontsize, this.Font.Style), new SolidBrush(System.Drawing.SystemColors.Window), this.Width / 2 - extent.Width / 2, (this.Height / 2 - extent.Height / 2));
+                Size extent = e.MeasureString(armtxt, new Font(this.Font.FontFamily, (float)fontsize, this.Font.Style)).ToSize();
+                float xpos = (this.Size.Width / 2) - (extent.Width / 2);
+                float ypos = (this.Size.Height / 2) - (extent.Height / 2);
+                e.DrawString(armtxt, new Font(this.Font.FontFamily, fontsize, this.Font.Style), new SolidBrush(System.Drawing.SystemColors.Window), xpos, ypos);
             }
         }
 

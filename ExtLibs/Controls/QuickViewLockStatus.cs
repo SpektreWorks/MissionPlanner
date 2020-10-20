@@ -12,16 +12,16 @@ using SkiaSharp;
 
 namespace MissionPlanner.Controls
 {
-    public partial class QuickViewSafeStatus : SkiaSharp.Views.Desktop.SKControl
+    public partial class QuickViewLockStatus : SkiaSharp.Views.Desktop.SKControl
     {
         [System.ComponentModel.Browsable(true)]
-        bool _safe_status = false;
+        bool _lock_status = false;
 
         [System.ComponentModel.Browsable(true)]
-        public bool safe_status { get { return _safe_status; } set { if (_safe_status == value) return; _safe_status = value; Invalidate(); } }
+        public bool lock_status { get { return _lock_status; } set { if (_lock_status == value) return; _lock_status = value; Invalidate(); } }
         public float fontsize { get; set; } = 13;
 
-        public QuickViewSafeStatus()
+        public QuickViewLockStatus()
         {
             //InitializeComponent();
 
@@ -31,31 +31,27 @@ namespace MissionPlanner.Controls
         private void OnPaintSurface(object sender, SKPaintSurfaceEventArgs e2)
         {
             var e = new SkiaGraphics(e2.Surface);
-            string safetxt = "";
+            string locktxt = "";
 
             SKColor canvascolor;
-            if ( safe_status == true )
+            if ( lock_status == true )
             {
-                safetxt = "Unlocked";
+                locktxt = "Unlocked";
                 canvascolor = SKColors.Empty;
             }
             else
             {
-                safetxt = "Locked";
+                locktxt = "Locked";
                 canvascolor = SKColors.Red;
             }
             
             e2.Surface.Canvas.Clear(canvascolor);
 
             {
-                Size extent = e.MeasureString("0".PadLeft(safetxt.Length + 1, '0'), new Font(this.Font.FontFamily, (float)newSize, this.Font.Style)).ToSize();
-
-                float hRatio = this.Height / (float)(extent.Height);
-                float wRatio = this.Width / (float)extent.Width;
-
-                extent = e.MeasureString(safetxt, new Font(this.Font.FontFamily, fontsize, this.Font.Style)).ToSize();
-
-                e.DrawString(safetxt, new Font(this.Font.FontFamily, fontsize, this.Font.Style), new SolidBrush(System.Drawing.SystemColors.Window), this.Width / 2 - extent.Width / 2, (this.Height / 2 - extent.Height / 2));
+                Size extent = e.MeasureString(locktxt, new Font(this.Font.FontFamily, (float)fontsize, this.Font.Style)).ToSize();
+                float xpos = (this.Size.Width / 2) - (extent.Width / 2);
+                float ypos = (this.Size.Height / 2) - (extent.Height / 2);
+                e.DrawString(locktxt, new Font(this.Font.FontFamily, fontsize, this.Font.Style), new SolidBrush(System.Drawing.SystemColors.Window), xpos, ypos);
             }
         }
 

@@ -1488,7 +1488,6 @@ namespace MissionPlanner
         // stats
         public ushort packetdropremote { get; set; }
         public ushort linkqualitygcs { get; set; }
-
         [DisplayText("Error Type")] public ushort errors_count1 { get; set; }
 
         [DisplayText("Error Type")] public ushort errors_count2 { get; set; }
@@ -1663,6 +1662,7 @@ namespace MissionPlanner
         public float fuelrate { get; set; }
         public float fuelused { get; set; }
         public float efi_rpm { get; set; }
+        public float intake_manifold_temp { get; set; }
 
         // Weather Values
         public float weather_windvel { get; set; }
@@ -2648,6 +2648,7 @@ namespace MissionPlanner
                             fuelrate = efi.fuel_flow;
                             fuelused = efi.fuel_consumed*0.00220462f;  //Convert grams to lbs
                             efi_rpm = efi.rpm;
+                            intake_manifold_temp = efi.intake_manifold_temperature - 272.15F;  //Convert Kelvin to C
 
                             //MAVLink.packets[(byte)MAVLink.MSG_NAMES.EFI_STATUS);
                     }

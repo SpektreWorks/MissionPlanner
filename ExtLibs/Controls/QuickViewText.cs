@@ -18,12 +18,13 @@ namespace MissionPlanner.Controls
         float _val = 0;
 
         public string valtxt { get; set; } = "";
+        public float valfontsize { get; set; } = 13;
+        public string headertxt { get; set; } = "";
+        public float headerfontsize { get; set; } = 8.25F;
 
         public double alert_high { get; set; } = 0;
         public double alert_low { get; set; } = 0;
         public double attention_offset { get; set; } = 0;
-
-        public float fontsize { get; set; } = 13;
 
         [System.ComponentModel.Browsable(true)]
         public float val { get { return _val; } set { if (_val == value) return; _val = value; Invalidate(); } }
@@ -59,14 +60,16 @@ namespace MissionPlanner.Controls
             e2.Surface.Canvas.Clear(canvascolor);
 
             {
-                Size extent = e.MeasureString("0".PadLeft(valtxt.Length + 1, '0'), new Font(this.Font.FontFamily, (float)newSize, this.Font.Style)).ToSize();
+                Size h_extent = e.MeasureString(headertxt, new Font(this.Font.FontFamily, (float)headerfontsize, this.Font.Style)).ToSize();
+                float header_xpos = (this.Size.Width / 2) - (h_extent.Width / 2);
+                float header_ypos = (this.Size.Height * 0.15F) - (h_extent.Height / 2);
+                e.DrawString(headertxt, new Font(this.Font.FontFamily, headerfontsize, this.Font.Style), new SolidBrush(System.Drawing.SystemColors.Window), header_xpos, header_ypos);
 
-                float hRatio = this.Height / (float)(extent.Height);
-                float wRatio = this.Width / (float)extent.Width;
+                Size extent = e.MeasureString(valtxt, new Font(this.Font.FontFamily, (float)valfontsize, this.Font.Style)).ToSize();
+                float xpos = (this.Size.Width / 2) - (extent.Width / 2);
+                float ypos = (this.Size.Height / 2) - (extent.Height / 2) + (h_extent.Height * 0.5F);
+                e.DrawString(valtxt, new Font(this.Font.FontFamily, valfontsize, this.Font.Style), new SolidBrush(System.Drawing.SystemColors.Window), xpos, ypos);
 
-                extent = e.MeasureString(valtxt, new Font(this.Font.FontFamily, fontsize, this.Font.Style)).ToSize();
-
-                e.DrawString(valtxt, new Font(this.Font.FontFamily, fontsize, this.Font.Style), new SolidBrush(System.Drawing.SystemColors.Window), this.Width / 2 - extent.Width / 2, (this.Height / 2 - extent.Height / 2));
             }
         }
 
