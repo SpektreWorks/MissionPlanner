@@ -19,6 +19,7 @@ namespace MissionPlanner.Controls
 
         [System.ComponentModel.Browsable(true)]
         public bool safe_status { get { return _safe_status; } set { if (_safe_status == value) return; _safe_status = value; Invalidate(); } }
+        public float fontsize { get; set; } = 13;
 
         public QuickViewSafeStatus()
         {
@@ -35,12 +36,12 @@ namespace MissionPlanner.Controls
             SKColor canvascolor;
             if ( safe_status == true )
             {
-                safetxt = "UNLOCKED";
+                safetxt = "Unlocked";
                 canvascolor = SKColors.Empty;
             }
             else
             {
-                safetxt = "LOCKED";
+                safetxt = "Locked";
                 canvascolor = SKColors.Red;
             }
             
@@ -51,18 +52,10 @@ namespace MissionPlanner.Controls
 
                 float hRatio = this.Height / (float)(extent.Height);
                 float wRatio = this.Width / (float)extent.Width;
-                float ratio = (hRatio < wRatio) ? hRatio : wRatio;
 
-                newSize = (newSize * ratio);// * 0.75f; // pixel to points
+                extent = e.MeasureString(safetxt, new Font(this.Font.FontFamily, fontsize, this.Font.Style)).ToSize();
 
-                newSize -= newSize % 5;
-
-                if (newSize < 8 || newSize > 999999)
-                    newSize = 8;
-
-                extent = e.MeasureString(safetxt, new Font(this.Font.FontFamily, (float)newSize, this.Font.Style)).ToSize();
-
-                e.DrawString(safetxt, new Font(this.Font.FontFamily, (float)newSize, this.Font.Style), new SolidBrush(System.Drawing.SystemColors.Window), this.Width / 2 - extent.Width / 2, (this.Height / 2 - extent.Height / 2));
+                e.DrawString(safetxt, new Font(this.Font.FontFamily, fontsize, this.Font.Style), new SolidBrush(System.Drawing.SystemColors.Window), this.Width / 2 - extent.Width / 2, (this.Height / 2 - extent.Height / 2));
             }
         }
 

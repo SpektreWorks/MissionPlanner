@@ -19,6 +19,7 @@ namespace MissionPlanner.Controls
 
         [System.ComponentModel.Browsable(true)]
         public bool arming_status { get { return _arming_status; } set { if (_arming_status == value) return; _arming_status = value; Invalidate(); } }
+        public float fontsize { get; set; } = 13;
 
         public QuickViewArmingStatus()
         {
@@ -35,12 +36,12 @@ namespace MissionPlanner.Controls
             SKColor canvascolor;
             if ( arming_status == true )
             {
-                armtxt = "ARMED";
+                armtxt = "Armed";
                 canvascolor = SKColors.Empty;
             }
             else
             {
-                armtxt = "DISARMED";
+                armtxt = "Disarmed";
                 canvascolor = SKColors.Red;
             }
             
@@ -51,18 +52,10 @@ namespace MissionPlanner.Controls
 
                 float hRatio = this.Height / (float)(extent.Height);
                 float wRatio = this.Width / (float)extent.Width;
-                float ratio = (hRatio < wRatio) ? hRatio : wRatio;
 
-                newSize = (newSize * ratio);// * 0.75f; // pixel to points
+                extent = e.MeasureString(armtxt, new Font(this.Font.FontFamily, fontsize, this.Font.Style)).ToSize();
 
-                newSize -= newSize % 5;
-
-                if (newSize < 8 || newSize > 999999)
-                    newSize = 8;
-
-                extent = e.MeasureString(armtxt, new Font(this.Font.FontFamily, (float)newSize, this.Font.Style)).ToSize();
-
-                e.DrawString(armtxt, new Font(this.Font.FontFamily, (float)newSize, this.Font.Style), new SolidBrush(System.Drawing.SystemColors.Window), this.Width / 2 - extent.Width / 2, (this.Height / 2 - extent.Height / 2));
+                e.DrawString(armtxt, new Font(this.Font.FontFamily, fontsize, this.Font.Style), new SolidBrush(System.Drawing.SystemColors.Window), this.Width / 2 - extent.Width / 2, (this.Height / 2 - extent.Height / 2));
             }
         }
 

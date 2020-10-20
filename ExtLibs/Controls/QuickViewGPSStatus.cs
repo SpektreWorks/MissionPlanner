@@ -19,6 +19,7 @@ namespace MissionPlanner.Controls
 
         [System.ComponentModel.Browsable(true)]
         public bool gps_status { get { return _gps_status; } set { if (_gps_status == value) return; _gps_status = value; Invalidate(); } }
+        public float fontsize { get; set; } = 13;
 
         public QuickViewGPSStatus()
         {
@@ -49,18 +50,10 @@ namespace MissionPlanner.Controls
 
                 float hRatio = this.Height / (float)(extent.Height);
                 float wRatio = this.Width / (float)extent.Width;
-                float ratio = (hRatio < wRatio) ? hRatio : wRatio;
 
-                newSize = (newSize * ratio);// * 0.75f; // pixel to points
+                extent = e.MeasureString(gpstxt, new Font(this.Font.FontFamily, fontsize, this.Font.Style)).ToSize();
 
-                newSize -= newSize % 5;
-
-                if (newSize < 8 || newSize > 999999)
-                    newSize = 8;
-
-                extent = e.MeasureString(gpstxt, new Font(this.Font.FontFamily, (float)newSize, this.Font.Style)).ToSize();
-
-                e.DrawString(gpstxt, new Font(this.Font.FontFamily, (float)newSize, this.Font.Style), new SolidBrush(System.Drawing.SystemColors.Window), this.Width / 2 - extent.Width / 2, (this.Height / 2 - extent.Height / 2));
+                e.DrawString(gpstxt, new Font(this.Font.FontFamily, fontsize, this.Font.Style), new SolidBrush(System.Drawing.SystemColors.Window), this.Width / 2 - extent.Width / 2, (this.Height / 2 - extent.Height / 2));
             }
         }
 

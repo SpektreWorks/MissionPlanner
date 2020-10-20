@@ -12,19 +12,23 @@ using SkiaSharp;
 
 namespace MissionPlanner.Controls
 {
-    public partial class QuickViewAirspeed : SkiaSharp.Views.Desktop.SKControl
+    public partial class QuickViewText : SkiaSharp.Views.Desktop.SKControl
     {
         [System.ComponentModel.Browsable(true)]
-        float _arspd = 0;
+        float _val = 0;
+
+        public string valtxt { get; set; } = "";
 
         public double alert_high { get; set; } = 0;
         public double alert_low { get; set; } = 0;
         public double attention_offset { get; set; } = 0;
 
-        [System.ComponentModel.Browsable(true)]
-        public float arspd { get { return _arspd; } set { if (_arspd == value) return; _arspd = value; Invalidate(); } }
+        public float fontsize { get; set; } = 13;
 
-        public QuickViewAirspeed()
+        [System.ComponentModel.Browsable(true)]
+        public float val { get { return _val; } set { if (_val == value) return; _val = value; Invalidate(); } }
+
+        public QuickViewText()
         {
             //InitializeComponent();
 
@@ -34,44 +38,35 @@ namespace MissionPlanner.Controls
         private void OnPaintSurface(object sender, SKPaintSurfaceEventArgs e2)
         {
             var e = new SkiaGraphics(e2.Surface);
-            string arspdtxt = "Airspeed";
 
             SKColor canvascolor = SKColors.Empty;
             if (alert_low != 0)
             {
-                if (arspd <= alert_low)
+                if (val <= alert_low)
                     canvascolor = SKColors.Red;
-                else if (arspd < (alert_low + attention_offset))
+                else if (val < (alert_low + attention_offset))
                     canvascolor = SKColors.Orange;
             }
 
             if (alert_high != 0)
             {
-                if (arspd >= alert_high)
+                if (val >= alert_high)
                     canvascolor = SKColors.Red;
-                else if (arspd > (alert_high - attention_offset))
+                else if (val > (alert_high - attention_offset))
                     canvascolor = SKColors.Orange;
             }
 
             e2.Surface.Canvas.Clear(canvascolor);
 
             {
-                Size extent = e.MeasureString("0".PadLeft(arspdtxt.Length + 1, '0'), new Font(this.Font.FontFamily, (float)newSize, this.Font.Style)).ToSize();
+                Size extent = e.MeasureString("0".PadLeft(valtxt.Length + 1, '0'), new Font(this.Font.FontFamily, (float)newSize, this.Font.Style)).ToSize();
 
                 float hRatio = this.Height / (float)(extent.Height);
                 float wRatio = this.Width / (float)extent.Width;
-                float ratio = (hRatio < wRatio) ? hRatio : wRatio;
 
-                newSize = (newSize * ratio);// * 0.75f; // pixel to points
+                extent = e.MeasureString(valtxt, new Font(this.Font.FontFamily, fontsize, this.Font.Style)).ToSize();
 
-                newSize -= newSize % 5;
-
-                if (newSize < 8 || newSize > 999999)
-                    newSize = 8;
-
-                extent = e.MeasureString(arspdtxt, new Font(this.Font.FontFamily, (float)newSize, this.Font.Style)).ToSize();
-
-                e.DrawString(arspdtxt, new Font(this.Font.FontFamily, (float)newSize, this.Font.Style), new SolidBrush(System.Drawing.SystemColors.Window), this.Width / 2 - extent.Width / 2, (this.Height / 2 - extent.Height / 2));
+                e.DrawString(valtxt, new Font(this.Font.FontFamily, fontsize, this.Font.Style), new SolidBrush(System.Drawing.SystemColors.Window), this.Width / 2 - extent.Width / 2, (this.Height / 2 - extent.Height / 2));
             }
         }
 
