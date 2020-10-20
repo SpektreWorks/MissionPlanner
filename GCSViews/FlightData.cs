@@ -3,6 +3,8 @@ using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using log4net;
+using GeoUtility.GeoSystem;
+using GeoUtility.GeoSystem.Base;
 using MissionPlanner.ArduPilot;
 using MissionPlanner.Controls;
 using MissionPlanner.GeoRef;
@@ -5252,7 +5254,7 @@ namespace MissionPlanner.GCSViews
         private void flyToCoordsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var location = "";
-            InputBox.Show("Enter Fly To Coords", "Please enter the coords 'lat;long;alt' or 'lat;long'", ref location);
+            InputBox.Show("Enter Fly To Coords", "Please enter the coords 'lat;long;alt' or 'lat;long' or MGRS", ref location);
 
             var split = location.Split(';');
 
@@ -5295,6 +5297,27 @@ namespace MissionPlanner.GCSViews
                 gotohere.lat = (plla.Lat);
                 gotohere.lng = (plla.Lng);
 
+                try
+                {
+                    MainV2.comPort.setGuidedModeWP(gotohere);
+                }
+                catch (Exception ex)
+                {
+                    CustomMessageBox.Show(Strings.CommandFailed + ex.Message, Strings.ERROR);
+                }
+            }
+            else if (split.Length == 1)
+            {
+                MGRS temp = new MGRS(split[0]);
+                var convert = temp.ConvertTo<Geographic>();
+
+                Locationwp gotohere = new Locationwp();
+
+                gotohere.id = (ushort)MAVLink.MAV_CMD.WAYPOINT;
+                gotohere.alt = MainV2.comPort.MAV.GuidedMode.z;
+                gotohere.lat = (convert.Latitude);
+                gotohere.lng = (convert.Longitude);
+                
                 try
                 {
                     MainV2.comPort.setGuidedModeWP(gotohere);
