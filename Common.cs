@@ -26,7 +26,9 @@ namespace MissionPlanner
                 if ((MAV.sysid >= 11) && (MAV.sysid <= 16)) { which = MAV.sysid - 11; }  //1=black, 2=blue, 3=green,4=yellow,5=orange,6=red
                 if ((MAV.sysid >= 101) && (MAV.sysid <= 106)) { which = MAV.sysid - 101; }  //1=black, 2=blue, 3=green,4=yellow,5=orange,6=red
 
-                //Calculate true AGL (altitude above local terrain) by subtracting local terrain elevation from MSL altitude
+                //Calculate true AGL (altitude above local terrain) by subtracting local terrain elevation from MSL altitude.
+                //srtm.getAltitude() uses local DTED map saved in GCS. Does not rely on terrain calculation from autopilot.
+                //If MAV.cs.ter_curalt is used (from autopilot), may get inaccurate results.
                 var mslalt = MAV.cs.altasl;  //<-already in ft
                 var terrain = srtm.getAltitude(MAV.cs.lat, MAV.cs.lng).alt * CurrentState.multiplieralt;
                 var agl = mslalt - terrain;

@@ -129,6 +129,8 @@
             this.QUICK_FuelUsed = new MissionPlanner.Controls.QuickView();
             this.QUICK_CHT = new MissionPlanner.Controls.QuickView();
             this.QUICK_RPM = new MissionPlanner.Controls.QuickView();
+            this.QUICK_BackupBattV = new MissionPlanner.Controls.QuickViewText();
+            this.QUICK_VPSBattV = new MissionPlanner.Controls.QuickViewText();
             this.but_disablejoystick = new MissionPlanner.Controls.MyButton();
             this.windDir1 = new MissionPlanner.Controls.WindDir();
             this.label6 = new System.Windows.Forms.Label();
@@ -1592,6 +1594,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.QUICK_FuelUsed);
             this.splitContainer1.Panel2.Controls.Add(this.QUICK_CHT);
             this.splitContainer1.Panel2.Controls.Add(this.QUICK_RPM);
+            this.splitContainer1.Panel2.Controls.Add(this.QUICK_BackupBattV);
+            this.splitContainer1.Panel2.Controls.Add(this.QUICK_VPSBattV);
             this.splitContainer1.Panel2.Controls.Add(this.but_disablejoystick);
             this.splitContainer1.Panel2.Controls.Add(this.distanceBar1);
             this.splitContainer1.Panel2.Controls.Add(this.windDir1);
@@ -1866,6 +1870,32 @@
             this.QUICK_RPM.numberColor = System.Drawing.SystemColors.Window;
             this.QUICK_RPM.numberformat = "0";
             // 
+            // QUICK_BackupBattV
+            // 
+            this.QUICK_BackupBattV.alert_high = 0D;
+            this.QUICK_BackupBattV.alert_low = 24D;
+            this.QUICK_BackupBattV.attention_offset = 2D;
+            this.QUICK_BackupBattV.BackColor = System.Drawing.Color.Green;
+            this.QUICK_BackupBattV.DataBindings.Add(new System.Windows.Forms.Binding("val", this.bindingSource1, "battery_voltage", true));
+            this.QUICK_BackupBattV.fontsize = 11F;
+            resources.ApplyResources(this.QUICK_BackupBattV, "QUICK_BackupBattV");
+            this.QUICK_BackupBattV.Name = "QUICK_BackupBattV";
+            this.QUICK_BackupBattV.val = 0F;
+            this.QUICK_BackupBattV.valtxt = "Backup Batt";
+            // 
+            // QUICK_VPSBattV
+            // 
+            this.QUICK_VPSBattV.alert_high = 0D;
+            this.QUICK_VPSBattV.alert_low = 46D;
+            this.QUICK_VPSBattV.attention_offset = 9D;
+            this.QUICK_VPSBattV.BackColor = System.Drawing.Color.Green;
+            this.QUICK_VPSBattV.DataBindings.Add(new System.Windows.Forms.Binding("val", this.bindingSource1, "battery_voltage2", true));
+            this.QUICK_VPSBattV.fontsize = 13F;
+            resources.ApplyResources(this.QUICK_VPSBattV, "QUICK_VPSBattV");
+            this.QUICK_VPSBattV.Name = "QUICK_VPSBattV";
+            this.QUICK_VPSBattV.val = 0F;
+            this.QUICK_VPSBattV.valtxt = "VPS Batt";
+            // 
             // but_disablejoystick
             // 
             this.but_disablejoystick.ColorMouseDown = System.Drawing.Color.Empty;
@@ -1881,7 +1911,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 180D;
+            this.windDir1.Direction = 720D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2484,6 +2514,8 @@
         private Controls.QuickViewText QUICK_Airspeed;
         private Controls.QuickViewText QUICK_Terrain;
         private Controls.QuickViewText QUICK_CubeT;
+        private Controls.QuickViewText QUICK_BackupBattV;
+        private Controls.QuickViewText QUICK_VPSBattV;
         public Controls.GuidedTracking guidedTracking1;
         private Controls.MyButton BUT_georefimage;
         private Controls.QuickView quickView6;
