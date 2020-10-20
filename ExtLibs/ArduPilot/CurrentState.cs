@@ -2646,7 +2646,7 @@ namespace MissionPlanner
                             efi_health = efi.health;
                             cht = efi.cylinder_head_temperature;
                             fuelrate = efi.fuel_flow;
-                            fuelused = efi.fuel_consumed*0.00220462f;  //Convert grams to lbs
+                            fuelused = efi.fuel_consumed*0.00220462f*1.15f;  //Convert grams to lbs. Increase by 15% because esimator always estimates low.
                             efi_rpm = efi.rpm;
                             intake_manifold_temp = efi.intake_manifold_temperature - 272.15F;  //Convert Kelvin to C
 
