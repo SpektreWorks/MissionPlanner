@@ -22,7 +22,7 @@ namespace MissionPlanner.Controls
         public double attention_offset { get; set; } = 0;
 
         [System.ComponentModel.Browsable(true)]
-        public float arspd { get { return _arspd; } set { if (_arspd == (value*1.94384F)) return; _arspd = (value*1.94383F); Invalidate(); } }
+        public float arspd { get { return _arspd; } set { if (_arspd == value) return; _arspd = value; Invalidate(); } }
 
         public QuickViewAirspeed()
         {
