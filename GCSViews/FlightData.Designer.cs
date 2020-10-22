@@ -1880,7 +1880,7 @@
             this.QUICK_FuelUsed.number = -9999D;
             this.QUICK_FuelUsed.numberColor = System.Drawing.SystemColors.Window;
             this.QUICK_FuelUsed.numberformat = "F2";
-            this.QUICK_FuelUsed.numFontSize = -1F;
+            this.QUICK_FuelUsed.numFontSize = 22F;
             // 
             // QUICK_CHT
             // 
@@ -1899,7 +1899,7 @@
             this.QUICK_CHT.number = -9999D;
             this.QUICK_CHT.numberColor = System.Drawing.SystemColors.Window;
             this.QUICK_CHT.numberformat = "0";
-            this.QUICK_CHT.numFontSize = -1F;
+            this.QUICK_CHT.numFontSize = 22F;
             // 
             // QUICK_RPM
             // 
@@ -1918,7 +1918,7 @@
             this.QUICK_RPM.number = -9999D;
             this.QUICK_RPM.numberColor = System.Drawing.SystemColors.Window;
             this.QUICK_RPM.numberformat = "0";
-            this.QUICK_RPM.numFontSize = -1F;
+            this.QUICK_RPM.numFontSize = 22F;
             // 
             // QUICK_Throttle
             // 
@@ -2000,7 +2000,7 @@
             this.QUICK_OAT.number = -9999D;
             this.QUICK_OAT.numberColor = System.Drawing.SystemColors.Window;
             this.QUICK_OAT.numberformat = "0.00";
-            this.QUICK_OAT.numFontSize = -1F;
+            this.QUICK_OAT.numFontSize = 22F;
             // 
             // QUICK_Wind
             // 
@@ -2032,7 +2032,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 180D;
+            this.windDir1.Direction = 360D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
