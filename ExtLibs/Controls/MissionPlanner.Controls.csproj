@@ -34,9 +34,7 @@
     <Compile Update="QuickViewArmingStatus - Copy.Designer.cs">
       <DependentUpon>QuickViewArmingStatus.Designer.cs</DependentUpon>
     </Compile>
-    <Compile Update="QuickViewArmingStatus.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Update="QuickViewArmingStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="QuickViewArmingStatus - Copy.resx">
