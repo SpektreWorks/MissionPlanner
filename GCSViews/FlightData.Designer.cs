@@ -1999,7 +1999,7 @@
             this.QUICK_OAT.Name = "QUICK_OAT";
             this.QUICK_OAT.number = -9999D;
             this.QUICK_OAT.numberColor = System.Drawing.SystemColors.Window;
-            this.QUICK_OAT.numberformat = "0.00";
+            this.QUICK_OAT.numberformat = "0";
             this.QUICK_OAT.numFontSize = 22F;
             // 
             // QUICK_Wind
