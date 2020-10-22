@@ -1988,7 +1988,7 @@
             this.QUICK_Airspeed.valtxt = "Airspeed";
             // 
             // QUICK_Terrain
-            // 
+            //
             this.QUICK_Terrain.alert_high = 0D;
             this.QUICK_Terrain.alert_low = 200D;
             this.QUICK_Terrain.attention_offset = 300D;
@@ -2064,7 +2064,7 @@
             // 
             // QUICK_BackupBattV
             // 
-            this.QUICK_BackupBattV.alert_high = 0D;
+            this.QUICK_BackupBattV.alert_high = 33.5D;
             this.QUICK_BackupBattV.alert_low = 24D;
             this.QUICK_BackupBattV.attention_offset = 4D;
             this.QUICK_BackupBattV.BackColor = System.Drawing.Color.Green;
@@ -2079,7 +2079,7 @@
             // 
             // QUICK_VPSBattV
             // 
-            this.QUICK_VPSBattV.alert_high = 0D;
+            this.QUICK_VPSBattV.alert_high = 67.9D;
             this.QUICK_VPSBattV.alert_low = 46D;
             this.QUICK_VPSBattV.attention_offset = 9D;
             this.QUICK_VPSBattV.BackColor = System.Drawing.Color.Green;
@@ -2160,7 +2160,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 360D;
+            this.windDir1.Direction = 180D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
