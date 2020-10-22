@@ -2648,7 +2648,7 @@ namespace MissionPlanner
                             fuelrate = efi.fuel_flow;
                             fuelused = efi.fuel_consumed*0.00220462f*0.85f;  //Convert grams to lbs. Decrease by 15% because esimator always estimates high.
                             efi_rpm = efi.rpm;
-                            intake_manifold_temp = efi.intake_manifold_temperature - 272.15F;  //Convert Kelvin to C
+                            intake_manifold_temp = efi.intake_manifold_temperature;
 
                             //MAVLink.packets[(byte)MAVLink.MSG_NAMES.EFI_STATUS);
                     }
