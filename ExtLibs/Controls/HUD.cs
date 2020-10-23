@@ -2528,8 +2528,7 @@ namespace MissionPlanner.Controls
 
                     string text = HUDT.Bat + _batterylevel.ToString("0.00v") + " " + _current.ToString("0.0 A");
 
-                    text = HUDT.Bat + _batterylevel.ToString("0.00v") + " " + _current.ToString("0.0 A") + " " +
-                           (_batteryremaining) + "%";
+                    text = HUDT.Bat + _batterylevel.ToString("0.00v") + " " + _current.ToString("0.0 A");
 
                     if (lowvoltagealert)
                     {
