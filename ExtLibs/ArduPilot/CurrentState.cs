@@ -1664,6 +1664,8 @@ namespace MissionPlanner
         public float fuelrate { get; set; }
         public float fuelused { get; set; }
         public float fuelremaining { get; set; }
+        public float timeremaining { get; set; }
+        public string remainingstr { get; set; }
         public float efi_rpm { get; set; }
         public float intake_manifold_temp { get; set; }
 
@@ -2467,7 +2469,13 @@ namespace MissionPlanner
                             vy = loc.vy * 0.01;
                             vz = loc.vz * 0.01;
                         }
-                    }
+                        //DELME!
+                            fuelrate = 2.5f;
+                            fuelused = 3f;
+                            fuelremaining = initial_fuel_load - fuelused;
+                            timeremaining = fuelremaining / fuelrate; //hours
+                            remainingstr = fuelremaining.ToString() + ";" + timeremaining.ToString();
+                        }
 
                         break;
                     case (uint) MAVLink.MAVLINK_MSG_ID.GPS_RAW_INT:
@@ -2648,9 +2656,13 @@ namespace MissionPlanner
 
                             efi_health = efi.health;
                             cht = efi.cylinder_head_temperature;
-                            fuelrate = efi.fuel_flow;
-                            fuelused = efi.fuel_consumed*0.00220462f*0.85f;  //Convert grams to lbs. Decrease by 15% because esimator always estimates high.
+                            fuelrate = efi.fuel_flow * 0.00220462f * 60f * 0.85f; //Convert g/min to lbs/hr. Decrease by 15% because estimator always estiamtes high.
+                            fuelused = efi.fuel_consumed * 0.00220462f * 0.85f;  //Convert grams to lbs. Decrease by 15% because estimator always estimates high.
+                            fuelrate = 2.5f;
+                            fuelused = 3f;
                             fuelremaining = initial_fuel_load - fuelused;
+                            timeremaining = fuelremaining / fuelrate; //hours
+                            remainingstr = fuelremaining.ToString() + ";" + timeremaining.ToString();
                             efi_rpm = efi.rpm;
                             intake_manifold_temp = efi.intake_manifold_temperature;
 

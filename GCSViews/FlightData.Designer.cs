@@ -146,7 +146,7 @@
             this.QUICK_Airspeed = new MissionPlanner.Controls.QuickViewText();
             this.QUICK_Terrain = new MissionPlanner.Controls.QuickViewText();
             this.QUICK_CubeT = new MissionPlanner.Controls.QuickViewText();
-            this.QUICK_FuelRemaining = new MissionPlanner.Controls.QuickView();
+            this.QUICK_FuelRemaining = new MissionPlanner.Controls.QuickViewFuel();
             this.QUICK_CHT = new MissionPlanner.Controls.QuickView();
             this.QUICK_RPM = new MissionPlanner.Controls.QuickView();
             this.QUICK_Throttle = new MissionPlanner.Controls.QuickView();
@@ -2082,16 +2082,15 @@
             this.QUICK_FuelRemaining.attention_color = System.Drawing.Color.Orange;
             this.QUICK_FuelRemaining.attention_offset = 2.5D;
             this.QUICK_FuelRemaining.BackColor = System.Drawing.Color.Green;
-            this.QUICK_FuelRemaining.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "fuelremaining", true));
-            this.QUICK_FuelRemaining.desc = "Remaining (lbs):";
+            this.QUICK_FuelRemaining.DataBindings.Add(new System.Windows.Forms.Binding("str", this.bindingSource1, "remainingstr", true));
+            this.QUICK_FuelRemaining.desc = "Remaining";
             resources.ApplyResources(this.QUICK_FuelRemaining, "QUICK_FuelRemaining");
             this.QUICK_FuelRemaining.ForeColor = System.Drawing.SystemColors.Window;
             this.QUICK_FuelRemaining.happy_color = System.Drawing.Color.Green;
             this.QUICK_FuelRemaining.Name = "QUICK_FuelRemaining";
-            this.QUICK_FuelRemaining.number = -9999D;
-            this.QUICK_FuelRemaining.numberColor = System.Drawing.SystemColors.Window;
-            this.QUICK_FuelRemaining.numberformat = "F2";
-            this.QUICK_FuelRemaining.numFontSize = 22F;
+            this.QUICK_FuelRemaining.numFontSize = 14F;
+            this.QUICK_FuelRemaining.str = "";
+            this.QUICK_FuelRemaining.strColor = System.Drawing.Color.Empty;
             // 
             // QUICK_CHT
             // 
@@ -2251,7 +2250,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 180D;
+            this.windDir1.Direction = 360D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2667,7 +2666,7 @@
         private Controls.QuickView QUICK_CHT;
         private Controls.QuickView QUICK_RPM;
         private Controls.QuickView QUICK_Throttle;
-        private Controls.QuickView QUICK_FuelRemaining;
+        private Controls.QuickViewFuel QUICK_FuelRemaining;
         private Controls.QuickViewArmingStatus QUICK_Arming_Status;
         private Controls.QuickViewLockStatus QUICK_Lock_Status;
         private Controls.QuickViewGPSStatus QUICK_GPS_Status;
