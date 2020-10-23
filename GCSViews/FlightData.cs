@@ -394,6 +394,8 @@ namespace MissionPlanner.GCSViews
 
             OnResize(EventArgs.Empty);
 
+            Actiontabtimer.Start();
+
             if (CB_tuning.Checked)
                 ZedGraphTimer.Start();
 
@@ -3598,6 +3600,23 @@ namespace MissionPlanner.GCSViews
             coords1.AltUnit = CurrentState.AltUnit;
         }
 
+        private void Actiontabtimer_Tick(object sender, EventArgs e)
+        {
+            var isitarmed = MainV2.comPort.MAV.cs.armed;
+
+            //When armed, disable some user controls that could be bad to change while flying
+            if ( isitarmed)
+            {
+                CMB_action.Enabled = false;
+                modifyandSetFuelLoad.Enabled = false;
+            }
+            else
+            {
+                CMB_action.Enabled = true;
+                modifyandSetFuelLoad.Enabled = true;
+            }
+        }
+
         private void modifyandSetAlt_Click(object sender, EventArgs e)
         {
             int newalt = (int) modifyandSetAlt.Value;
@@ -3638,6 +3657,10 @@ namespace MissionPlanner.GCSViews
             }
         }
 
+        private void modifyandSetFuelLoad_Click(object sender, EventArgs e)
+        {
+            CurrentState.initial_fuel_load = (float)modifyandSetFuelLoad.Value;
+        }
         private void modifyandSetSpeed_ParentChanged(object sender, EventArgs e)
         {
         }

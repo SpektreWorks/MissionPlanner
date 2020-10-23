@@ -27,6 +27,8 @@ namespace MissionPlanner
         public static float multiplieralt = 1;
         public static string AltUnit = "";
 
+        public static float initial_fuel_load;
+
         private PointLatLngAlt _homelocation = new PointLatLngAlt();
         private static PointLatLngAlt _plannedhomelocation = new PointLatLngAlt();
 
@@ -1661,6 +1663,7 @@ namespace MissionPlanner
         public float cht { get; set; }
         public float fuelrate { get; set; }
         public float fuelused { get; set; }
+        public float fuelremaining { get; set; }
         public float efi_rpm { get; set; }
         public float intake_manifold_temp { get; set; }
 
@@ -2647,6 +2650,7 @@ namespace MissionPlanner
                             cht = efi.cylinder_head_temperature;
                             fuelrate = efi.fuel_flow;
                             fuelused = efi.fuel_consumed*0.00220462f*0.85f;  //Convert grams to lbs. Decrease by 15% because esimator always estimates high.
+                            fuelremaining = initial_fuel_load - fuelused;
                             efi_rpm = efi.rpm;
                             intake_manifold_temp = efi.intake_manifold_temperature;
 

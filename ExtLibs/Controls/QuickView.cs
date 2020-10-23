@@ -91,6 +91,12 @@ namespace MissionPlanner.Controls
             e2.Surface.Canvas.Clear(Extensions.ToSKColor(canvascolor));
             int y = 0;
             {
+                //Hack: special case for Fuel Remaining
+                if ( desc == "Remaining (lbs):")
+                {
+                    this.Font = new Font(this.Font.FontFamily, 8F, this.Font.Style);
+                }
+
                 Size extent = e.MeasureString(desc, this.Font).ToSize();
 
                 var mid = extent.Width / 2;

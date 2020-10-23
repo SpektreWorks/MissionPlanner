@@ -144,6 +144,9 @@
   <data name="&gt;&gt;numericUpDown1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="myButton1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7.75pt</value>
+  </data>
   <data name="myButton1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -166,7 +169,7 @@
     <value>myButton1</value>
   </data>
   <data name="&gt;&gt;myButton1.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.MyButton, MissionPlanner.Controls, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.MyButton, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;myButton1.Parent" xml:space="preserve">
     <value>flowLayoutPanel1</value>
