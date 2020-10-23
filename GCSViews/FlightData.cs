@@ -1724,18 +1724,6 @@ namespace MissionPlanner.GCSViews
             //GCSViews.FlightPlanner.instance.autopan = CHK_autopan.Checked;
         }
 
-        private void CHK_Loiter_Direction_CheckedChanged(object sender, EventArgs e)
-        {
-            if (CHK_Loiter_Direction.Checked)
-            {
-                CurrentState.loiter_direction_multiplier = 1;
-            }
-            else
-            {
-                CurrentState.loiter_direction_multiplier = -1;
-            }
-        }
-
         void chk_box_CheckedChanged(object sender, EventArgs e)
         {
             ThemeManager.ApplyThemeTo((Control) sender);
@@ -2310,11 +2298,11 @@ namespace MissionPlanner.GCSViews
                     if ( rad > 0 )
                     {
                         //If Loiter Radius in parameters is positive, check the 'CW Turns' checkbox and show value as positive on screen
-                        CHK_Loiter_Direction.Checked = true;
+                        CHK_Loiter_CW_flightdata.Checked = true;
                     }
                     else
                     {
-                        CHK_Loiter_Direction.Checked = false;
+                        CHK_Loiter_CW_flightdata.Checked = false;
                         rad = -rad;
                     }
 
@@ -3656,11 +3644,19 @@ namespace MissionPlanner.GCSViews
 
         private void modifyandSetLoiterRad_Click(object sender, EventArgs e)
         {
-            int newrad = (int) (modifyandSetLoiterRad.Value) * CurrentState.loiter_direction_multiplier;
+            int newrad;
+            if (CHK_Loiter_CW_flightdata.Checked == true)
+            {
+                newrad = Math.Abs((int)modifyandSetLoiterRad.Value);
+            }
+            else
+            {
+                newrad = -Math.Abs((int)modifyandSetLoiterRad.Value);
+            }
 
             try
             {
-                MainV2.comPort.setParam(new[] {"LOITER_RAD", "WP_LOITER_RAD"}, newrad / CurrentState.multiplierdist);
+                MainV2.comPort.setParam("WP_LOITER_RAD", newrad / CurrentState.multiplierdist);
             }
             catch
             {

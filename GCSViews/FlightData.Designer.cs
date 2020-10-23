@@ -64,7 +64,7 @@
             this.modifyandSetSpeed = new MissionPlanner.Controls.ModifyandSet();
             this.modifyandSetFuelLoad = new MissionPlanner.Controls.ModifyandSet();
             this.modifyandSetAlt = new MissionPlanner.Controls.ModifyandSet();
-            this.CHK_Loiter_Direction = new System.Windows.Forms.CheckBox();
+            this.CHK_Loiter_CW_flightdata = new System.Windows.Forms.CheckBox();
             this.tabPagePreFlight = new System.Windows.Forms.TabPage();
             this.checkListControl1 = new MissionPlanner.Controls.PreFlight.CheckListControl();
             this.tabGauges = new System.Windows.Forms.TabPage();
@@ -671,7 +671,7 @@
             this.tabActions.Controls.Add(this.modifyandSetSpeed);
             this.tabActions.Controls.Add(this.modifyandSetFuelLoad);
             this.tabActions.Controls.Add(this.modifyandSetAlt);
-            this.tabActions.Controls.Add(this.CHK_Loiter_Direction);
+            this.tabActions.Controls.Add(this.CHK_Loiter_CW_flightdata);
             resources.ApplyResources(this.tabActions, "tabActions");
             this.tabActions.Name = "tabActions";
             // 
@@ -960,11 +960,10 @@
             0});
             this.modifyandSetAlt.Click += new System.EventHandler(this.modifyandSetAlt_Click);
             // 
-            // CHK_Loiter_Direction
+            // CHK_Loiter_CW_flightdata
             // 
-            resources.ApplyResources(this.CHK_Loiter_Direction, "CHK_Loiter_Direction");
-            this.CHK_Loiter_Direction.Name = "CHK_Loiter_Direction";
-            this.CHK_Loiter_Direction.CheckedChanged += new System.EventHandler(this.CHK_Loiter_Direction_CheckedChanged);
+            resources.ApplyResources(this.CHK_Loiter_CW_flightdata, "CHK_Loiter_CW_flightdata");
+            this.CHK_Loiter_CW_flightdata.Name = "CHK_Loiter_CW_flightdata";
             // 
             // tabPagePreFlight
             // 
@@ -2258,7 +2257,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 180D;
+            this.windDir1.Direction = 360D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2692,6 +2691,6 @@
         private Controls.QuickView quickView5;
         private System.Windows.Forms.ToolStripMenuItem poiatcoordsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flyToCoordsToolStripMenuItem;
-        private System.Windows.Forms.CheckBox CHK_Loiter_Direction;
+        private System.Windows.Forms.CheckBox CHK_Loiter_CW_flightdata;
     }
 }

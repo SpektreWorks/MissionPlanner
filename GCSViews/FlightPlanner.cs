@@ -5416,20 +5416,19 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
 
                 ((ProgressReporterDialogue)sender).UpdateProgressAndStatus(95, "Setting params");
 
-                // m
                 port.setParam("WP_RADIUS", float.Parse(TXT_WPRad.Text) / CurrentState.multiplierdist);
-
-                // cm's
-                port.setParam("WPNAV_RADIUS", float.Parse(TXT_WPRad.Text) / CurrentState.multiplierdist * 100.0);
-
-                try
+                
+                //Check checkbox and change sign of WP_LOITER_RAD before changing parameter
+                float loiterrad = float.Parse(TXT_loiterrad.Text) / CurrentState.multiplierdist;
+                if (CHK_Loiter_CW_flightdata.Checked == true)
                 {
-                    port.setParam(new[] { "LOITER_RAD", "WP_LOITER_RAD" },
-                        float.Parse(TXT_loiterrad.Text) / CurrentState.multiplierdist);
+                    loiterrad = Math.Abs(loiterrad);
                 }
-                catch
+                else
                 {
+                    loiterrad = -Math.Abs(loiterrad);
                 }
+                port.setParam("WP_LOITER_RAD", loiterrad);
 
                 ((ProgressReporterDialogue)sender).UpdateProgressAndStatus(100, "Done.");
             }
@@ -5765,11 +5764,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
 
                 if (param.ContainsKey("WP_RADIUS"))
                 {
-                    TXT_WPRad.Text = (Math.Round(((double)param["WP_RADIUS"] * CurrentState.multiplierdist))).ToString();
-                }
-                if (param.ContainsKey("WPNAV_RADIUS"))
-                {
-                    TXT_WPRad.Text = (((double)param["WPNAV_RADIUS"] * CurrentState.multiplierdist / 100.0)).ToString();
+                    TXT_WPRad.Text = Math.Round((double)param["WP_RADIUS"] * CurrentState.multiplierdist).ToString();
                 }
 
                 log.Info("param WP_RADIUS " + TXT_WPRad.Text);
@@ -5777,14 +5772,20 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                 try
                 {
                     TXT_loiterrad.Enabled = false;
-                    if (param.ContainsKey("LOITER_RADIUS"))
+
+                    if (param.ContainsKey("WP_LOITER_RAD"))
                     {
-                        TXT_loiterrad.Text = (((double)param["LOITER_RADIUS"] * CurrentState.multiplierdist)).ToString();
-                        TXT_loiterrad.Enabled = true;
-                    }
-                    else if (param.ContainsKey("WP_LOITER_RAD"))
-                    {
-                        TXT_loiterrad.Text = (Math.Round(((double)param["WP_LOITER_RAD"] * CurrentState.multiplierdist))).ToString();
+                        double loiterrad = Math.Round((double)param["WP_LOITER_RAD"] * CurrentState.multiplierdist);
+                        if (loiterrad < 0)
+                        {
+                            loiterrad = Math.Abs(loiterrad);
+                            CHK_Loiter_CW_flightdata.Checked = false;
+                        }
+                        else
+                        {
+                            CHK_Loiter_CW_flightdata.Checked = true;
+                        }
+                        TXT_loiterrad.Text = (loiterrad).ToString();
                         TXT_loiterrad.Enabled = true;
                     }
 
@@ -7272,6 +7273,11 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
             MainMap.Position = MainV2.comPort.MAV.cs.HomeLocation;
             if (MainMap.Zoom < 17)
                 MainMap.Zoom = 17;
+        }
+
+        private void CHK_Loiter_CW_flightdata_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

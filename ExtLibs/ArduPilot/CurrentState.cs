@@ -29,8 +29,6 @@ namespace MissionPlanner
 
         public static float initial_fuel_load = 20.0f;
 
-        public static int loiter_direction_multiplier = 1; //Either 1.0 or -1.0 for left turn and right turn loiters
-
         private PointLatLngAlt _homelocation = new PointLatLngAlt();
         private static PointLatLngAlt _plannedhomelocation = new PointLatLngAlt();
 
