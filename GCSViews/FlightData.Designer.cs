@@ -2088,7 +2088,7 @@
             this.QUICK_FuelRemaining.ForeColor = System.Drawing.SystemColors.Window;
             this.QUICK_FuelRemaining.happy_color = System.Drawing.Color.Green;
             this.QUICK_FuelRemaining.Name = "QUICK_FuelRemaining";
-            this.QUICK_FuelRemaining.numFontSize = 14F;
+            this.QUICK_FuelRemaining.numFontSize = 10F;
             this.QUICK_FuelRemaining.str = "";
             this.QUICK_FuelRemaining.strColor = System.Drawing.Color.Empty;
             // 

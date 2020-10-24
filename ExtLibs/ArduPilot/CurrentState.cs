@@ -27,7 +27,7 @@ namespace MissionPlanner
         public static float multiplieralt = 1;
         public static string AltUnit = "";
 
-        public static float initial_fuel_load;
+        public static float initial_fuel_load = 20.0f;
 
         private PointLatLngAlt _homelocation = new PointLatLngAlt();
         private static PointLatLngAlt _plannedhomelocation = new PointLatLngAlt();
@@ -1662,6 +1662,10 @@ namespace MissionPlanner
         public float efi_health { get; set; }
         public float cht { get; set; }
         public float fuelrate { get; set; }
+        public float avgfuelrate = 0;
+        public static float lastavgfuelrate = 0;
+        public static float avgcoeff = 0.001f;
+
         public float fuelused { get; set; }
         public float fuelremaining { get; set; }
         public float timeremaining { get; set; }
@@ -2469,14 +2473,7 @@ namespace MissionPlanner
                             vy = loc.vy * 0.01;
                             vz = loc.vz * 0.01;
                         }
-                        //DELME!
-                            fuelrate = 2.5f;
-                            fuelused = 3f;
-                            fuelremaining = initial_fuel_load - fuelused;
-                            timeremaining = fuelremaining / fuelrate; //hours
-                            remainingstr = fuelremaining.ToString() + ";" + timeremaining.ToString();
-                        }
-
+                    }
                         break;
                     case (uint) MAVLink.MAVLINK_MSG_ID.GPS_RAW_INT:
 
@@ -2656,14 +2653,25 @@ namespace MissionPlanner
 
                             efi_health = efi.health;
                             cht = efi.cylinder_head_temperature;
-                            fuelrate = efi.fuel_flow * 0.00220462f * 60f * 0.85f; //Convert g/min to lbs/hr. Decrease by 15% because estimator always estiamtes high.
-                            fuelused = efi.fuel_consumed * 0.00220462f * 0.85f;  //Convert grams to lbs. Decrease by 15% because estimator always estimates high.
-                            fuelrate = 2.5f;
-                            fuelused = 3f;
-                            fuelremaining = initial_fuel_load - fuelused;
-                            timeremaining = fuelremaining / fuelrate; //hours
-                            remainingstr = fuelremaining.ToString() + ";" + timeremaining.ToString();
                             efi_rpm = efi.rpm;
+                            fuelused = efi.fuel_consumed * 0.00220462f * 0.85f;  //Convert grams to lbs. Decrease by 15% because estimator always estimates high.
+                            fuelremaining = initial_fuel_load - fuelused;
+
+                            fuelrate = efi.fuel_flow * 0.00220462f * 60f * 0.85f; //Convert g/min to lbs/hr. Decrease by 15% because estimator always estiamtes high.
+
+                            //Calculate running average of fuelrate so displayed value doesn't jump around too much
+                            if (efi_rpm > 0)
+                            {
+                                avgfuelrate = avgcoeff * fuelrate + (1.0f - avgcoeff) * lastavgfuelrate;  //avg(t) = a*val + (1-a)*avg(t-1)
+                            }
+                            else
+                            {
+                                avgfuelrate = 2.5f;  //If the engine isn't turning, default to 2.5lbs/hr so that running average doesn't run away to infinity
+                            }
+                            timeremaining = fuelremaining / avgfuelrate; //hours
+                            lastavgfuelrate = avgfuelrate;
+                            remainingstr = fuelremaining.ToString("F1") + ";" + timeremaining.ToString("F1");
+                            
                             intake_manifold_temp = efi.intake_manifold_temperature;
 
                             //MAVLink.packets[(byte)MAVLink.MSG_NAMES.EFI_STATUS);

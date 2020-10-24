@@ -62,7 +62,7 @@ namespace MissionPlanner.Controls
             }
             string fuel_str = s[0];
             string time_str = s[1];
-            string remaining_str = fuel_str + "lbs " + time_str + "hrs";
+            string remaining_str = fuel_str + "lb " + time_str + "hr";
 
             float fuel_f = float.Parse(fuel_str);
             float time_f = float.Parse(time_str);
@@ -100,7 +100,7 @@ namespace MissionPlanner.Controls
             {
                 this.strColor = Color.White;
                 Size extent = e.MeasureString(remaining_str, new Font(this.Font.FontFamily, (float)newSize, this.Font.Style)).ToSize();
-                e.DrawString(remaining_str, new Font(this.Font.FontFamily, (float)numFontSize, this.Font.Style), new SolidBrush(this.strColor), this.Width / 2 - extent.Width / 2, y + ((this.Height - y) / 2 - extent.Height / 2));
+                e.DrawString(remaining_str, new Font(this.Font.FontFamily, (float)numFontSize, this.Font.Style), new SolidBrush(this.strColor), (this.Width / 2 - extent.Width / 2)-4, y + ((this.Height - y) / 2 - extent.Height / 2));
             }
         }
 
