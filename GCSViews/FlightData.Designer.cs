@@ -64,6 +64,7 @@
             this.modifyandSetSpeed = new MissionPlanner.Controls.ModifyandSet();
             this.modifyandSetFuelLoad = new MissionPlanner.Controls.ModifyandSet();
             this.modifyandSetAlt = new MissionPlanner.Controls.ModifyandSet();
+            this.CHK_Loiter_Direction = new System.Windows.Forms.CheckBox();
             this.tabPagePreFlight = new System.Windows.Forms.TabPage();
             this.checkListControl1 = new MissionPlanner.Controls.PreFlight.CheckListControl();
             this.tabGauges = new System.Windows.Forms.TabPage();
@@ -670,6 +671,7 @@
             this.tabActions.Controls.Add(this.modifyandSetSpeed);
             this.tabActions.Controls.Add(this.modifyandSetFuelLoad);
             this.tabActions.Controls.Add(this.modifyandSetAlt);
+            this.tabActions.Controls.Add(this.CHK_Loiter_Direction);
             resources.ApplyResources(this.tabActions, "tabActions");
             this.tabActions.Name = "tabActions";
             // 
@@ -860,13 +862,13 @@
             0,
             0});
             this.modifyandSetLoiterRad.Minimum = new decimal(new int[] {
-            10000,
+            1,
             0,
             0,
-            -2147483648});
+            0});
             this.modifyandSetLoiterRad.Name = "modifyandSetLoiterRad";
             this.modifyandSetLoiterRad.Value = new decimal(new int[] {
-            100,
+            1000,
             0,
             0,
             0});
@@ -957,6 +959,12 @@
             0,
             0});
             this.modifyandSetAlt.Click += new System.EventHandler(this.modifyandSetAlt_Click);
+            // 
+            // CHK_Loiter_Direction
+            // 
+            resources.ApplyResources(this.CHK_Loiter_Direction, "CHK_Loiter_Direction");
+            this.CHK_Loiter_Direction.Name = "CHK_Loiter_Direction";
+            this.CHK_Loiter_Direction.CheckedChanged += new System.EventHandler(this.CHK_Loiter_Direction_CheckedChanged);
             // 
             // tabPagePreFlight
             // 
@@ -2684,5 +2692,6 @@
         private Controls.QuickView quickView5;
         private System.Windows.Forms.ToolStripMenuItem poiatcoordsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flyToCoordsToolStripMenuItem;
+        private System.Windows.Forms.CheckBox CHK_Loiter_Direction;
     }
 }
