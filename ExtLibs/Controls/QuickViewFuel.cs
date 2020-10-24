@@ -71,17 +71,17 @@ namespace MissionPlanner.Controls
 
             if (alert_low != 0)
             {
-                if (fuel_f <= alert_low)
+                if (time_f <= alert_low)
                     canvascolor = alert_color;
-                else if (fuel_f < (alert_low + attention_offset))
+                else if (time_f < (alert_low + attention_offset))
                     canvascolor = attention_color;
             }
 
             if (alert_high != 0)
             {
-                if (fuel_f >= alert_high)
+                if (time_f >= alert_high)
                     canvascolor = alert_color;
-                else if ( fuel_f > (alert_high - attention_offset))
+                else if ( time_f > (alert_high - attention_offset))
                         canvascolor = attention_color;
             }
             
