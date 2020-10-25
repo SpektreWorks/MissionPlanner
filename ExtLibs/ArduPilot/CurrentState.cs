@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using Flurl;
+using log4net;
 using MissionPlanner.ArduPilot;
 using MissionPlanner.Attributes;
 using MissionPlanner.Utilities;
@@ -7,6 +8,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
@@ -1673,6 +1675,9 @@ namespace MissionPlanner
         public float efi_rpm { get; set; }
         public float intake_manifold_temp { get; set; }
 
+        // Status Text
+        public string statustext { get; set; }
+
         // Weather Values
         public float weather_windvel { get; set; }
         public int weather_winddir { get; set; }
@@ -1695,960 +1700,960 @@ namespace MissionPlanner
             {
                 switch (mavLinkMessage.msgid)
                 {
-                    case (uint) MAVLink.MAVLINK_MSG_ID.RC_CHANNELS_SCALED:
+                    case (uint)MAVLink.MAVLINK_MSG_ID.RC_CHANNELS_SCALED:
 
                         // hil mavlink 0.9
-                    {
-                        var hil = mavLinkMessage.ToStructure<MAVLink.mavlink_rc_channels_scaled_t>();
-
-                        hilch1 = hil.chan1_scaled;
-                        hilch2 = hil.chan2_scaled;
-                        hilch3 = hil.chan3_scaled;
-                        hilch4 = hil.chan4_scaled;
-                        hilch5 = hil.chan5_scaled;
-                        hilch6 = hil.chan6_scaled;
-                        hilch7 = hil.chan7_scaled;
-                        hilch8 = hil.chan8_scaled;
-
-                        // Console.WriteLine("RC_CHANNELS_SCALED Packet");
-                    }
-
-                        break;
-
-
-                    case (uint) MAVLink.MAVLINK_MSG_ID.LOCAL_POSITION_NED:
-
-
-                    {
-                        var lpned = mavLinkMessage.ToStructure<MAVLink.mavlink_local_position_ned_t>();
-
-                        var loc = HomeLocation.gps_offset(lpned.y, lpned.x);
-
-                        //lat = loc.Lat;
-                        //lng = loc.Lng;
-                        //alt = (float)(loc.Alt + lpned.z);
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.POSITION_TARGET_GLOBAL_INT:
-
-
-                    {
-                        var postraget = mavLinkMessage.ToStructure<MAVLink.mavlink_position_target_global_int_t>();
-
-                        if (postraget.coordinate_frame == (byte) MAVLink.MAV_FRAME.GLOBAL_INT)
-                            TargetLocation = new PointLatLngAlt(postraget.lat_int / 1e7, postraget.lon_int / 1e7,
-                                postraget.alt,
-                                postraget.type_mask.ToString());
-
-                        if (postraget.coordinate_frame == (byte) MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT)
-                            TargetLocation = new PointLatLngAlt(postraget.lat_int / 1e7, postraget.lon_int / 1e7,
-                                postraget.alt + HomeAlt,
-                                postraget.type_mask.ToString());
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.AUTOPILOT_VERSION:
-
-
-                    {
-                        var version = mavLinkMessage.ToStructure<MAVLink.mavlink_autopilot_version_t>();
-                        //#define FIRMWARE_VERSION 3,4,0,FIRMWARE_VERSION_TYPE_DEV
-                        //		flight_sw_version	0x03040000	uint
-
-                        var main = (byte) (version.flight_sw_version >> 24);
-                        var sub = (byte) ((version.flight_sw_version >> 16) & 0xff);
-                        var rev = (byte) ((version.flight_sw_version >> 8) & 0xff);
-                        var type =
-                            (MAVLink.FIRMWARE_VERSION_TYPE) (version.flight_sw_version & 0xff);
-
-                        this.version = new Version(main, sub, rev, (int) type);
-
-                        try
                         {
-                            capabilities = (uint) (MAVLink.MAV_PROTOCOL_CAPABILITY) version.capabilities;
-                            var test = (MAVLink.MAV_PROTOCOL_CAPABILITY) version.capabilities;
+                            var hil = mavLinkMessage.ToStructure<MAVLink.mavlink_rc_channels_scaled_t>();
 
-                            Console.WriteLine(test);
-                        }
-                        catch
-                        {
+                            hilch1 = hil.chan1_scaled;
+                            hilch2 = hil.chan2_scaled;
+                            hilch3 = hil.chan3_scaled;
+                            hilch4 = hil.chan4_scaled;
+                            hilch5 = hil.chan5_scaled;
+                            hilch6 = hil.chan6_scaled;
+                            hilch7 = hil.chan7_scaled;
+                            hilch8 = hil.chan8_scaled;
+
+                            // Console.WriteLine("RC_CHANNELS_SCALED Packet");
                         }
 
-                        Serial.print("Flight SW Version: ");
-                        Serial.println(version.flight_sw_version);
-                        Serial.print("Middleware SW: ");
-                        Serial.println(version.middleware_sw_version);
-                        Serial.print("OS Custom: ");
-                        Serial.println(version.os_custom_version);
-                        Serial.print("OS SW: ");
-                        Serial.println(version.os_sw_version);
-                        Serial.print("board_version: ");
-                        Serial.println(version.board_version);
-                        Serial.print("Vendor ID: ");
-                        Serial.println(version.vendor_id);
-                        Serial.print("Product ID: ");
-                        Serial.println(version.product_id);
-                        Serial.print("Board Version: ");
-                        Serial.println(version.board_version);
-                    }
-
                         break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.FENCE_STATUS:
 
 
-                    {
-                        var fence = mavLinkMessage.ToStructure<MAVLink.mavlink_fence_status_t>();
+                    case (uint)MAVLink.MAVLINK_MSG_ID.LOCAL_POSITION_NED:
 
-                        if (fence.breach_status != (byte) MAVLink.FENCE_BREACH.NONE)
+
                         {
-                            // fence breached
-                            messageHigh = "Fence Breach";
-                        }
-                    }
+                            var lpned = mavLinkMessage.ToStructure<MAVLink.mavlink_local_position_ned_t>();
 
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.HIGH_LATENCY:
+                            var loc = HomeLocation.gps_offset(lpned.y, lpned.x);
 
-
-                    {
-                        var highlatency = mavLinkMessage.ToStructure<MAVLink.mavlink_high_latency_t>();
-
-                        landed = highlatency.landed_state == 1;
-
-                        if ((highlatency.base_mode & (byte) MAVLink.MAV_MODE_FLAG.CUSTOM_MODE_ENABLED) != 0)
-                        {
-                            var modelist = Common.getModesList(firmware);
-
-                            if (modelist != null)
-                            {
-                                var found = false;
-
-                                foreach (var pair in modelist)
-                                    if (pair.Key == highlatency.custom_mode)
-                                    {
-                                        mode = pair.Value;
-                                        _mode = highlatency.custom_mode;
-                                        found = true;
-                                        break;
-                                    }
-
-                                if (!found)
-                                    log.Warn("Mode not found bm:" + highlatency.base_mode + " cm:" +
-                                             highlatency.custom_mode);
-                            }
+                            //lat = loc.Lat;
+                            //lng = loc.Lng;
+                            //alt = (float)(loc.Alt + lpned.z);
                         }
 
-                        roll = highlatency.roll / 100f;
-                        pitch = highlatency.pitch / 100f;
-                        yaw = highlatency.heading / 100f;
-                        ch3percent = highlatency.throttle;
-                        lat = highlatency.latitude / 1e7;
-                        lng = highlatency.longitude / 1e7;
-                        altasl = highlatency.altitude_amsl;
-                        alt = highlatency.altitude_sp;
-                        airspeed = highlatency.airspeed;
-                        targetairspeed = highlatency.airspeed_sp;
-                        groundspeed = highlatency.groundspeed;
-                        climbrate = highlatency.climb_rate;
-                        satcount = highlatency.gps_nsat;
-                        gpsstatus = highlatency.gps_fix_type;
-                        battery_remaining = highlatency.battery_remaining;
-                        press_temp = highlatency.temperature;
-                        raw_temp = highlatency.temperature_air;
-                        failsafe = highlatency.failsafe > 0;
-                        wpno = highlatency.wp_num;
-                        wp_dist = highlatency.wp_distance;
-                    }
-
                         break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.HIL_CONTROLS:
-
-                        // hil mavlink 0.9 and 1.0
-                    {
-                        var hil = mavLinkMessage.ToStructure<MAVLink.mavlink_hil_controls_t>();
-
-                        hilch1 = (int) (hil.roll_ailerons * 10000);
-                        hilch2 = (int) (hil.pitch_elevator * 10000);
-                        hilch3 = (int) (hil.throttle * 10000);
-                        hilch4 = (int) (hil.yaw_rudder * 10000);
-
-                        //MAVLink.packets[(byte)MAVLink.MSG_NAMES.HIL_CONTROLS);
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.OPTICAL_FLOW:
+                    case (uint)MAVLink.MAVLINK_MSG_ID.POSITION_TARGET_GLOBAL_INT:
 
 
-                    {
-                        var optflow = mavLinkMessage.ToStructure<MAVLink.mavlink_optical_flow_t>();
-
-                        opt_m_x = optflow.flow_comp_m_x;
-                        opt_m_y = optflow.flow_comp_m_y;
-                        opt_x = optflow.flow_x;
-                        opt_y = optflow.flow_y;
-                        opt_qua = optflow.quality;
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.MOUNT_STATUS:
-
-
-                    {
-                        var status = mavLinkMessage.ToStructure<MAVLink.mavlink_mount_status_t>();
-
-                        campointa = status.pointing_a / 100.0f;
-                        campointb = status.pointing_b / 100.0f;
-                        campointc = status.pointing_c / 100.0f;
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.VIBRATION:
-
-
-                    {
-                        var vibe = mavLinkMessage.ToStructure<MAVLink.mavlink_vibration_t>();
-
-                        vibeclip0 = vibe.clipping_0;
-                        vibeclip1 = vibe.clipping_1;
-                        vibeclip2 = vibe.clipping_2;
-                        vibex = vibe.vibration_x;
-                        vibey = vibe.vibration_y;
-                        vibez = vibe.vibration_z;
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.AIRSPEED_AUTOCAL:
-
-
-                    {
-                        var asac = mavLinkMessage.ToStructure<MAVLink.mavlink_airspeed_autocal_t>();
-
-                        asratio = asac.ratio;
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.SYSTEM_TIME:
-
-
-                    {
-                        var systime = mavLinkMessage.ToStructure<MAVLink.mavlink_system_time_t>();
-
-                        var date1 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-                        try
                         {
-                            date1 = date1.AddMilliseconds(systime.time_unix_usec / 1000);
+                            var postraget = mavLinkMessage.ToStructure<MAVLink.mavlink_position_target_global_int_t>();
 
-                            gpstime = date1;
-                        }
-                        catch
-                        {
-                        }
-                    }
+                            if (postraget.coordinate_frame == (byte)MAVLink.MAV_FRAME.GLOBAL_INT)
+                                TargetLocation = new PointLatLngAlt(postraget.lat_int / 1e7, postraget.lon_int / 1e7,
+                                    postraget.alt,
+                                    postraget.type_mask.ToString());
 
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.HWSTATUS:
-
-
-                    {
-                        var hwstatus = mavLinkMessage.ToStructure<MAVLink.mavlink_hwstatus_t>();
-
-                        hwvoltage = hwstatus.Vcc / 1000.0f;
-                        i2cerrors = hwstatus.I2Cerr;
-
-                        //MAVLink.packets[(byte)MAVLink.MSG_NAMES.HWSTATUS);
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.EKF_STATUS_REPORT:
-
-                    {
-                        var ekfstatusm = mavLinkMessage.ToStructure<MAVLink.mavlink_ekf_status_report_t>();
-
-                        // > 1, between 0-1 typical > 1 = reject measurement - red
-                        // 0.5 > amber
-
-                        ekfvelv = ekfstatusm.velocity_variance;
-                        ekfcompv = ekfstatusm.compass_variance;
-                        ekfposhor = ekfstatusm.pos_horiz_variance;
-                        ekfposvert = ekfstatusm.pos_vert_variance;
-                        ekfteralt = ekfstatusm.terrain_alt_variance;
-
-                        ekfflags = ekfstatusm.flags;
-
-                        ekfstatus =
-                            Math.Max(ekfvelv,
-                                Math.Max(ekfcompv, Math.Max(ekfposhor, Math.Max(ekfposvert, ekfteralt))));
-
-                        if (ekfvelv >= 1)
-                        {
-                            messageHigh = Strings.ERROR + " " + Strings.velocity_variance;
+                            if (postraget.coordinate_frame == (byte)MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT)
+                                TargetLocation = new PointLatLngAlt(postraget.lat_int / 1e7, postraget.lon_int / 1e7,
+                                    postraget.alt + HomeAlt,
+                                    postraget.type_mask.ToString());
                         }
 
-                        if (ekfcompv >= 1)
-                        {
-                            messageHigh = Strings.ERROR + " " + Strings.compass_variance;
-                        }
-
-                        if (ekfposhor >= 1)
-                        {
-                            messageHigh = Strings.ERROR + " " + Strings.pos_horiz_variance;
-                        }
-
-                        if (ekfposvert >= 1)
-                        {
-                            messageHigh = Strings.ERROR + " " + Strings.pos_vert_variance;
-                        }
-
-                        if (ekfteralt >= 1)
-                        {
-                            messageHigh = Strings.ERROR + " " + Strings.terrain_alt_variance;
-                        }
-
-                        for (var a = 1; a <= (int) MAVLink.EKF_STATUS_FLAGS.EKF_PRED_POS_HORIZ_ABS; a = a << 1)
-                        {
-                            var currentbit = ekfstatusm.flags & a;
-                            if (currentbit == 0)
-                            {
-                                var currentflag =
-                                    (MAVLink.EKF_STATUS_FLAGS)
-                                    Enum.Parse(typeof(MAVLink.EKF_STATUS_FLAGS), a.ToString());
-
-                                switch (currentflag)
-                                {
-                                    case MAVLink.EKF_STATUS_FLAGS.EKF_ATTITUDE: // step 1
-                                    case MAVLink.EKF_STATUS_FLAGS.EKF_VELOCITY_HORIZ: // with pos
-                                        if (gpsstatus > 0) // we have gps and dont have vel_hoz
-                                            ekfstatus = 1;
-                                        break;
-                                    case MAVLink.EKF_STATUS_FLAGS.EKF_VELOCITY_VERT: // with pos
-                                    //case MAVLink.EKF_STATUS_FLAGS.EKF_POS_HORIZ_REL: // optical flow
-                                    case MAVLink.EKF_STATUS_FLAGS.EKF_POS_HORIZ_ABS: // step 1
-                                    case MAVLink.EKF_STATUS_FLAGS.EKF_POS_VERT_ABS: // step 1
-                                    //case MAVLink.EKF_STATUS_FLAGS.EKF_POS_VERT_AGL: //  range finder
-                                    //case MAVLink.EKF_STATUS_FLAGS.EKF_CONST_POS_MODE:  // never true when absolute - non gps
-                                    //case MAVLink.EKF_STATUS_FLAGS.EKF_PRED_POS_HORIZ_REL: // optical flow
-                                    case MAVLink.EKF_STATUS_FLAGS.EKF_PRED_POS_HORIZ_ABS: // ekf has origin - post arm
-                                        //messageHigh = Strings.ERROR + " " + currentflag.ToString().Replace("_", " ");
-                                        //messageHighTime = DateTime.Now;
-                                        break;
-                                }
-                            }
-                        }
-                    }
-
                         break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.RANGEFINDER:
+                    case (uint)MAVLink.MAVLINK_MSG_ID.AUTOPILOT_VERSION:
 
-                    {
-                        var sonar = mavLinkMessage.ToStructure<MAVLink.mavlink_rangefinder_t>();
 
-                        sonarrange = sonar.distance;
-                        sonarvoltage = sonar.voltage;
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.DISTANCE_SENSOR:
-
-                    {
-                        var sonar = mavLinkMessage.ToStructure<MAVLink.mavlink_distance_sensor_t>();
-                        if (sonar.id == 0)
-                            rangefinder1 = sonar.current_distance;
-                        else if (sonar.id == 1)
-                            rangefinder2 = sonar.current_distance;
-                        else if (sonar.id == 2) rangefinder3 = sonar.current_distance;
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.POWER_STATUS:
-
-                    {
-                        var power = mavLinkMessage.ToStructure<MAVLink.mavlink_power_status_t>();
-
-                        boardvoltage = power.Vcc;
-                        servovoltage = power.Vservo;
-
-                        try
                         {
-                            voltageflag = (uint) (MAVLink.MAV_POWER_STATUS) power.flags;
-                        }
-                        catch
-                        {
-                        }
-                    }
+                            var version = mavLinkMessage.ToStructure<MAVLink.mavlink_autopilot_version_t>();
+                            //#define FIRMWARE_VERSION 3,4,0,FIRMWARE_VERSION_TYPE_DEV
+                            //		flight_sw_version	0x03040000	uint
 
+                            var main = (byte)(version.flight_sw_version >> 24);
+                            var sub = (byte)((version.flight_sw_version >> 16) & 0xff);
+                            var rev = (byte)((version.flight_sw_version >> 8) & 0xff);
+                            var type =
+                                (MAVLink.FIRMWARE_VERSION_TYPE)(version.flight_sw_version & 0xff);
 
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.WIND:
-
-                    {
-                        var wind = mavLinkMessage.ToStructure<MAVLink.mavlink_wind_t>();
-
-                        gotwind = true;
-
-                        wind_dir = (wind.direction + 360) % 360;
-                        wind_vel = wind.speed * multiplierspeed;
-                    }
-
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.HEARTBEAT:
-
-                    {
-                        var hb = mavLinkMessage.ToStructure<MAVLink.mavlink_heartbeat_t>();
-
-                        if (hb.type == (byte) MAVLink.MAV_TYPE.GCS)
-                        {
-                            // skip gcs hb's
-                            // only happens on log playback - and shouldnt get them here
-                        }
-                        else
-                        {
-                            armed = (hb.base_mode & (byte) MAVLink.MAV_MODE_FLAG.SAFETY_ARMED) ==
-                                    (byte) MAVLink.MAV_MODE_FLAG.SAFETY_ARMED;
-
-                            // saftey switch
-                            if (armed && sensors_enabled.motor_control == false && sensors_enabled.seen)
-                            {
-                                messageHigh = "(SAFE)";
-                            }
-
-                            // for future use
-                            landed = hb.system_status == (byte) MAVLink.MAV_STATE.STANDBY;
-
-                            failsafe = hb.system_status == (byte) MAVLink.MAV_STATE.CRITICAL;
-
-                            var oldmode = mode;
-
-                            if ((hb.base_mode & (byte) MAVLink.MAV_MODE_FLAG.CUSTOM_MODE_ENABLED) != 0)
-                                // prevent running thsi unless we have to
-                                if (_mode != hb.custom_mode)
-                                {
-                                    var modelist = Common.getModesList(firmware);
-
-                                    if (modelist != null)
-                                    {
-                                        var found = false;
-
-                                        foreach (var pair in modelist)
-                                            if (pair.Key == hb.custom_mode)
-                                            {
-                                                mode = pair.Value;
-                                                _mode = hb.custom_mode;
-                                                found = true;
-                                                break;
-                                            }
-
-                                        if (!found)
-                                            log.Warn("Mode not found bm:" + hb.base_mode + " cm:" + hb.custom_mode);
-                                    }
-
-                                    _mode = hb.custom_mode;
-                                }
+                            this.version = new Version(main, sub, rev, (int)type);
 
                             try
                             {
-                                if (oldmode != mode && Speech != null && Speech.speechEnable &&
-                                    parent?.parent?.MAV?.cs == this &&
-                                    Settings.Instance.GetBoolean("speechmodeenabled"))
+                                capabilities = (uint)(MAVLink.MAV_PROTOCOL_CAPABILITY)version.capabilities;
+                                var test = (MAVLink.MAV_PROTOCOL_CAPABILITY)version.capabilities;
+
+                                Console.WriteLine(test);
+                            }
+                            catch
+                            {
+                            }
+
+                            Serial.print("Flight SW Version: ");
+                            Serial.println(version.flight_sw_version);
+                            Serial.print("Middleware SW: ");
+                            Serial.println(version.middleware_sw_version);
+                            Serial.print("OS Custom: ");
+                            Serial.println(version.os_custom_version);
+                            Serial.print("OS SW: ");
+                            Serial.println(version.os_sw_version);
+                            Serial.print("board_version: ");
+                            Serial.println(version.board_version);
+                            Serial.print("Vendor ID: ");
+                            Serial.println(version.vendor_id);
+                            Serial.print("Product ID: ");
+                            Serial.println(version.product_id);
+                            Serial.print("Board Version: ");
+                            Serial.println(version.board_version);
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.FENCE_STATUS:
+
+
+                        {
+                            var fence = mavLinkMessage.ToStructure<MAVLink.mavlink_fence_status_t>();
+
+                            if (fence.breach_status != (byte)MAVLink.FENCE_BREACH.NONE)
+                            {
+                                // fence breached
+                                messageHigh = "Fence Breach";
+                            }
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.HIGH_LATENCY:
+
+
+                        {
+                            var highlatency = mavLinkMessage.ToStructure<MAVLink.mavlink_high_latency_t>();
+
+                            landed = highlatency.landed_state == 1;
+
+                            if ((highlatency.base_mode & (byte)MAVLink.MAV_MODE_FLAG.CUSTOM_MODE_ENABLED) != 0)
+                            {
+                                var modelist = Common.getModesList(firmware);
+
+                                if (modelist != null)
+                                {
+                                    var found = false;
+
+                                    foreach (var pair in modelist)
+                                        if (pair.Key == highlatency.custom_mode)
+                                        {
+                                            mode = pair.Value;
+                                            _mode = highlatency.custom_mode;
+                                            found = true;
+                                            break;
+                                        }
+
+                                    if (!found)
+                                        log.Warn("Mode not found bm:" + highlatency.base_mode + " cm:" +
+                                                 highlatency.custom_mode);
+                                }
+                            }
+
+                            roll = highlatency.roll / 100f;
+                            pitch = highlatency.pitch / 100f;
+                            yaw = highlatency.heading / 100f;
+                            ch3percent = highlatency.throttle;
+                            lat = highlatency.latitude / 1e7;
+                            lng = highlatency.longitude / 1e7;
+                            altasl = highlatency.altitude_amsl;
+                            alt = highlatency.altitude_sp;
+                            airspeed = highlatency.airspeed;
+                            targetairspeed = highlatency.airspeed_sp;
+                            groundspeed = highlatency.groundspeed;
+                            climbrate = highlatency.climb_rate;
+                            satcount = highlatency.gps_nsat;
+                            gpsstatus = highlatency.gps_fix_type;
+                            battery_remaining = highlatency.battery_remaining;
+                            press_temp = highlatency.temperature;
+                            raw_temp = highlatency.temperature_air;
+                            failsafe = highlatency.failsafe > 0;
+                            wpno = highlatency.wp_num;
+                            wp_dist = highlatency.wp_distance;
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.HIL_CONTROLS:
+
+                        // hil mavlink 0.9 and 1.0
+                        {
+                            var hil = mavLinkMessage.ToStructure<MAVLink.mavlink_hil_controls_t>();
+
+                            hilch1 = (int)(hil.roll_ailerons * 10000);
+                            hilch2 = (int)(hil.pitch_elevator * 10000);
+                            hilch3 = (int)(hil.throttle * 10000);
+                            hilch4 = (int)(hil.yaw_rudder * 10000);
+
+                            //MAVLink.packets[(byte)MAVLink.MSG_NAMES.HIL_CONTROLS);
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.OPTICAL_FLOW:
+
+
+                        {
+                            var optflow = mavLinkMessage.ToStructure<MAVLink.mavlink_optical_flow_t>();
+
+                            opt_m_x = optflow.flow_comp_m_x;
+                            opt_m_y = optflow.flow_comp_m_y;
+                            opt_x = optflow.flow_x;
+                            opt_y = optflow.flow_y;
+                            opt_qua = optflow.quality;
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.MOUNT_STATUS:
+
+
+                        {
+                            var status = mavLinkMessage.ToStructure<MAVLink.mavlink_mount_status_t>();
+
+                            campointa = status.pointing_a / 100.0f;
+                            campointb = status.pointing_b / 100.0f;
+                            campointc = status.pointing_c / 100.0f;
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.VIBRATION:
+
+
+                        {
+                            var vibe = mavLinkMessage.ToStructure<MAVLink.mavlink_vibration_t>();
+
+                            vibeclip0 = vibe.clipping_0;
+                            vibeclip1 = vibe.clipping_1;
+                            vibeclip2 = vibe.clipping_2;
+                            vibex = vibe.vibration_x;
+                            vibey = vibe.vibration_y;
+                            vibez = vibe.vibration_z;
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.AIRSPEED_AUTOCAL:
+
+
+                        {
+                            var asac = mavLinkMessage.ToStructure<MAVLink.mavlink_airspeed_autocal_t>();
+
+                            asratio = asac.ratio;
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.SYSTEM_TIME:
+
+
+                        {
+                            var systime = mavLinkMessage.ToStructure<MAVLink.mavlink_system_time_t>();
+
+                            var date1 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+                            try
+                            {
+                                date1 = date1.AddMilliseconds(systime.time_unix_usec / 1000);
+
+                                gpstime = date1;
+                            }
+                            catch
+                            {
+                            }
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.HWSTATUS:
+
+
+                        {
+                            var hwstatus = mavLinkMessage.ToStructure<MAVLink.mavlink_hwstatus_t>();
+
+                            hwvoltage = hwstatus.Vcc / 1000.0f;
+                            i2cerrors = hwstatus.I2Cerr;
+
+                            //MAVLink.packets[(byte)MAVLink.MSG_NAMES.HWSTATUS);
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.EKF_STATUS_REPORT:
+
+                        {
+                            var ekfstatusm = mavLinkMessage.ToStructure<MAVLink.mavlink_ekf_status_report_t>();
+
+                            // > 1, between 0-1 typical > 1 = reject measurement - red
+                            // 0.5 > amber
+
+                            ekfvelv = ekfstatusm.velocity_variance;
+                            ekfcompv = ekfstatusm.compass_variance;
+                            ekfposhor = ekfstatusm.pos_horiz_variance;
+                            ekfposvert = ekfstatusm.pos_vert_variance;
+                            ekfteralt = ekfstatusm.terrain_alt_variance;
+
+                            ekfflags = ekfstatusm.flags;
+
+                            ekfstatus =
+                                Math.Max(ekfvelv,
+                                    Math.Max(ekfcompv, Math.Max(ekfposhor, Math.Max(ekfposvert, ekfteralt))));
+
+                            if (ekfvelv >= 1)
+                            {
+                                messageHigh = Strings.ERROR + " " + Strings.velocity_variance;
+                            }
+
+                            if (ekfcompv >= 1)
+                            {
+                                messageHigh = Strings.ERROR + " " + Strings.compass_variance;
+                            }
+
+                            if (ekfposhor >= 1)
+                            {
+                                messageHigh = Strings.ERROR + " " + Strings.pos_horiz_variance;
+                            }
+
+                            if (ekfposvert >= 1)
+                            {
+                                messageHigh = Strings.ERROR + " " + Strings.pos_vert_variance;
+                            }
+
+                            if (ekfteralt >= 1)
+                            {
+                                messageHigh = Strings.ERROR + " " + Strings.terrain_alt_variance;
+                            }
+
+                            for (var a = 1; a <= (int)MAVLink.EKF_STATUS_FLAGS.EKF_PRED_POS_HORIZ_ABS; a = a << 1)
+                            {
+                                var currentbit = ekfstatusm.flags & a;
+                                if (currentbit == 0)
+                                {
+                                    var currentflag =
+                                        (MAVLink.EKF_STATUS_FLAGS)
+                                        Enum.Parse(typeof(MAVLink.EKF_STATUS_FLAGS), a.ToString());
+
+                                    switch (currentflag)
+                                    {
+                                        case MAVLink.EKF_STATUS_FLAGS.EKF_ATTITUDE: // step 1
+                                        case MAVLink.EKF_STATUS_FLAGS.EKF_VELOCITY_HORIZ: // with pos
+                                            if (gpsstatus > 0) // we have gps and dont have vel_hoz
+                                                ekfstatus = 1;
+                                            break;
+                                        case MAVLink.EKF_STATUS_FLAGS.EKF_VELOCITY_VERT: // with pos
+                                                                                         //case MAVLink.EKF_STATUS_FLAGS.EKF_POS_HORIZ_REL: // optical flow
+                                        case MAVLink.EKF_STATUS_FLAGS.EKF_POS_HORIZ_ABS: // step 1
+                                        case MAVLink.EKF_STATUS_FLAGS.EKF_POS_VERT_ABS: // step 1
+                                                                                        //case MAVLink.EKF_STATUS_FLAGS.EKF_POS_VERT_AGL: //  range finder
+                                                                                        //case MAVLink.EKF_STATUS_FLAGS.EKF_CONST_POS_MODE:  // never true when absolute - non gps
+                                                                                        //case MAVLink.EKF_STATUS_FLAGS.EKF_PRED_POS_HORIZ_REL: // optical flow
+                                        case MAVLink.EKF_STATUS_FLAGS.EKF_PRED_POS_HORIZ_ABS: // ekf has origin - post arm
+                                                                                              //messageHigh = Strings.ERROR + " " + currentflag.ToString().Replace("_", " ");
+                                                                                              //messageHighTime = DateTime.Now;
+                                            break;
+                                    }
+                                }
+                            }
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.RANGEFINDER:
+
+                        {
+                            var sonar = mavLinkMessage.ToStructure<MAVLink.mavlink_rangefinder_t>();
+
+                            sonarrange = sonar.distance;
+                            sonarvoltage = sonar.voltage;
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.DISTANCE_SENSOR:
+
+                        {
+                            var sonar = mavLinkMessage.ToStructure<MAVLink.mavlink_distance_sensor_t>();
+                            if (sonar.id == 0)
+                                rangefinder1 = sonar.current_distance;
+                            else if (sonar.id == 1)
+                                rangefinder2 = sonar.current_distance;
+                            else if (sonar.id == 2) rangefinder3 = sonar.current_distance;
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.POWER_STATUS:
+
+                        {
+                            var power = mavLinkMessage.ToStructure<MAVLink.mavlink_power_status_t>();
+
+                            boardvoltage = power.Vcc;
+                            servovoltage = power.Vservo;
+
+                            try
+                            {
+                                voltageflag = (uint)(MAVLink.MAV_POWER_STATUS)power.flags;
+                            }
+                            catch
+                            {
+                            }
+                        }
+
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.WIND:
+
+                        {
+                            var wind = mavLinkMessage.ToStructure<MAVLink.mavlink_wind_t>();
+
+                            gotwind = true;
+
+                            wind_dir = (wind.direction + 360) % 360;
+                            wind_vel = wind.speed * multiplierspeed;
+                        }
+
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.HEARTBEAT:
+
+                        {
+                            var hb = mavLinkMessage.ToStructure<MAVLink.mavlink_heartbeat_t>();
+
+                            if (hb.type == (byte)MAVLink.MAV_TYPE.GCS)
+                            {
+                                // skip gcs hb's
+                                // only happens on log playback - and shouldnt get them here
+                            }
+                            else
+                            {
+                                armed = (hb.base_mode & (byte)MAVLink.MAV_MODE_FLAG.SAFETY_ARMED) ==
+                                        (byte)MAVLink.MAV_MODE_FLAG.SAFETY_ARMED;
+
+                                // saftey switch
+                                if (armed && sensors_enabled.motor_control == false && sensors_enabled.seen)
+                                {
+                                    messageHigh = "(SAFE)";
+                                }
+
+                                // for future use
+                                landed = hb.system_status == (byte)MAVLink.MAV_STATE.STANDBY;
+
+                                failsafe = hb.system_status == (byte)MAVLink.MAV_STATE.CRITICAL;
+
+                                var oldmode = mode;
+
+                                if ((hb.base_mode & (byte)MAVLink.MAV_MODE_FLAG.CUSTOM_MODE_ENABLED) != 0)
+                                    // prevent running thsi unless we have to
+                                    if (_mode != hb.custom_mode)
+                                    {
+                                        var modelist = Common.getModesList(firmware);
+
+                                        if (modelist != null)
+                                        {
+                                            var found = false;
+
+                                            foreach (var pair in modelist)
+                                                if (pair.Key == hb.custom_mode)
+                                                {
+                                                    mode = pair.Value;
+                                                    _mode = hb.custom_mode;
+                                                    found = true;
+                                                    break;
+                                                }
+
+                                            if (!found)
+                                                log.Warn("Mode not found bm:" + hb.base_mode + " cm:" + hb.custom_mode);
+                                        }
+
+                                        _mode = hb.custom_mode;
+                                    }
+
+                                try
+                                {
+                                    if (oldmode != mode && Speech != null && Speech.speechEnable &&
+                                        parent?.parent?.MAV?.cs == this &&
+                                        Settings.Instance.GetBoolean("speechmodeenabled"))
+                                        Speech.SpeakAsync(Common.speechConversion(parent,
+                                            "" + Settings.Instance["speechmode"]));
+                                }
+                                catch (Exception ex)
+                                {
+                                    log.Error(ex);
+                                }
+                            }
+                        }
+
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.SYS_STATUS:
+
+                        {
+                            var sysstatus = mavLinkMessage.ToStructure<MAVLink.mavlink_sys_status_t>();
+
+                            load = sysstatus.load / 10.0f;
+
+                            battery_voltage = sysstatus.voltage_battery / 1000.0f;
+                            battery_remaining = sysstatus.battery_remaining;
+                            current = sysstatus.current_battery / 100.0f;
+
+                            packetdropremote = sysstatus.drop_rate_comm;
+
+                            //sysstatus.errors_comm;
+                            errors_count1 = sysstatus.errors_count1;
+                            errors_count2 = sysstatus.errors_count2;
+                            errors_count3 = sysstatus.errors_count3;
+                            errors_count4 = sysstatus.errors_count4;
+
+                            sensors_enabled.Value = sysstatus.onboard_control_sensors_enabled;
+                            sensors_health.Value = sysstatus.onboard_control_sensors_health;
+                            sensors_present.Value = sysstatus.onboard_control_sensors_present;
+
+                            if ((sensors_enabled.Value & 32768) == 32768)
+                            {
+                                safed = true;
+                            }
+                            else
+                            {
+                                safed = false;
+                            }
+
+                            terrainactive = sensors_health.terrain && sensors_enabled.terrain && sensors_present.terrain;
+
+                            if (errors_count1 > 0 || errors_count2 > 0)
+                            {
+                                messageHigh = "InternalError 0x" + (errors_count1 + (errors_count2 << 16)).ToString("X");
+                            }
+
+                            if (!sensors_health.prearm && sensors_enabled.prearm && sensors_present.prearm)
+                            {
+                                messageHigh = Strings.Prearm_check_failed;
+                            }
+                            else if (!sensors_health.gps && sensors_enabled.gps && sensors_present.gps)
+                            {
+                                messageHigh = Strings.BadGPSHealth;
+                            }
+                            else if (!sensors_health.gyro && sensors_enabled.gyro && sensors_present.gyro)
+                            {
+                                messageHigh = Strings.BadGyroHealth;
+                            }
+                            else if (!sensors_health.accelerometer && sensors_enabled.accelerometer &&
+                                     sensors_present.accelerometer)
+                            {
+                                messageHigh = Strings.BadAccelHealth;
+                            }
+                            else if (!sensors_health.compass && sensors_enabled.compass && sensors_present.compass)
+                            {
+                                messageHigh = Strings.BadCompassHealth;
+                            }
+                            else if (!sensors_health.barometer && sensors_enabled.barometer && sensors_present.barometer)
+                            {
+                                messageHigh = Strings.BadBaroHealth;
+                            }
+                            else if (!sensors_health.LASER_POSITION && sensors_enabled.LASER_POSITION &&
+                                     sensors_present.LASER_POSITION)
+                            {
+                                messageHigh = Strings.BadLiDARHealth;
+                            }
+                            else if (!sensors_health.optical_flow && sensors_enabled.optical_flow &&
+                                     sensors_present.optical_flow)
+                            {
+                                messageHigh = Strings.BadOptFlowHealth;
+                            }
+                            else if (!sensors_health.VISION_POSITION && sensors_enabled.VISION_POSITION &&
+                                     sensors_present.VISION_POSITION)
+                            {
+                                messageHigh = Strings.Bad_Vision_Position;
+                            }
+                            else if (!sensors_health.terrain && sensors_enabled.terrain && sensors_present.terrain)
+                            {
+                                messageHigh = Strings.BadorNoTerrainData;
+                            }
+                            else if (!sensors_health.geofence && sensors_enabled.geofence &&
+                                     sensors_present.geofence)
+                            {
+                                messageHigh = Strings.GeofenceBreach;
+                            }
+                            else if (!sensors_health.ahrs && sensors_enabled.ahrs && sensors_present.ahrs)
+                            {
+                                messageHigh = Strings.BadAHRS;
+                            }
+                            else if (!sensors_health.rc_receiver && sensors_enabled.rc_receiver &&
+                                     sensors_present.rc_receiver)
+                            {
+                                var reporterror = true;
+                                if (Settings.Instance["norcreceiver"] != null)
+                                    reporterror = !bool.Parse(Settings.Instance["norcreceiver"]);
+                                if (reporterror)
+                                {
+                                    messageHigh = Strings.NORCReceiver;
+                                }
+                            }
+                            else if (!sensors_health.battery && sensors_enabled.battery && sensors_present.battery)
+                            {
+                                messageHigh = Strings.Bad_Battery;
+                            }
+                            else if (!sensors_health.proximity && sensors_enabled.proximity && sensors_present.proximity)
+                            {
+                                messageHigh = Strings.Bad_Proximity;
+                            }
+                            else if (!sensors_health.satcom && sensors_enabled.satcom && sensors_present.satcom)
+                            {
+                                messageHigh = Strings.Bad_SatCom;
+                            }
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.EXTENDED_SYS_STATE:
+
+                        {
+                            var extsysstatus = mavLinkMessage.ToStructure<MAVLink.mavlink_extended_sys_state_t>();
+
+                            vtol_state = extsysstatus.vtol_state;
+                            landed_state = extsysstatus.landed_state;
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.BATTERY2:
+
+                        {
+                            var bat = mavLinkMessage.ToStructure<MAVLink.mavlink_battery2_t>();
+                            _battery_voltage2 = bat.voltage / 1000.0f;
+                            current2 = bat.current_battery / 100.0f;
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.BATTERY_STATUS:
+
+                        {
+                            var bats = mavLinkMessage.ToStructure<MAVLink.mavlink_battery_status_t>();
+
+                            if (bats.id == 0)
+                            {
+                                if (bats.voltages[0] != ushort.MaxValue)
+                                {
+                                    battery_cell1 = bats.voltages[0] / 1000.0;
+                                    if (bats.voltages[1] != ushort.MaxValue) battery_cell2 = bats.voltages[1] / 1000.0;
+                                    else battery_cell2 = 0.0;
+                                    if (bats.voltages[2] != ushort.MaxValue) battery_cell3 = bats.voltages[2] / 1000.0;
+                                    else battery_cell3 = 0.0;
+                                    if (bats.voltages[3] != ushort.MaxValue) battery_cell4 = bats.voltages[3] / 1000.0;
+                                    else battery_cell4 = 0.0;
+                                    if (bats.voltages[4] != ushort.MaxValue) battery_cell5 = bats.voltages[4] / 1000.0;
+                                    else battery_cell5 = 0.0;
+                                    if (bats.voltages[5] != ushort.MaxValue) battery_cell6 = bats.voltages[5] / 1000.0;
+                                    else battery_cell6 = 0.0;
+                                }
+
+                                battery_usedmah = bats.current_consumed;
+                                battery_remaining = bats.battery_remaining;
+                                _current = bats.current_battery / 100.0f;
+                                if (bats.temperature != short.MaxValue)
+                                    battery_temp = bats.temperature / 100.0;
+                            }
+                            else if (bats.id == 1)
+                            {
+                                battery_usedmah2 = bats.current_consumed;
+                                battery_remaining2 = bats.battery_remaining;
+                                _current2 = bats.current_battery / 100.0f;
+                            }
+                            else if (bats.id == 2)
+                            {
+                                battery_usedmah3 = bats.current_consumed;
+                                battery_remaining3 = bats.battery_remaining;
+                                battery_voltage3 = bats.voltages.Sum(a => a != ushort.MaxValue ? a / 1000.0 : 0);
+                                current3 = bats.current_battery / 100.0f;
+                            }
+                            else if (bats.id == 3)
+                            {
+                                battery_usedmah4 = bats.current_consumed;
+                                battery_remaining4 = bats.battery_remaining;
+                                battery_voltage4 = bats.voltages.Sum(a => a != ushort.MaxValue ? a / 1000.0 : 0);
+                                current4 = bats.current_battery / 100.0f;
+                            }
+                            else if (bats.id == 4)
+                            {
+                                battery_usedmah5 = bats.current_consumed;
+                                battery_remaining5 = bats.battery_remaining;
+                                battery_voltage5 = bats.voltages.Sum(a => a != ushort.MaxValue ? a / 1000.0 : 0);
+                                current5 = bats.current_battery / 100.0f;
+                            }
+                            else if (bats.id == 5)
+                            {
+                                battery_usedmah6 = bats.current_consumed;
+                                battery_remaining6 = bats.battery_remaining;
+                                battery_voltage6 = bats.voltages.Sum(a => a != ushort.MaxValue ? a / 1000.0 : 0);
+                                current6 = bats.current_battery / 100.0f;
+                            }
+                            else if (bats.id == 6)
+                            {
+                                battery_usedmah7 = bats.current_consumed;
+                                battery_remaining7 = bats.battery_remaining;
+                                battery_voltage7 = bats.voltages.Sum(a => a != ushort.MaxValue ? a / 1000.0 : 0);
+                                current7 = bats.current_battery / 100.0f;
+                            }
+                            else if (bats.id == 7)
+                            {
+                                battery_usedmah8 = bats.current_consumed;
+                                battery_remaining8 = bats.battery_remaining;
+                                battery_voltage8 = bats.voltages.Sum(a => a != ushort.MaxValue ? a / 1000.0 : 0);
+                                current8 = bats.current_battery / 100.0f;
+                            }
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.SCALED_PRESSURE:
+
+                        {
+                            var pres = mavLinkMessage.ToStructure<MAVLink.mavlink_scaled_pressure_t>();
+                            press_abs = pres.press_abs;
+                            press_temp = pres.temperature;
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.SCALED_PRESSURE2:
+
+                        {
+                            var pres = mavLinkMessage.ToStructure<MAVLink.mavlink_scaled_pressure2_t>();
+                            press_abs2 = pres.press_abs;
+                            press_temp2 = pres.temperature;
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.TERRAIN_REPORT:
+
+                        {
+                            var terrainrep = mavLinkMessage.ToStructure<MAVLink.mavlink_terrain_report_t>();
+                            ter_curalt = terrainrep.current_height;
+                            ter_alt = terrainrep.terrain_height;
+                            ter_load = terrainrep.loaded;
+                            ter_pend = terrainrep.pending;
+                            ter_space = terrainrep.spacing;
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.SENSOR_OFFSETS:
+
+                        {
+                            var sensofs = mavLinkMessage.ToStructure<MAVLink.mavlink_sensor_offsets_t>();
+
+                            mag_ofs_x = sensofs.mag_ofs_x;
+                            mag_ofs_y = sensofs.mag_ofs_y;
+                            mag_ofs_z = sensofs.mag_ofs_z;
+                            mag_declination = sensofs.mag_declination;
+
+                            raw_press = sensofs.raw_press;
+                            raw_temp = sensofs.raw_temp / 100;
+
+                            gyro_cal_x = sensofs.gyro_cal_x;
+                            gyro_cal_y = sensofs.gyro_cal_y;
+                            gyro_cal_z = sensofs.gyro_cal_z;
+
+                            accel_cal_x = sensofs.accel_cal_x;
+                            accel_cal_y = sensofs.accel_cal_y;
+                            accel_cal_z = sensofs.accel_cal_z;
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.ATTITUDE:
+
+
+                        {
+                            var att = mavLinkMessage.ToStructure<MAVLink.mavlink_attitude_t>();
+
+                            roll = (float)(att.roll * MathHelper.rad2deg);
+                            pitch = (float)(att.pitch * MathHelper.rad2deg);
+                            yaw = (float)(att.yaw * MathHelper.rad2deg);
+
+                            //Console.WriteLine(MAV.sysid + " " +roll + " " + pitch + " " + yaw);
+
+                            //MAVLink.packets[(byte)MAVLink.MSG_NAMES.ATTITUDE);
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.GLOBAL_POSITION_INT:
+
+                        {
+                            var loc = mavLinkMessage.ToStructure<MAVLink.mavlink_global_position_int_t>();
+
+                            // the new arhs deadreckoning may send 0 alt and 0 long. check for and undo
+
+                            alt = loc.relative_alt / 1000.0f;
+
+                            useLocation = true;
+                            if (loc.lat == 0 && loc.lon == 0)
+                            {
+                                useLocation = false;
+                            }
+                            else
+                            {
+                                lat = loc.lat / 10000000.0;
+                                lng = loc.lon / 10000000.0;
+
+                                altasl = loc.alt / 1000.0f;
+
+                                vx = loc.vx * 0.01;
+                                vy = loc.vy * 0.01;
+                                vz = loc.vz * 0.01;
+                            }
+                        }
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.GPS_RAW_INT:
+
+                        {
+                            var gps = mavLinkMessage.ToStructure<MAVLink.mavlink_gps_raw_int_t>();
+
+                            if (!useLocation)
+                            {
+                                lat = gps.lat * 1.0e-7;
+                                lng = gps.lon * 1.0e-7;
+
+                                altasl = gps.alt / 1000.0f;
+                                // alt = gps.alt; // using vfr as includes baro calc
+                            }
+
+                            gpsstatus = gps.fix_type;
+                            //                    Console.WriteLine("gpsfix {0}",gpsstatus);
+
+                            if (gps.eph != ushort.MaxValue)
+                                gpshdop = (float)Math.Round(gps.eph / 100.0, 2);
+
+                            if (gps.satellites_visible != byte.MaxValue)
+                                satcount = gps.satellites_visible;
+
+                            //For QuickViewGPSStatus control
+                            if ((gpshdop < 2.0) && (satcount > 10) && (gpsstatus >= 3))
+                            {
+                                gpsstatusgood = true;
+                            }
+                            else
+                            {
+                                gpsstatusgood = false;
+                            }
+
+                            if (gps.vel != ushort.MaxValue)
+                                groundspeed = gps.vel * 1.0e-2f;
+
+                            if (groundspeed > 0.5 && gps.cog != ushort.MaxValue)
+                                groundcourse = gps.cog * 1.0e-2f;
+
+                            if (mavLinkMessage.ismavlink2)
+                            {
+                                gpsh_acc = gps.h_acc / 1000.0f;
+                                gpsv_acc = gps.v_acc / 1000.0f;
+                                gpsvel_acc = gps.vel_acc / 1000.0f;
+                                gpshdg_acc = gps.hdg_acc / 1e5f;
+                            }
+                            else
+                            {
+                                gpsh_acc = -1;
+                                gpsv_acc = -1;
+                                gpsvel_acc = -1;
+                                gpshdg_acc = -1;
+                            }
+
+                            //MAVLink.packets[(byte)MAVLink.MSG_NAMES.GPS_RAW);
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.GPS2_RAW:
+
+                        {
+                            var gps = mavLinkMessage.ToStructure<MAVLink.mavlink_gps2_raw_t>();
+
+                            lat2 = gps.lat * 1.0e-7;
+                            lng2 = gps.lon * 1.0e-7;
+                            altasl2 = gps.alt / 1000.0f;
+
+                            gpsstatus2 = gps.fix_type;
+                            gpshdop2 = (float)Math.Round(gps.eph / 100.0, 2);
+
+                            satcount2 = gps.satellites_visible;
+
+                            groundspeed2 = gps.vel * 1.0e-2f;
+                            groundcourse2 = gps.cog * 1.0e-2f;
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.GPS_STATUS:
+
+                        {
+                            var gps = mavLinkMessage.ToStructure<MAVLink.mavlink_gps_status_t>();
+                            satcount = gps.satellites_visible;
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.RADIO:
+
+                        {
+                            var radio = mavLinkMessage.ToStructure<MAVLink.mavlink_radio_t>();
+                            rssi = radio.rssi;
+                            remrssi = radio.remrssi;
+                            txbuffer = radio.txbuf;
+                            rxerrors = radio.rxerrors;
+                            noise = radio.noise;
+                            remnoise = radio.remnoise;
+                            fixedp = radio.@fixed;
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.RADIO_STATUS:
+
+                        {
+                            var radio = mavLinkMessage.ToStructure<MAVLink.mavlink_radio_status_t>();
+                            rssi = radio.rssi;
+                            remrssi = radio.remrssi;
+                            txbuffer = radio.txbuf;
+                            rxerrors = radio.rxerrors;
+                            noise = radio.noise;
+                            remnoise = radio.remnoise;
+                            fixedp = radio.@fixed;
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.MISSION_CURRENT:
+
+                        {
+                            var wpcur = mavLinkMessage.ToStructure<MAVLink.mavlink_mission_current_t>();
+
+                            var oldwp = (int)wpno;
+
+                            wpno = wpcur.seq;
+
+                            if (mode.ToLower() == "auto" && wpno != 0) lastautowp = (int)wpno;
+                            try
+                            {
+                                if (oldwp != wpno && Speech != null && Speech.speechEnable && parent != null &&
+                                    parent.parent.MAV.cs == this &&
+                                    Settings.Instance.GetBoolean("speechwaypointenabled"))
                                     Speech.SpeakAsync(Common.speechConversion(parent,
-                                        "" + Settings.Instance["speechmode"]));
+                                        "" + Settings.Instance["speechwaypoint"]));
                             }
                             catch (Exception ex)
                             {
                                 log.Error(ex);
                             }
-                        }
-                    }
 
+                            //MAVLink.packets[(byte)MAVLink.MSG_NAMES.WAYPOINT_CURRENT);
+                        }
 
                         break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.SYS_STATUS:
+                    case (uint)MAVLink.MAVLINK_MSG_ID.NAV_CONTROLLER_OUTPUT:
 
-                    {
-                        var sysstatus = mavLinkMessage.ToStructure<MAVLink.mavlink_sys_status_t>();
 
-                        load = sysstatus.load / 10.0f;
+                        {
+                            var nav = mavLinkMessage.ToStructure<MAVLink.mavlink_nav_controller_output_t>();
 
-                        battery_voltage = sysstatus.voltage_battery / 1000.0f;
-                        battery_remaining = sysstatus.battery_remaining;
-                        current = sysstatus.current_battery / 100.0f;
+                            nav_roll = nav.nav_roll;
+                            nav_pitch = nav.nav_pitch;
+                            nav_bearing = nav.nav_bearing;
+                            target_bearing = nav.target_bearing;
+                            wp_dist = nav.wp_dist;
+                            alt_error = nav.alt_error;
+                            aspd_error = nav.aspd_error / 100.0f;
+                            xtrack_error = nav.xtrack_error;
 
-                        packetdropremote = sysstatus.drop_rate_comm;
-
-                        //sysstatus.errors_comm;
-                        errors_count1 = sysstatus.errors_count1;
-                        errors_count2 = sysstatus.errors_count2;
-                        errors_count3 = sysstatus.errors_count3;
-                        errors_count4 = sysstatus.errors_count4;
-
-                        sensors_enabled.Value = sysstatus.onboard_control_sensors_enabled;
-                        sensors_health.Value = sysstatus.onboard_control_sensors_health;
-                        sensors_present.Value = sysstatus.onboard_control_sensors_present;
-
-                        if ( (sensors_enabled.Value & 32768) == 32768)
-                        {
-                            safed = true;
+                            //MAVLink.packets[(byte)MAVLink.MSG_NAMES.NAV_CONTROLLER_OUTPUT);
                         }
-                        else
-                        {
-                            safed = false;
-                        }
-
-                        terrainactive = sensors_health.terrain && sensors_enabled.terrain && sensors_present.terrain;
-
-                        if (errors_count1 > 0 || errors_count2 > 0)
-                        {
-                            messageHigh = "InternalError 0x" + (errors_count1 + (errors_count2 << 16)).ToString("X");
-                        } 
-                        
-                        if (!sensors_health.prearm && sensors_enabled.prearm && sensors_present.prearm)
-                        {
-                            messageHigh = Strings.Prearm_check_failed;
-                        }
-                        else if (!sensors_health.gps && sensors_enabled.gps && sensors_present.gps)
-                        {
-                            messageHigh = Strings.BadGPSHealth;
-                        }
-                        else if (!sensors_health.gyro && sensors_enabled.gyro && sensors_present.gyro)
-                        {
-                            messageHigh = Strings.BadGyroHealth;
-                        }
-                        else if (!sensors_health.accelerometer && sensors_enabled.accelerometer &&
-                                 sensors_present.accelerometer)
-                        {
-                            messageHigh = Strings.BadAccelHealth;
-                        }
-                        else if (!sensors_health.compass && sensors_enabled.compass && sensors_present.compass)
-                        {
-                            messageHigh = Strings.BadCompassHealth;
-                        }
-                        else if (!sensors_health.barometer && sensors_enabled.barometer && sensors_present.barometer)
-                        {
-                            messageHigh = Strings.BadBaroHealth;
-                        }
-                        else if (!sensors_health.LASER_POSITION && sensors_enabled.LASER_POSITION &&
-                                 sensors_present.LASER_POSITION)
-                        {
-                            messageHigh = Strings.BadLiDARHealth;
-                        }
-                        else if (!sensors_health.optical_flow && sensors_enabled.optical_flow &&
-                                 sensors_present.optical_flow)
-                        {
-                            messageHigh = Strings.BadOptFlowHealth;
-                        }
-                        else if (!sensors_health.VISION_POSITION && sensors_enabled.VISION_POSITION &&
-                                 sensors_present.VISION_POSITION)
-                        {
-                            messageHigh = Strings.Bad_Vision_Position;
-                        }
-                        else if (!sensors_health.terrain && sensors_enabled.terrain && sensors_present.terrain)
-                        {
-                            messageHigh = Strings.BadorNoTerrainData;
-                        }
-                        else if (!sensors_health.geofence && sensors_enabled.geofence &&
-                                 sensors_present.geofence)
-                        {
-                            messageHigh = Strings.GeofenceBreach;
-                        }
-                        else if (!sensors_health.ahrs && sensors_enabled.ahrs && sensors_present.ahrs)
-                        {
-                            messageHigh = Strings.BadAHRS;
-                        }
-                        else if (!sensors_health.rc_receiver && sensors_enabled.rc_receiver &&
-                                 sensors_present.rc_receiver)
-                        {
-                            var reporterror = true;
-                            if (Settings.Instance["norcreceiver"] != null)
-                                reporterror = !bool.Parse(Settings.Instance["norcreceiver"]);
-                            if (reporterror)
-                            {
-                                messageHigh = Strings.NORCReceiver;
-                            }
-                        }
-                        else if (!sensors_health.battery && sensors_enabled.battery && sensors_present.battery)
-                        {
-                            messageHigh = Strings.Bad_Battery;
-                        }
-                        else if (!sensors_health.proximity && sensors_enabled.proximity && sensors_present.proximity)
-                        {
-                            messageHigh = Strings.Bad_Proximity;
-                        }
-                        else if (!sensors_health.satcom && sensors_enabled.satcom && sensors_present.satcom)
-                        {
-                            messageHigh = Strings.Bad_SatCom;
-                        }
-                    }
 
                         break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.EXTENDED_SYS_STATE:
+                    case (uint)MAVLink.MAVLINK_MSG_ID.RPM:
 
-                    {
-                        var extsysstatus = mavLinkMessage.ToStructure<MAVLink.mavlink_extended_sys_state_t>();
 
-                        vtol_state = extsysstatus.vtol_state;
-                        landed_state = extsysstatus.landed_state;
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.BATTERY2:
-
-                    {
-                        var bat = mavLinkMessage.ToStructure<MAVLink.mavlink_battery2_t>();
-                        _battery_voltage2 = bat.voltage / 1000.0f;
-                        current2 = bat.current_battery / 100.0f;
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.BATTERY_STATUS:
-
-                    {
-                        var bats = mavLinkMessage.ToStructure<MAVLink.mavlink_battery_status_t>();
-
-                        if (bats.id == 0)
                         {
-                            if (bats.voltages[0] != ushort.MaxValue)
-                            {
-                                battery_cell1 = bats.voltages[0] / 1000.0;
-                                if (bats.voltages[1] != ushort.MaxValue) battery_cell2 = bats.voltages[1] / 1000.0;
-                                else battery_cell2 = 0.0;
-                                if (bats.voltages[2] != ushort.MaxValue) battery_cell3 = bats.voltages[2] / 1000.0;
-                                else battery_cell3 = 0.0;
-                                if (bats.voltages[3] != ushort.MaxValue) battery_cell4 = bats.voltages[3] / 1000.0;
-                                else battery_cell4 = 0.0;
-                                if (bats.voltages[4] != ushort.MaxValue) battery_cell5 = bats.voltages[4] / 1000.0;
-                                else battery_cell5 = 0.0;
-                                if (bats.voltages[5] != ushort.MaxValue) battery_cell6 = bats.voltages[5] / 1000.0;
-                                else battery_cell6 = 0.0;
-                            }
+                            var rpm = mavLinkMessage.ToStructure<MAVLink.mavlink_rpm_t>();
 
-                            battery_usedmah = bats.current_consumed;
-                            battery_remaining = bats.battery_remaining;
-                            _current = bats.current_battery / 100.0f;
-                            if (bats.temperature != short.MaxValue)
-                                battery_temp = bats.temperature / 100.0;
-                        }
-                        else if (bats.id == 1)
-                        {
-                            battery_usedmah2 = bats.current_consumed;
-                            battery_remaining2 = bats.battery_remaining;
-                            _current2 = bats.current_battery / 100.0f;
-                        }
-                        else if (bats.id == 2)
-                        {
-                            battery_usedmah3 = bats.current_consumed;
-                            battery_remaining3 = bats.battery_remaining;
-                            battery_voltage3 = bats.voltages.Sum(a => a != ushort.MaxValue ? a / 1000.0 : 0);
-                            current3 = bats.current_battery / 100.0f;
-                        }
-                        else if (bats.id == 3)
-                        {
-                            battery_usedmah4 = bats.current_consumed;
-                            battery_remaining4 = bats.battery_remaining;
-                            battery_voltage4 = bats.voltages.Sum(a => a != ushort.MaxValue ? a / 1000.0 : 0);
-                            current4 = bats.current_battery / 100.0f;
-                        }
-                        else if (bats.id == 4)
-                        {
-                            battery_usedmah5 = bats.current_consumed;
-                            battery_remaining5 = bats.battery_remaining;
-                            battery_voltage5 = bats.voltages.Sum(a => a != ushort.MaxValue ? a / 1000.0 : 0);
-                            current5 = bats.current_battery / 100.0f;
-                        }
-                        else if (bats.id == 5)
-                        {
-                            battery_usedmah6 = bats.current_consumed;
-                            battery_remaining6 = bats.battery_remaining;
-                            battery_voltage6 = bats.voltages.Sum(a => a != ushort.MaxValue ? a / 1000.0 : 0);
-                            current6 = bats.current_battery / 100.0f;
-                        }
-                        else if (bats.id == 6)
-                        {
-                            battery_usedmah7 = bats.current_consumed;
-                            battery_remaining7 = bats.battery_remaining;
-                            battery_voltage7 = bats.voltages.Sum(a => a != ushort.MaxValue ? a / 1000.0 : 0);
-                            current7 = bats.current_battery / 100.0f;
-                        }
-                        else if (bats.id == 7)
-                        {
-                            battery_usedmah8 = bats.current_consumed;
-                            battery_remaining8 = bats.battery_remaining;
-                            battery_voltage8 = bats.voltages.Sum(a => a != ushort.MaxValue ? a / 1000.0 : 0);
-                            current8 = bats.current_battery / 100.0f;
-                        }
-                    }
+                            rpm1 = rpm.rpm1;
+                            rpm2 = rpm.rpm2;
 
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.SCALED_PRESSURE:
-
-                    {
-                        var pres = mavLinkMessage.ToStructure<MAVLink.mavlink_scaled_pressure_t>();
-                        press_abs = pres.press_abs;
-                        press_temp = pres.temperature;
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.SCALED_PRESSURE2:
-
-                    {
-                        var pres = mavLinkMessage.ToStructure<MAVLink.mavlink_scaled_pressure2_t>();
-                        press_abs2 = pres.press_abs;
-                        press_temp2 = pres.temperature;
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.TERRAIN_REPORT:
-
-                    {
-                        var terrainrep = mavLinkMessage.ToStructure<MAVLink.mavlink_terrain_report_t>();
-                        ter_curalt = terrainrep.current_height;
-                        ter_alt = terrainrep.terrain_height;
-                        ter_load = terrainrep.loaded;
-                        ter_pend = terrainrep.pending;
-                        ter_space = terrainrep.spacing;
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.SENSOR_OFFSETS:
-
-                    {
-                        var sensofs = mavLinkMessage.ToStructure<MAVLink.mavlink_sensor_offsets_t>();
-
-                        mag_ofs_x = sensofs.mag_ofs_x;
-                        mag_ofs_y = sensofs.mag_ofs_y;
-                        mag_ofs_z = sensofs.mag_ofs_z;
-                        mag_declination = sensofs.mag_declination;
-
-                        raw_press = sensofs.raw_press;
-                        raw_temp = sensofs.raw_temp/100;
-
-                        gyro_cal_x = sensofs.gyro_cal_x;
-                        gyro_cal_y = sensofs.gyro_cal_y;
-                        gyro_cal_z = sensofs.gyro_cal_z;
-
-                        accel_cal_x = sensofs.accel_cal_x;
-                        accel_cal_y = sensofs.accel_cal_y;
-                        accel_cal_z = sensofs.accel_cal_z;
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.ATTITUDE:
-
-
-                    {
-                        var att = mavLinkMessage.ToStructure<MAVLink.mavlink_attitude_t>();
-
-                        roll = (float) (att.roll * MathHelper.rad2deg);
-                        pitch = (float) (att.pitch * MathHelper.rad2deg);
-                        yaw = (float) (att.yaw * MathHelper.rad2deg);
-
-                        //Console.WriteLine(MAV.sysid + " " +roll + " " + pitch + " " + yaw);
-
-                        //MAVLink.packets[(byte)MAVLink.MSG_NAMES.ATTITUDE);
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.GLOBAL_POSITION_INT:
-
-                    {
-                        var loc = mavLinkMessage.ToStructure<MAVLink.mavlink_global_position_int_t>();
-
-                        // the new arhs deadreckoning may send 0 alt and 0 long. check for and undo
-
-                        alt = loc.relative_alt / 1000.0f;
-
-                        useLocation = true;
-                        if (loc.lat == 0 && loc.lon == 0)
-                        {
-                            useLocation = false;
-                        }
-                        else
-                        {
-                            lat = loc.lat / 10000000.0;
-                            lng = loc.lon / 10000000.0;
-
-                            altasl = loc.alt / 1000.0f;
-
-                            vx = loc.vx * 0.01;
-                            vy = loc.vy * 0.01;
-                            vz = loc.vz * 0.01;
-                        }
-                    }
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.GPS_RAW_INT:
-
-                    {
-                        var gps = mavLinkMessage.ToStructure<MAVLink.mavlink_gps_raw_int_t>();
-
-                        if (!useLocation)
-                        {
-                            lat = gps.lat * 1.0e-7;
-                            lng = gps.lon * 1.0e-7;
-
-                            altasl = gps.alt / 1000.0f;
-                            // alt = gps.alt; // using vfr as includes baro calc
+                            //MAVLink.packets[(byte)MAVLink.MSG_NAMES.NAV_CONTROLLER_OUTPUT);
                         }
 
-                        gpsstatus = gps.fix_type;
-                        //                    Console.WriteLine("gpsfix {0}",gpsstatus);
-
-                        if (gps.eph != ushort.MaxValue)
-                            gpshdop = (float) Math.Round(gps.eph / 100.0, 2);
-
-                        if (gps.satellites_visible != byte.MaxValue)
-                            satcount = gps.satellites_visible;
-
-                        //For QuickViewGPSStatus control
-                        if ( (gpshdop < 2.0) && (satcount > 10) && (gpsstatus >= 3) )
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.EFI_STATUS:
                         {
-                            gpsstatusgood = true;
-                        }
-                        else
-                        {
-                            gpsstatusgood = false;
-                        }
-
-                        if (gps.vel != ushort.MaxValue)
-                            groundspeed = gps.vel * 1.0e-2f;
-
-                        if (groundspeed > 0.5 && gps.cog != ushort.MaxValue)
-                            groundcourse = gps.cog * 1.0e-2f;
-
-                        if (mavLinkMessage.ismavlink2)
-                        {
-                            gpsh_acc = gps.h_acc / 1000.0f;
-                            gpsv_acc = gps.v_acc / 1000.0f;
-                            gpsvel_acc = gps.vel_acc / 1000.0f;
-                            gpshdg_acc = gps.hdg_acc / 1e5f;
-                        }
-                        else
-                        {
-                            gpsh_acc = -1;
-                            gpsv_acc = -1;
-                            gpsvel_acc = -1;
-                            gpshdg_acc = -1;
-                        }
-
-                        //MAVLink.packets[(byte)MAVLink.MSG_NAMES.GPS_RAW);
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.GPS2_RAW:
-
-                    {
-                        var gps = mavLinkMessage.ToStructure<MAVLink.mavlink_gps2_raw_t>();
-
-                        lat2 = gps.lat * 1.0e-7;
-                        lng2 = gps.lon * 1.0e-7;
-                        altasl2 = gps.alt / 1000.0f;
-
-                        gpsstatus2 = gps.fix_type;
-                        gpshdop2 = (float) Math.Round(gps.eph / 100.0, 2);
-
-                        satcount2 = gps.satellites_visible;
-
-                        groundspeed2 = gps.vel * 1.0e-2f;
-                        groundcourse2 = gps.cog * 1.0e-2f;
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.GPS_STATUS:
-
-                    {
-                        var gps = mavLinkMessage.ToStructure<MAVLink.mavlink_gps_status_t>();
-                        satcount = gps.satellites_visible;
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.RADIO:
-
-                    {
-                        var radio = mavLinkMessage.ToStructure<MAVLink.mavlink_radio_t>();
-                        rssi = radio.rssi;
-                        remrssi = radio.remrssi;
-                        txbuffer = radio.txbuf;
-                        rxerrors = radio.rxerrors;
-                        noise = radio.noise;
-                        remnoise = radio.remnoise;
-                        fixedp = radio.@fixed;
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.RADIO_STATUS:
-
-                    {
-                        var radio = mavLinkMessage.ToStructure<MAVLink.mavlink_radio_status_t>();
-                        rssi = radio.rssi;
-                        remrssi = radio.remrssi;
-                        txbuffer = radio.txbuf;
-                        rxerrors = radio.rxerrors;
-                        noise = radio.noise;
-                        remnoise = radio.remnoise;
-                        fixedp = radio.@fixed;
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.MISSION_CURRENT:
-
-                    {
-                        var wpcur = mavLinkMessage.ToStructure<MAVLink.mavlink_mission_current_t>();
-
-                        var oldwp = (int) wpno;
-
-                        wpno = wpcur.seq;
-
-                        if (mode.ToLower() == "auto" && wpno != 0) lastautowp = (int) wpno;
-                        try
-                        {
-                            if (oldwp != wpno && Speech != null && Speech.speechEnable && parent != null &&
-                                parent.parent.MAV.cs == this &&
-                                Settings.Instance.GetBoolean("speechwaypointenabled"))
-                                Speech.SpeakAsync(Common.speechConversion(parent,
-                                    "" + Settings.Instance["speechwaypoint"]));
-                        }
-                        catch (Exception ex)
-                        {
-                            log.Error(ex);
-                        }
-
-                        //MAVLink.packets[(byte)MAVLink.MSG_NAMES.WAYPOINT_CURRENT);
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.NAV_CONTROLLER_OUTPUT:
-
-
-                    {
-                        var nav = mavLinkMessage.ToStructure<MAVLink.mavlink_nav_controller_output_t>();
-
-                        nav_roll = nav.nav_roll;
-                        nav_pitch = nav.nav_pitch;
-                        nav_bearing = nav.nav_bearing;
-                        target_bearing = nav.target_bearing;
-                        wp_dist = nav.wp_dist;
-                        alt_error = nav.alt_error;
-                        aspd_error = nav.aspd_error / 100.0f;
-                        xtrack_error = nav.xtrack_error;
-
-                        //MAVLink.packets[(byte)MAVLink.MSG_NAMES.NAV_CONTROLLER_OUTPUT);
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.RPM:
-
-
-                    {
-                        var rpm = mavLinkMessage.ToStructure<MAVLink.mavlink_rpm_t>();
-
-                        rpm1 = rpm.rpm1;
-                        rpm2 = rpm.rpm2;
-
-                        //MAVLink.packets[(byte)MAVLink.MSG_NAMES.NAV_CONTROLLER_OUTPUT);
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.EFI_STATUS:
-                    {
                             var efi = mavLinkMessage.ToStructure<MAVLink.mavlink_efi_status_t>();
 
                             efi_health = efi.health;
@@ -2671,11 +2676,11 @@ namespace MissionPlanner
                             timeremaining = fuelremaining / avgfuelrate; //hours
                             lastavgfuelrate = avgfuelrate;
                             remainingstr = fuelremaining.ToString("F1") + ";" + timeremaining.ToString("F1");
-                            
+
                             intake_manifold_temp = efi.intake_manifold_temperature;
 
                             //MAVLink.packets[(byte)MAVLink.MSG_NAMES.EFI_STATUS);
-                    }
+                        }
                         break;
                     //case (uint)MAVLink.MAVLINK_MSG_ID.WEATHER:
                     //{
@@ -2689,295 +2694,305 @@ namespace MissionPlanner
                     //        //MAVLink.packets[(byte)MAVLink.MSG_NAMES.WEATHER);
                     //}
                     //    break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.RC_CHANNELS_RAW:
+                    case (uint)MAVLink.MAVLINK_MSG_ID.RC_CHANNELS_RAW:
 
-                    {
-                        var rcin = mavLinkMessage.ToStructure<MAVLink.mavlink_rc_channels_raw_t>();
-
-                        ch1in = rcin.chan1_raw;
-                        ch2in = rcin.chan2_raw;
-                        ch3in = rcin.chan3_raw;
-                        ch4in = rcin.chan4_raw;
-                        ch5in = rcin.chan5_raw;
-                        ch6in = rcin.chan6_raw;
-                        ch7in = rcin.chan7_raw;
-                        ch8in = rcin.chan8_raw;
-
-                        //percent
-                        rxrssi = (int) (rcin.rssi / 255.0 * 100.0);
-
-                        //MAVLink.packets[(byte)MAVLink.MSG_NAMES.RC_CHANNELS_RAW);
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.RC_CHANNELS:
-
-                    {
-                        var rcin = mavLinkMessage.ToStructure<MAVLink.mavlink_rc_channels_t>();
-
-                        ch1in = rcin.chan1_raw;
-                        ch2in = rcin.chan2_raw;
-                        ch3in = rcin.chan3_raw;
-                        ch4in = rcin.chan4_raw;
-                        ch5in = rcin.chan5_raw;
-                        ch6in = rcin.chan6_raw;
-                        ch7in = rcin.chan7_raw;
-                        ch8in = rcin.chan8_raw;
-
-                        ch9in = rcin.chan9_raw;
-                        ch10in = rcin.chan10_raw;
-                        ch11in = rcin.chan11_raw;
-                        ch12in = rcin.chan12_raw;
-                        ch13in = rcin.chan13_raw;
-                        ch14in = rcin.chan14_raw;
-                        ch15in = rcin.chan15_raw;
-                        ch16in = rcin.chan16_raw;
-
-                        //percent
-                        rxrssi = (int) (rcin.rssi / 255.0 * 100.0);
-
-                        //MAVLink.packets[(byte)MAVLink.MSG_NAMES.RC_CHANNELS_RAW);
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.ESC_TELEMETRY_1_TO_4:
-
-                    {
-                        var esc = mavLinkMessage.ToStructure<MAVLink.mavlink_esc_telemetry_1_to_4_t>();
-                        esc1_volt = esc.voltage[0] / 100.0f;
-                        esc1_curr = esc.current[0] / 100.0f;
-                        esc1_rpm = esc.rpm[0];
-                        esc1_temp = esc.temperature[0];
-
-                        esc2_volt = esc.voltage[1] / 100.0f;
-                        esc2_curr = esc.current[1] / 100.0f;
-                        esc2_rpm = esc.rpm[1];
-                        esc2_temp = esc.temperature[1];
-
-                        esc3_volt = esc.voltage[2] / 100.0f;
-                        esc3_curr = esc.current[2] / 100.0f;
-                        esc3_rpm = esc.rpm[2];
-                        esc3_temp = esc.temperature[2];
-
-                        esc4_volt = esc.voltage[3] / 100.0f;
-                        esc4_curr = esc.current[3] / 100.0f;
-                        esc4_rpm = esc.rpm[3];
-                        esc4_temp = esc.temperature[3];
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.ESC_TELEMETRY_5_TO_8:
-
-                    {
-                        var esc = mavLinkMessage.ToStructure<MAVLink.mavlink_esc_telemetry_5_to_8_t>();
-                        esc5_volt = esc.voltage[0] / 100.0f;
-                        esc5_curr = esc.current[0] / 100.0f;
-                        esc5_rpm = esc.rpm[0];
-                        esc5_temp = esc.temperature[0];
-
-                        esc6_volt = esc.voltage[1] / 100.0f;
-                        esc6_curr = esc.current[1] / 100.0f;
-                        esc6_rpm = esc.rpm[1];
-                        esc6_temp = esc.temperature[1];
-
-                        esc7_volt = esc.voltage[2] / 100.0f;
-                        esc7_curr = esc.current[2] / 100.0f;
-                        esc7_rpm = esc.rpm[2];
-                        esc7_temp = esc.temperature[2];
-
-                        esc8_volt = esc.voltage[3] / 100.0f;
-                        esc8_curr = esc.current[3] / 100.0f;
-                        esc8_rpm = esc.rpm[3];
-                        esc8_temp = esc.temperature[3];
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.SERVO_OUTPUT_RAW:
-
-                    {
-                        var servoout = mavLinkMessage.ToStructure<MAVLink.mavlink_servo_output_raw_t>();
-
-                        ch1out = servoout.servo1_raw;
-                        ch2out = servoout.servo2_raw;
-                        ch3out = servoout.servo3_raw;
-                        ch4out = servoout.servo4_raw;
-                        ch5out = servoout.servo5_raw;
-                        ch6out = servoout.servo6_raw;
-                        ch7out = servoout.servo7_raw;
-                        ch8out = servoout.servo8_raw;
-
-                        // mavlink2 extension
-                        ch9out = servoout.servo9_raw;
-                        ch10out = servoout.servo10_raw;
-                        ch11out = servoout.servo11_raw;
-                        ch12out = servoout.servo12_raw;
-                        ch13out = servoout.servo13_raw;
-                        ch14out = servoout.servo14_raw;
-                        ch15out = servoout.servo15_raw;
-                        ch16out = servoout.servo16_raw;
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.RAW_IMU:
-
-                    {
-                        var imu = mavLinkMessage.ToStructure<MAVLink.mavlink_raw_imu_t>();
-
-                        gx = imu.xgyro;
-                        gy = imu.ygyro;
-                        gz = imu.zgyro;
-
-                        ax = imu.xacc;
-                        ay = imu.yacc;
-                        az = imu.zacc;
-
-                        mx = imu.xmag;
-                        my = imu.ymag;
-                        mz = imu.zmag;
-
-                        var timesec = imu.time_usec * 1.0e-6;
-
-                        var deltawall = (DateTime.Now - lastimutime).TotalSeconds;
-
-                        var deltaimu = timesec - imutime;
-
-                        //Console.WriteLine( + " " + deltawall + " " + deltaimu + " " + System.Threading.Thread.CurrentThread.Name);
-                        if (deltaimu > 0 && deltaimu < 10)
                         {
-                            speedup = (float) (speedup * 0.95 + deltaimu / deltawall * 0.05);
+                            var rcin = mavLinkMessage.ToStructure<MAVLink.mavlink_rc_channels_raw_t>();
 
-                            imutime = timesec;
-                            lastimutime = DateTime.Now;
+                            ch1in = rcin.chan1_raw;
+                            ch2in = rcin.chan2_raw;
+                            ch3in = rcin.chan3_raw;
+                            ch4in = rcin.chan4_raw;
+                            ch5in = rcin.chan5_raw;
+                            ch6in = rcin.chan6_raw;
+                            ch7in = rcin.chan7_raw;
+                            ch8in = rcin.chan8_raw;
+
+                            //percent
+                            rxrssi = (int)(rcin.rssi / 255.0 * 100.0);
+
+                            //MAVLink.packets[(byte)MAVLink.MSG_NAMES.RC_CHANNELS_RAW);
                         }
 
-                        //MAVLink.packets[(byte)MAVLink.MSG_NAMES.RAW_IMU);
-                    }
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.RC_CHANNELS:
+
+                        {
+                            var rcin = mavLinkMessage.ToStructure<MAVLink.mavlink_rc_channels_t>();
+
+                            ch1in = rcin.chan1_raw;
+                            ch2in = rcin.chan2_raw;
+                            ch3in = rcin.chan3_raw;
+                            ch4in = rcin.chan4_raw;
+                            ch5in = rcin.chan5_raw;
+                            ch6in = rcin.chan6_raw;
+                            ch7in = rcin.chan7_raw;
+                            ch8in = rcin.chan8_raw;
+
+                            ch9in = rcin.chan9_raw;
+                            ch10in = rcin.chan10_raw;
+                            ch11in = rcin.chan11_raw;
+                            ch12in = rcin.chan12_raw;
+                            ch13in = rcin.chan13_raw;
+                            ch14in = rcin.chan14_raw;
+                            ch15in = rcin.chan15_raw;
+                            ch16in = rcin.chan16_raw;
+
+                            //percent
+                            rxrssi = (int)(rcin.rssi / 255.0 * 100.0);
+
+                            //MAVLink.packets[(byte)MAVLink.MSG_NAMES.RC_CHANNELS_RAW);
+                        }
 
                         break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.SCALED_IMU:
+                    case (uint)MAVLink.MAVLINK_MSG_ID.ESC_TELEMETRY_1_TO_4:
 
-                    {
-                        var imu = mavLinkMessage.ToStructure<MAVLink.mavlink_scaled_imu_t>();
+                        {
+                            var esc = mavLinkMessage.ToStructure<MAVLink.mavlink_esc_telemetry_1_to_4_t>();
+                            esc1_volt = esc.voltage[0] / 100.0f;
+                            esc1_curr = esc.current[0] / 100.0f;
+                            esc1_rpm = esc.rpm[0];
+                            esc1_temp = esc.temperature[0];
 
-                        gx = imu.xgyro;
-                        gy = imu.ygyro;
-                        gz = imu.zgyro;
+                            esc2_volt = esc.voltage[1] / 100.0f;
+                            esc2_curr = esc.current[1] / 100.0f;
+                            esc2_rpm = esc.rpm[1];
+                            esc2_temp = esc.temperature[1];
 
-                        ax = imu.xacc;
-                        ay = imu.yacc;
-                        az = imu.zacc;
+                            esc3_volt = esc.voltage[2] / 100.0f;
+                            esc3_curr = esc.current[2] / 100.0f;
+                            esc3_rpm = esc.rpm[2];
+                            esc3_temp = esc.temperature[2];
 
-                        mx = imu.xmag;
-                        my = imu.ymag;
-                        mz = imu.zmag;
-
-                        //MAVLink.packets[(byte)MAVLink.MSG_NAMES.RAW_IMU);
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.SCALED_IMU2:
-
-                    {
-                        var imu2 = mavLinkMessage.ToStructure<MAVLink.mavlink_scaled_imu2_t>();
-
-                        gx2 = imu2.xgyro;
-                        gy2 = imu2.ygyro;
-                        gz2 = imu2.zgyro;
-
-                        ax2 = imu2.xacc;
-                        ay2 = imu2.yacc;
-                        az2 = imu2.zacc;
-
-                        mx2 = imu2.xmag;
-                        my2 = imu2.ymag;
-                        mz2 = imu2.zmag;
-                    }
-
+                            esc4_volt = esc.voltage[3] / 100.0f;
+                            esc4_curr = esc.current[3] / 100.0f;
+                            esc4_rpm = esc.rpm[3];
+                            esc4_temp = esc.temperature[3];
+                        }
 
                         break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.SCALED_IMU3:
+                    case (uint)MAVLink.MAVLINK_MSG_ID.ESC_TELEMETRY_5_TO_8:
 
-                    {
-                        var imu3 = mavLinkMessage.ToStructure<MAVLink.mavlink_scaled_imu3_t>();
+                        {
+                            var esc = mavLinkMessage.ToStructure<MAVLink.mavlink_esc_telemetry_5_to_8_t>();
+                            esc5_volt = esc.voltage[0] / 100.0f;
+                            esc5_curr = esc.current[0] / 100.0f;
+                            esc5_rpm = esc.rpm[0];
+                            esc5_temp = esc.temperature[0];
 
-                        gx3 = imu3.xgyro;
-                        gy3 = imu3.ygyro;
-                        gz3 = imu3.zgyro;
+                            esc6_volt = esc.voltage[1] / 100.0f;
+                            esc6_curr = esc.current[1] / 100.0f;
+                            esc6_rpm = esc.rpm[1];
+                            esc6_temp = esc.temperature[1];
 
-                        ax3 = imu3.xacc;
-                        ay3 = imu3.yacc;
-                        az3 = imu3.zacc;
+                            esc7_volt = esc.voltage[2] / 100.0f;
+                            esc7_curr = esc.current[2] / 100.0f;
+                            esc7_rpm = esc.rpm[2];
+                            esc7_temp = esc.temperature[2];
 
-                        mx3 = imu3.xmag;
-                        my3 = imu3.ymag;
-                        mz3 = imu3.zmag;
-                    }
-
-                        break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.PID_TUNING:
-
-                    {
-                        var pid = mavLinkMessage.ToStructure<MAVLink.mavlink_pid_tuning_t>();
-
-                        //todo: currently only deals with single axis at once
-
-                        pidff = pid.FF;
-                        pidP = pid.P;
-                        pidI = pid.I;
-                        pidD = pid.D;
-                        pidaxis = pid.axis;
-                        piddesired = pid.desired;
-                        pidachieved = pid.achieved;
-                    }
+                            esc8_volt = esc.voltage[3] / 100.0f;
+                            esc8_curr = esc.current[3] / 100.0f;
+                            esc8_rpm = esc.rpm[3];
+                            esc8_temp = esc.temperature[3];
+                        }
 
                         break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.VFR_HUD:
+                    case (uint)MAVLink.MAVLINK_MSG_ID.SERVO_OUTPUT_RAW:
 
-                    {
-                        var vfr = mavLinkMessage.ToStructure<MAVLink.mavlink_vfr_hud_t>();
+                        {
+                            var servoout = mavLinkMessage.ToStructure<MAVLink.mavlink_servo_output_raw_t>();
 
-                        groundspeed = vfr.groundspeed;
+                            ch1out = servoout.servo1_raw;
+                            ch2out = servoout.servo2_raw;
+                            ch3out = servoout.servo3_raw;
+                            ch4out = servoout.servo4_raw;
+                            ch5out = servoout.servo5_raw;
+                            ch6out = servoout.servo6_raw;
+                            ch7out = servoout.servo7_raw;
+                            ch8out = servoout.servo8_raw;
 
-                        airspeed = vfr.airspeed;
-
-                        //alt = vfr.alt; // this might include baro
-
-                        ch3percent = vfr.throttle;
-
-                        if (sensors_present.revthrottle && sensors_enabled.revthrottle && sensors_health.revthrottle)
-                            if (ch3percent > 0)
-                                ch3percent *= -1;
-
-                        //Console.WriteLine(alt);
-
-                        //climbrate = vfr.climb;
-
-                        // heading = vfr.heading;
-
-
-                        //MAVLink.packets[(byte)MAVLink.MSG_NAMES.VFR_HUD);
-                    }
+                            // mavlink2 extension
+                            ch9out = servoout.servo9_raw;
+                            ch10out = servoout.servo10_raw;
+                            ch11out = servoout.servo11_raw;
+                            ch12out = servoout.servo12_raw;
+                            ch13out = servoout.servo13_raw;
+                            ch14out = servoout.servo14_raw;
+                            ch15out = servoout.servo15_raw;
+                            ch16out = servoout.servo16_raw;
+                        }
 
                         break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.MEMINFO:
+                    case (uint)MAVLink.MAVLINK_MSG_ID.RAW_IMU:
 
-                    {
-                        var mem = mavLinkMessage.ToStructure<MAVLink.mavlink_meminfo_t>();
-                        freemem = mem.freemem;
-                        brklevel = mem.brkval;
-                    }
+                        {
+                            var imu = mavLinkMessage.ToStructure<MAVLink.mavlink_raw_imu_t>();
+
+                            gx = imu.xgyro;
+                            gy = imu.ygyro;
+                            gz = imu.zgyro;
+
+                            ax = imu.xacc;
+                            ay = imu.yacc;
+                            az = imu.zacc;
+
+                            mx = imu.xmag;
+                            my = imu.ymag;
+                            mz = imu.zmag;
+
+                            var timesec = imu.time_usec * 1.0e-6;
+
+                            var deltawall = (DateTime.Now - lastimutime).TotalSeconds;
+
+                            var deltaimu = timesec - imutime;
+
+                            //Console.WriteLine( + " " + deltawall + " " + deltaimu + " " + System.Threading.Thread.CurrentThread.Name);
+                            if (deltaimu > 0 && deltaimu < 10)
+                            {
+                                speedup = (float)(speedup * 0.95 + deltaimu / deltawall * 0.05);
+
+                                imutime = timesec;
+                                lastimutime = DateTime.Now;
+                            }
+
+                            //MAVLink.packets[(byte)MAVLink.MSG_NAMES.RAW_IMU);
+                        }
 
                         break;
-                    case (uint) MAVLink.MAVLINK_MSG_ID.AOA_SSA:
+                    case (uint)MAVLink.MAVLINK_MSG_ID.SCALED_IMU:
 
-                    {
-                        var aoa_ssa = mavLinkMessage.ToStructure<MAVLink.mavlink_aoa_ssa_t>();
+                        {
+                            var imu = mavLinkMessage.ToStructure<MAVLink.mavlink_scaled_imu_t>();
 
-                        AOA = aoa_ssa.AOA;
-                        SSA = aoa_ssa.SSA;
-                    }
+                            gx = imu.xgyro;
+                            gy = imu.ygyro;
+                            gz = imu.zgyro;
+
+                            ax = imu.xacc;
+                            ay = imu.yacc;
+                            az = imu.zacc;
+
+                            mx = imu.xmag;
+                            my = imu.ymag;
+                            mz = imu.zmag;
+
+                            //MAVLink.packets[(byte)MAVLink.MSG_NAMES.RAW_IMU);
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.SCALED_IMU2:
+
+                        {
+                            var imu2 = mavLinkMessage.ToStructure<MAVLink.mavlink_scaled_imu2_t>();
+
+                            gx2 = imu2.xgyro;
+                            gy2 = imu2.ygyro;
+                            gz2 = imu2.zgyro;
+
+                            ax2 = imu2.xacc;
+                            ay2 = imu2.yacc;
+                            az2 = imu2.zacc;
+
+                            mx2 = imu2.xmag;
+                            my2 = imu2.ymag;
+                            mz2 = imu2.zmag;
+                        }
+
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.SCALED_IMU3:
+
+                        {
+                            var imu3 = mavLinkMessage.ToStructure<MAVLink.mavlink_scaled_imu3_t>();
+
+                            gx3 = imu3.xgyro;
+                            gy3 = imu3.ygyro;
+                            gz3 = imu3.zgyro;
+
+                            ax3 = imu3.xacc;
+                            ay3 = imu3.yacc;
+                            az3 = imu3.zacc;
+
+                            mx3 = imu3.xmag;
+                            my3 = imu3.ymag;
+                            mz3 = imu3.zmag;
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.PID_TUNING:
+
+                        {
+                            var pid = mavLinkMessage.ToStructure<MAVLink.mavlink_pid_tuning_t>();
+
+                            //todo: currently only deals with single axis at once
+
+                            pidff = pid.FF;
+                            pidP = pid.P;
+                            pidI = pid.I;
+                            pidD = pid.D;
+                            pidaxis = pid.axis;
+                            piddesired = pid.desired;
+                            pidachieved = pid.achieved;
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.VFR_HUD:
+
+                        {
+                            var vfr = mavLinkMessage.ToStructure<MAVLink.mavlink_vfr_hud_t>();
+
+                            groundspeed = vfr.groundspeed;
+
+                            airspeed = vfr.airspeed;
+
+                            //alt = vfr.alt; // this might include baro
+
+                            ch3percent = vfr.throttle;
+
+                            if (sensors_present.revthrottle && sensors_enabled.revthrottle && sensors_health.revthrottle)
+                                if (ch3percent > 0)
+                                    ch3percent *= -1;
+
+                            //Console.WriteLine(alt);
+
+                            //climbrate = vfr.climb;
+
+                            // heading = vfr.heading;
+
+
+                            //MAVLink.packets[(byte)MAVLink.MSG_NAMES.VFR_HUD);
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.MEMINFO:
+
+                        {
+                            var mem = mavLinkMessage.ToStructure<MAVLink.mavlink_meminfo_t>();
+                            freemem = mem.freemem;
+                            brklevel = mem.brkval;
+                        }
+
+                        break;
+                    case (uint)MAVLink.MAVLINK_MSG_ID.AOA_SSA:
+
+                        {
+                            var aoa_ssa = mavLinkMessage.ToStructure<MAVLink.mavlink_aoa_ssa_t>();
+
+                            AOA = aoa_ssa.AOA;
+                            SSA = aoa_ssa.SSA;
+                        }
                         break;
 
+                    case (uint)MAVLink.MAVLINK_MSG_ID.STATUSTEXT:
+                        {
+                            var stext = mavLinkMessage.ToStructure<MAVLink.mavlink_statustext_t>();
+                            statustext = Encoding.ASCII.GetString(stext.text);
+                            if (String.Compare(statustext, 0, "Transition done", 0, 15) == 0)
+                            {
+                                messageHigh = "Transition Complete";
+                            }
+                        }
+                        break;
                     case (uint)MAVLink.MAVLINK_MSG_ID.NAMED_VALUE_FLOAT:
 
                         {
@@ -2993,7 +3008,7 @@ namespace MissionPlanner
 
                             float value = named_float.value;
                             var field = custom_field_names.FirstOrDefault(x => x.Value == name).Key;
-                        
+
                             //todo: if field is null then check if we have a free customfield and add the named_value 
                             if (field == null)
                             {
@@ -3008,11 +3023,11 @@ namespace MissionPlanner
                                     custom_field_names.Add(field, name);
                                 }
                             }
-                        
+
 
                             if (field != null)
                             {
-                                switch(field)
+                                switch (field)
                                 {
                                     case "customfield0":
                                         customfield0 = value;
@@ -3049,8 +3064,7 @@ namespace MissionPlanner
                                 }
 
                             }
-
-                    }
+                        }
                         break;
                 }
             }
