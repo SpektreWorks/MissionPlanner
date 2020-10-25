@@ -907,7 +907,7 @@ namespace MissionPlanner.GCSViews
                     mBorders.InnerMarker = m;
                     try
                     {
-                        mBorders.wprad = (int)radiusinm;
+                        mBorders.wprad = radiusinm;
                     }
                     catch
                     {
@@ -3490,7 +3490,6 @@ namespace MissionPlanner.GCSViews
                                     MainV2.comPort.MAV.GuidedMode.x / 1e7, (int) (MainV2.comPort.MAV.GuidedMode.z * CurrentState.multiplieralt),
                                     Color.Blue,
                                     routes, (int)MainV2.comPort.MAV.param["WP_LOITER_RAD"]);
-                                    //routes, (int)(Settings.Instance.GetFloat("TXT_WPRad") / CurrentState.multiplierdist));
                             }
 
                             if (MainV2.comPort.MAV.cs.mode.ToLower() == "guided" &&

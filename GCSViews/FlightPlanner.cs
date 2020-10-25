@@ -1520,7 +1520,7 @@ namespace MissionPlanner.GCSViews
             writeKML();
         }
 
-        private void addpolygonmarker(string tag, double lng, double lat, int alt, Color? color, GMapOverlay overlay)
+        private void addpolygonmarker(string tag, double lng, double lat, int alt, Color? color, GMapOverlay overlay, int radiusinm)
         {
             try
             {
@@ -1535,8 +1535,7 @@ namespace MissionPlanner.GCSViews
                     mBorders.InnerMarker = m;
                     try
                     {
-                        mBorders.wprad =
-                            (int)(Settings.Instance.GetFloat("TXT_WPRad") / CurrentState.multiplieralt);
+                        mBorders.wprad = radiusinm;
                     }
                     catch (Exception ex)
                     {
@@ -5942,7 +5941,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                 {
                     addpolygonmarker("Tracker Home", MainV2.comPort.MAV.cs.TrackerLocation.Lng,
                         MainV2.comPort.MAV.cs.TrackerLocation.Lat, (int)MainV2.comPort.MAV.cs.TrackerLocation.Alt,
-                        Color.Blue, routesoverlay);
+                        Color.Blue, routesoverlay, (int)MainV2.comPort.MAV.param["WP_RADIUS"]);
                 }
 
                 if (MainV2.comPort.MAV.cs.lat == 0 || MainV2.comPort.MAV.cs.lng == 0)
@@ -5955,7 +5954,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                 if (MainV2.comPort.MAV.cs.mode.ToLower() == "guided" && MainV2.comPort.MAV.GuidedMode.x != 0)
                 {
                     addpolygonmarker("Guided Mode", MainV2.comPort.MAV.GuidedMode.y / 1e7, MainV2.comPort.MAV.GuidedMode.x / 1e7,
-                        (int)MainV2.comPort.MAV.GuidedMode.z, Color.Blue, routesoverlay);
+                        (int)MainV2.comPort.MAV.GuidedMode.z, Color.Blue, routesoverlay, (int)MainV2.comPort.MAV.param["WP_LOITER_RAD"]);
                 }
             }
             catch (Exception ex)
