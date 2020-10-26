@@ -40,13 +40,13 @@
             // 
             resources.ApplyResources(this.numericUpDown1, "numericUpDown1");
             this.numericUpDown1.Maximum = new decimal(new int[] {
-            1000,
+            100000,
             0,
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Value = new decimal(new int[] {
-            1000,
+            100000,
             0,
             0,
             0});

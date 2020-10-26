@@ -857,7 +857,7 @@
             0,
             0});
             this.modifyandSetLoiterRad.Maximum = new decimal(new int[] {
-            10000,
+            100000,
             0,
             0,
             0});
