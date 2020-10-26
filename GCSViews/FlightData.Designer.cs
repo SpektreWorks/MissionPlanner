@@ -155,6 +155,7 @@
             this.QUICK_VPSBattV = new MissionPlanner.Controls.QuickViewText();
             this.QUICK_Link = new MissionPlanner.Controls.QuickViewText();
             this.QUICK_OAT = new MissionPlanner.Controls.QuickView();
+            this.QUICK_FuelRate = new MissionPlanner.Controls.QuickView();
             this.QUICK_Wind = new MissionPlanner.Controls.QuickViewText();
             this.but_disablejoystick = new MissionPlanner.Controls.MyButton();
             this.distanceBar1 = new MissionPlanner.Controls.DistanceBar();
@@ -1845,6 +1846,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.QUICK_VPSBattV);
             this.splitContainer1.Panel2.Controls.Add(this.QUICK_Link);
             this.splitContainer1.Panel2.Controls.Add(this.QUICK_OAT);
+            this.splitContainer1.Panel2.Controls.Add(this.QUICK_FuelRate);
             this.splitContainer1.Panel2.Controls.Add(this.QUICK_Wind);
             this.splitContainer1.Panel2.Controls.Add(this.but_disablejoystick);
             this.splitContainer1.Panel2.Controls.Add(this.distanceBar1);
@@ -2219,6 +2221,24 @@
             this.QUICK_OAT.numberformat = "0";
             this.QUICK_OAT.numFontSize = 22F;
             // 
+            // QUICK_FuelRate
+            // 
+            this.QUICK_FuelRate.alert_color = System.Drawing.Color.Red;
+            this.QUICK_FuelRate.alert_high = 0D;
+            this.QUICK_FuelRate.alert_low = 0D;
+            this.QUICK_FuelRate.attention_color = System.Drawing.Color.Orange;
+            this.QUICK_FuelRate.attention_offset = 0D;
+            this.QUICK_FuelRate.BackColor = System.Drawing.Color.Green;
+            this.QUICK_FuelRate.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "avgfuelrate", true));
+            this.QUICK_FuelRate.desc = "Fuel Burn (lbs/hr)";
+            resources.ApplyResources(this.QUICK_FuelRate, "QUICK_FuelRate");
+            this.QUICK_FuelRate.happy_color = System.Drawing.Color.Empty;
+            this.QUICK_FuelRate.Name = "QUICK_FuelRate";
+            this.QUICK_FuelRate.number = -9999D;
+            this.QUICK_FuelRate.numberColor = System.Drawing.Color.Empty;
+            this.QUICK_FuelRate.numberformat = "0.00";
+            this.QUICK_FuelRate.numFontSize = -1F;
+            // 
             // QUICK_Wind
             // 
             this.QUICK_Wind.alert_high = 30D;
@@ -2257,7 +2277,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 360D;
+            this.windDir1.Direction = 180D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2684,6 +2704,7 @@
         private Controls.QuickViewText QUICK_VPSBattV;
         private Controls.QuickViewText QUICK_Link;
         private Controls.QuickView QUICK_OAT;
+        private Controls.QuickView QUICK_FuelRate;
         private Controls.QuickViewText QUICK_Wind;
         public Controls.GuidedTracking guidedTracking1;
         private Controls.MyButton BUT_georefimage;

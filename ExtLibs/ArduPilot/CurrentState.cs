@@ -1664,7 +1664,7 @@ namespace MissionPlanner
         public float efi_health { get; set; }
         public float cht { get; set; }
         public float fuelrate { get; set; }
-        public float avgfuelrate = 0;
+        public float avgfuelrate { get; set; }
         public static float lastavgfuelrate = 0;
         public static float avgcoeff = 0.001f;
 
@@ -2662,12 +2662,12 @@ namespace MissionPlanner
                             fuelused = efi.fuel_consumed * 0.00220462f * 0.85f;  //Convert grams to lbs. Decrease by 15% because estimator always estimates high.
                             fuelremaining = initial_fuel_load - fuelused;
 
-                            fuelrate = efi.fuel_flow * 0.00220462f * 60f * 0.85f; //Convert g/min to lbs/hr. Decrease by 15% because estimator always estiamtes high.
+                            fuelrate = efi.fuel_flow * 0.00220462f * 60f * 0.85f; //Convert g/min to lbs/hr. Decrease by 15% because estimator always estimates high.
 
                             //Calculate running average of fuelrate so displayed value doesn't jump around too much
                             if (efi_rpm > 0)
                             {
-                                avgfuelrate = avgcoeff * fuelrate + (1.0f - avgcoeff) * lastavgfuelrate;  //avg(t) = a*val + (1-a)*avg(t-1)
+                                avgfuelrate = avgcoeff * fuelrate + (1.0f - avgcoeff) * lastavgfuelrate;  //Running average equation: avg(t) = a*val + (1-a)*avg(t-1)
                             }
                             else
                             {
