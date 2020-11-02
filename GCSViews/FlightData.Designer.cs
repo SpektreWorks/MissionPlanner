@@ -81,7 +81,7 @@
             this.QUICK_Link = new MissionPlanner.Controls.QuickViewText();
             this.QUICK_OAT = new MissionPlanner.Controls.QuickView();
             this.QUICK_FuelRate = new MissionPlanner.Controls.QuickView();
-            this.QUICK_TimeInAir = new MissionPlanner.Controls.QuickView();
+            this.QUICK_TimeInAir = new MissionPlanner.Controls.QuickViewTimeInAir();
             this.QUICK_Wind = new MissionPlanner.Controls.QuickViewText();
             this.tabPagePreFlight = new System.Windows.Forms.TabPage();
             this.checkListControl1 = new MissionPlanner.Controls.PreFlight.CheckListControl();
@@ -1225,15 +1225,14 @@
             this.QUICK_TimeInAir.attention_color = System.Drawing.Color.Orange;
             this.QUICK_TimeInAir.attention_offset = 0D;
             this.QUICK_TimeInAir.BackColor = System.Drawing.Color.Green;
-            this.QUICK_TimeInAir.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "timeInAir", true));
+            this.QUICK_TimeInAir.DataBindings.Add(new System.Windows.Forms.Binding("str", this.bindingSource1, "timeInAirHMS", true));
             this.QUICK_TimeInAir.desc = "Time In Air";
-            resources.ApplyResources(this.QUICK_TimeInAir, "QUICK_TimeInAir");
             this.QUICK_TimeInAir.happy_color = System.Drawing.Color.Empty;
+            resources.ApplyResources(this.QUICK_TimeInAir, "QUICK_TimeInAir");
             this.QUICK_TimeInAir.Name = "QUICK_TimeInAir";
-            this.QUICK_TimeInAir.number = -9999D;
-            this.QUICK_TimeInAir.numberColor = System.Drawing.SystemColors.Window;
-            this.QUICK_TimeInAir.numberformat = "0.00";
-            this.QUICK_TimeInAir.numFontSize = -1F;
+            this.QUICK_TimeInAir.numFontSize = 12F;
+            this.QUICK_TimeInAir.str = "00:00:00";
+            this.QUICK_TimeInAir.strColor = System.Drawing.SystemColors.Window;
             // 
             // QUICK_Wind
             // 
@@ -2726,7 +2725,7 @@
         private Controls.QuickViewText QUICK_Link;
         private Controls.QuickView QUICK_OAT;
         private Controls.QuickView QUICK_FuelRate;
-        private Controls.QuickView QUICK_TimeInAir;
+        private Controls.QuickViewTimeInAir QUICK_TimeInAir;
         private Controls.QuickViewText QUICK_Wind;
         public Controls.GuidedTracking guidedTracking1;
         private Controls.MyButton BUT_georefimage;

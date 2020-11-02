@@ -876,6 +876,8 @@ namespace MissionPlanner
         [DisplayText("Time in Air (min.sec)")]
         public float timeInAirMinSec => (int) (timeInAir / 60) + timeInAir % 60 / 100;
 
+        public string timeInAirHMS { get; set; }
+
         [DisplayText("Engine Time (sec)")] public float engineTime { get; set; }
 
         // calced turn rate
@@ -3242,6 +3244,10 @@ namespace MissionPlanner
                         if ((ch3percent > 12 || _groundspeed > 3.0) && armed)
                         {
                             timeInAir++;
+                            int tempH = (int)(timeInAir / 3600.0f);
+                            int tempM = ((int)timeInAir - (tempH * 3600)) / 60;
+                            int tempS = ((int)timeInAir - (int)(tempH * 3600) - (int)(tempM * 60));
+                            timeInAirHMS = tempH.ToString("D2") + ":" + tempM.ToString("D2") + ":" + tempS.ToString("D2");
                             timeSinceArmInAir++;
                         }
 
