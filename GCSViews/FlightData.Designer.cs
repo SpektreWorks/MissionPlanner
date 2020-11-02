@@ -71,13 +71,13 @@
             this.QUICK_GPS_Status = new MissionPlanner.Controls.QuickViewGPSStatus();
             this.QUICK_Airspeed = new MissionPlanner.Controls.QuickViewText();
             this.QUICK_Terrain = new MissionPlanner.Controls.QuickViewText();
-            this.QUICK_CubeT = new MissionPlanner.Controls.QuickViewText();
+            this.QUICK_CubeT = new MissionPlanner.Controls.QuickView();
             this.QUICK_FuelRemaining = new MissionPlanner.Controls.QuickViewFuel();
             this.QUICK_CHT = new MissionPlanner.Controls.QuickView();
             this.QUICK_RPM = new MissionPlanner.Controls.QuickView();
             this.QUICK_Throttle = new MissionPlanner.Controls.QuickView();
-            this.QUICK_BackupBattV = new MissionPlanner.Controls.QuickViewText();
-            this.QUICK_VPSBattV = new MissionPlanner.Controls.QuickViewText();
+            this.QUICK_BackupBattV = new MissionPlanner.Controls.QuickView();
+            this.QUICK_VPSBattV = new MissionPlanner.Controls.QuickView();
             this.QUICK_Link = new MissionPlanner.Controls.QuickViewText();
             this.QUICK_OAT = new MissionPlanner.Controls.QuickView();
             this.QUICK_FuelRate = new MissionPlanner.Controls.QuickView();
@@ -1019,7 +1019,7 @@
             // 
             this.QUICK_Airspeed.alert_high = 65D;
             this.QUICK_Airspeed.alert_low = 38D;
-            this.QUICK_Airspeed.attention_offset = 5D;
+            this.QUICK_Airspeed.attention_offset = 4D;
             this.QUICK_Airspeed.BackColor = System.Drawing.Color.Green;
             this.QUICK_Airspeed.DataBindings.Add(new System.Windows.Forms.Binding("val", this.bindingSource1, "airspeed", true));
             this.QUICK_Airspeed.headerfontsize = 8F;
@@ -1047,18 +1047,21 @@
             // 
             // QUICK_CubeT
             // 
+            this.QUICK_CubeT.alert_color = System.Drawing.Color.Red;
             this.QUICK_CubeT.alert_high = 75D;
             this.QUICK_CubeT.alert_low = 40D;
+            this.QUICK_CubeT.attention_color = System.Drawing.Color.Orange;
             this.QUICK_CubeT.attention_offset = 10D;
             this.QUICK_CubeT.BackColor = System.Drawing.Color.Green;
-            this.QUICK_CubeT.DataBindings.Add(new System.Windows.Forms.Binding("val", this.bindingSource1, "raw_temp", true));
-            this.QUICK_CubeT.headerfontsize = 8F;
-            this.QUICK_CubeT.headertxt = "";
+            this.QUICK_CubeT.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "raw_temp", true));
+            this.QUICK_CubeT.desc = "CubeT (C)";
             resources.ApplyResources(this.QUICK_CubeT, "QUICK_CubeT");
+            this.QUICK_CubeT.happy_color = System.Drawing.Color.Green;
             this.QUICK_CubeT.Name = "QUICK_CubeT";
-            this.QUICK_CubeT.val = 0F;
-            this.QUICK_CubeT.valfontsize = 13F;
-            this.QUICK_CubeT.valtxt = "CubeT";
+            this.QUICK_CubeT.number = -9999D;
+            this.QUICK_CubeT.numberColor = System.Drawing.SystemColors.Window;
+            this.QUICK_CubeT.numberformat = "0";
+            this.QUICK_CubeT.numFontSize = 22F;
             // 
             // QUICK_FuelRemaining
             // 
@@ -1136,33 +1139,39 @@
             // 
             // QUICK_BackupBattV
             // 
+            this.QUICK_BackupBattV.alert_color = System.Drawing.Color.Red;
             this.QUICK_BackupBattV.alert_high = 33.5D;
             this.QUICK_BackupBattV.alert_low = 24D;
+            this.QUICK_BackupBattV.attention_color = System.Drawing.Color.Orange;
             this.QUICK_BackupBattV.attention_offset = 4D;
             this.QUICK_BackupBattV.BackColor = System.Drawing.Color.Green;
-            this.QUICK_BackupBattV.DataBindings.Add(new System.Windows.Forms.Binding("val", this.bindingSource1, "battery_voltage", true));
-            this.QUICK_BackupBattV.headerfontsize = 8F;
-            this.QUICK_BackupBattV.headertxt = "BATTERY";
+            this.QUICK_BackupBattV.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "battery_voltage", true));
+            this.QUICK_BackupBattV.desc = "Avionics (V)";
             resources.ApplyResources(this.QUICK_BackupBattV, "QUICK_BackupBattV");
+            this.QUICK_BackupBattV.happy_color = System.Drawing.Color.Green;
             this.QUICK_BackupBattV.Name = "QUICK_BackupBattV";
-            this.QUICK_BackupBattV.val = 0F;
-            this.QUICK_BackupBattV.valfontsize = 13F;
-            this.QUICK_BackupBattV.valtxt = "Avionics";
+            this.QUICK_BackupBattV.number = -9999D;
+            this.QUICK_BackupBattV.numberColor = System.Drawing.SystemColors.Window;
+            this.QUICK_BackupBattV.numberformat = "0.00";
+            this.QUICK_BackupBattV.numFontSize = 22F;
             // 
             // QUICK_VPSBattV
             // 
+            this.QUICK_VPSBattV.alert_color = System.Drawing.Color.Red;
             this.QUICK_VPSBattV.alert_high = 67.9D;
             this.QUICK_VPSBattV.alert_low = 46D;
+            this.QUICK_VPSBattV.attention_color = System.Drawing.Color.Orange;
             this.QUICK_VPSBattV.attention_offset = 9D;
             this.QUICK_VPSBattV.BackColor = System.Drawing.Color.Green;
-            this.QUICK_VPSBattV.DataBindings.Add(new System.Windows.Forms.Binding("val", this.bindingSource1, "battery_voltage2", true));
-            this.QUICK_VPSBattV.headerfontsize = 8F;
-            this.QUICK_VPSBattV.headertxt = "BATTERY";
+            this.QUICK_VPSBattV.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "battery_voltage2", true));
+            this.QUICK_VPSBattV.desc = "VPS (V)";
             resources.ApplyResources(this.QUICK_VPSBattV, "QUICK_VPSBattV");
+            this.QUICK_VPSBattV.happy_color = System.Drawing.Color.Green;
             this.QUICK_VPSBattV.Name = "QUICK_VPSBattV";
-            this.QUICK_VPSBattV.val = 0F;
-            this.QUICK_VPSBattV.valfontsize = 13F;
-            this.QUICK_VPSBattV.valtxt = "VPS";
+            this.QUICK_VPSBattV.number = -9999D;
+            this.QUICK_VPSBattV.numberColor = System.Drawing.SystemColors.Window;
+            this.QUICK_VPSBattV.numberformat = "0.00";
+            this.QUICK_VPSBattV.numFontSize = 22F;
             // 
             // QUICK_Link
             // 
@@ -1200,17 +1209,17 @@
             // 
             // QUICK_FuelRate
             // 
-            this.QUICK_FuelRate.alert_color = System.Drawing.Color.Red;
-            this.QUICK_FuelRate.alert_high = 0D;
+            this.QUICK_FuelRate.alert_color = System.Drawing.Color.Orange;
+            this.QUICK_FuelRate.alert_high = 3.5D;
             this.QUICK_FuelRate.alert_low = 0D;
-            this.QUICK_FuelRate.attention_color = System.Drawing.Color.Orange;
-            this.QUICK_FuelRate.attention_offset = 0D;
+            this.QUICK_FuelRate.attention_color = System.Drawing.Color.Green;
+            this.QUICK_FuelRate.attention_offset = 1.5D;
             this.QUICK_FuelRate.BackColor = System.Drawing.Color.Green;
             this.QUICK_FuelRate.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "avgfuelrate", true));
             this.QUICK_FuelRate.desc = "Fuel Burn (lbs/hr)";
             resources.ApplyResources(this.QUICK_FuelRate, "QUICK_FuelRate");
             this.QUICK_FuelRate.ForeColor = System.Drawing.SystemColors.Window;
-            this.QUICK_FuelRate.happy_color = System.Drawing.Color.Green;
+            this.QUICK_FuelRate.happy_color = System.Drawing.Color.Lime;
             this.QUICK_FuelRate.Name = "QUICK_FuelRate";
             this.QUICK_FuelRate.number = -9999D;
             this.QUICK_FuelRate.numberColor = System.Drawing.SystemColors.Window;
@@ -2297,7 +2306,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 180D;
+            this.windDir1.Direction = 360D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2719,9 +2728,9 @@
         private Controls.QuickViewGPSStatus QUICK_GPS_Status;
         private Controls.QuickViewText QUICK_Airspeed;
         private Controls.QuickViewText QUICK_Terrain;
-        private Controls.QuickViewText QUICK_CubeT;
-        private Controls.QuickViewText QUICK_BackupBattV;
-        private Controls.QuickViewText QUICK_VPSBattV;
+        private Controls.QuickView QUICK_CubeT;
+        private Controls.QuickView QUICK_BackupBattV;
+        private Controls.QuickView QUICK_VPSBattV;
         private Controls.QuickViewText QUICK_Link;
         private Controls.QuickView QUICK_OAT;
         private Controls.QuickView QUICK_FuelRate;
