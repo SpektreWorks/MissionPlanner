@@ -931,13 +931,13 @@
             // modifyandSetFuelLoad
             // 
             this.modifyandSetFuelLoad.ButtonText = "Set Fuel Load";
-            this.modifyandSetFuelLoad.DecimalPlaces = 1;
+            this.modifyandSetFuelLoad.DecimalPlaces = 2;
             resources.ApplyResources(this.modifyandSetFuelLoad, "modifyandSetFuelLoad");
             this.modifyandSetFuelLoad.Increment = new decimal(new int[] {
-            1,
+            5,
             0,
             0,
-            0});
+            131072});
             this.modifyandSetFuelLoad.Maximum = new decimal(new int[] {
             30,
             0,
