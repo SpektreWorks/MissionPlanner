@@ -297,7 +297,7 @@
     </LOITER_TIME>
     <LOITER_TO_ALT>
     	<P1></P1>
-    	<P2></P2>
+    	<P2>Radius</P2>
     	<P3></P3>
     	<P4>1=Exit Tangent</P4>
     	<X>Lat</X>
