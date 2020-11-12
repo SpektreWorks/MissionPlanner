@@ -2657,14 +2657,15 @@ namespace MissionPlanner
                     case (uint)MAVLink.MAVLINK_MSG_ID.EFI_STATUS:
                         {
                             var efi = mavLinkMessage.ToStructure<MAVLink.mavlink_efi_status_t>();
+                            float fuel_correction = 0.125f; //Built-in fuel estimator always estimates high. Correct by 12.5% so displayed value is closer to reality.
 
                             efi_health = efi.health;
                             cht = efi.cylinder_head_temperature;
                             efi_rpm = efi.rpm;
-                            fuelused = efi.fuel_consumed * 0.00220462f * 0.85f;  //Convert grams to lbs. Decrease by 15% because estimator always estimates high.
+                            fuelused = efi.fuel_consumed * 0.00220462f * (1.0f - fuel_correction);  //Convert grams to lbs. Decrease by 12.5% because estimator always estimates high.
                             fuelremaining = initial_fuel_load - fuelused;
 
-                            fuelrate = efi.fuel_flow * 0.00220462f * 60f * 0.85f; //Convert g/min to lbs/hr. Decrease by 15% because estimator always estimates high.
+                            fuelrate = efi.fuel_flow * 0.00220462f * 60f * (1.0f - fuel_correction); //Convert g/min to lbs/hr. Decrease by 12.5% because estimator always estimates high.
 
                             //Calculate running average of fuelrate so displayed value doesn't jump around too much
                             if (efi_rpm > 0)
