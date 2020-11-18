@@ -2872,6 +2872,16 @@ namespace MissionPlanner.GCSViews
                 {
                     temp.p2 = (float)(double.Parse(Commands.Rows[a].Cells[Param2.Index].Value.ToString()));
                 }
+
+                if (Commands.Rows[a].Cells[Command.Index].Value.ToString().Contains("LOITER_TO_ALT"))
+                {
+                    temp.p2 = (float)(double.Parse(Commands.Rows[a].Cells[Param2.Index].Value.ToString())) / CurrentState.multiplierdist;
+                }
+                else
+                {
+                    temp.p2 = (float)(double.Parse(Commands.Rows[a].Cells[Param2.Index].Value.ToString()));
+                }
+
                 temp.p3 = (float)(double.Parse(Commands.Rows[a].Cells[Param3.Index].Value.ToString()));
                 temp.p4 = (float)(double.Parse(Commands.Rows[a].Cells[Param4.Index].Value.ToString()));
 
@@ -4854,7 +4864,7 @@ namespace MissionPlanner.GCSViews
                 DataGridViewComboBoxCell cellframe = Commands.Rows[i].Cells[Frame.Index] as DataGridViewComboBoxCell;
                 cellframe.Value = (int)temp.frame;
                 cell = Commands.Rows[i].Cells[Alt.Index] as DataGridViewTextBoxCell;
-                cell.Value = temp.alt * CurrentState.multiplieralt;
+                cell.Value = (int)(temp.alt * CurrentState.multiplieralt);
                 cell = Commands.Rows[i].Cells[Lat.Index] as DataGridViewTextBoxCell;
                 cell.Value = temp.lat;
                 cell = Commands.Rows[i].Cells[Lon.Index] as DataGridViewTextBoxCell;
@@ -4863,6 +4873,7 @@ namespace MissionPlanner.GCSViews
                 cell = Commands.Rows[i].Cells[Param1.Index] as DataGridViewTextBoxCell;
                 cell.Value = temp.p1;
                 cell = Commands.Rows[i].Cells[Param2.Index] as DataGridViewTextBoxCell;
+                
                 if (temp.id == (ushort)MAVLink.MAV_CMD.DO_CHANGE_SPEED)
                 {
                     cell.Value = temp.p2 * CurrentState.multiplierspeed;
@@ -4871,6 +4882,18 @@ namespace MissionPlanner.GCSViews
                 {
                     cell.Value = temp.p2;
                 }
+
+                if (temp.id == (ushort)MAVLink.MAV_CMD.LOITER_TO_ALT)
+                {
+                    //Convert the radius value to appropriate units
+                    cell.Value = (int)(temp.p2 * CurrentState.multiplierdist);
+                }
+                else
+                {
+                    cell.Value = temp.p2;
+                }
+
+
                 cell = Commands.Rows[i].Cells[Param3.Index] as DataGridViewTextBoxCell;
                 cell.Value = temp.p3;
                 cell = Commands.Rows[i].Cells[Param4.Index] as DataGridViewTextBoxCell;
