@@ -15,6 +15,7 @@ namespace MissionPlanner.ArduPilot
         private MAVLinkInterface port;
         private bool running = false;
         private static Dictionary<string, RemoteLog> loggers = new Dictionary<string, RemoteLog>();
+        private static Dictionary<string, RemoteLog> sessions = new Dictionary<string, RemoteLog>();
 
         public static RemoteLog StartRemoteLog(MAVLinkInterface port, byte sysid, byte compid)
         {
@@ -23,11 +24,25 @@ namespace MissionPlanner.ArduPilot
             if (loggers.ContainsKey(id))
                 loggers[id].Stop(sysid, compid);
 
-            var rem = new RemoteLog();
-            rem.Start(port, sysid, compid);
-            loggers[id] = rem;
+            if (!sessions.ContainsKey(id))
+            {
+                sessions[id] = new RemoteLog();
+            }
 
-            return rem;
+            sessions[id].Start(port, sysid, compid);
+            loggers[id] = sessions[id];
+
+            return sessions[id];
+        }
+        public static void StopRemoteLog(MAVLinkInterface port, byte sysid, byte compid)
+        {
+            var id = port.GetHashCode() + "-" + sysid + "-" + compid;
+
+            if (loggers.ContainsKey(id))
+                loggers[id].Stop(sysid, compid);
+
+            if (sessions.ContainsKey(id))
+                sessions[id].Stop(sysid, compid);
         }
 
         public void Start(MAVLinkInterface port, byte sysid, byte compid)

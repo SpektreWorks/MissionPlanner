@@ -41,6 +41,7 @@
             this.quickView2 = new MissionPlanner.Controls.QuickView();
             this.quickView1 = new MissionPlanner.Controls.QuickView();
             this.tabActions = new System.Windows.Forms.TabPage();
+            this.BUT_LogStart = new MissionPlanner.Controls.MyButton();
             this.guidedTracking1 = new MissionPlanner.Controls.GuidedTracking();
             this.BUT_PLD = new MissionPlanner.Controls.MyButton();
             this.BUT_EngineStart = new MissionPlanner.Controls.MyButton();
@@ -650,6 +651,7 @@
             // 
             // tabActions
             // 
+            this.tabActions.Controls.Add(this.BUT_LogStart);
             this.tabActions.Controls.Add(this.guidedTracking1);
             this.tabActions.Controls.Add(this.BUT_PLD);
             this.tabActions.Controls.Add(this.BUT_EngineStart);
@@ -693,6 +695,13 @@
             this.tabActions.Controls.Add(this.QUICK_Wind);
             resources.ApplyResources(this.tabActions, "tabActions");
             this.tabActions.Name = "tabActions";
+            // 
+            // BUT_LogStart
+            // 
+            resources.ApplyResources(this.BUT_LogStart, "BUT_LogStart");
+            this.BUT_LogStart.Name = "BUT_LogStart";
+            this.BUT_LogStart.UseVisualStyleBackColor = true;
+            this.BUT_LogStart.Click += new System.EventHandler(this.BUT_LogStart_Click);
             // 
             // guidedTracking1
             // 
@@ -2743,5 +2752,6 @@
         private System.Windows.Forms.ToolStripMenuItem poiatcoordsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flyToCoordsToolStripMenuItem;
         private System.Windows.Forms.CheckBox CHK_Loiter_CW_flightdata;
+        private Controls.MyButton BUT_LogStart;
     }
 }

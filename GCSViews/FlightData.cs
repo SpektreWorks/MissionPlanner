@@ -1042,6 +1042,9 @@ namespace MissionPlanner.GCSViews
                         {
                             CustomMessageBox.Show(Strings.CommandFailed + ex.ToString(), Strings.ERROR);
                         }
+
+                        //Stop remote logger if it was running
+                        RemoteLog.StopRemoteLog(MainV2.comPort, (byte)MainV2.comPort.sysidcurrent,(byte)MainV2.comPort.compidcurrent);
                     }
                 }
             }
@@ -5409,5 +5412,10 @@ namespace MissionPlanner.GCSViews
 
         }
 
+        private void BUT_LogStart_Click(object sender, EventArgs e)
+        {
+            RemoteLog.StartRemoteLog(MainV2.comPort, (byte)MainV2.comPort.sysidcurrent,
+                (byte)MainV2.comPort.compidcurrent);
+        }
     }
 }
