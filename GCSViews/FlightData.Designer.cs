@@ -41,6 +41,8 @@
             this.quickView2 = new MissionPlanner.Controls.QuickView();
             this.quickView1 = new MissionPlanner.Controls.QuickView();
             this.tabActions = new System.Windows.Forms.TabPage();
+            this.QUICK_vz = new MissionPlanner.Controls.QuickView();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.BUT_LogStart = new MissionPlanner.Controls.MyButton();
             this.guidedTracking1 = new MissionPlanner.Controls.GuidedTracking();
             this.BUT_PLD = new MissionPlanner.Controls.MyButton();
@@ -67,7 +69,6 @@
             this.modifyandSetFuelLoad = new MissionPlanner.Controls.ModifyandSet();
             this.modifyandSetAlt = new MissionPlanner.Controls.ModifyandSet();
             this.QUICK_Arming_Status = new MissionPlanner.Controls.QuickViewArmingStatus();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.QUICK_Lock_Status = new MissionPlanner.Controls.QuickViewLockStatus();
             this.QUICK_GPS_Status = new MissionPlanner.Controls.QuickViewGPSStatus();
             this.QUICK_Airspeed = new MissionPlanner.Controls.QuickViewText();
@@ -159,6 +160,7 @@
             this.takeOffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.onOffCameraOverlapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.altitudeAngelSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lbl_hdop = new MissionPlanner.Controls.MyLabel();
             this.but_disablejoystick = new MissionPlanner.Controls.MyButton();
             this.distanceBar1 = new MissionPlanner.Controls.DistanceBar();
             this.windDir1 = new MissionPlanner.Controls.WindDir();
@@ -166,7 +168,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.lbl_hdop = new MissionPlanner.Controls.MyLabel();
             this.lbl_sats = new MissionPlanner.Controls.MyLabel();
             this.gMapControl1 = new MissionPlanner.Controls.myGMAP();
             this.TRK_zoom = new MissionPlanner.Controls.MyTrackBar();
@@ -651,6 +652,7 @@
             // 
             // tabActions
             // 
+            this.tabActions.Controls.Add(this.QUICK_vz);
             this.tabActions.Controls.Add(this.BUT_LogStart);
             this.tabActions.Controls.Add(this.guidedTracking1);
             this.tabActions.Controls.Add(this.BUT_PLD);
@@ -695,6 +697,28 @@
             this.tabActions.Controls.Add(this.QUICK_Wind);
             resources.ApplyResources(this.tabActions, "tabActions");
             this.tabActions.Name = "tabActions";
+            // 
+            // QUICK_vz
+            // 
+            this.QUICK_vz.alert_color = System.Drawing.Color.Red;
+            this.QUICK_vz.alert_high = 0D;
+            this.QUICK_vz.alert_low = 0D;
+            this.QUICK_vz.attention_color = System.Drawing.Color.Orange;
+            this.QUICK_vz.attention_offset = 0D;
+            this.QUICK_vz.BackColor = System.Drawing.Color.Green;
+            this.QUICK_vz.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "verticalspeed_fpm", true));
+            this.QUICK_vz.desc = "VZ (ft/min)";
+            resources.ApplyResources(this.QUICK_vz, "QUICK_vz");
+            this.QUICK_vz.happy_color = System.Drawing.Color.Empty;
+            this.QUICK_vz.Name = "QUICK_vz";
+            this.QUICK_vz.number = -9999D;
+            this.QUICK_vz.numberColor = System.Drawing.SystemColors.Window;
+            this.QUICK_vz.numberformat = "0";
+            this.QUICK_vz.numFontSize = 22F;
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(MissionPlanner.CurrentState);
             // 
             // BUT_LogStart
             // 
@@ -1001,10 +1025,6 @@
             this.QUICK_Arming_Status.fontsize = 13F;
             resources.ApplyResources(this.QUICK_Arming_Status, "QUICK_Arming_Status");
             this.QUICK_Arming_Status.Name = "QUICK_Arming_Status";
-            // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(MissionPlanner.CurrentState);
             // 
             // QUICK_Lock_Status
             // 
@@ -2133,6 +2153,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.ContextMenuStrip = this.contextMenuStripMap;
+            this.splitContainer1.Panel2.Controls.Add(this.lbl_hdop);
             this.splitContainer1.Panel2.Controls.Add(this.but_disablejoystick);
             this.splitContainer1.Panel2.Controls.Add(this.distanceBar1);
             this.splitContainer1.Panel2.Controls.Add(this.windDir1);
@@ -2140,7 +2161,6 @@
             this.splitContainer1.Panel2.Controls.Add(this.label5);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
             this.splitContainer1.Panel2.Controls.Add(this.label4);
-            this.splitContainer1.Panel2.Controls.Add(this.lbl_hdop);
             this.splitContainer1.Panel2.Controls.Add(this.lbl_sats);
             this.splitContainer1.Panel2.Controls.Add(this.gMapControl1);
             this.splitContainer1.Panel2.Controls.Add(this.TRK_zoom);
@@ -2292,6 +2312,14 @@
             resources.ApplyResources(this.altitudeAngelSettingsToolStripMenuItem, "altitudeAngelSettingsToolStripMenuItem");
             this.altitudeAngelSettingsToolStripMenuItem.Click += new System.EventHandler(this.altitudeAngelSettingsToolStripMenuItem_Click);
             // 
+            // lbl_hdop
+            // 
+            resources.ApplyResources(this.lbl_hdop, "lbl_hdop");
+            this.lbl_hdop.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "gpshdop", true, System.Windows.Forms.DataSourceUpdateMode.Never, null, "hdop: 0.0"));
+            this.lbl_hdop.Name = "lbl_hdop";
+            this.lbl_hdop.resize = true;
+            this.toolTip1.SetToolTip(this.lbl_hdop, resources.GetString("lbl_hdop.ToolTip"));
+            // 
             // but_disablejoystick
             // 
             this.but_disablejoystick.ColorMouseDown = System.Drawing.Color.Empty;
@@ -2348,14 +2376,6 @@
             this.label4.ForeColor = System.Drawing.Color.Red;
             this.label4.Name = "label4";
             this.label4.Tag = "custom";
-            // 
-            // lbl_hdop
-            // 
-            resources.ApplyResources(this.lbl_hdop, "lbl_hdop");
-            this.lbl_hdop.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "gpshdop", true, System.Windows.Forms.DataSourceUpdateMode.Never, null, "hdop: 0.0"));
-            this.lbl_hdop.Name = "lbl_hdop";
-            this.lbl_hdop.resize = true;
-            this.toolTip1.SetToolTip(this.lbl_hdop, resources.GetString("lbl_hdop.ToolTip"));
             // 
             // lbl_sats
             // 
@@ -2753,5 +2773,6 @@
         private System.Windows.Forms.ToolStripMenuItem flyToCoordsToolStripMenuItem;
         private System.Windows.Forms.CheckBox CHK_Loiter_CW_flightdata;
         private Controls.MyButton BUT_LogStart;
+        private Controls.QuickView QUICK_vz;
     }
 }
