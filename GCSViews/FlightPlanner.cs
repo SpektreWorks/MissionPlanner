@@ -6198,7 +6198,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
 
                 TXT_homelng.Text = MainV2.comPort.MAV.cs.HomeLocation.Lng.ToString();
 
-                TXT_homealt.Text = MainV2.comPort.MAV.cs.HomeLocation.Alt.ToString();
+                TXT_homealt.Text = (MainV2.comPort.MAV.cs.HomeLocation.Alt * CurrentState.multiplieralt).ToString("0");
 
                 writeKML();
             }
@@ -6208,7 +6208,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
 
                 TXT_homelng.Text = MainV2.comPort.MAV.cs.PlannedHomeLocation.Lng.ToString();
 
-                TXT_homealt.Text = MainV2.comPort.MAV.cs.PlannedHomeLocation.Alt.ToString();
+                TXT_homealt.Text = (MainV2.comPort.MAV.cs.PlannedHomeLocation.Alt * CurrentState.multiplieralt).ToString("0");
 
                 writeKML();
             }
