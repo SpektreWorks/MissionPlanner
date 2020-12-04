@@ -3633,14 +3633,20 @@ namespace MissionPlanner.GCSViews
 
         private void modifyandSetAlt_Click(object sender, EventArgs e)
         {
-            int newalt = (int) modifyandSetAlt.Value;
-            try
+            int guided_alt = (int)modifyandSetAlt.Value;
+
+            Settings.Instance["guided_alt"] = guided_alt.ToString();
+
+            MainV2.comPort.MAV.GuidedMode.z = guided_alt / CurrentState.multiplieralt;
+
+            if (MainV2.comPort.MAV.cs.mode == "Guided")
             {
-                MainV2.comPort.setNewWPAlt(new Locationwp {alt = newalt / CurrentState.multiplieralt});
-            }
-            catch
-            {
-                CustomMessageBox.Show(Strings.ErrorCommunicating, Strings.ERROR);
+                MainV2.comPort.setGuidedModeWP(new Locationwp
+                {
+                    alt = MainV2.comPort.MAV.GuidedMode.z,
+                    lat = MainV2.comPort.MAV.GuidedMode.x / 1e7,
+                    lng = MainV2.comPort.MAV.GuidedMode.y / 1e7
+                });
             }
         }
 
