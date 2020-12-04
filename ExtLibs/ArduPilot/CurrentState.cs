@@ -750,7 +750,8 @@ namespace MissionPlanner
             set => _verticalspeed = _verticalspeed * 0.4f + value * 0.6f;
         }
 
-        [DisplayText("Vertical Speed (fpm)")] public double verticalspeed_fpm => vz * -3.28084 * 60;
+        [DisplayText("Vertical Speed (fpm)")]
+        public double verticalspeed_fpm { get; set; }
 
         [DisplayText("Glide Ratio")]
         public double glide_ratio
@@ -2479,6 +2480,8 @@ namespace MissionPlanner
                                 vx = loc.vx * 0.01;
                                 vy = loc.vy * 0.01;
                                 vz = loc.vz * 0.01;
+
+                                verticalspeed_fpm = verticalspeed_fpm * 0.75 + (vz * -3.28084 * 60) * 0.25;
                             }
                         }
                         break;
