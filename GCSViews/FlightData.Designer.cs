@@ -43,6 +43,7 @@
             this.tabActions = new System.Windows.Forms.TabPage();
             this.QUICK_vz = new MissionPlanner.Controls.QuickView();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.QUICK_DistHome = new MissionPlanner.Controls.QuickView();
             this.BUT_LogStart = new MissionPlanner.Controls.MyButton();
             this.BUT_PLD = new MissionPlanner.Controls.MyButton();
             this.BUT_EngineStart = new MissionPlanner.Controls.MyButton();
@@ -66,8 +67,8 @@
             this.QUICK_Arming_Status = new MissionPlanner.Controls.QuickViewArmingStatus();
             this.QUICK_Lock_Status = new MissionPlanner.Controls.QuickViewLockStatus();
             this.QUICK_GPS_Status = new MissionPlanner.Controls.QuickViewGPSStatus();
-            this.QUICK_Airspeed = new MissionPlanner.Controls.QuickViewText();
-            this.QUICK_Terrain = new MissionPlanner.Controls.QuickViewText();
+            this.QUICK_Airspeed = new MissionPlanner.Controls.QuickView();
+            this.QUICK_Terrain = new MissionPlanner.Controls.QuickView();
             this.QUICK_CubeT = new MissionPlanner.Controls.QuickView();
             this.QUICK_FuelRemaining = new MissionPlanner.Controls.QuickViewFuel();
             this.QUICK_CHT = new MissionPlanner.Controls.QuickView();
@@ -75,11 +76,11 @@
             this.QUICK_Throttle = new MissionPlanner.Controls.QuickView();
             this.QUICK_BackupBattV = new MissionPlanner.Controls.QuickView();
             this.QUICK_VPSBattV = new MissionPlanner.Controls.QuickView();
-            this.QUICK_Link = new MissionPlanner.Controls.QuickViewText();
+            this.QUICK_Link = new MissionPlanner.Controls.QuickView();
             this.QUICK_OAT = new MissionPlanner.Controls.QuickView();
             this.QUICK_FuelRate = new MissionPlanner.Controls.QuickView();
             this.QUICK_TimeInAir = new MissionPlanner.Controls.QuickViewTimeInAir();
-            this.QUICK_Wind = new MissionPlanner.Controls.QuickViewText();
+            this.QUICK_Wind = new MissionPlanner.Controls.QuickView();
             this.tabPagePreFlight = new System.Windows.Forms.TabPage();
             this.tabGauges = new System.Windows.Forms.TabPage();
             this.Gvspeed = new AGaugeApp.AGauge();
@@ -653,6 +654,7 @@
             // tabActions
             // 
             this.tabActions.Controls.Add(this.QUICK_vz);
+            this.tabActions.Controls.Add(this.QUICK_DistHome);
             this.tabActions.Controls.Add(this.BUT_LogStart);
             this.tabActions.Controls.Add(this.guidedTracking1);
             this.tabActions.Controls.Add(this.BUT_PLD);
@@ -719,6 +721,24 @@
             // bindingSource1
             // 
             this.bindingSource1.DataSource = typeof(MissionPlanner.CurrentState);
+            // 
+            // QUICK_DistHome
+            // 
+            this.QUICK_DistHome.alert_color = System.Drawing.Color.Red;
+            this.QUICK_DistHome.alert_high = 70D;
+            this.QUICK_DistHome.alert_low = 0D;
+            this.QUICK_DistHome.attention_color = System.Drawing.Color.Orange;
+            this.QUICK_DistHome.attention_offset = 35D;
+            this.QUICK_DistHome.BackColor = System.Drawing.Color.Green;
+            this.QUICK_DistHome.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "DistToHome_nm", true));
+            this.QUICK_DistHome.desc = "Dist (nm)";
+            resources.ApplyResources(this.QUICK_DistHome, "QUICK_DistHome");
+            this.QUICK_DistHome.happy_color = System.Drawing.Color.Empty;
+            this.QUICK_DistHome.Name = "QUICK_DistHome";
+            this.QUICK_DistHome.number = -9999D;
+            this.QUICK_DistHome.numberColor = System.Drawing.SystemColors.Window;
+            this.QUICK_DistHome.numberformat = "0.0";
+            this.QUICK_DistHome.numFontSize = 22F;
             // 
             // BUT_LogStart
             // 
@@ -927,33 +947,39 @@
             // 
             // QUICK_Airspeed
             // 
+            this.QUICK_Airspeed.alert_color = System.Drawing.Color.Red;
             this.QUICK_Airspeed.alert_high = 65D;
             this.QUICK_Airspeed.alert_low = 38D;
+            this.QUICK_Airspeed.attention_color = System.Drawing.Color.Orange;
             this.QUICK_Airspeed.attention_offset = 4D;
             this.QUICK_Airspeed.BackColor = System.Drawing.Color.Green;
-            this.QUICK_Airspeed.DataBindings.Add(new System.Windows.Forms.Binding("val", this.bindingSource1, "airspeed", true));
-            this.QUICK_Airspeed.headerfontsize = 8F;
-            this.QUICK_Airspeed.headertxt = "";
+            this.QUICK_Airspeed.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "airspeed", true));
+            this.QUICK_Airspeed.desc = "Airspeed (kts)";
             resources.ApplyResources(this.QUICK_Airspeed, "QUICK_Airspeed");
+            this.QUICK_Airspeed.happy_color = System.Drawing.Color.Empty;
             this.QUICK_Airspeed.Name = "QUICK_Airspeed";
-            this.QUICK_Airspeed.val = 0F;
-            this.QUICK_Airspeed.valfontsize = 13F;
-            this.QUICK_Airspeed.valtxt = "Airspeed";
+            this.QUICK_Airspeed.number = -9999D;
+            this.QUICK_Airspeed.numberColor = System.Drawing.SystemColors.Window;
+            this.QUICK_Airspeed.numberformat = "0.0";
+            this.QUICK_Airspeed.numFontSize = 22F;
             // 
             // QUICK_Terrain
             // 
+            this.QUICK_Terrain.alert_color = System.Drawing.Color.Red;
             this.QUICK_Terrain.alert_high = 0D;
             this.QUICK_Terrain.alert_low = 200D;
+            this.QUICK_Terrain.attention_color = System.Drawing.Color.Orange;
             this.QUICK_Terrain.attention_offset = 300D;
             this.QUICK_Terrain.BackColor = System.Drawing.Color.Green;
-            this.QUICK_Terrain.DataBindings.Add(new System.Windows.Forms.Binding("val", this.bindingSource1, "ter_curalt", true));
-            this.QUICK_Terrain.headerfontsize = 8F;
-            this.QUICK_Terrain.headertxt = "";
+            this.QUICK_Terrain.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "ter_curalt", true));
+            this.QUICK_Terrain.desc = "AGL (ft)";
             resources.ApplyResources(this.QUICK_Terrain, "QUICK_Terrain");
+            this.QUICK_Terrain.happy_color = System.Drawing.Color.Empty;
             this.QUICK_Terrain.Name = "QUICK_Terrain";
-            this.QUICK_Terrain.val = 0F;
-            this.QUICK_Terrain.valfontsize = 13F;
-            this.QUICK_Terrain.valtxt = "Terrain";
+            this.QUICK_Terrain.number = -9999D;
+            this.QUICK_Terrain.numberColor = System.Drawing.SystemColors.Window;
+            this.QUICK_Terrain.numberformat = "0";
+            this.QUICK_Terrain.numFontSize = 22F;
             // 
             // QUICK_CubeT
             // 
@@ -1085,19 +1111,22 @@
             // 
             // QUICK_Link
             // 
+            this.QUICK_Link.alert_color = System.Drawing.Color.Red;
             this.QUICK_Link.alert_high = 0D;
             this.QUICK_Link.alert_low = 88D;
+            this.QUICK_Link.attention_color = System.Drawing.Color.Orange;
             this.QUICK_Link.attention_offset = 5D;
             this.QUICK_Link.BackColor = System.Drawing.Color.Green;
-            this.QUICK_Link.DataBindings.Add(new System.Windows.Forms.Binding("val", this.bindingSource1, "linkqualitygcs", true));
+            this.QUICK_Link.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "linkqualitygcs", true));
+            this.QUICK_Link.desc = "Link %";
             resources.ApplyResources(this.QUICK_Link, "QUICK_Link");
             this.QUICK_Link.ForeColor = System.Drawing.SystemColors.Window;
-            this.QUICK_Link.headerfontsize = 8.25F;
-            this.QUICK_Link.headertxt = "";
+            this.QUICK_Link.happy_color = System.Drawing.Color.Empty;
             this.QUICK_Link.Name = "QUICK_Link";
-            this.QUICK_Link.val = 0F;
-            this.QUICK_Link.valfontsize = 13F;
-            this.QUICK_Link.valtxt = "Link";
+            this.QUICK_Link.number = -9999D;
+            this.QUICK_Link.numberColor = System.Drawing.SystemColors.Window;
+            this.QUICK_Link.numberformat = "0";
+            this.QUICK_Link.numFontSize = 22F;
             // 
             // QUICK_OAT
             // 
@@ -1155,18 +1184,21 @@
             // 
             // QUICK_Wind
             // 
+            this.QUICK_Wind.alert_color = System.Drawing.Color.Red;
             this.QUICK_Wind.alert_high = 30D;
             this.QUICK_Wind.alert_low = 0D;
+            this.QUICK_Wind.attention_color = System.Drawing.Color.Orange;
             this.QUICK_Wind.attention_offset = 12D;
             this.QUICK_Wind.BackColor = System.Drawing.Color.Green;
-            this.QUICK_Wind.DataBindings.Add(new System.Windows.Forms.Binding("val", this.bindingSource1, "wind_vel", true));
-            this.QUICK_Wind.headerfontsize = 8.25F;
-            this.QUICK_Wind.headertxt = "";
+            this.QUICK_Wind.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "wind_vel", true));
+            this.QUICK_Wind.desc = "Wind (kts)";
             resources.ApplyResources(this.QUICK_Wind, "QUICK_Wind");
+            this.QUICK_Wind.happy_color = System.Drawing.Color.Empty;
             this.QUICK_Wind.Name = "QUICK_Wind";
-            this.QUICK_Wind.val = 0F;
-            this.QUICK_Wind.valfontsize = 13F;
-            this.QUICK_Wind.valtxt = "Wind";
+            this.QUICK_Wind.number = -9999D;
+            this.QUICK_Wind.numberColor = System.Drawing.SystemColors.Window;
+            this.QUICK_Wind.numberformat = "0";
+            this.QUICK_Wind.numFontSize = 22F;
             // 
             // tabPagePreFlight
             // 
@@ -2755,16 +2787,16 @@
         private Controls.QuickViewArmingStatus QUICK_Arming_Status;
         private Controls.QuickViewLockStatus QUICK_Lock_Status;
         private Controls.QuickViewGPSStatus QUICK_GPS_Status;
-        private Controls.QuickViewText QUICK_Airspeed;
-        private Controls.QuickViewText QUICK_Terrain;
+        private Controls.QuickView QUICK_Airspeed;
+        private Controls.QuickView QUICK_Terrain;
         private Controls.QuickView QUICK_CubeT;
         private Controls.QuickView QUICK_BackupBattV;
         private Controls.QuickView QUICK_VPSBattV;
-        private Controls.QuickViewText QUICK_Link;
+        private Controls.QuickView QUICK_Link;
         private Controls.QuickView QUICK_OAT;
         private Controls.QuickView QUICK_FuelRate;
         private Controls.QuickViewTimeInAir QUICK_TimeInAir;
-        private Controls.QuickViewText QUICK_Wind;
+        private Controls.QuickView QUICK_Wind;
         public Controls.GuidedTracking guidedTracking1;
         private Controls.MyButton BUT_georefimage;
         private Controls.QuickView quickView6;
@@ -2774,5 +2806,6 @@
         private System.Windows.Forms.CheckBox CHK_Loiter_CW_flightdata;
         private Controls.MyButton BUT_LogStart;
         private Controls.QuickView QUICK_vz;
+        private Controls.QuickView QUICK_DistHome;
     }
 }

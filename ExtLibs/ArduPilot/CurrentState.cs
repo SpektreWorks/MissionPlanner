@@ -1329,6 +1329,14 @@ namespace MissionPlanner
             }
         }
 
+        public float DistToHome_nm
+        {
+            get
+            {
+                return DistToHome / 6076.12f; //Feet to miles
+            }
+        }
+
         [GroupText("Position")]
         [DisplayText("Dist to Moving Base (dist)")]
         public float DistFromMovingBase
