@@ -32,6 +32,8 @@ namespace MissionPlanner.Controls
         public Color happy_color { get { return _happy_color; } set { if (_happy_color == value) return; _happy_color = value; Invalidate(); } }
         public Color attention_color { get { return _attention_color; } set { if (_attention_color == value) return; _attention_color = value; Invalidate(); } }
         public Color alert_color { get { return _alert_color; } set { if (_alert_color == value) return; _alert_color = value; Invalidate(); } }
+        public double ignore_above { get; set; } = 0;
+        public double ignore_below { get; set; } = 0;
 
         public float numFontSize { get; set; } = -1.0f;
 
@@ -122,6 +124,18 @@ namespace MissionPlanner.Controls
                 else
                 {
                     newSize = numFontSize;
+                }
+
+                if ( ignore_above != 0 )
+                {
+                    if ( number > ignore_above )
+                        numb = "---";
+                }
+                
+                if ( ignore_below != 0)
+                {
+                    if (number < ignore_below)
+                        numb = "---";
                 }
 
                 extent = e.MeasureString(numb, new Font(this.Font.FontFamily, (float)newSize, this.Font.Style)).ToSize();

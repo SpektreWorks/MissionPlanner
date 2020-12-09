@@ -80,6 +80,7 @@
             this.QUICK_OAT = new MissionPlanner.Controls.QuickView();
             this.QUICK_FuelRate = new MissionPlanner.Controls.QuickView();
             this.QUICK_TimeInAir = new MissionPlanner.Controls.QuickViewTimeInAir();
+            this.QUICK_LaserAlt = new MissionPlanner.Controls.QuickView();
             this.QUICK_Wind = new MissionPlanner.Controls.QuickView();
             this.tabPagePreFlight = new System.Windows.Forms.TabPage();
             this.tabGauges = new System.Windows.Forms.TabPage();
@@ -530,6 +531,8 @@
             this.quickView6.desc = "DistToMAV";
             resources.ApplyResources(this.quickView6, "quickView6");
             this.quickView6.happy_color = System.Drawing.Color.Transparent;
+            this.quickView6.ignore_above = 0D;
+            this.quickView6.ignore_below = 0D;
             this.quickView6.Name = "quickView6";
             this.quickView6.number = 0D;
             this.quickView6.numberColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(252)))));
@@ -566,6 +569,8 @@
             this.quickView5.desc = "verticalspeed";
             resources.ApplyResources(this.quickView5, "quickView5");
             this.quickView5.happy_color = System.Drawing.Color.Transparent;
+            this.quickView5.ignore_above = 0D;
+            this.quickView5.ignore_below = 0D;
             this.quickView5.Name = "quickView5";
             this.quickView5.number = 0D;
             this.quickView5.numberColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(254)))), ((int)(((byte)(86)))));
@@ -585,6 +590,8 @@
             this.quickView4.desc = "yaw";
             resources.ApplyResources(this.quickView4, "quickView4");
             this.quickView4.happy_color = System.Drawing.Color.Transparent;
+            this.quickView4.ignore_above = 0D;
+            this.quickView4.ignore_below = 0D;
             this.quickView4.Name = "quickView4";
             this.quickView4.number = 0D;
             this.quickView4.numberColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(83)))));
@@ -604,6 +611,8 @@
             this.quickView3.desc = "wp_dist";
             resources.ApplyResources(this.quickView3, "quickView3");
             this.quickView3.happy_color = System.Drawing.Color.Transparent;
+            this.quickView3.ignore_above = 0D;
+            this.quickView3.ignore_below = 0D;
             this.quickView3.Name = "quickView3";
             this.quickView3.number = 0D;
             this.quickView3.numberColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(96)))), ((int)(((byte)(91)))));
@@ -623,6 +632,8 @@
             this.quickView2.desc = "groundspeed";
             resources.ApplyResources(this.quickView2, "quickView2");
             this.quickView2.happy_color = System.Drawing.Color.Transparent;
+            this.quickView2.ignore_above = 0D;
+            this.quickView2.ignore_below = 0D;
             this.quickView2.Name = "quickView2";
             this.quickView2.number = 0D;
             this.quickView2.numberColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(132)))), ((int)(((byte)(46)))));
@@ -643,6 +654,8 @@
             this.quickView1.desc = "alt";
             resources.ApplyResources(this.quickView1, "quickView1");
             this.quickView1.happy_color = System.Drawing.Color.Transparent;
+            this.quickView1.ignore_above = 0D;
+            this.quickView1.ignore_below = 0D;
             this.quickView1.Name = "quickView1";
             this.quickView1.number = 0D;
             this.quickView1.numberColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(151)))), ((int)(((byte)(248)))));
@@ -696,6 +709,7 @@
             this.tabActions.Controls.Add(this.QUICK_OAT);
             this.tabActions.Controls.Add(this.QUICK_FuelRate);
             this.tabActions.Controls.Add(this.QUICK_TimeInAir);
+            this.tabActions.Controls.Add(this.QUICK_LaserAlt);
             this.tabActions.Controls.Add(this.QUICK_Wind);
             resources.ApplyResources(this.tabActions, "tabActions");
             this.tabActions.Name = "tabActions";
@@ -712,6 +726,8 @@
             this.QUICK_vz.desc = "VZ (ft/min)";
             resources.ApplyResources(this.QUICK_vz, "QUICK_vz");
             this.QUICK_vz.happy_color = System.Drawing.Color.Empty;
+            this.QUICK_vz.ignore_above = 0D;
+            this.QUICK_vz.ignore_below = 0D;
             this.QUICK_vz.Name = "QUICK_vz";
             this.QUICK_vz.number = -9999D;
             this.QUICK_vz.numberColor = System.Drawing.SystemColors.Window;
@@ -734,6 +750,8 @@
             this.QUICK_DistHome.desc = "Dist (nm)";
             resources.ApplyResources(this.QUICK_DistHome, "QUICK_DistHome");
             this.QUICK_DistHome.happy_color = System.Drawing.Color.Empty;
+            this.QUICK_DistHome.ignore_above = 0D;
+            this.QUICK_DistHome.ignore_below = 0D;
             this.QUICK_DistHome.Name = "QUICK_DistHome";
             this.QUICK_DistHome.number = -9999D;
             this.QUICK_DistHome.numberColor = System.Drawing.SystemColors.Window;
@@ -957,6 +975,8 @@
             this.QUICK_Airspeed.desc = "Airspeed (kts)";
             resources.ApplyResources(this.QUICK_Airspeed, "QUICK_Airspeed");
             this.QUICK_Airspeed.happy_color = System.Drawing.Color.Empty;
+            this.QUICK_Airspeed.ignore_above = 0D;
+            this.QUICK_Airspeed.ignore_below = 0D;
             this.QUICK_Airspeed.Name = "QUICK_Airspeed";
             this.QUICK_Airspeed.number = -9999D;
             this.QUICK_Airspeed.numberColor = System.Drawing.SystemColors.Window;
@@ -975,6 +995,8 @@
             this.QUICK_Terrain.desc = "AGL (ft)";
             resources.ApplyResources(this.QUICK_Terrain, "QUICK_Terrain");
             this.QUICK_Terrain.happy_color = System.Drawing.Color.Empty;
+            this.QUICK_Terrain.ignore_above = 0D;
+            this.QUICK_Terrain.ignore_below = 0D;
             this.QUICK_Terrain.Name = "QUICK_Terrain";
             this.QUICK_Terrain.number = -9999D;
             this.QUICK_Terrain.numberColor = System.Drawing.SystemColors.Window;
@@ -993,6 +1015,8 @@
             this.QUICK_CubeT.desc = "CubeT (C)";
             resources.ApplyResources(this.QUICK_CubeT, "QUICK_CubeT");
             this.QUICK_CubeT.happy_color = System.Drawing.Color.Green;
+            this.QUICK_CubeT.ignore_above = 0D;
+            this.QUICK_CubeT.ignore_below = 0D;
             this.QUICK_CubeT.Name = "QUICK_CubeT";
             this.QUICK_CubeT.number = -9999D;
             this.QUICK_CubeT.numberColor = System.Drawing.SystemColors.Window;
@@ -1030,6 +1054,8 @@
             resources.ApplyResources(this.QUICK_CHT, "QUICK_CHT");
             this.QUICK_CHT.ForeColor = System.Drawing.SystemColors.Window;
             this.QUICK_CHT.happy_color = System.Drawing.Color.Green;
+            this.QUICK_CHT.ignore_above = 0D;
+            this.QUICK_CHT.ignore_below = 0D;
             this.QUICK_CHT.Name = "QUICK_CHT";
             this.QUICK_CHT.number = -9999D;
             this.QUICK_CHT.numberColor = System.Drawing.SystemColors.Window;
@@ -1049,6 +1075,8 @@
             resources.ApplyResources(this.QUICK_RPM, "QUICK_RPM");
             this.QUICK_RPM.ForeColor = System.Drawing.SystemColors.Window;
             this.QUICK_RPM.happy_color = System.Drawing.Color.Green;
+            this.QUICK_RPM.ignore_above = 0D;
+            this.QUICK_RPM.ignore_below = 0D;
             this.QUICK_RPM.Name = "QUICK_RPM";
             this.QUICK_RPM.number = -9999D;
             this.QUICK_RPM.numberColor = System.Drawing.SystemColors.Window;
@@ -1067,6 +1095,8 @@
             this.QUICK_Throttle.desc = "Throttle %";
             resources.ApplyResources(this.QUICK_Throttle, "QUICK_Throttle");
             this.QUICK_Throttle.happy_color = System.Drawing.Color.Lime;
+            this.QUICK_Throttle.ignore_above = 0D;
+            this.QUICK_Throttle.ignore_below = 0D;
             this.QUICK_Throttle.Name = "QUICK_Throttle";
             this.QUICK_Throttle.number = -9999D;
             this.QUICK_Throttle.numberColor = System.Drawing.SystemColors.Window;
@@ -1085,6 +1115,8 @@
             this.QUICK_BackupBattV.desc = "Avionics (V)";
             resources.ApplyResources(this.QUICK_BackupBattV, "QUICK_BackupBattV");
             this.QUICK_BackupBattV.happy_color = System.Drawing.Color.Green;
+            this.QUICK_BackupBattV.ignore_above = 0D;
+            this.QUICK_BackupBattV.ignore_below = 0D;
             this.QUICK_BackupBattV.Name = "QUICK_BackupBattV";
             this.QUICK_BackupBattV.number = -9999D;
             this.QUICK_BackupBattV.numberColor = System.Drawing.SystemColors.Window;
@@ -1103,6 +1135,8 @@
             this.QUICK_VPSBattV.desc = "VPS (V)";
             resources.ApplyResources(this.QUICK_VPSBattV, "QUICK_VPSBattV");
             this.QUICK_VPSBattV.happy_color = System.Drawing.Color.Green;
+            this.QUICK_VPSBattV.ignore_above = 0D;
+            this.QUICK_VPSBattV.ignore_below = 0D;
             this.QUICK_VPSBattV.Name = "QUICK_VPSBattV";
             this.QUICK_VPSBattV.number = -9999D;
             this.QUICK_VPSBattV.numberColor = System.Drawing.SystemColors.Window;
@@ -1122,6 +1156,8 @@
             resources.ApplyResources(this.QUICK_Link, "QUICK_Link");
             this.QUICK_Link.ForeColor = System.Drawing.SystemColors.Window;
             this.QUICK_Link.happy_color = System.Drawing.Color.Empty;
+            this.QUICK_Link.ignore_above = 0D;
+            this.QUICK_Link.ignore_below = 0D;
             this.QUICK_Link.Name = "QUICK_Link";
             this.QUICK_Link.number = -9999D;
             this.QUICK_Link.numberColor = System.Drawing.SystemColors.Window;
@@ -1140,6 +1176,8 @@
             this.QUICK_OAT.desc = "OAT (C):";
             resources.ApplyResources(this.QUICK_OAT, "QUICK_OAT");
             this.QUICK_OAT.happy_color = System.Drawing.Color.Green;
+            this.QUICK_OAT.ignore_above = 0D;
+            this.QUICK_OAT.ignore_below = 0D;
             this.QUICK_OAT.Name = "QUICK_OAT";
             this.QUICK_OAT.number = -9999D;
             this.QUICK_OAT.numberColor = System.Drawing.SystemColors.Window;
@@ -1159,6 +1197,8 @@
             resources.ApplyResources(this.QUICK_FuelRate, "QUICK_FuelRate");
             this.QUICK_FuelRate.ForeColor = System.Drawing.SystemColors.Window;
             this.QUICK_FuelRate.happy_color = System.Drawing.Color.Lime;
+            this.QUICK_FuelRate.ignore_above = 0D;
+            this.QUICK_FuelRate.ignore_below = 0D;
             this.QUICK_FuelRate.Name = "QUICK_FuelRate";
             this.QUICK_FuelRate.number = -9999D;
             this.QUICK_FuelRate.numberColor = System.Drawing.SystemColors.Window;
@@ -1182,6 +1222,26 @@
             this.QUICK_TimeInAir.str = "00:00:00";
             this.QUICK_TimeInAir.strColor = System.Drawing.SystemColors.Window;
             // 
+            // QUICK_LaserAlt
+            // 
+            this.QUICK_LaserAlt.alert_color = System.Drawing.Color.Red;
+            this.QUICK_LaserAlt.alert_high = 0D;
+            this.QUICK_LaserAlt.alert_low = 0D;
+            this.QUICK_LaserAlt.attention_color = System.Drawing.Color.Orange;
+            this.QUICK_LaserAlt.attention_offset = 0D;
+            this.QUICK_LaserAlt.BackColor = System.Drawing.Color.Green;
+            this.QUICK_LaserAlt.DataBindings.Add(new System.Windows.Forms.Binding("number", this.bindingSource1, "sonarrange", true));
+            this.QUICK_LaserAlt.desc = "Laser Alt (ft)";
+            resources.ApplyResources(this.QUICK_LaserAlt, "QUICK_LaserAlt");
+            this.QUICK_LaserAlt.happy_color = System.Drawing.Color.Empty;
+            this.QUICK_LaserAlt.ignore_above = 400D;
+            this.QUICK_LaserAlt.ignore_below = 0D;
+            this.QUICK_LaserAlt.Name = "QUICK_LaserAlt";
+            this.QUICK_LaserAlt.number = -9999D;
+            this.QUICK_LaserAlt.numberColor = System.Drawing.SystemColors.Window;
+            this.QUICK_LaserAlt.numberformat = "0.0";
+            this.QUICK_LaserAlt.numFontSize = 22F;
+            // 
             // QUICK_Wind
             // 
             this.QUICK_Wind.alert_color = System.Drawing.Color.Red;
@@ -1194,6 +1254,8 @@
             this.QUICK_Wind.desc = "Wind (kts)";
             resources.ApplyResources(this.QUICK_Wind, "QUICK_Wind");
             this.QUICK_Wind.happy_color = System.Drawing.Color.Empty;
+            this.QUICK_Wind.ignore_above = 0D;
+            this.QUICK_Wind.ignore_below = 0D;
             this.QUICK_Wind.Name = "QUICK_Wind";
             this.QUICK_Wind.number = -9999D;
             this.QUICK_Wind.numberColor = System.Drawing.SystemColors.Window;
@@ -2797,6 +2859,7 @@
         private Controls.QuickView QUICK_FuelRate;
         private Controls.QuickViewTimeInAir QUICK_TimeInAir;
         private Controls.QuickView QUICK_Wind;
+        private Controls.QuickView QUICK_LaserAlt;
         public Controls.GuidedTracking guidedTracking1;
         private Controls.MyButton BUT_georefimage;
         private Controls.QuickView quickView6;
