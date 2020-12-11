@@ -1423,6 +1423,7 @@ namespace MissionPlanner
         public float brklevel { get; set; }
         public bool armed { get; set; }
         public bool safed { get; set; }
+        public static bool locked { get; set; }
         public bool gpsstatusgood { get; set; }
 
         // Sik radio
@@ -1683,6 +1684,7 @@ namespace MissionPlanner
         public float fuelremaining { get; set; }
         public float timeremaining { get; set; }
         public string remainingstr { get; set; }
+        public string gpsstr { get; set; }
         public float efi_rpm { get; set; }
         public float intake_manifold_temp { get; set; }
 
@@ -2204,11 +2206,17 @@ namespace MissionPlanner
 
                             if ((sensors_enabled.Value & 32768) == 32768)
                             {
+                                //safed and locked mean the same.
+                                //locked is static so we can access it from FlightData.cs.
+                                //safed is not static so it can be used for binding in QuickView. 
+                                //Don't know why it needs to be this way.
                                 safed = true;
+                                locked = true;
                             }
                             else
                             {
                                 safed = false;
+                                locked = false;
                             }
 
                             terrainactive = sensors_health.terrain && sensors_enabled.terrain && sensors_present.terrain;
@@ -2525,6 +2533,7 @@ namespace MissionPlanner
                             {
                                 gpsstatusgood = false;
                             }
+                            gpsstr = "Sats: " + satcount.ToString() + ";hdop: " + gpshdop.ToString() + ";" + gpsstatusgood.ToString();
 
                             if (gps.vel != ushort.MaxValue)
                                 groundspeed = gps.vel * 1.0e-2f;

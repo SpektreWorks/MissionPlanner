@@ -3623,11 +3623,13 @@ namespace MissionPlanner.GCSViews
             {
                 CMB_action.Enabled = false;
                 modifyandSetFuelLoad.Enabled = false;
+                BUT_UnlockServos.Enabled = false;
             }
             else
             {
                 CMB_action.Enabled = true;
                 modifyandSetFuelLoad.Enabled = true;
+                BUT_UnlockServos.Enabled = true;
             }
         }
 
@@ -5281,9 +5283,19 @@ namespace MissionPlanner.GCSViews
             }
             try
             {
-                if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_MODE, 128, 0, 0, 0, 0, 0, 0))
+                if (CurrentState.locked == false)
                 {
-                    CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+                    if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_MODE, 128, 0, 0, 0, 0, 0, 0))
+                    {
+                        CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+                    }
+                }
+                else
+                {
+                    if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_MODE, 128, 1, 0, 0, 0, 0, 0))
+                    {
+                        CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+                    }
                 }
             }
             catch (Exception ex)
