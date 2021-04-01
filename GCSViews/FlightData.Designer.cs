@@ -699,18 +699,10 @@
             this.tabActions.Controls.Add(this.QUICK_Airspeed);
             this.tabActions.Controls.Add(this.QUICK_Terrain);
             this.tabActions.Controls.Add(this.QUICK_CubeT);
-            this.tabActions.Controls.Add(this.QUICK_FuelRemaining);
-            this.tabActions.Controls.Add(this.QUICK_CHT);
-            this.tabActions.Controls.Add(this.QUICK_RPM);
             this.tabActions.Controls.Add(this.QUICK_Throttle);
             this.tabActions.Controls.Add(this.QUICK_BackupBattV);
-            this.tabActions.Controls.Add(this.QUICK_VPSBattV);
             this.tabActions.Controls.Add(this.QUICK_Link);
-            this.tabActions.Controls.Add(this.QUICK_OAT);
-            this.tabActions.Controls.Add(this.QUICK_FuelRate);
             this.tabActions.Controls.Add(this.QUICK_TimeInAir);
-            this.tabActions.Controls.Add(this.QUICK_LaserAlt);
-            this.tabActions.Controls.Add(this.QUICK_Wind);
             resources.ApplyResources(this.tabActions, "tabActions");
             this.tabActions.Name = "tabActions";
             // 
@@ -2049,6 +2041,14 @@
             this.splitContainer1.Panel2.Controls.Add(this.label4);
             this.splitContainer1.Panel2.Controls.Add(this.gMapControl1);
             this.splitContainer1.Panel2.Controls.Add(this.TRK_zoom);
+            this.splitContainer1.Panel2.Controls.Add(this.QUICK_CHT);
+            this.splitContainer1.Panel2.Controls.Add(this.QUICK_FuelRate);
+            this.splitContainer1.Panel2.Controls.Add(this.QUICK_VPSBattV);
+            this.splitContainer1.Panel2.Controls.Add(this.QUICK_OAT);
+            this.splitContainer1.Panel2.Controls.Add(this.QUICK_LaserAlt);
+            this.splitContainer1.Panel2.Controls.Add(this.QUICK_FuelRemaining);
+            this.splitContainer1.Panel2.Controls.Add(this.QUICK_RPM);
+            this.splitContainer1.Panel2.Controls.Add(this.QUICK_Wind);
             // 
             // zg1
             // 
@@ -2228,7 +2228,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 540D;
+            this.windDir1.Direction = 360D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2288,6 +2288,7 @@
             this.gMapControl1.ShowTileGridLines = false;
             this.gMapControl1.Zoom = 3D;
             this.gMapControl1.OnPositionChanged += new GMap.NET.PositionChanged(this.gMapControl1_OnPositionChanged);
+            this.gMapControl1.Load += new System.EventHandler(this.gMapControl1_Load);
             this.gMapControl1.Click += new System.EventHandler(this.gMapControl1_Click);
             this.gMapControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gMapControl1_MouseDown);
             this.gMapControl1.MouseLeave += new System.EventHandler(this.gMapControl1_MouseLeave);

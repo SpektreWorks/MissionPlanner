@@ -571,7 +571,7 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="QUICK_vsi.Location" type="System.Drawing.Point, System.Drawing">
-    <value>94, 270</value>
+    <value>275, 173</value>
   </data>
   <data name="QUICK_vsi.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 43</value>
@@ -595,7 +595,7 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="QUICK_DistHome.Location" type="System.Drawing.Point, System.Drawing">
-    <value>184, 270</value>
+    <value>6, 222</value>
   </data>
   <data name="QUICK_DistHome.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 43</value>
@@ -630,6 +630,9 @@
   <data name="BUT_LogStart.Text" xml:space="preserve">
     <value>Log Start</value>
   </data>
+  <data name="BUT_LogStart.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;BUT_LogStart.Name" xml:space="preserve">
     <value>BUT_LogStart</value>
   </data>
@@ -657,11 +660,14 @@
   <data name="guidedTracking1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
+  <data name="guidedTracking1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;guidedTracking1.Name" xml:space="preserve">
     <value>guidedTracking1</value>
   </data>
   <data name="&gt;&gt;guidedTracking1.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.GuidedTracking, MissionPlanner, Version=1.3.7649.35603, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.GuidedTracking, MissionPlanner, Version=1.3.7760.32447, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;guidedTracking1.Parent" xml:space="preserve">
     <value>tabActions</value>
@@ -686,6 +692,9 @@
   </data>
   <data name="BUT_PLD.Text" xml:space="preserve">
     <value>Payload Pwr</value>
+  </data>
+  <data name="BUT_PLD.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;BUT_PLD.Name" xml:space="preserve">
     <value>BUT_PLD</value>
@@ -713,6 +722,9 @@
   </data>
   <data name="BUT_EngineStart.Text" xml:space="preserve">
     <value>Engine Start</value>
+  </data>
+  <data name="BUT_EngineStart.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;BUT_EngineStart.Name" xml:space="preserve">
     <value>BUT_EngineStart</value>
@@ -768,6 +780,9 @@
   <data name="BUT_NavLights.Text" xml:space="preserve">
     <value>NavLights</value>
   </data>
+  <data name="BUT_NavLights.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;BUT_NavLights.Name" xml:space="preserve">
     <value>BUT_NavLights</value>
   </data>
@@ -794,6 +809,9 @@
   </data>
   <data name="BUT_IRLights.Text" xml:space="preserve">
     <value>IR Lights</value>
+  </data>
+  <data name="BUT_IRLights.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;BUT_IRLights.Name" xml:space="preserve">
     <value>BUT_IRLights</value>
@@ -1225,7 +1243,7 @@
     <value>modifyandSetLoiterRad</value>
   </data>
   <data name="&gt;&gt;modifyandSetLoiterRad.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.ModifyandSet, MissionPlanner, Version=1.3.7649.35603, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.ModifyandSet, MissionPlanner, Version=1.3.7760.32447, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;modifyandSetLoiterRad.Parent" xml:space="preserve">
     <value>tabActions</value>
@@ -1255,7 +1273,7 @@
     <value>modifyandSetSpeed</value>
   </data>
   <data name="&gt;&gt;modifyandSetSpeed.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.ModifyandSet, MissionPlanner, Version=1.3.7649.35603, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.ModifyandSet, MissionPlanner, Version=1.3.7760.32447, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;modifyandSetSpeed.Parent" xml:space="preserve">
     <value>tabActions</value>
@@ -1278,11 +1296,14 @@
   <data name="modifyandSetFuelLoad.TabIndex" type="System.Int32, mscorlib">
     <value>88</value>
   </data>
+  <data name="modifyandSetFuelLoad.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;modifyandSetFuelLoad.Name" xml:space="preserve">
     <value>modifyandSetFuelLoad</value>
   </data>
   <data name="&gt;&gt;modifyandSetFuelLoad.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.ModifyandSet, MissionPlanner, Version=1.3.7649.35603, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.ModifyandSet, MissionPlanner, Version=1.3.7760.32447, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;modifyandSetFuelLoad.Parent" xml:space="preserve">
     <value>tabActions</value>
@@ -1309,7 +1330,7 @@
     <value>modifyandSetAlt</value>
   </data>
   <data name="&gt;&gt;modifyandSetAlt.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.ModifyandSet, MissionPlanner, Version=1.3.7649.35603, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.ModifyandSet, MissionPlanner, Version=1.3.7760.32447, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;modifyandSetAlt.Parent" xml:space="preserve">
     <value>tabActions</value>
@@ -1318,7 +1339,7 @@
     <value>26</value>
   </data>
   <data name="QUICK_Arming_Status.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 368</value>
+    <value>94, 271</value>
   </data>
   <data name="QUICK_Arming_Status.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 43</value>
@@ -1339,7 +1360,7 @@
     <value>27</value>
   </data>
   <data name="QUICK_Lock_Status.Location" type="System.Drawing.Point, System.Drawing">
-    <value>94, 368</value>
+    <value>185, 271</value>
   </data>
   <data name="QUICK_Lock_Status.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 43</value>
@@ -1360,7 +1381,7 @@
     <value>28</value>
   </data>
   <data name="QUICK_GPS_Status.Location" type="System.Drawing.Point, System.Drawing">
-    <value>184, 368</value>
+    <value>274, 271</value>
   </data>
   <data name="QUICK_GPS_Status.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 43</value>
@@ -1384,7 +1405,7 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="QUICK_Airspeed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 319</value>
+    <value>185, 222</value>
   </data>
   <data name="QUICK_Airspeed.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 43</value>
@@ -1408,7 +1429,7 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="QUICK_Terrain.Location" type="System.Drawing.Point, System.Drawing">
-    <value>94, 319</value>
+    <value>275, 222</value>
   </data>
   <data name="QUICK_Terrain.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 43</value>
@@ -1432,7 +1453,7 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="QUICK_CubeT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 222</value>
+    <value>6, 173</value>
   </data>
   <data name="QUICK_CubeT.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 43</value>
@@ -1451,78 +1472,6 @@
   </data>
   <data name="&gt;&gt;QUICK_CubeT.ZOrder" xml:space="preserve">
     <value>32</value>
-  </data>
-  <data name="QUICK_FuelRemaining.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
-  <data name="QUICK_FuelRemaining.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 270</value>
-  </data>
-  <data name="QUICK_FuelRemaining.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 43</value>
-  </data>
-  <data name="QUICK_FuelRemaining.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;QUICK_FuelRemaining.Name" xml:space="preserve">
-    <value>QUICK_FuelRemaining</value>
-  </data>
-  <data name="&gt;&gt;QUICK_FuelRemaining.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.QuickViewFuel, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;QUICK_FuelRemaining.Parent" xml:space="preserve">
-    <value>tabActions</value>
-  </data>
-  <data name="&gt;&gt;QUICK_FuelRemaining.ZOrder" xml:space="preserve">
-    <value>33</value>
-  </data>
-  <data name="QUICK_CHT.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8.25pt</value>
-  </data>
-  <data name="QUICK_CHT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>184, 173</value>
-  </data>
-  <data name="QUICK_CHT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 43</value>
-  </data>
-  <data name="QUICK_CHT.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;QUICK_CHT.Name" xml:space="preserve">
-    <value>QUICK_CHT</value>
-  </data>
-  <data name="&gt;&gt;QUICK_CHT.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.QuickView, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;QUICK_CHT.Parent" xml:space="preserve">
-    <value>tabActions</value>
-  </data>
-  <data name="&gt;&gt;QUICK_CHT.ZOrder" xml:space="preserve">
-    <value>34</value>
-  </data>
-  <data name="QUICK_RPM.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8.25pt</value>
-  </data>
-  <data name="QUICK_RPM.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 173</value>
-  </data>
-  <data name="QUICK_RPM.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 43</value>
-  </data>
-  <data name="QUICK_RPM.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;QUICK_RPM.Name" xml:space="preserve">
-    <value>QUICK_RPM</value>
-  </data>
-  <data name="&gt;&gt;QUICK_RPM.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.QuickView, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;QUICK_RPM.Parent" xml:space="preserve">
-    <value>tabActions</value>
-  </data>
-  <data name="&gt;&gt;QUICK_RPM.ZOrder" xml:space="preserve">
-    <value>35</value>
   </data>
   <data name="QUICK_Throttle.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
@@ -1546,13 +1495,13 @@
     <value>tabActions</value>
   </data>
   <data name="&gt;&gt;QUICK_Throttle.ZOrder" xml:space="preserve">
-    <value>36</value>
+    <value>33</value>
   </data>
   <data name="QUICK_BackupBattV.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="QUICK_BackupBattV.Location" type="System.Drawing.Point, System.Drawing">
-    <value>94, 222</value>
+    <value>184, 173</value>
   </data>
   <data name="QUICK_BackupBattV.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 43</value>
@@ -1570,37 +1519,13 @@
     <value>tabActions</value>
   </data>
   <data name="&gt;&gt;QUICK_BackupBattV.ZOrder" xml:space="preserve">
-    <value>37</value>
-  </data>
-  <data name="QUICK_VPSBattV.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
-  <data name="QUICK_VPSBattV.Location" type="System.Drawing.Point, System.Drawing">
-    <value>184, 222</value>
-  </data>
-  <data name="QUICK_VPSBattV.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 43</value>
-  </data>
-  <data name="QUICK_VPSBattV.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;QUICK_VPSBattV.Name" xml:space="preserve">
-    <value>QUICK_VPSBattV</value>
-  </data>
-  <data name="&gt;&gt;QUICK_VPSBattV.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.QuickView, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;QUICK_VPSBattV.Parent" xml:space="preserve">
-    <value>tabActions</value>
-  </data>
-  <data name="&gt;&gt;QUICK_VPSBattV.ZOrder" xml:space="preserve">
-    <value>38</value>
+    <value>34</value>
   </data>
   <data name="QUICK_Link.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="QUICK_Link.Location" type="System.Drawing.Point, System.Drawing">
-    <value>274, 319</value>
+    <value>6, 271</value>
   </data>
   <data name="QUICK_Link.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 43</value>
@@ -1618,58 +1543,10 @@
     <value>tabActions</value>
   </data>
   <data name="&gt;&gt;QUICK_Link.ZOrder" xml:space="preserve">
-    <value>39</value>
-  </data>
-  <data name="QUICK_OAT.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
-  <data name="QUICK_OAT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>274, 221</value>
-  </data>
-  <data name="QUICK_OAT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 43</value>
-  </data>
-  <data name="QUICK_OAT.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;QUICK_OAT.Name" xml:space="preserve">
-    <value>QUICK_OAT</value>
-  </data>
-  <data name="&gt;&gt;QUICK_OAT.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.QuickView, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;QUICK_OAT.Parent" xml:space="preserve">
-    <value>tabActions</value>
-  </data>
-  <data name="&gt;&gt;QUICK_OAT.ZOrder" xml:space="preserve">
-    <value>40</value>
-  </data>
-  <data name="QUICK_FuelRate.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 6.75pt</value>
-  </data>
-  <data name="QUICK_FuelRate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>274, 173</value>
-  </data>
-  <data name="QUICK_FuelRate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 43</value>
-  </data>
-  <data name="QUICK_FuelRate.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;QUICK_FuelRate.Name" xml:space="preserve">
-    <value>QUICK_FuelRate</value>
-  </data>
-  <data name="&gt;&gt;QUICK_FuelRate.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.QuickView, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;QUICK_FuelRate.Parent" xml:space="preserve">
-    <value>tabActions</value>
-  </data>
-  <data name="&gt;&gt;QUICK_FuelRate.ZOrder" xml:space="preserve">
-    <value>41</value>
+    <value>35</value>
   </data>
   <data name="QUICK_TimeInAir.Location" type="System.Drawing.Point, System.Drawing">
-    <value>274, 270</value>
+    <value>94, 222</value>
   </data>
   <data name="QUICK_TimeInAir.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 43</value>
@@ -1687,55 +1564,7 @@
     <value>tabActions</value>
   </data>
   <data name="&gt;&gt;QUICK_TimeInAir.ZOrder" xml:space="preserve">
-    <value>42</value>
-  </data>
-  <data name="QUICK_LaserAlt.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
-  <data name="QUICK_LaserAlt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>184, 319</value>
-  </data>
-  <data name="QUICK_LaserAlt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 43</value>
-  </data>
-  <data name="QUICK_LaserAlt.TabIndex" type="System.Int32, mscorlib">
-    <value>91</value>
-  </data>
-  <data name="&gt;&gt;QUICK_LaserAlt.Name" xml:space="preserve">
-    <value>QUICK_LaserAlt</value>
-  </data>
-  <data name="&gt;&gt;QUICK_LaserAlt.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.QuickView, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;QUICK_LaserAlt.Parent" xml:space="preserve">
-    <value>tabActions</value>
-  </data>
-  <data name="&gt;&gt;QUICK_LaserAlt.ZOrder" xml:space="preserve">
-    <value>43</value>
-  </data>
-  <data name="QUICK_Wind.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
-  <data name="QUICK_Wind.Location" type="System.Drawing.Point, System.Drawing">
-    <value>274, 368</value>
-  </data>
-  <data name="QUICK_Wind.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 43</value>
-  </data>
-  <data name="QUICK_Wind.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;QUICK_Wind.Name" xml:space="preserve">
-    <value>QUICK_Wind</value>
-  </data>
-  <data name="&gt;&gt;QUICK_Wind.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.QuickView, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;QUICK_Wind.Parent" xml:space="preserve">
-    <value>tabActions</value>
-  </data>
-  <data name="&gt;&gt;QUICK_Wind.ZOrder" xml:space="preserve">
-    <value>44</value>
+    <value>36</value>
   </data>
   <data name="tabActions.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt</value>
@@ -1780,7 +1609,7 @@
     <value>checkListControl1</value>
   </data>
   <data name="&gt;&gt;checkListControl1.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.PreFlight.CheckListControl, MissionPlanner, Version=1.3.7649.35603, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.PreFlight.CheckListControl, MissionPlanner, Version=1.3.7760.32447, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;checkListControl1.Parent" xml:space="preserve">
     <value>tabPagePreFlight</value>
@@ -2786,7 +2615,7 @@
     <value>servoOptions1</value>
   </data>
   <data name="&gt;&gt;servoOptions1.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.ServoOptions, MissionPlanner, Version=1.3.7649.35603, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.ServoOptions, MissionPlanner, Version=1.3.7760.32447, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;servoOptions1.Parent" xml:space="preserve">
     <value>flowLayoutPanelServos</value>
@@ -2807,7 +2636,7 @@
     <value>servoOptions2</value>
   </data>
   <data name="&gt;&gt;servoOptions2.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.ServoOptions, MissionPlanner, Version=1.3.7649.35603, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.ServoOptions, MissionPlanner, Version=1.3.7760.32447, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;servoOptions2.Parent" xml:space="preserve">
     <value>flowLayoutPanelServos</value>
@@ -2828,7 +2657,7 @@
     <value>servoOptions3</value>
   </data>
   <data name="&gt;&gt;servoOptions3.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.ServoOptions, MissionPlanner, Version=1.3.7649.35603, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.ServoOptions, MissionPlanner, Version=1.3.7760.32447, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;servoOptions3.Parent" xml:space="preserve">
     <value>flowLayoutPanelServos</value>
@@ -2849,7 +2678,7 @@
     <value>servoOptions4</value>
   </data>
   <data name="&gt;&gt;servoOptions4.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.ServoOptions, MissionPlanner, Version=1.3.7649.35603, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.ServoOptions, MissionPlanner, Version=1.3.7760.32447, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;servoOptions4.Parent" xml:space="preserve">
     <value>flowLayoutPanelServos</value>
@@ -2870,7 +2699,7 @@
     <value>servoOptions5</value>
   </data>
   <data name="&gt;&gt;servoOptions5.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.ServoOptions, MissionPlanner, Version=1.3.7649.35603, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.ServoOptions, MissionPlanner, Version=1.3.7760.32447, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;servoOptions5.Parent" xml:space="preserve">
     <value>flowLayoutPanelServos</value>
@@ -2891,7 +2720,7 @@
     <value>servoOptions6</value>
   </data>
   <data name="&gt;&gt;servoOptions6.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.ServoOptions, MissionPlanner, Version=1.3.7649.35603, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.ServoOptions, MissionPlanner, Version=1.3.7760.32447, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;servoOptions6.Parent" xml:space="preserve">
     <value>flowLayoutPanelServos</value>
@@ -2912,7 +2741,7 @@
     <value>servoOptions7</value>
   </data>
   <data name="&gt;&gt;servoOptions7.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.ServoOptions, MissionPlanner, Version=1.3.7649.35603, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.ServoOptions, MissionPlanner, Version=1.3.7760.32447, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;servoOptions7.Parent" xml:space="preserve">
     <value>flowLayoutPanelServos</value>
@@ -2933,7 +2762,7 @@
     <value>servoOptions8</value>
   </data>
   <data name="&gt;&gt;servoOptions8.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.ServoOptions, MissionPlanner, Version=1.3.7649.35603, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.ServoOptions, MissionPlanner, Version=1.3.7760.32447, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;servoOptions8.Parent" xml:space="preserve">
     <value>flowLayoutPanelServos</value>
@@ -2954,7 +2783,7 @@
     <value>servoOptions9</value>
   </data>
   <data name="&gt;&gt;servoOptions9.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.ServoOptions, MissionPlanner, Version=1.3.7649.35603, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.ServoOptions, MissionPlanner, Version=1.3.7760.32447, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;servoOptions9.Parent" xml:space="preserve">
     <value>flowLayoutPanelServos</value>
@@ -2975,7 +2804,7 @@
     <value>servoOptions10</value>
   </data>
   <data name="&gt;&gt;servoOptions10.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.ServoOptions, MissionPlanner, Version=1.3.7649.35603, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.ServoOptions, MissionPlanner, Version=1.3.7760.32447, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;servoOptions10.Parent" xml:space="preserve">
     <value>flowLayoutPanelServos</value>
@@ -2996,7 +2825,7 @@
     <value>relayOptions1</value>
   </data>
   <data name="&gt;&gt;relayOptions1.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.RelayOptions, MissionPlanner, Version=1.3.7649.35603, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.RelayOptions, MissionPlanner, Version=1.3.7760.32447, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;relayOptions1.Parent" xml:space="preserve">
     <value>flowLayoutPanelServos</value>
@@ -3017,7 +2846,7 @@
     <value>relayOptions2</value>
   </data>
   <data name="&gt;&gt;relayOptions2.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.RelayOptions, MissionPlanner, Version=1.3.7649.35603, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.RelayOptions, MissionPlanner, Version=1.3.7760.32447, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;relayOptions2.Parent" xml:space="preserve">
     <value>flowLayoutPanelServos</value>
@@ -3038,7 +2867,7 @@
     <value>relayOptions3</value>
   </data>
   <data name="&gt;&gt;relayOptions3.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.RelayOptions, MissionPlanner, Version=1.3.7649.35603, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.RelayOptions, MissionPlanner, Version=1.3.7760.32447, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;relayOptions3.Parent" xml:space="preserve">
     <value>flowLayoutPanelServos</value>
@@ -3059,7 +2888,7 @@
     <value>relayOptions4</value>
   </data>
   <data name="&gt;&gt;relayOptions4.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.RelayOptions, MissionPlanner, Version=1.3.7649.35603, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.RelayOptions, MissionPlanner, Version=1.3.7760.32447, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;relayOptions4.Parent" xml:space="preserve">
     <value>flowLayoutPanelServos</value>
@@ -4262,7 +4091,7 @@
     <value>distanceBar1</value>
   </data>
   <data name="&gt;&gt;distanceBar1.Type" xml:space="preserve">
-    <value>MissionPlanner.Controls.DistanceBar, MissionPlanner, Version=1.3.7649.35603, Culture=neutral, PublicKeyToken=null</value>
+    <value>MissionPlanner.Controls.DistanceBar, MissionPlanner, Version=1.3.7760.32447, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;distanceBar1.Parent" xml:space="preserve">
     <value>splitContainer1.Panel2</value>
@@ -4482,6 +4311,246 @@
   </data>
   <data name="&gt;&gt;TRK_zoom.ZOrder" xml:space="preserve">
     <value>10</value>
+  </data>
+  <data name="QUICK_CHT.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="QUICK_CHT.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="QUICK_CHT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>194, 777</value>
+  </data>
+  <data name="QUICK_CHT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 43</value>
+  </data>
+  <data name="QUICK_CHT.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="QUICK_CHT.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;QUICK_CHT.Name" xml:space="preserve">
+    <value>QUICK_CHT</value>
+  </data>
+  <data name="&gt;&gt;QUICK_CHT.Type" xml:space="preserve">
+    <value>MissionPlanner.Controls.QuickView, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;QUICK_CHT.Parent" xml:space="preserve">
+    <value>splitContainer1.Panel2</value>
+  </data>
+  <data name="&gt;&gt;QUICK_CHT.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="QUICK_FuelRate.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="QUICK_FuelRate.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 6.75pt</value>
+  </data>
+  <data name="QUICK_FuelRate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>338, 777</value>
+  </data>
+  <data name="QUICK_FuelRate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 43</value>
+  </data>
+  <data name="QUICK_FuelRate.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="QUICK_FuelRate.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;QUICK_FuelRate.Name" xml:space="preserve">
+    <value>QUICK_FuelRate</value>
+  </data>
+  <data name="&gt;&gt;QUICK_FuelRate.Type" xml:space="preserve">
+    <value>MissionPlanner.Controls.QuickView, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;QUICK_FuelRate.Parent" xml:space="preserve">
+    <value>splitContainer1.Panel2</value>
+  </data>
+  <data name="&gt;&gt;QUICK_FuelRate.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="QUICK_VPSBattV.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="QUICK_VPSBattV.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="QUICK_VPSBattV.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 697</value>
+  </data>
+  <data name="QUICK_VPSBattV.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 43</value>
+  </data>
+  <data name="QUICK_VPSBattV.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="QUICK_VPSBattV.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;QUICK_VPSBattV.Name" xml:space="preserve">
+    <value>QUICK_VPSBattV</value>
+  </data>
+  <data name="&gt;&gt;QUICK_VPSBattV.Type" xml:space="preserve">
+    <value>MissionPlanner.Controls.QuickView, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;QUICK_VPSBattV.Parent" xml:space="preserve">
+    <value>splitContainer1.Panel2</value>
+  </data>
+  <data name="&gt;&gt;QUICK_VPSBattV.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="QUICK_OAT.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="QUICK_OAT.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="QUICK_OAT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>232, 686</value>
+  </data>
+  <data name="QUICK_OAT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 43</value>
+  </data>
+  <data name="QUICK_OAT.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="QUICK_OAT.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;QUICK_OAT.Name" xml:space="preserve">
+    <value>QUICK_OAT</value>
+  </data>
+  <data name="&gt;&gt;QUICK_OAT.Type" xml:space="preserve">
+    <value>MissionPlanner.Controls.QuickView, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;QUICK_OAT.Parent" xml:space="preserve">
+    <value>splitContainer1.Panel2</value>
+  </data>
+  <data name="&gt;&gt;QUICK_OAT.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="QUICK_LaserAlt.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="QUICK_LaserAlt.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="QUICK_LaserAlt.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 958</value>
+  </data>
+  <data name="QUICK_LaserAlt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 43</value>
+  </data>
+  <data name="QUICK_LaserAlt.TabIndex" type="System.Int32, mscorlib">
+    <value>91</value>
+  </data>
+  <data name="QUICK_LaserAlt.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;QUICK_LaserAlt.Name" xml:space="preserve">
+    <value>QUICK_LaserAlt</value>
+  </data>
+  <data name="&gt;&gt;QUICK_LaserAlt.Type" xml:space="preserve">
+    <value>MissionPlanner.Controls.QuickView, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;QUICK_LaserAlt.Parent" xml:space="preserve">
+    <value>splitContainer1.Panel2</value>
+  </data>
+  <data name="&gt;&gt;QUICK_LaserAlt.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="QUICK_FuelRemaining.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="QUICK_FuelRemaining.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="QUICK_FuelRemaining.Location" type="System.Drawing.Point, System.Drawing">
+    <value>50, 833</value>
+  </data>
+  <data name="QUICK_FuelRemaining.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 43</value>
+  </data>
+  <data name="QUICK_FuelRemaining.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="QUICK_FuelRemaining.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;QUICK_FuelRemaining.Name" xml:space="preserve">
+    <value>QUICK_FuelRemaining</value>
+  </data>
+  <data name="&gt;&gt;QUICK_FuelRemaining.Type" xml:space="preserve">
+    <value>MissionPlanner.Controls.QuickViewFuel, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;QUICK_FuelRemaining.Parent" xml:space="preserve">
+    <value>splitContainer1.Panel2</value>
+  </data>
+  <data name="&gt;&gt;QUICK_FuelRemaining.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="QUICK_RPM.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="QUICK_RPM.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="QUICK_RPM.Location" type="System.Drawing.Point, System.Drawing">
+    <value>50, 686</value>
+  </data>
+  <data name="QUICK_RPM.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 43</value>
+  </data>
+  <data name="QUICK_RPM.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="QUICK_RPM.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;QUICK_RPM.Name" xml:space="preserve">
+    <value>QUICK_RPM</value>
+  </data>
+  <data name="&gt;&gt;QUICK_RPM.Type" xml:space="preserve">
+    <value>MissionPlanner.Controls.QuickView, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;QUICK_RPM.Parent" xml:space="preserve">
+    <value>splitContainer1.Panel2</value>
+  </data>
+  <data name="&gt;&gt;QUICK_RPM.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="QUICK_Wind.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="QUICK_Wind.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="QUICK_Wind.Location" type="System.Drawing.Point, System.Drawing">
+    <value>50, 958</value>
+  </data>
+  <data name="QUICK_Wind.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 43</value>
+  </data>
+  <data name="QUICK_Wind.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="QUICK_Wind.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;QUICK_Wind.Name" xml:space="preserve">
+    <value>QUICK_Wind</value>
+  </data>
+  <data name="&gt;&gt;QUICK_Wind.Type" xml:space="preserve">
+    <value>MissionPlanner.Controls.QuickView, MissionPlanner.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;QUICK_Wind.Parent" xml:space="preserve">
+    <value>splitContainer1.Panel2</value>
+  </data>
+  <data name="&gt;&gt;QUICK_Wind.ZOrder" xml:space="preserve">
+    <value>18</value>
   </data>
   <data name="&gt;&gt;splitContainer1.Panel2.Name" xml:space="preserve">
     <value>splitContainer1.Panel2</value>

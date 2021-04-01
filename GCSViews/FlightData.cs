@@ -5435,5 +5435,10 @@ namespace MissionPlanner.GCSViews
             RemoteLog.StartRemoteLog(MainV2.comPort, (byte)MainV2.comPort.sysidcurrent,
                 (byte)MainV2.comPort.compidcurrent);
         }
+
+        private void gMapControl1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

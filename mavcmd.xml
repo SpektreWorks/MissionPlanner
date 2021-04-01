@@ -304,24 +304,24 @@
     	<Y>Long</Y>
     	<Z>Alt</Z>
     </LOITER_TO_ALT>
-    <VTOL_TAKEOFF>
-    	<P1></P1>
-    	<P2></P2>
-    	<P3></P3>
-    	<P4></P4>
-    	<X></X>
-    	<Y></Y>
-    	<Z>Alt</Z>
-    </VTOL_TAKEOFF>
-    <VTOL_LAND>
-    	<P1></P1>
-    	<P2></P2>
-    	<P3></P3>
-    	<P4></P4>
-    	<X>Lat</X>
-    	<Y>Long</Y>
-    	<Z>Alt</Z>
-    </VTOL_LAND>
+    <LAND>
+	    <P1></P1>
+		<P2></P2>
+		<P3></P3>
+		<P4></P4>
+		<X>Lat</X>
+		<Y>Long</Y>
+		<Z>Alt</Z>
+	</LAND>
+	<TAKEOFF>
+	    <P1></P1>
+		<P2></P2>
+		<P3></P3>
+		<P4></P4>
+		<X></X>
+		<Y></Y>
+		<Z>Alt</Z>
+    </TAKEOFF>
     <DO_VTOL_TRANSITION>
     	<P1>mode (3=VTOL/4=FW)</P1>
     	<P2></P2>
