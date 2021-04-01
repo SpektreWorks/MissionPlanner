@@ -253,11 +253,10 @@ namespace MissionPlanner.GCSViews
                 modelist.Add("Auto");
                 modelist.Add("Manual");
                 modelist.Add("FBWA");
-                modelist.Add("QSTABILIZE");
-                modelist.Add("QHOVER");
-                modelist.Add("QLAND");
-                modelist.Add("QLOITER");
+                modelist.Add("Loiter");
                 modelist.Add("RTL");
+                modelist.Add("AutoTune");
+                modelist.Add("Guided");
             }
 
             CMB_modes.DataSource = modelist;
