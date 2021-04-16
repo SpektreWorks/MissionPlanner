@@ -2476,7 +2476,7 @@ namespace MissionPlanner.GCSViews
             }
 
             if (MainV2.comPort != null && MainV2.comPort.MAV != null)
-            {
+            {                 
                 if ((MainV2.comPort.MAV.cs.capabilities & (int)MAVLink.MAV_PROTOCOL_CAPABILITY.MISSION_FENCE) > 0)
                 {
                     geoFenceToolStripMenuItem.Visible = false;
@@ -7298,6 +7298,11 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
         }
 
         private void CHK_Loiter_CW_flightdata_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolTip1_Popup(object sender, PopupEventArgs e)
         {
 
         }
