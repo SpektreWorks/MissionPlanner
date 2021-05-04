@@ -909,42 +909,35 @@ namespace MissionPlanner.GCSViews
             }
         }
 
-        private void BUT_Navlights_Click(object sender, EventArgs e)
-        {
-            //if (!MainV2.comPort.BaseStream.IsOpen)
-            //{
-            //    CustomMessageBox.Show("Please Connect First");
-            //    return;
-            //}
-            //try
-            //{
-            //    if ( (MainV2.comPort.MAV.cs.ch8out > (1333 - 50)) && (MainV2.comPort.MAV.cs.ch8out < (1333 + 50)) )
-            //    {
-            //        //Turn off Nav Lights
-            //        if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, 8, 1000.0f, 0, 0, 0, 0, 0))
-            //        {
-            //            CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
-            //        }
-            //    }
-            //    else
-            //    {
-            //        //Turn on Nav Lights
-            //        if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_SERVO, 8, 1333.0f, 0, 0, 0, 0, 0))
-            //        {
-            //            CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    CustomMessageBox.Show(Strings.CommandFailed + ex.ToString(), Strings.ERROR);
-            //}
-
-        }
 
         private void BUT_LockUnlock_Click(object sender, EventArgs e)
         {
-
+            if (!MainV2.comPort.BaseStream.IsOpen)
+            {
+                CustomMessageBox.Show("Please Connect First");
+                return;
+            }
+            try
+            {
+                if (CurrentState.locked == false)
+                {
+                    if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_MODE, 128, 0, 0, 0, 0, 0, 0))
+                    {
+                        CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+                    }
+                }
+                else
+                {
+                    if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_MODE, 128, 1, 0, 0, 0, 0, 0))
+                    {
+                        CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show(Strings.CommandFailed + ex.ToString(), Strings.ERROR);
+            }
         }
 
         private void BUT_ARM_Click(object sender, EventArgs e)
