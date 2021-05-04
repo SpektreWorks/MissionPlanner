@@ -43,6 +43,8 @@
             this.tabActions = new System.Windows.Forms.TabPage();
             this.modifyandSetLoiterRad = new MissionPlanner.Controls.ModifyandSet();
             this.BUT_abortland = new MissionPlanner.Controls.MyButton();
+            //this.BUT_Navlights = new MissionPlanner.Controls.MyButton();
+            //this.BUT_LockUnlock = new MissionPlanner.Controls.MyButton();
             this.BUT_resumemis = new MissionPlanner.Controls.MyButton();
             this.CMB_mountmode = new System.Windows.Forms.ComboBox();
             this.BUT_mountmode = new MissionPlanner.Controls.MyButton();
@@ -623,6 +625,8 @@
             // 
             this.tabActions.Controls.Add(this.modifyandSetLoiterRad);
             this.tabActions.Controls.Add(this.BUT_abortland);
+            //this.tabActions.Controls.Add(this.BUT_Navlights);
+            //this.tabActions.Controls.Add(this.BUT_LockUnlock);
             this.tabActions.Controls.Add(this.BUT_resumemis);
             this.tabActions.Controls.Add(this.CMB_mountmode);
             this.tabActions.Controls.Add(this.BUT_mountmode);
@@ -685,6 +689,18 @@
             this.toolTip1.SetToolTip(this.BUT_abortland, resources.GetString("BUT_abortland.ToolTip"));
             this.BUT_abortland.UseVisualStyleBackColor = true;
             this.BUT_abortland.Click += new System.EventHandler(this.BUT_abortland_Click);
+            // 
+            // BUT_Navlights
+            // 
+            //resources.ApplyResources(this.BUT_Navlights, "BUT_Navlights");
+            //this.BUT_Navlights.Name = "BUT_Navlights";
+            //this.BUT_Navlights.Click += new System.EventHandler(this.BUT_Navlights_Click);
+            // 
+            // BUT_LockUnlock
+            // 
+            //resources.ApplyResources(this.BUT_LockUnlock, "BUT_LockUnlock");
+            //this.BUT_LockUnlock.Name = "BUT_LockUnlock";
+            //this.BUT_LockUnlock.Click += new System.EventHandler(this.BUT_LockUnlock_Click);
             // 
             // BUT_resumemis
             // 
@@ -2191,7 +2207,7 @@
             this.windDir1.BackColor = System.Drawing.Color.Transparent;
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Direction", this.bindingSource1, "wind_dir", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.windDir1.DataBindings.Add(new System.Windows.Forms.Binding("Speed", this.bindingSource1, "wind_vel", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.windDir1.Direction = 360D;
+            this.windDir1.Direction = 180D;
             resources.ApplyResources(this.windDir1, "windDir1");
             this.windDir1.Name = "windDir1";
             this.windDir1.Speed = 0D;
@@ -2602,6 +2618,8 @@
         private Controls.PreFlight.CheckListControl checkListControl1;
         private System.Windows.Forms.ToolStripMenuItem swapWithMapToolStripMenuItem;
         private Controls.MyButton BUT_abortland;
+        //private Controls.MyButton BUT_Navlights;
+        //private Controls.MyButton BUT_LockUnlock;
         private Controls.MyButton but_disablejoystick;
         private System.Windows.Forms.ToolStripMenuItem videoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recordHudToAVIToolStripMenuItem;
