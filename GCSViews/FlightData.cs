@@ -940,6 +940,27 @@ namespace MissionPlanner.GCSViews
             }
         }
 
+        private void BUT_Parachute_Click(object sender, EventArgs e)
+        {
+            if (!MainV2.comPort.BaseStream.IsOpen)
+            {
+                CustomMessageBox.Show("Please Connect First");
+                return;
+            }
+            try
+            {
+                if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_PARACHUTE, 2, 0, 0, 0, 0, 0, 0))
+                {
+                    CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show(Strings.CommandFailed + ex.ToString(), Strings.ERROR);
+            }
+        }
+
+
         private void BUT_ARM_Click(object sender, EventArgs e)
         {
             if (!MainV2.comPort.BaseStream.IsOpen)

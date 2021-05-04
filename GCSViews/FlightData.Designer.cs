@@ -44,6 +44,7 @@
             this.modifyandSetLoiterRad = new MissionPlanner.Controls.ModifyandSet();
             this.BUT_abortland = new MissionPlanner.Controls.MyButton();
             this.BUT_LockUnlock = new MissionPlanner.Controls.MyButton();
+            this.BUT_Parachute = new MissionPlanner.Controls.MyButton();
             this.BUT_resumemis = new MissionPlanner.Controls.MyButton();
             this.CMB_mountmode = new System.Windows.Forms.ComboBox();
             this.BUT_mountmode = new MissionPlanner.Controls.MyButton();
@@ -625,6 +626,7 @@
             this.tabActions.Controls.Add(this.modifyandSetLoiterRad);
             this.tabActions.Controls.Add(this.BUT_abortland);
             this.tabActions.Controls.Add(this.BUT_LockUnlock);
+            this.tabActions.Controls.Add(this.BUT_Parachute);
             this.tabActions.Controls.Add(this.BUT_resumemis);
             this.tabActions.Controls.Add(this.CMB_mountmode);
             this.tabActions.Controls.Add(this.BUT_mountmode);
@@ -693,6 +695,12 @@
             resources.ApplyResources(this.BUT_LockUnlock, "BUT_LockUnlock");
             this.BUT_LockUnlock.Name = "BUT_LockUnlock";
             this.BUT_LockUnlock.Click += new System.EventHandler(this.BUT_LockUnlock_Click);
+            // 
+            // BUT_Parachute
+            // 
+            resources.ApplyResources(this.BUT_Parachute, "BUT_Parachute");
+            this.BUT_Parachute.Name = "BUT_Parachute";
+            this.BUT_Parachute.Click += new System.EventHandler(this.BUT_Parachute_Click);
             // 
             // BUT_resumemis
             // 
@@ -2611,6 +2619,7 @@
         private System.Windows.Forms.ToolStripMenuItem swapWithMapToolStripMenuItem;
         private Controls.MyButton BUT_abortland;
         private Controls.MyButton BUT_LockUnlock;
+        private Controls.MyButton BUT_Parachute;
         private Controls.MyButton but_disablejoystick;
         private System.Windows.Forms.ToolStripMenuItem videoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recordHudToAVIToolStripMenuItem;
