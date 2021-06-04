@@ -1030,19 +1030,6 @@ namespace MissionPlanner.GCSViews
                 {
                     if (isitarmed)
                     {
-                        //Engage safety on disarm (this was added to prevent ESCs from rotating motors on power down)
-                        try
-                        {
-                            if (!MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_MODE, 128, 1, 0, 0, 0, 0, 0))
-                            {
-                                CustomMessageBox.Show(Strings.CommandFailed, Strings.ERROR);
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            CustomMessageBox.Show(Strings.CommandFailed + ex.ToString(), Strings.ERROR);
-                        }
-
                         //Stop remote logger if it was running
                         RemoteLog.StopRemoteLog(MainV2.comPort, (byte)MainV2.comPort.sysidcurrent,(byte)MainV2.comPort.compidcurrent);
                     }
