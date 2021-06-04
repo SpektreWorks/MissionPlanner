@@ -234,7 +234,10 @@ namespace MissionPlanner.GCSViews
             }
             if (MainV2.DisplayConfiguration.displayMotorTest)
             {
-                CustomMessageBox.Show("isConnected: " + isConnected.ToString() + ", gotAllParams: " + gotAllParams.ToString());
+                if (!(isConnected && gotAllParams))
+                {
+                    CustomMessageBox.Show("isConnected: " + isConnected.ToString() + ", gotAllParams: " + gotAllParams.ToString());
+                }
                 AddBackstageViewPage(typeof(ConfigMotorTest), rm.GetString("backstageViewPageMotorTest.Text"), isConnected && gotAllParams, opt);
             }
             if (MainV2.DisplayConfiguration.displayBluetooth)
