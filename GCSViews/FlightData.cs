@@ -1627,13 +1627,12 @@ namespace MissionPlanner.GCSViews
                     ((Control) sender).Enabled = false;
 
                     int param1 = 0;
-                    int param3 = 1;
+                    int param3 = 0;
 
                     // request gyro
                     if (CMB_action.Text == "PREFLIGHT_CALIBRATION")
                     {
-                        if (MainV2.comPort.MAV.cs.firmware == Firmwares.ArduCopter2)
-                            param1 = 1; // gyro
+                        param1 = 1; // gyro
                         param3 = 1; // baro / airspeed
                     }
 
