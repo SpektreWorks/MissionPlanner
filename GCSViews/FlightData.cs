@@ -240,8 +240,9 @@ namespace MissionPlanner.GCSViews
             List<string> list = new List<string>();
 
             {
-                list.Add("PREFLIGHT_CALIBRATION");
-                list.Add("PREFLIGHT_REBOOT_SHUTDOWN");
+                list.Add("Airspeed Cal");
+                list.Add("Gyro Cal");
+                list.Add("Reboot");
             }
 
 
@@ -1627,22 +1628,28 @@ namespace MissionPlanner.GCSViews
                     ((Control) sender).Enabled = false;
 
                     int param1 = 0;
-                    int param3 = 1;
+                    int param3 = 0;
+                    string cmd = "";
 
-                    // request gyro
-                    if (CMB_action.Text == "PREFLIGHT_CALIBRATION")
+                    if (CMB_action.Text == "Gyro Cal")
                     {
-                        if (MainV2.comPort.MAV.cs.firmware == Firmwares.ArduCopter2)
-                            param1 = 1; // gyro
-                        param3 = 1; // baro / airspeed
+                        cmd = "PREFLIGHT_CALIBRATION";
+                        param1 = 1; // gyro
                     }
 
-                    if (CMB_action.Text == "PREFLIGHT_REBOOT_SHUTDOWN")
+                    if (CMB_action.Text == "Airspeed Cal")
                     {
+                        cmd = "PREFLIGHT_CALIBRATION";
+                        param3 = 1; // baro / airspeed    
+                    }
+
+                    if (CMB_action.Text == "Reboot")
+                    {
+                        cmd = "PREFLIGHT_REBOOT_SHUTDOWN";
                         param1 = 1; // reboot
                     }
 
-                    if (MainV2.comPort.doCommand((MAVLink.MAV_CMD) Enum.Parse(typeof(MAVLink.MAV_CMD), CMB_action.Text),
+                    if (MainV2.comPort.doCommand((MAVLink.MAV_CMD) Enum.Parse(typeof(MAVLink.MAV_CMD), cmd),
                         param1, 0, param3, 0, 0, 0, 0))
                     {
 
